@@ -1,69 +1,8 @@
 import { useState, useEffect, type SetStateAction } from 'react';
+import { allQuestions, type Question } from './questions';
 
 export const TriviaQuizSection = () => {
-    const questions = [
-        {
-            question: "La posición de frente o de espaldas ejecutada por el efectivo de la Policía Nacional del Perú asignado al control de tránsito significa:",
-            options: ["Obligación de detenerse de quien así lo enfrente.", "Continuar la marcha por el carril izquierdo de la calzada.", "Continuar la marcha.", "Ninguna de las alternativas es correcta."],
-            correctAnswer: "Obligación de detenerse de quien así lo enfrente."
-        },
-        {
-            question: "Siempre que no exista una señal de límite de velocidad, en zonas urbanas el límite máximo de velocidad en calles y jirones es de:",
-            options: ["30km/h.", "40km/h.", "60km/h.", "80km/h."],
-            correctAnswer: "40km/h."
-        },
-        {
-            question: "Mientras la persona conduce, le está permitido:",
-            options: [
-                "Compartir su asiento con un niño, siempre y cuando éste sea menor de un año de edad.",
-                "Que otra persona tome el control de la dirección del vehículo, siempre y cuando sea de emergencia.",
-                "Conducir con una mano sobre el volante de dirección, cuando es necesario accionar algún comando del vehículo, como realizar los cambios de velocidad.",
-                "Ninguna de las alternativas es correcta."
-            ],
-            correctAnswer: "Conducir con una mano sobre el volante de dirección, cuando es necesario accionar algún comando del vehículo, como realizar los cambios de velocidad."
-        },
-        {
-            question: "El conductor está ________ a ___________ a las pruebas que le solicite el Efectivo de la Policía Nacional del Perú, asignado al control del tránsito, para determinar su estado de intoxicación por alcohol, drogas, estupefacientes u otros tóxicos:",
-            options: ["En su derecho - negarse.", "Facultado - Rechazar.", "Obligado - someterse.", "Ninguna de las alternativas es correcta."],
-            correctAnswer: "Obligado - someterse."
-        },
-        {
-            question: "La detención de un vehículo debe efectuarse:",
-            options: [
-                "En el sentido contrario a la circulación y en el carril izquierdo de la vía.",
-                "En el sentido de la circulación y en el carril derecho de la vía, utilizando las luces altas.",
-                "En el sentido de la circulación y en el carril izquierdo de la vía, utilizando las luces intermitentes.",
-                "En el sentido de la circulación y en el carril derecho de la vía, utilizando las luces intermitentes."
-            ],
-            correctAnswer: "En el sentido de la circulación y en el carril derecho de la vía, utilizando las luces intermitentes."
-        },
-        {
-            question: "En caso de un accidente de tránsito con daños personales y/o materiales, los participantes deben:",
-            options: ["Acudir a la estación de bomberos.", "Llamar a un familiar.", "Solicitar la intervención de la autoridad policial.", "Abandonar el lugar donde ocurrió el accidente."],
-            correctAnswer: "Solicitar la intervención de la autoridad policial."
-        },
-        {
-            question: "La conducción requiere un alto nivel de atención, pues existen distracciones que pueden ocasionar accidentes de tránsito, como por ejemplo:",
-            options: [
-                "Preocupaciones.",
-                "Uso del teléfono celular.",
-                "Manipulación de la radio mientras se conduce.",
-                "Todas las alternativas son correctas."
-            ],
-            correctAnswer: "Todas las alternativas son correctas."
-        },
-        {
-            question: "¿Influye la somnolencia en la capacidad de conducir?",
-            options: [
-                "Si, pues el conductor tomará decisiones lentas que lo inducirán a cometer errores.",
-                "Si, ya que el conductor está de mal genio.",
-                "No, siempre que la conducción sea realizada lentamente.",
-                "No, siempre y cuando la conducción sea realizada con un acompañante."
-            ],
-            correctAnswer: "Si, pues el conductor tomará decisiones lentas que lo inducirán a cometer errores."
-        }
-    ];
-
+    const [questions, setQuestions] = useState<Question[]>([]);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState('');
     const [showResult, setShowResult] = useState(false);
@@ -72,16 +11,28 @@ export const TriviaQuizSection = () => {
     const [gameFinished, setGameFinished] = useState(false);
     const [timeLeft, setTimeLeft] = useState(20);
 
+    // Función para seleccionar preguntas aleatorias
+    const selectRandomQuestions = () => {
+        const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, 8);
+    };
+
+    // Efecto para inicializar las preguntas aleatorias al montar el componente
     useEffect(() => {
-        if (gameStarted && !gameFinished && !showResult && timeLeft > 0) {
+        setQuestions(selectRandomQuestions());
+    }, []);
+
+    useEffect(() => {
+        if (gameStarted && !gameFinished && !showResult && timeLeft > 0 && questions.length > 0) {
             const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
             return () => clearTimeout(timer);
         } else if (timeLeft === 0 && !showResult) {
             setShowResult(true);
         }
-    }, [timeLeft, gameStarted, gameFinished, showResult]);
+    }, [timeLeft, gameStarted, gameFinished, showResult, questions.length]);
 
     const startGame = () => {
+        setQuestions(selectRandomQuestions()); // Seleccionar nuevas preguntas aleatorias
         setGameStarted(true);
         setCurrentQuestion(0);
         setScore(0);
@@ -99,7 +50,10 @@ export const TriviaQuizSection = () => {
 
     const handleSubmitAnswer = () => {
         if (selectedAnswer === questions[currentQuestion].correctAnswer) {
-            setScore(score + 1);
+            // Puntuación basada en tiempo restante: más puntos si responde rápido
+            const timeBonus = Math.floor(timeLeft / 2); // Bonus de 0-10 puntos
+            const basePoints = 10; // Puntos base por respuesta correcta
+            setScore(score + basePoints + timeBonus);
         }
         setShowResult(true);
     };
@@ -126,48 +80,104 @@ export const TriviaQuizSection = () => {
     };
 
     const getScoreMessage = () => {
-        const percentage = (score / questions.length) * 100;
-        if (percentage >= 80) return "¡Excelente! Listo para el examen 🏆";
-        if (percentage >= 60) return "¡Bien! Sigue practicando 👍";
-        if (percentage >= 40) return "Regular, necesitas más estudio 📚";
-        return "Debes estudiar más las reglas 📖";
+        const maxPossibleScore = questions.length * 20; // 10 puntos base + 10 de bonus máximo
+        const percentage = (score / maxPossibleScore) * 100;
+
+        if (percentage >= 80) return "¡Excelente! Conductor experto 🏆";
+        if (percentage >= 60) return "¡Muy bien! Buen conocimiento 👍";
+        if (percentage >= 40) return "Regular, sigue practicando 📚";
+        return "Necesitas estudiar más las reglas 📖";
     };
 
+    // Función para obtener el mensaje del encabezado según el porcentaje
+    const getHeaderMessage = () => {
+        const maxPossibleScore = questions.length * 20;
+        const percentage = (score / maxPossibleScore) * 100;
+
+        if (percentage >= 85) {
+            return {
+                emoji: "🎉",
+                title: "¡Felicitaciones!",
+                subtitle: "Aprobaste el examen"
+            };
+        } else if (percentage >= 65) {
+            return {
+                emoji: "😐",
+                title: "Sigue Intentando",
+                subtitle: "Regular, sigue practicando"
+            };
+        } else {
+            return {
+                emoji: "😔",
+                title: "Sigue Intentando",
+                subtitle: "Fallaste, sigue practicando"
+            };
+        }
+    };
+
+    // Mostrar loading mientras se cargan las preguntas
+    if (questions.length === 0) {
+        return (
+            <section className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 py-16 px-4">
+                <div className="container mx-auto">
+                    <div className="text-center">
+                        <div className="text-6xl mb-4 animate-spin">🔄</div>
+                        <h2 className="text-3xl font-bold text-white">Cargando preguntas...</h2>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
     return (
-        <section className="py-16 bg-gray-50">
-            <div className="container mx-auto px-4">
+        <section className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 py-16 px-4">
+            <div className="container mx-auto">
                 {/* Título de la sección */}
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                        Pon a Prueba tus Conocimientos
+                    <h2 className="text-5xl font-extrabold text-white mb-6 drop-shadow-lg">
+                        🚗 Pon a Prueba tus Conocimientos
                     </h2>
-                    <p className="text-xl text-gray-600">
+                    <p className="text-2xl text-blue-200 font-medium">
                         Trivia sobre las reglas de tránsito en el Perú
                     </p>
                 </div>
 
                 {/* Pantalla de inicio */}
                 {!gameStarted && (
-                    <div className="max-w-md mx-auto">
-                        <div className="bg-white rounded-lg shadow-xl p-8 text-center">
-                            <div className="text-6xl mb-4">🚗</div>
-                            <h3 className="text-2xl font-bold text-gray-800 mb-4">Trivia de Conducir</h3>
-                            <p className="text-gray-600 mb-6">¿Qué tanto sabes sobre manejo seguro?</p>
+                    <div className="max-w-lg mx-auto">
+                        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-10 text-center border border-white/20 hover:shadow-purple-500/25 transition-all duration-300">
+                            <div className="text-8xl mb-6 animate-bounce">🚗</div>
+                            <h3 className="text-3xl font-bold text-gray-800 mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                                Trivia de Conducir
+                            </h3>
+                            <p className="text-xl text-gray-600 mb-8">¿Qué tanto sabes sobre manejo seguro?</p>
 
-                            <div className="bg-blue-50 rounded-lg p-4 mb-6 text-left">
-                                <h4 className="font-bold text-blue-800 mb-2">📋 Reglas:</h4>
-                                <ul className="text-sm text-blue-700 space-y-1">
-                                    <li>• {questions.length} preguntas</li>
-                                    <li>• 20 segundos por pregunta</li>
-                                    <li>• Una sola oportunidad</li>
+                            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 mb-8 text-left border border-blue-200/50">
+                                <h4 className="font-bold text-blue-800 mb-4 text-lg flex items-center">
+                                    <span className="text-2xl mr-2">📋</span>
+                                    Reglas del Juego
+                                </h4>
+                                <ul className="space-y-3 text-blue-700">
+                                    <li className="flex items-center">
+                                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                                        <span className="font-medium">{questions.length} preguntas desafiantes</span>
+                                    </li>
+                                    <li className="flex items-center">
+                                        <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                                        <span className="font-medium">20 segundos por pregunta</span>
+                                    </li>
+                                    <li className="flex items-center">
+                                        <span className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
+                                        <span className="font-medium">Una sola oportunidad</span>
+                                    </li>
                                 </ul>
                             </div>
 
                             <button
                                 onClick={startGame}
-                                className="w-full bg-blue-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition-colors"
+                                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-5 px-8 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                             >
-                                Comenzar Trivia
+                                🚀 Comenzar Trivia
                             </button>
                         </div>
                     </div>
@@ -175,34 +185,44 @@ export const TriviaQuizSection = () => {
 
                 {/* Pantalla de resultados */}
                 {gameFinished && (
-                    <div className="max-w-md mx-auto">
-                        <div className="bg-white rounded-lg shadow-xl p-8 text-center">
-                            <div className="text-6xl mb-4">🎉</div>
-                            <h3 className="text-2xl font-bold text-gray-800 mb-4">¡Terminaste!</h3>
+                    <div className="max-w-lg mx-auto">
+                        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-10 text-center border border-white/20">
+                            <div className="text-8xl mb-6 animate-pulse">{getHeaderMessage().emoji}</div>
+                            <h3 className="text-3xl font-bold text-gray-800 mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                                {getHeaderMessage().title}
+                            </h3>
+                            <p className="text-lg text-gray-600 mb-6">
+                                {getHeaderMessage().subtitle}
+                            </p>
 
-                            <div className="bg-gray-100 rounded-lg p-6 mb-6">
-                                <div className="text-4xl font-bold text-blue-600 mb-2">
-                                    {score}/{questions.length}
+                            <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 mb-8 border border-gray-200/50">
+                                <div className="text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
+                                    {score}
                                 </div>
-                                <p className="text-gray-600 mb-4">Respuestas correctas</p>
-                                <div className="bg-gray-300 rounded-full h-4 mb-2">
+                                <p className="text-gray-600 mb-2 text-lg">Puntuación total</p>
+                                <div className="text-sm text-gray-500 mb-4">
+                                    de {questions.length * 20} puntos posibles
+                                </div>
+                                <div className="bg-gray-200 rounded-full h-6 mb-4 overflow-hidden">
                                     <div
-                                        className="bg-blue-600 h-4 rounded-full transition-all duration-1000"
-                                        style={{ width: `${(score / questions.length) * 100}%` }}
+                                        className="bg-gradient-to-r from-blue-500 to-purple-500 h-6 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                                        style={{ width: `${(score / (questions.length * 20)) * 100}%` }}
                                     />
                                 </div>
-                                <p className="text-sm text-gray-500">{Math.round((score / questions.length) * 100)}%</p>
+                                <p className="text-lg font-bold text-gray-700">{Math.round((score / (questions.length * 20)) * 100)}%</p>
                             </div>
 
-                            <p className="text-lg mb-6 font-semibold text-gray-700">
-                                {getScoreMessage()}
-                            </p>
+                            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 mb-8 border border-yellow-200/50">
+                                <p className="text-xl font-bold text-gray-800">
+                                    {getScoreMessage()}
+                                </p>
+                            </div>
 
                             <button
                                 onClick={resetGame}
-                                className="w-full bg-green-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-green-700 transition-colors"
+                                className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white py-5 px-8 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                             >
-                                Jugar de Nuevo
+                                🔄 Jugar de Nuevo
                             </button>
                         </div>
                     </div>
@@ -210,87 +230,119 @@ export const TriviaQuizSection = () => {
 
                 {/* Juego principal */}
                 {gameStarted && !gameFinished && (
-                    <div className="max-w-2xl mx-auto">
+                    <div className="max-w-4xl mx-auto">
                         {/* Header del juego */}
-                        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-                            <div className="flex justify-between items-center mb-4">
-                                <div>
-                                    <h3 className="text-xl font-bold text-gray-800">
+                        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 mb-8 border border-white/20">
+                            <div className="flex flex-col md:flex-row justify-between items-center mb-6">
+                                <div className="text-center md:text-left mb-4 md:mb-0">
+                                    <h3 className="text-2xl font-bold text-gray-800 mb-2">
                                         Pregunta {currentQuestion + 1} de {questions.length}
                                     </h3>
-                                    <p className="text-gray-600">Puntuación: {score}</p>
+                                    <div className="flex items-center justify-center md:justify-start space-x-4">
+                                        <div className="flex items-center">
+                                            <span className="text-lg text-gray-600 mr-2">Puntuación:</span>
+                                            <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full font-bold text-lg">
+                                                {score}
+                                            </span>
+                                        </div>
+                                        <div className="text-sm text-gray-500">
+                                            pts
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="text-right">
-                                    <div className={`text-3xl font-bold ${timeLeft <= 5 ? 'text-red-500' : 'text-blue-600'}`}>
+                                <div className="text-center">
+                                    <div className={`text-5xl font-bold mb-2 ${timeLeft <= 5 ? 'text-red-500 animate-pulse' : 'text-blue-600'}`}>
                                         ⏰ {timeLeft}s
                                     </div>
+                                    <div className="text-sm text-gray-500">Tiempo restante</div>
                                 </div>
                             </div>
 
                             {/* Barra de progreso */}
-                            <div className="bg-gray-200 rounded-full h-3">
+                            <div className="bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner">
                                 <div
-                                    className="bg-blue-600 h-3 rounded-full transition-all duration-300"
+                                    className="bg-gradient-to-r from-blue-500 to-purple-500 h-4 rounded-full transition-all duration-500 ease-out shadow-lg"
                                     style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
                                 />
+                            </div>
+                            <div className="text-center mt-2 text-sm text-gray-600">
+                                Progreso: {Math.round(((currentQuestion + 1) / questions.length) * 100)}%
                             </div>
                         </div>
 
                         {/* Pregunta */}
-                        <div className="bg-white rounded-lg shadow-lg p-8">
-                            <h4 className="text-2xl font-bold text-gray-800 mb-8">
-                                {questions[currentQuestion].question}
-                            </h4>
+                        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-10 border border-white/20">
+                            <div className="text-center mb-8">
+                                <div className="text-4xl mb-4">🤔</div>
+                                <h4 className="text-2xl md:text-3xl font-bold text-gray-800 leading-relaxed">
+                                    {questions[currentQuestion].question}
+                                </h4>
+                            </div>
 
                             {/* Opciones */}
-                            <div className="space-y-4 mb-8">
+                            <div className="space-y-4 mb-10">
                                 {questions[currentQuestion].options.map((option, index) => (
                                     <button
                                         key={index}
                                         onClick={() => handleAnswerSelect(option)}
                                         disabled={showResult}
-                                        className={`w-full p-4 rounded-lg text-left font-medium transition-colors ${
+                                        className={`w-full p-6 rounded-2xl text-left font-medium transition-all duration-300 transform hover:scale-105 ${
                                             showResult
                                                 ? option === questions[currentQuestion].correctAnswer
-                                                    ? 'bg-green-100 border-2 border-green-500 text-green-800'
+                                                    ? 'bg-gradient-to-r from-green-100 to-green-200 border-2 border-green-500 text-green-800 shadow-lg'
                                                     : option === selectedAnswer && option !== questions[currentQuestion].correctAnswer
-                                                        ? 'bg-red-100 border-2 border-red-500 text-red-800'
-                                                        : 'bg-gray-100 text-gray-500'
+                                                        ? 'bg-gradient-to-r from-red-100 to-red-200 border-2 border-red-500 text-red-800 shadow-lg'
+                                                        : 'bg-gray-100 text-gray-500 border-2 border-gray-200'
                                                 : selectedAnswer === option
-                                                    ? 'bg-blue-100 border-2 border-blue-500 text-blue-800'
-                                                    : 'bg-gray-100 hover:bg-gray-200 border-2 border-transparent'
+                                                    ? 'bg-gradient-to-r from-blue-100 to-purple-100 border-2 border-blue-500 text-blue-800 shadow-lg'
+                                                    : 'bg-gradient-to-r from-gray-50 to-gray-100 hover:from-blue-50 hover:to-purple-50 border-2 border-gray-200 hover:border-blue-300 shadow-md hover:shadow-lg'
                                         }`}
                                     >
                                         <div className="flex items-center justify-between">
-                                            <span>{option}</span>
+                                            <div className="flex items-center">
+                                                <span className="bg-white/80 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 text-sm">
+                                                    {String.fromCharCode(65 + index)}
+                                                </span>
+                                                <span className="text-lg">{option}</span>
+                                            </div>
                                             {showResult && option === questions[currentQuestion].correctAnswer && (
-                                                <span className="text-green-600 text-xl">✓</span>
+                                                <span className="text-green-600 text-2xl">✓</span>
                                             )}
                                             {showResult && option === selectedAnswer && option !== questions[currentQuestion].correctAnswer && (
-                                                <span className="text-red-600 text-xl">✗</span>
+                                                <span className="text-red-600 text-2xl">✗</span>
                                             )}
                                         </div>
                                     </button>
                                 ))}
                             </div>
 
-                            {/* Botones */}
+                            {showResult && selectedAnswer === questions[currentQuestion].correctAnswer && (
+                                <div className="mt-4 p-4 bg-green-100 rounded-xl border border-green-300">
+                                    <div className="flex items-center justify-center space-x-2">
+                                        <span className="text-green-700 font-bold">¡Correcto!</span>
+                                        <span className="text-green-600">+{10 + Math.floor(timeLeft / 2)} puntos</span>
+                                        {Math.floor(timeLeft / 2) > 0 && (
+                                            <span className="text-sm text-green-600">(Bonus velocidad: +{Math.floor(timeLeft / 2)})</span>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
                             <div className="text-center">
                                 {!showResult && selectedAnswer && (
                                     <button
                                         onClick={handleSubmitAnswer}
-                                        className="bg-green-600 text-white py-3 px-8 rounded-lg font-bold text-lg hover:bg-green-700 transition-colors"
+                                        className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white py-4 px-10 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                                     >
-                                        Confirmar Respuesta
+                                        ✅ Confirmar Respuesta
                                     </button>
                                 )}
 
                                 {showResult && (
                                     <button
                                         onClick={handleNextQuestion}
-                                        className="bg-purple-600 text-white py-3 px-8 rounded-lg font-bold text-lg hover:bg-purple-700 transition-colors"
+                                        className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-4 px-10 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                                     >
-                                        {currentQuestion < questions.length - 1 ? 'Siguiente Pregunta' : 'Ver Resultados'}
+                                        {currentQuestion < questions.length - 1 ? '➡️ Siguiente Pregunta' : '🎯 Ver Resultados'}
                                     </button>
                                 )}
                             </div>
