@@ -277,6 +277,17 @@ export const TriviaQuizSection = () => {
                                 <h4 className="text-2xl md:text-3xl font-bold text-gray-800 leading-relaxed">
                                     {questions[currentQuestion].question}
                                 </h4>
+
+                                {/* Renderizado condicional de la imagen */}
+                                {questions[currentQuestion].image && (
+                                    <div className="mt-6">
+                                        <img
+                                            src={questions[currentQuestion].image}
+                                            alt={questions[currentQuestion].imageAlt || 'Imagen de la pregunta'}
+                                            className="max-w-xs max-h-60 mx-auto rounded-lg shadow-lg border border-gray-200"
+                                        />
+                                    </div>
+                                )}
                             </div>
 
                             {/* Opciones */}
