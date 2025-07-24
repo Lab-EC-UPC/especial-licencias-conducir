@@ -1,3 +1,5 @@
+import quizImages from "@/features/08-TriviaQuiz/quizImages.ts";
+
 export interface Question {
     question: string;
     options: string[];
@@ -369,7 +371,7 @@ export const allQuestions: Question[] = [
             "Prohíbe la circulación de vehículos motorizados."
         ],
         correctAnswer: "Prohíbe al conductor detener el vehículo dentro del área de la intersección.",
-        image: 2,
+        image: quizImages[2],
         imageAlt: "Señal de prohibición de bloqueo de intersección"
     },
     {
@@ -461,7 +463,7 @@ export const allQuestions: Question[] = [
             "Prohíbe hacer ruido."
         ],
         correctAnswer: "Prohíbe el uso de la bocina.",
-        image: 3,
+        image: quizImages[3],
         imageAlt: "Señal de prohibición de bocina"
     },
     {
@@ -563,7 +565,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Se aproxima un carril adicional.",
-        image: 4,
+        image: quizImages[4],
         imageAlt: "Señal de carril adicional"
     },
     {
@@ -605,7 +607,7 @@ export const allQuestions: Question[] = [
             "La señal P-2A advierte la presencia de curva pronunciada a la derecha mientras que la P-1A advierte la presencia de curva suave a la derecha."
         ],
         correctAnswer: "La señal P-1A advierte la presencia de curva pronunciada a la derecha mientras que la P-2A advierte la presencia de curva suave a la derecha.",
-        image: 5,
+        image: quizImages[5],
         imageAlt: "Comparación de señales de curva"
     },
     {
@@ -617,7 +619,7 @@ export const allQuestions: Question[] = [
             "No se encuentra regulada en el reglamento."
         ],
         correctAnswer: "Regula la velocidad máxima permitida en curvas.",
-        image: 6,
+        image: quizImages[6],
         imageAlt: "Señal de velocidad máxima en curvas"
     },
     {
@@ -639,7 +641,7 @@ export const allQuestions: Question[] = [
             "El que haga sonar la bocina primero."
         ],
         correctAnswer: "El que se aproxime por la derecha del otro.",
-        image: 7,
+        image: quizImages[7],
         imageAlt: "Intersección no regulada con preferencia de paso"
     },
     {
@@ -791,7 +793,7 @@ export const allQuestions: Question[] = [
             "Ensanchamiento de la calzada en ambos lados."
         ],
         correctAnswer: "Reducción de la calzada en ambos lados.",
-        image: 8,
+        image: quizImages[8],
         imageAlt: "Señal de reducción de calzada"
     },
     {
@@ -964,7 +966,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Señal de proximidad de un reductor de velocidad tipo resalto.",
-        image: 9,
+        image: quizImages[9],
         imageAlt: "Señal de proximidad a reductor de velocidad"
     },
     {
@@ -1226,7 +1228,7 @@ export const allQuestions: Question[] = [
             "Cambiarse al carril izquierdo con precaución."
         ],
         correctAnswer: "Cambiarse al carril izquierdo con precaución.",
-        image: 10,
+        image: quizImages[10],
         imageAlt: "Flechas de cambio de carril"
     },
     {
@@ -1288,7 +1290,7 @@ export const allQuestions: Question[] = [
             "Puede hacerlo por la izquierda."
         ],
         correctAnswer: "No puede hacerlo.",
-        image: 11,
+        image: quizImages[11],
         imageAlt: "Situación de adelantamiento vehicular"
     },
     {
@@ -1300,7 +1302,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Prohibida la circulación de vehículos automotores.",
-        image: 12,
+        image: quizImages[12],
         imageAlt: "Señal de prohibición de circulación de vehículos automotores"
     },
     {
@@ -1312,7 +1314,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que está por ingresar a una vía de sentido contrario y no debe entrar.",
-        image: 13,
+        image: quizImages[13],
         imageAlt: "Señal R-4: sentido contrario prohibido"
     },
     {
@@ -1324,7 +1326,7 @@ export const allQuestions: Question[] = [
             "Mantener la distancia entre vehículos por seguridad."
         ],
         correctAnswer: "Superficie deslizante.",
-        image: 14,
+        image: quizImages[14],
         imageAlt: "Señal P-36: superficie deslizante"
     },
     {
@@ -1336,7 +1338,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Circular solo en el sentido indicado por la flecha.",
-        image: 15,
+        image: quizImages[15],
         imageAlt: "Señal R-14: sentido obligatorio"
     },
     {
@@ -1348,7 +1350,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que es una vía de tres carriles y usted puede utilizar los dos de la derecha.",
-        image: 16,
+        image: quizImages[16],
         imageAlt: "Señal R-11a: carriles permitidos"
     },
     {
@@ -1360,7 +1362,7 @@ export const allQuestions: Question[] = [
             "Que al salir de la vía por donde está circulando, la velocidad mínima es 50 km/h."
         ],
         correctAnswer: "Que al salir de la vía por donde está circulando, la velocidad máxima es 50 km/h.",
-        image: 17,
+        image: quizImages[17],
         imageAlt: "Señal R-30c: límite de velocidad al salir"
     },
     {
@@ -1372,7 +1374,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que la intersección contempla giros tangentes a la izquierda en ambos sentidos.",
-        image: 18,
+        image: quizImages[18],
         imageAlt: "Señal R-5-4: giros tangentes a la izquierda"
     },
     {
@@ -1384,7 +1386,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que está permitido el giro en U.",
-        image: 19,
+        image: quizImages[19],
         imageAlt: "Señal R-9: giro en U permitido"
     },
     {
@@ -1396,7 +1398,7 @@ export const allQuestions: Question[] = [
             "No es una señal válida en el Perú."
         ],
         correctAnswer: "Que el carril por donde circula permite girar a la izquierda o seguir de frente.",
-        image: 20,
+        image: quizImages[20],
         imageAlt: "Señal R-5-2: giro a la izquierda o de frente"
     },
     {
@@ -1408,7 +1410,7 @@ export const allQuestions: Question[] = [
             "Que los peatones deben circular por la derecha."
         ],
         correctAnswer: "Que los peatones deben circular por la derecha.",
-        image: 21,
+        image: quizImages[21],
         imageAlt: "Señal R-20: circulación peatonal por la derecha"
     },
     {
@@ -1420,7 +1422,7 @@ export const allQuestions: Question[] = [
             "Circular con luces bajas."
         ],
         correctAnswer: "Circular con luces bajas.",
-        image: 22,
+        image: quizImages[22],
         imageAlt: "Señal R-40: circular con luces bajas"
     },
     {
@@ -1432,7 +1434,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Zona de carga y descarga.",
-        image: 23,
+        image: quizImages[23],
         imageAlt: "Señal R-48: zona de carga y descarga"
     },
     {
@@ -1444,7 +1446,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Se debe mantener la distancia de seguridad entre vehículos.",
-        image: 24,
+        image: quizImages[24],
         imageAlt: "Señal R-49: mantener distancia de seguridad"
     },
     {
@@ -1456,7 +1458,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que si solo hay un carril no tiene preferencia el que está mirando la señal y debe darle paso al del sentido contrario.",
-        image: 25,
+        image: quizImages[25],
         imageAlt: "Señal R-50: dar paso al sentido contrario"
     },
     {
@@ -1468,7 +1470,7 @@ export const allQuestions: Question[] = [
             "No es una señal válida en el Perú."
         ],
         correctAnswer: "Una señal de obligación.",
-        image: 26,
+        image: quizImages[26],
         imageAlt: "Señal R-5-1: señal de obligación"
     },
     {
@@ -1480,7 +1482,7 @@ export const allQuestions: Question[] = [
             "Hay una curva y contra-curva pronunciada a la izquierda."
         ],
         correctAnswer: "Hay una curva y contra-curva pronunciada a la derecha.",
-        image: 27,
+        image: quizImages[27],
         imageAlt: "Señal P-3a: curva y contra-curva pronunciada a la derecha"
     },
     {
@@ -1492,7 +1494,7 @@ export const allQuestions: Question[] = [
             "Se aproxima a un camino sinuoso a la izquierda."
         ],
         correctAnswer: "Se aproxima a un camino sinuoso a la izquierda.",
-        image: 28,
+        image: quizImages[28],
         imageAlt: "Señal P-5-1a: camino sinuoso a la izquierda"
     },
     {
@@ -1504,7 +1506,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Está circulando por una curva horizontal.",
-        image: 29,
+        image: quizImages[29],
         imageAlt: "Señal P-61: curva horizontal"
     },
     {
@@ -1516,7 +1518,7 @@ export const allQuestions: Question[] = [
             "Se aproxima a un badén."
         ],
         correctAnswer: "Se aproxima a un badén.",
-        image: 30,
+        image: quizImages[30],
         imageAlt: "Señal P-34: badén próximo"
     },
     {
@@ -1528,7 +1530,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Una señal preventiva.",
-        image: 31,
+        image: quizImages[31],
         imageAlt: "Señal P-60: señal preventiva"
     },
     {
@@ -1540,7 +1542,7 @@ export const allQuestions: Question[] = [
             "Cercanía de una ciclovía."
         ],
         correctAnswer: "Ciclistas en la vía.",
-        image: 32,
+        image: quizImages[32],
         imageAlt: "Señal P-46: ciclistas en la vía"
     },
     {
@@ -1552,7 +1554,7 @@ export const allQuestions: Question[] = [
             "Todas las alternativas son correctas."
         ],
         correctAnswer: "Que nos aproximamos a un cruce de ciclovía.",
-        image: 33,
+        image: quizImages[33],
         imageAlt: "Señal P-46-a: cruce de ciclovía próximo"
     },
     {
@@ -1564,7 +1566,7 @@ export const allQuestions: Question[] = [
             "La ubicación de un cruce de ciclistas."
         ],
         correctAnswer: "La ubicación de un cruce de ciclistas.",
-        image: 34,
+        image: quizImages[34],
         imageAlt: "Señal P-46b: ubicación de cruce de ciclistas"
     },
     {
@@ -1576,7 +1578,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Zona con presencia de peatones.",
-        image: 35,
+        image: quizImages[35],
         imageAlt: "Señal P-48: zona con presencia de peatones"
     },
     {
@@ -1588,7 +1590,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Proximidad a un cruce peatonal.",
-        image: 36,
+        image: quizImages[36],
         imageAlt: "Señal P-48a: proximidad a cruce peatonal"
     },
     {
@@ -1600,7 +1602,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Ubicación de un cruce peatonal.",
-        image: 37,
+        image: quizImages[37],
         imageAlt: "Señal P-48-b: ubicación de cruce peatonal"
     },
     {
@@ -1612,7 +1614,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Zona escolar.",
-        image: 38,
+        image: quizImages[38],
         imageAlt: "Señal P-49: zona escolar"
     },
     {
@@ -1624,7 +1626,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Proximidad a un cruce escolar.",
-        image: 39,
+        image: quizImages[39],
         imageAlt: "Señal P-49a: proximidad a cruce escolar"
     },
     {
@@ -1636,7 +1638,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Ubicación de un cruce escolar.",
-        image: 40,
+        image: quizImages[40],
         imageAlt: "Señal P-49b: ubicación de cruce escolar"
     },
     {
@@ -1648,7 +1650,7 @@ export const allQuestions: Question[] = [
             "Niños jugando."
         ],
         correctAnswer: "Niños jugando.",
-        image: 41,
+        image: quizImages[41],
         imageAlt: "Señal P-50: niños jugando"
     },
     {
@@ -1660,7 +1662,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Maquinaria agrícola en la vía.",
-        image: 42,
+        image: quizImages[42],
         imageAlt: "Señal P-51: maquinaria agrícola en la vía"
     },
     {
@@ -1672,7 +1674,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Animales en la vía.",
-        image: 43,
+        image: quizImages[43],
         imageAlt: "Señal P-53: animales en la vía"
     },
     {
@@ -1684,7 +1686,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Proximidad a un semáforo.",
-        image: 44,
+        image: quizImages[44],
         imageAlt: "Señal P-55: proximidad a semáforo"
     },
     {
@@ -1696,7 +1698,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que usted se aproxima a una señal de PARE.",
-        image: 45,
+        image: quizImages[45],
         imageAlt: "Señal P-58: proximidad a señal PARE"
     },
     {
@@ -1708,7 +1710,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que usted se aproxima a una señal de CEDA EL PASO.",
-        image: 46,
+        image: quizImages[46],
         imageAlt: "Señal P-59: proximidad a señal CEDA EL PASO"
     },
     {
@@ -1720,7 +1722,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que usted se aproxima a un túnel.",
-        image: 47,
+        image: quizImages[47],
         imageAlt: "Señal P-41: proximidad a túnel"
     },
     {
@@ -1732,7 +1734,7 @@ export const allQuestions: Question[] = [
             "Aviones que generan ruido."
         ],
         correctAnswer: "Vuelo de aviones a baja altura.",
-        image: 48,
+        image: quizImages[48],
         imageAlt: "Señal P-45: vuelo de aviones a baja altura"
     },
     {
@@ -1744,7 +1746,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que se aproxima a una salida de vehículos de bomberos.",
-        image: 49,
+        image: quizImages[49],
         imageAlt: "Señal P-52: salida de vehículos de bomberos"
     },
     {
@@ -1756,7 +1758,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que se aproxima una zona donde hay ráfagas de viento lateral.",
-        image: 50,
+        image: quizImages[50],
         imageAlt: "Señal P-66: ráfagas de viento lateral"
     },
     {
@@ -1768,7 +1770,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que se acerca a una zona de arenamiento en la vía.",
-        image: 51,
+        image: quizImages[51],
         imageAlt: "Señal P-66a: zona de arenamiento en la vía"
     },
     {
@@ -1780,7 +1782,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "En la siguiente intersección está prohibido girar a la izquierda y por lo tanto, si desea seguir esa ruta debe tomar el camino alternativo que muestra la señal.",
-        image: 52,
+        image: quizImages[52],
         imageAlt: "Señal: desvío por prohibición de giro a la izquierda"
     },
     {
@@ -1792,7 +1794,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Si quiere girar a la izquierda debe pasar la intersección y dar la vuelta a la manzana.",
-        image: 53,
+        image: quizImages[53],
         imageAlt: "Señal: desvío para giro a la izquierda"
     },
     {
@@ -1804,7 +1806,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Señal de hospital.",
-        image: 54,
+        image: quizImages[54],
         imageAlt: "Señal I-14: hospital"
     },
     {
@@ -1816,7 +1818,7 @@ export const allQuestions: Question[] = [
             "Proximidad de un estacionamiento para emergencias."
         ],
         correctAnswer: "Proximidad de un estacionamiento para emergencias.",
-        image: 55,
+        image: quizImages[55],
         imageAlt: "Señal I-31: estacionamiento para emergencias"
     },
     {
@@ -1828,7 +1830,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Zona militar.",
-        image: 56,
+        image: quizImages[56],
         imageAlt: "Señal I-9: zona militar"
     },
     {
@@ -1840,7 +1842,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Cercanía a un servicio mecánico.",
-        image: 57,
+        image: quizImages[57],
         imageAlt: "Señal I-18: servicio mecánico"
     },
     {
@@ -1852,7 +1854,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Cercanía a un grifo.",
-        image: 58,
+        image: quizImages[58],
         imageAlt: "Señal I-19: grifo"
     },
     {
@@ -1864,7 +1866,7 @@ export const allQuestions: Question[] = [
             "Cercanía a una llantería."
         ],
         correctAnswer: "Cercanía a una llantería.",
-        image: 59,
+        image: quizImages[59],
         imageAlt: "Señal I-20: llantería"
     },
     {
@@ -1876,7 +1878,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Fin de la restricción de prohibido adelantar.",
-        image: 60,
+        image: quizImages[60],
         imageAlt: "Señal R-16a: fin de prohibido adelantar"
     },
     {
@@ -1908,7 +1910,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Delineadores de curva, que guían al conductor.",
-        image: 61,
+        image: quizImages[61],
         imageAlt: "Señal P-61: delineadores de curva"
     },
     {
@@ -2210,7 +2212,7 @@ export const allQuestions: Question[] = [
             "La proximidad de una intersección rotatoria (óvalo o rotonda)."
         ],
         correctAnswer: "La proximidad de una intersección rotatoria (óvalo o rotonda).",
-        image:62,
+        image: quizImages[62],
         imageAlt: "Señal preventiva P-15 que advierte sobre la proximidad de una rotonda u óvalo"
     },
     {
@@ -2222,7 +2224,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "La proximidad del final de la vía.",
-        image:63,
+        image: quizImages[63],
         imageAlt: "Señal preventiva P-31a indicando proximidad del final de la vía"
     },
     {
@@ -2274,7 +2276,7 @@ export const allQuestions: Question[] = [
             "Tocar el claxon para que el peatón no cruce la calzada."
         ],
         correctAnswer: "Dar preferencia de paso al peatón para que cruce la calzada.",
-        image:64,
+        image: quizImages[64],
         imageAlt: "Gráfico mostrando situación de conductor girando a la derecha con peatón cruzando"
     },
     {
@@ -2376,7 +2378,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Señalización de tránsito vertical y horizontal en una zona escolar.",
-        image:65,
+        image: quizImages[65],
         imageAlt: "Gráfico mostrando señalización de tránsito en zona escolar"
     },
     {
@@ -2398,7 +2400,7 @@ export const allQuestions: Question[] = [
             "Que es una isla de refugio peatonal."
         ],
         correctAnswer: "Que no puede detener el vehículo dentro del área de intersección.",
-        image:66,
+        image: quizImages[66],
         imageAlt: "Malla ortogonal amarilla en pavimento de intersección"
     },
     {
@@ -2410,9 +2412,7 @@ export const allQuestions: Question[] = [
             "El conductor del camión puede estacionarse antes de empezar las líneas continuas."
         ],
         correctAnswer: "La zona de no adelantar inicia con las líneas amarillas continuas.",
-        image:67,
+        image: quizImages[67],
         imageAlt: "Gráfico mostrando líneas amarillas continuas en carretera y zona de no adelantar"
     }
-
-
 ];
