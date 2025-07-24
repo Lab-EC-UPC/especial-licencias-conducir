@@ -1,5 +1,3 @@
-import quizImages from "@/features/08-TriviaQuiz/quizImages.ts";
-
 export interface Question {
     question: string;
     options: string[];
@@ -9,275 +7,275 @@ export interface Question {
 }
 
 export const allQuestions: Question[] = [
-    {
-        question: "La posición de frente o de espaldas ejecutada por el efectivo de la Policía Nacional del Perú asignado al control de tránsito significa:",
-        options: [
-            "Obligación de detenerse de quien así lo enfrente.",
-            "Continuar la marcha por el carril izquierdo de la calzada.",
-            "Continuar la marcha.",
-            "Ninguna de las alternativas es correcta."
-        ],
-        correctAnswer: "Obligación de detenerse de quien así lo enfrente."
-    },
-    {
-        question: "Siempre que no exista una señal de límite de velocidad, en zonas urbanas el límite máximo de velocidad en calles y jirones es de:",
-        options: ["30km/h.", "40km/h.", "60km/h.", "80km/h."],
-        correctAnswer: "40km/h."
-    },
-    {
-        question: "Mientras la persona conduce, le está permitido:",
-        options: [
-            "Compartir su asiento con un niño, siempre y cuando éste sea menor de un año de edad.",
-            "Que otra persona tome el control de la dirección del vehículo, siempre y cuando sea de emergencia.",
-            "Conducir con una mano sobre el volante de dirección, cuando es necesario accionar algún comando del vehículo, como realizar los cambios de velocidad.",
-            "Ninguna de las alternativas es correcta."
-        ],
-        correctAnswer: "Conducir con una mano sobre el volante de dirección, cuando es necesario accionar algún comando del vehículo, como realizar los cambios de velocidad."
-    },
-    {
-        question: "El conductor está ________ a ___________ a las pruebas que le solicite el Efectivo de la Policía Nacional del Perú, asignado al control del tránsito, para determinar su estado de intoxicación por alcohol, drogas, estupefacientes u otros tóxicos:",
-        options: [
-            "En su derecho - negarse.",
-            "Facultado - Rechazar.",
-            "Obligado - someterse.",
-            "Ninguna de las alternativas es correcta."
-        ],
-        correctAnswer: "Obligado - someterse."
-    },
-    {
-        question: "La detención de un vehículo debe efectuarse:",
-        options: [
-            "En el sentido contrario a la circulación y en el carril izquierdo de la vía.",
-            "En el sentido de la circulación y en el carril derecho de la vía, utilizando las luces altas.",
-            "En el sentido de la circulación y en el carril izquierdo de la vía, utilizando las luces intermitentes.",
-            "En el sentido de la circulación y en el carril derecho de la vía, utilizando las luces intermitentes."
-        ],
-        correctAnswer: "En el sentido de la circulación y en el carril derecho de la vía, utilizando las luces intermitentes."
-    },
-    {
-        question: "En caso de un accidente de tránsito con daños personales y/o materiales, los participantes deben:",
-        options: [
-            "Acudir a la estación de bomberos.",
-            "Llamar a un familiar.",
-            "Solicitar la intervención de la autoridad policial.",
-            "Abandonar el lugar donde ocurrió el accidente."
-        ],
-        correctAnswer: "Solicitar la intervención de la autoridad policial."
-    },
-    {
-        question: "La conducción requiere un alto nivel de atención, pues existen distracciones que pueden ocasionar accidentes de tránsito, como por ejemplo:",
-        options: [
-            "Preocupaciones.",
-            "Uso del teléfono celular.",
-            "Manipulación de la radio mientras se conduce.",
-            "Todas las alternativas son correctas."
-        ],
-        correctAnswer: "Todas las alternativas son correctas."
-    },
-    {
-        question: "¿Influye la somnolencia en la capacidad de conducir?",
-        options: [
-            "Si, pues el conductor tomará decisiones lentas que lo inducirán a cometer errores.",
-            "Si, ya que el conductor está de mal genio.",
-            "No, siempre que la conducción sea realizada lentamente.",
-            "No, siempre y cuando la conducción sea realizada con un acompañante."
-        ],
-        correctAnswer: "Si, pues el conductor tomará decisiones lentas que lo inducirán a cometer errores."
-    },
-    {
-        question: "¿Cuál es la función principal de los espejos retrovisores?",
-        options: [
-            "Observar el estado del motor del vehículo.",
-            "Permitir la visión hacia atrás y los costados del vehículo.",
-            "Reflejar la luz solar para otros conductores.",
-            "Ninguna de las alternativas es correcta."
-        ],
-        correctAnswer: "Permitir la visión hacia atrás y los costados del vehículo."
-    },
-    {
-        question: "Al estacionar en una pendiente, ¿qué medida de seguridad debe tomar?",
-        options: [
-            "Dejar el vehículo en punto muerto.",
-            "Accionar el freno de mano y orientar las ruedas hacia el sardinel.",
-            "Solo accionar el freno de mano.",
-            "Dejar las luces encendidas."
-        ],
-        correctAnswer: "Accionar el freno de mano y orientar las ruedas hacia el sardinel."
-    },
-    {
-        question: "¿Cuándo debe usar las luces altas de su vehículo?",
-        options: [
-            "En zonas urbanas para mejor visibilidad.",
-            "Cuando hay neblina intensa.",
-            "En carreteras oscuras sin tráfico en sentido contrario.",
-            "Siempre que conduzca de noche."
-        ],
-        correctAnswer: "En carreteras oscuras sin tráfico en sentido contrario."
-    },
-    {
-        question: "¿Qué debe hacer al aproximarse a un cruce de peatones?",
-        options: [
-            "Acelerar para pasar rápidamente.",
-            "Tocar el claxon continuamente.",
-            "Reducir la velocidad y estar preparado para detenerse.",
-            "Mantener la velocidad constante."
-        ],
-        correctAnswer: "Reducir la velocidad y estar preparado para detenerse."
-    },
-    {
-        question: "La señal vertical reglamentaria R-6 ¿prohibido voltear a la izquierda¿, significa que:",
-        options: [
-            "Está prohibido voltear a la izquierda y, por lo tanto también está prohibido el giro en U.",
-            "Está prohibido voltear a la izquierda, sin embargo, está permitido el giro en U.",
-            "El único sentido de desplazamiento es continuar de frente.",
-            "Ninguna de las alternativas es correcta."
-        ],
-        correctAnswer: "Está prohibido voltear a la izquierda y, por lo tanto también está prohibido el giro en U.",
-        image: "https://via.placeholder.com/300x200/FF6B6B/FFFFFF?text=Señal+R-6+Prohibido+Voltear+Izquierda",
-        imageAlt: "Señal de tránsito R-6 que prohíbe voltear a la izquierda"
-    },
-    {
-        question: "Está permitido en la vía:",
-        options: [
-            "Recoger o dejar pasajeros o carga en cualquier lugar",
-            "Dejar animales sueltos o situarlos de forma tal que obstaculicen solo un poco el tránsito",
-            "Recoger o dejar pasajeros en lugares autorizados.",
-            "Ejercer el comercio ambulatorio o estacionario"
-        ],
-        correctAnswer: "Recoger o dejar pasajeros en lugares autorizados."
-    },
-    {
-        question: "Respecto de los dispositivos de control o regulación del tránsito:",
-        options: [
-            "Solo los peatones están obligados a su obediencia",
-            "Los conductores y los peatones están obligados a su obediencia, salvo instrucción de la Policía Nacional del Perú asignada al tránsito que indique lo contrario",
-            "Solo los conductores están obligados a su obediencia.",
-            "Los conductores están obligados a su obediencia, aun cuando la Policía Nacional del Perú asignada al tránsito pueda indicar lo contrario."
-        ],
-        correctAnswer: "Los conductores y los peatones están obligados a su obediencia, salvo instrucción de la Policía Nacional del Perú asignada al tránsito que indique lo contrario"
-    },
-    {
-        question: "La siguiente señal vertical reglamentaria R-53:",
-        options: [
-            "Prohíbe estacionar.",
-            "Prohíbe al conductor detener el vehículo dentro del área de la intersección.",
-            "Prohíbe la carga y descarga.",
-            "Prohíbe la circulación de vehículos motorizados"
-        ],
-        correctAnswer: "Prohíbe al conductor detener el vehículo dentro del área de la intersección.",
-        image: "https://via.placeholder.com/300x200/4ECDC4/FFFFFF?text=Señal+R-53+No+Bloquear+Intersección",
-        imageAlt: "Señal de tránsito R-53 que prohíbe bloquear la intersección"
-    },
-    {
-        question: "El color ámbar o amarillo del semáforo significa que:",
-        options: [
-            "Los vehículos deben avanzar.",
-            "Los vehículos deben detenerse.",
-            "Los vehículos deben acelerar la marcha.",
-            "Los vehículos deben detenerse antes de ingresar a la intersección si su velocidad y ubicación lo permiten; de lo contrario, deberán cruzar y despejar la intersección."
-        ],
-        correctAnswer: "Los vehículos deben detenerse antes de ingresar a la intersección si su velocidad y ubicación lo permiten; de lo contrario, deberán cruzar y despejar la intersección.",
-        image: "https://via.placeholder.com/300x200/FFD93D/000000?text=Semáforo+Amarillo",
-        imageAlt: "Semáforo en color amarillo o ámbar"
-    },
-    {
-        question: "Al cambiar de dirección, un conductor debe:",
-        options: [
-            "Señalizar toda la maniobra hasta su culminación.",
-            "Cambiar de dirección y luego señalizar.",
-            "No existe ninguna obligación.",
-            "Ninguna de las alternativas es correcta."
-        ],
-        correctAnswer: "Señalizar toda la maniobra hasta su culminación."
-    },
-    {
-        question: "En caso de accidentes, el SOAT cubre los daños que sufren:",
-        options: [
-            "Solo los ocupantes del vehículo.",
-            "Los ocupantes y terceros no ocupantes del vehículo.",
-            "Solo terceros afectados.",
-            "Solo el conductor del vehículo."
-        ],
-        correctAnswer: "Los ocupantes y terceros no ocupantes del vehículo."
-    },
-    {
-        question: "¿Cuál es el plazo de vigencia del SOAT?",
-        options: ["1 año.", "6 meses.", "4 años.", "2 años."],
-        correctAnswer: "1 año."
-    },
-    {
-        question: "¿Qué luces debe utilizar un conductor que circula en las vías públicas urbanas por la noche?",
-        options: ["Bajas.", "Altas.", "Luces altas en las intersecciones y bajas en las avenidas.", "Ninguna de las alternativas es correcta."],
-        correctAnswer: "Bajas."
-    },
-    {
-        question: "¿Cuál es la función principal de los semáforos?",
-        options: [
-            "Regular y controlar el tránsito vehicular, motorizado y no motorizado, y el peatonal, a través de las indicaciones de las luces respectivas.",
-            "Regular el paso de peatones únicamente.",
-            "Emitir advertencias acústicas.",
-            "Ninguna de las alternativas es correcta."
-        ],
-        correctAnswer: "Regular y controlar el tránsito vehicular, motorizado y no motorizado, y el peatonal, a través de las indicaciones de las luces respectivas."
-    },
-    {
-        question: "Sobre el uso del cinturón de seguridad, es correcto afirmar que:",
-        options: [
-            "Es obligatorio solo para el conductor.",
-            "Es obligatorio para todos los ocupantes si los cinturones están incorporados de fábrica.",
-            "No es obligatorio en zonas urbanas.",
-            "Solo es obligatorio para los pasajeros en asientos delanteros."
-        ],
-        correctAnswer: "Es obligatorio para todos los ocupantes si los cinturones están incorporados de fábrica."
-    },
-    {
-        question: "La frecuencia de la inspección técnica de un vehículo particular es:",
-        options: ["Cada medio año.", "Cada año.", "Cada dos años.", "Cada tres años."],
-        correctAnswer: "Cada año."
-    },
-    {
-        question: "¿Qué te indica la siguiente señal reglamentaria (R-28)?",
-        options: [
-            "Que está prohibido adelantar a otros vehículos en ese tramo.",
-            "Que solo los camiones tienen prohibido adelantar.",
-            "Que es una zona segura y recomendada para adelantar.",
-            "Que debes mantener una distancia de 50 metros con el otro vehículo."
-        ],
-        correctAnswer: "Que está prohibido adelantar a otros vehículos en ese tramo.",
-        image: '/senal-prohibido-adelantar.png',
-        imageAlt: "Señal de tránsito circular con borde rojo que muestra un auto rojo adelantando a un auto negro, indicando prohibición."
-    },
-    {
-        question: "Esta señal de tránsito triangular significa que debes...",
-        options: [
-            "Reducir la velocidad y ceder el paso a los vehículos que circulan por la vía preferencial.",
-            "Detenerte completamente, sin importar si vienen otros vehículos.",
-            "Aumentar la velocidad para incorporarte rápidamente al tráfico.",
-            "Tocar el claxon dos veces antes de pasar."
-        ],
-        correctAnswer: "Reducir la velocidad y ceder el paso a los vehículos que circulan por la vía preferencial.",
-        // URL de la imagen para la señal de "Ceda el Paso".
-        image: '/senal-ceda-paso.png',
-        // Texto descriptivo para accesibilidad.
-        imageAlt: "Señal de tránsito triangular invertida con borde rojo y fondo blanco que indica ceder el paso."
-    },
-    {
-        question: "La frecuencia de la inspección técnica de un vehículo particular es:",
-        options: ["Cada medio año.", "Cada año.", "Cada dos años.", "Cada tres años."],
-        correctAnswer: "Cada año."
-    },
-    {
-        question: "Al encontrar esta señal en su camino, ¿qué acción debe realizar?",
-        options: [
-            "Detenerse por completo antes de continuar.",
-            "Reducir la velocidad y ceder el paso.",
-            "Continuar con la misma velocidad si no vienen vehículos.",
-            "Estacionar solo si es una emergencia."
-        ],
-        correctAnswer: "Detenerse por completo antes de continuar.",
-        image: '/senal-pare.jpg',
-        imageAlt: "Señal de tránsito octogonal de color rojo con la palabra PARE en letras blancas."
-    },
+    // {
+    //     question: "La posición de frente o de espaldas ejecutada por el efectivo de la Policía Nacional del Perú asignado al control de tránsito significa:",
+    //     options: [
+    //         "Obligación de detenerse de quien así lo enfrente.",
+    //         "Continuar la marcha por el carril izquierdo de la calzada.",
+    //         "Continuar la marcha.",
+    //         "Ninguna de las alternativas es correcta."
+    //     ],
+    //     correctAnswer: "Obligación de detenerse de quien así lo enfrente."
+    // },
+    // {
+    //     question: "Siempre que no exista una señal de límite de velocidad, en zonas urbanas el límite máximo de velocidad en calles y jirones es de:",
+    //     options: ["30km/h.", "40km/h.", "60km/h.", "80km/h."],
+    //     correctAnswer: "40km/h."
+    // },
+    // {
+    //     question: "Mientras la persona conduce, le está permitido:",
+    //     options: [
+    //         "Compartir su asiento con un niño, siempre y cuando éste sea menor de un año de edad.",
+    //         "Que otra persona tome el control de la dirección del vehículo, siempre y cuando sea de emergencia.",
+    //         "Conducir con una mano sobre el volante de dirección, cuando es necesario accionar algún comando del vehículo, como realizar los cambios de velocidad.",
+    //         "Ninguna de las alternativas es correcta."
+    //     ],
+    //     correctAnswer: "Conducir con una mano sobre el volante de dirección, cuando es necesario accionar algún comando del vehículo, como realizar los cambios de velocidad."
+    // },
+    // {
+    //     question: "El conductor está ________ a ___________ a las pruebas que le solicite el Efectivo de la Policía Nacional del Perú, asignado al control del tránsito, para determinar su estado de intoxicación por alcohol, drogas, estupefacientes u otros tóxicos:",
+    //     options: [
+    //         "En su derecho - negarse.",
+    //         "Facultado - Rechazar.",
+    //         "Obligado - someterse.",
+    //         "Ninguna de las alternativas es correcta."
+    //     ],
+    //     correctAnswer: "Obligado - someterse."
+    // },
+    // {
+    //     question: "La detención de un vehículo debe efectuarse:",
+    //     options: [
+    //         "En el sentido contrario a la circulación y en el carril izquierdo de la vía.",
+    //         "En el sentido de la circulación y en el carril derecho de la vía, utilizando las luces altas.",
+    //         "En el sentido de la circulación y en el carril izquierdo de la vía, utilizando las luces intermitentes.",
+    //         "En el sentido de la circulación y en el carril derecho de la vía, utilizando las luces intermitentes."
+    //     ],
+    //     correctAnswer: "En el sentido de la circulación y en el carril derecho de la vía, utilizando las luces intermitentes."
+    // },
+    // {
+    //     question: "En caso de un accidente de tránsito con daños personales y/o materiales, los participantes deben:",
+    //     options: [
+    //         "Acudir a la estación de bomberos.",
+    //         "Llamar a un familiar.",
+    //         "Solicitar la intervención de la autoridad policial.",
+    //         "Abandonar el lugar donde ocurrió el accidente."
+    //     ],
+    //     correctAnswer: "Solicitar la intervención de la autoridad policial."
+    // },
+    // {
+    //     question: "La conducción requiere un alto nivel de atención, pues existen distracciones que pueden ocasionar accidentes de tránsito, como por ejemplo:",
+    //     options: [
+    //         "Preocupaciones.",
+    //         "Uso del teléfono celular.",
+    //         "Manipulación de la radio mientras se conduce.",
+    //         "Todas las alternativas son correctas."
+    //     ],
+    //     correctAnswer: "Todas las alternativas son correctas."
+    // },
+    // {
+    //     question: "¿Influye la somnolencia en la capacidad de conducir?",
+    //     options: [
+    //         "Si, pues el conductor tomará decisiones lentas que lo inducirán a cometer errores.",
+    //         "Si, ya que el conductor está de mal genio.",
+    //         "No, siempre que la conducción sea realizada lentamente.",
+    //         "No, siempre y cuando la conducción sea realizada con un acompañante."
+    //     ],
+    //     correctAnswer: "Si, pues el conductor tomará decisiones lentas que lo inducirán a cometer errores."
+    // },
+    // {
+    //     question: "¿Cuál es la función principal de los espejos retrovisores?",
+    //     options: [
+    //         "Observar el estado del motor del vehículo.",
+    //         "Permitir la visión hacia atrás y los costados del vehículo.",
+    //         "Reflejar la luz solar para otros conductores.",
+    //         "Ninguna de las alternativas es correcta."
+    //     ],
+    //     correctAnswer: "Permitir la visión hacia atrás y los costados del vehículo."
+    // },
+    // {
+    //     question: "Al estacionar en una pendiente, ¿qué medida de seguridad debe tomar?",
+    //     options: [
+    //         "Dejar el vehículo en punto muerto.",
+    //         "Accionar el freno de mano y orientar las ruedas hacia el sardinel.",
+    //         "Solo accionar el freno de mano.",
+    //         "Dejar las luces encendidas."
+    //     ],
+    //     correctAnswer: "Accionar el freno de mano y orientar las ruedas hacia el sardinel."
+    // },
+    // {
+    //     question: "¿Cuándo debe usar las luces altas de su vehículo?",
+    //     options: [
+    //         "En zonas urbanas para mejor visibilidad.",
+    //         "Cuando hay neblina intensa.",
+    //         "En carreteras oscuras sin tráfico en sentido contrario.",
+    //         "Siempre que conduzca de noche."
+    //     ],
+    //     correctAnswer: "En carreteras oscuras sin tráfico en sentido contrario."
+    // },
+    // {
+    //     question: "¿Qué debe hacer al aproximarse a un cruce de peatones?",
+    //     options: [
+    //         "Acelerar para pasar rápidamente.",
+    //         "Tocar el claxon continuamente.",
+    //         "Reducir la velocidad y estar preparado para detenerse.",
+    //         "Mantener la velocidad constante."
+    //     ],
+    //     correctAnswer: "Reducir la velocidad y estar preparado para detenerse."
+    // },
+    // {
+    //     question: "La señal vertical reglamentaria R-6 ¿prohibido voltear a la izquierda¿, significa que:",
+    //     options: [
+    //         "Está prohibido voltear a la izquierda y, por lo tanto también está prohibido el giro en U.",
+    //         "Está prohibido voltear a la izquierda, sin embargo, está permitido el giro en U.",
+    //         "El único sentido de desplazamiento es continuar de frente.",
+    //         "Ninguna de las alternativas es correcta."
+    //     ],
+    //     correctAnswer: "Está prohibido voltear a la izquierda y, por lo tanto también está prohibido el giro en U.",
+    //     image: "https://via.placeholder.com/300x200/FF6B6B/FFFFFF?text=Señal+R-6+Prohibido+Voltear+Izquierda",
+    //     imageAlt: "Señal de tránsito R-6 que prohíbe voltear a la izquierda"
+    // },
+    // {
+    //     question: "Está permitido en la vía:",
+    //     options: [
+    //         "Recoger o dejar pasajeros o carga en cualquier lugar",
+    //         "Dejar animales sueltos o situarlos de forma tal que obstaculicen solo un poco el tránsito",
+    //         "Recoger o dejar pasajeros en lugares autorizados.",
+    //         "Ejercer el comercio ambulatorio o estacionario"
+    //     ],
+    //     correctAnswer: "Recoger o dejar pasajeros en lugares autorizados."
+    // },
+    // {
+    //     question: "Respecto de los dispositivos de control o regulación del tránsito:",
+    //     options: [
+    //         "Solo los peatones están obligados a su obediencia",
+    //         "Los conductores y los peatones están obligados a su obediencia, salvo instrucción de la Policía Nacional del Perú asignada al tránsito que indique lo contrario",
+    //         "Solo los conductores están obligados a su obediencia.",
+    //         "Los conductores están obligados a su obediencia, aun cuando la Policía Nacional del Perú asignada al tránsito pueda indicar lo contrario."
+    //     ],
+    //     correctAnswer: "Los conductores y los peatones están obligados a su obediencia, salvo instrucción de la Policía Nacional del Perú asignada al tránsito que indique lo contrario"
+    // },
+    // {
+    //     question: "La siguiente señal vertical reglamentaria R-53:",
+    //     options: [
+    //         "Prohíbe estacionar.",
+    //         "Prohíbe al conductor detener el vehículo dentro del área de la intersección.",
+    //         "Prohíbe la carga y descarga.",
+    //         "Prohíbe la circulación de vehículos motorizados"
+    //     ],
+    //     correctAnswer: "Prohíbe al conductor detener el vehículo dentro del área de la intersección.",
+    //     image: "https://via.placeholder.com/300x200/4ECDC4/FFFFFF?text=Señal+R-53+No+Bloquear+Intersección",
+    //     imageAlt: "Señal de tránsito R-53 que prohíbe bloquear la intersección"
+    // },
+    // {
+    //     question: "El color ámbar o amarillo del semáforo significa que:",
+    //     options: [
+    //         "Los vehículos deben avanzar.",
+    //         "Los vehículos deben detenerse.",
+    //         "Los vehículos deben acelerar la marcha.",
+    //         "Los vehículos deben detenerse antes de ingresar a la intersección si su velocidad y ubicación lo permiten; de lo contrario, deberán cruzar y despejar la intersección."
+    //     ],
+    //     correctAnswer: "Los vehículos deben detenerse antes de ingresar a la intersección si su velocidad y ubicación lo permiten; de lo contrario, deberán cruzar y despejar la intersección.",
+    //     image: "https://via.placeholder.com/300x200/FFD93D/000000?text=Semáforo+Amarillo",
+    //     imageAlt: "Semáforo en color amarillo o ámbar"
+    // },
+    // {
+    //     question: "Al cambiar de dirección, un conductor debe:",
+    //     options: [
+    //         "Señalizar toda la maniobra hasta su culminación.",
+    //         "Cambiar de dirección y luego señalizar.",
+    //         "No existe ninguna obligación.",
+    //         "Ninguna de las alternativas es correcta."
+    //     ],
+    //     correctAnswer: "Señalizar toda la maniobra hasta su culminación."
+    // },
+    // {
+    //     question: "En caso de accidentes, el SOAT cubre los daños que sufren:",
+    //     options: [
+    //         "Solo los ocupantes del vehículo.",
+    //         "Los ocupantes y terceros no ocupantes del vehículo.",
+    //         "Solo terceros afectados.",
+    //         "Solo el conductor del vehículo."
+    //     ],
+    //     correctAnswer: "Los ocupantes y terceros no ocupantes del vehículo."
+    // },
+    // {
+    //     question: "¿Cuál es el plazo de vigencia del SOAT?",
+    //     options: ["1 año.", "6 meses.", "4 años.", "2 años."],
+    //     correctAnswer: "1 año."
+    // },
+    // {
+    //     question: "¿Qué luces debe utilizar un conductor que circula en las vías públicas urbanas por la noche?",
+    //     options: ["Bajas.", "Altas.", "Luces altas en las intersecciones y bajas en las avenidas.", "Ninguna de las alternativas es correcta."],
+    //     correctAnswer: "Bajas."
+    // },
+    // {
+    //     question: "¿Cuál es la función principal de los semáforos?",
+    //     options: [
+    //         "Regular y controlar el tránsito vehicular, motorizado y no motorizado, y el peatonal, a través de las indicaciones de las luces respectivas.",
+    //         "Regular el paso de peatones únicamente.",
+    //         "Emitir advertencias acústicas.",
+    //         "Ninguna de las alternativas es correcta."
+    //     ],
+    //     correctAnswer: "Regular y controlar el tránsito vehicular, motorizado y no motorizado, y el peatonal, a través de las indicaciones de las luces respectivas."
+    // },
+    // {
+    //     question: "Sobre el uso del cinturón de seguridad, es correcto afirmar que:",
+    //     options: [
+    //         "Es obligatorio solo para el conductor.",
+    //         "Es obligatorio para todos los ocupantes si los cinturones están incorporados de fábrica.",
+    //         "No es obligatorio en zonas urbanas.",
+    //         "Solo es obligatorio para los pasajeros en asientos delanteros."
+    //     ],
+    //     correctAnswer: "Es obligatorio para todos los ocupantes si los cinturones están incorporados de fábrica."
+    // },
+    // {
+    //     question: "La frecuencia de la inspección técnica de un vehículo particular es:",
+    //     options: ["Cada medio año.", "Cada año.", "Cada dos años.", "Cada tres años."],
+    //     correctAnswer: "Cada año."
+    // },
+    // {
+    //     question: "¿Qué te indica la siguiente señal reglamentaria (R-28)?",
+    //     options: [
+    //         "Que está prohibido adelantar a otros vehículos en ese tramo.",
+    //         "Que solo los camiones tienen prohibido adelantar.",
+    //         "Que es una zona segura y recomendada para adelantar.",
+    //         "Que debes mantener una distancia de 50 metros con el otro vehículo."
+    //     ],
+    //     correctAnswer: "Que está prohibido adelantar a otros vehículos en ese tramo.",
+    //     image: '/senal-prohibido-adelantar.png',
+    //     imageAlt: "Señal de tránsito circular con borde rojo que muestra un auto rojo adelantando a un auto negro, indicando prohibición."
+    // },
+    // {
+    //     question: "Esta señal de tránsito triangular significa que debes...",
+    //     options: [
+    //         "Reducir la velocidad y ceder el paso a los vehículos que circulan por la vía preferencial.",
+    //         "Detenerte completamente, sin importar si vienen otros vehículos.",
+    //         "Aumentar la velocidad para incorporarte rápidamente al tráfico.",
+    //         "Tocar el claxon dos veces antes de pasar."
+    //     ],
+    //     correctAnswer: "Reducir la velocidad y ceder el paso a los vehículos que circulan por la vía preferencial.",
+    //     // URL de la imagen para la señal de "Ceda el Paso".
+    //     image: '/senal-ceda-paso.png',
+    //     // Texto descriptivo para accesibilidad.
+    //     imageAlt: "Señal de tránsito triangular invertida con borde rojo y fondo blanco que indica ceder el paso."
+    // },
+    // {
+    //     question: "La frecuencia de la inspección técnica de un vehículo particular es:",
+    //     options: ["Cada medio año.", "Cada año.", "Cada dos años.", "Cada tres años."],
+    //     correctAnswer: "Cada año."
+    // },
+    // {
+    //     question: "Al encontrar esta señal en su camino, ¿qué acción debe realizar?",
+    //     options: [
+    //         "Detenerse por completo antes de continuar.",
+    //         "Reducir la velocidad y ceder el paso.",
+    //         "Continuar con la misma velocidad si no vienen vehículos.",
+    //         "Estacionar solo si es una emergencia."
+    //     ],
+    //     correctAnswer: "Detenerse por completo antes de continuar.",
+    //     image: '/senal-pare.jpg',
+    //     imageAlt: "Señal de tránsito octogonal de color rojo con la palabra PARE en letras blancas."
+    // },
 
     //BALOTARIO
     {
@@ -319,7 +317,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "El único sentido de desplazamiento es continuar de frente.",
-        image: "1",
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/1.png",
         imageAlt: "Señal de sentido obligatorio"
     },
     {
@@ -371,7 +369,7 @@ export const allQuestions: Question[] = [
             "Prohíbe la circulación de vehículos motorizados."
         ],
         correctAnswer: "Prohíbe al conductor detener el vehículo dentro del área de la intersección.",
-        image: quizImages[2],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/2.png",
         imageAlt: "Señal de prohibición de bloqueo de intersección"
     },
     {
@@ -463,7 +461,7 @@ export const allQuestions: Question[] = [
             "Prohíbe hacer ruido."
         ],
         correctAnswer: "Prohíbe el uso de la bocina.",
-        image: quizImages[3],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/3.png",
         imageAlt: "Señal de prohibición de bocina"
     },
     {
@@ -565,7 +563,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Se aproxima un carril adicional.",
-        image: quizImages[4],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/4.png",
         imageAlt: "Señal de carril adicional"
     },
     {
@@ -607,7 +605,7 @@ export const allQuestions: Question[] = [
             "La señal P-2A advierte la presencia de curva pronunciada a la derecha mientras que la P-1A advierte la presencia de curva suave a la derecha."
         ],
         correctAnswer: "La señal P-1A advierte la presencia de curva pronunciada a la derecha mientras que la P-2A advierte la presencia de curva suave a la derecha.",
-        image: quizImages[5],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/5.png",
         imageAlt: "Comparación de señales de curva"
     },
     {
@@ -619,7 +617,7 @@ export const allQuestions: Question[] = [
             "No se encuentra regulada en el reglamento."
         ],
         correctAnswer: "Regula la velocidad máxima permitida en curvas.",
-        image: quizImages[6],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/6.png",
         imageAlt: "Señal de velocidad máxima en curvas"
     },
     {
@@ -641,7 +639,7 @@ export const allQuestions: Question[] = [
             "El que haga sonar la bocina primero."
         ],
         correctAnswer: "El que se aproxime por la derecha del otro.",
-        image: quizImages[7],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/7.png",
         imageAlt: "Intersección no regulada con preferencia de paso"
     },
     {
@@ -793,7 +791,7 @@ export const allQuestions: Question[] = [
             "Ensanchamiento de la calzada en ambos lados."
         ],
         correctAnswer: "Reducción de la calzada en ambos lados.",
-        image: quizImages[8],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/8.png",
         imageAlt: "Señal de reducción de calzada"
     },
     {
@@ -966,7 +964,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Señal de proximidad de un reductor de velocidad tipo resalto.",
-        image: quizImages[9],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/9.png",
         imageAlt: "Señal de proximidad a reductor de velocidad"
     },
     {
@@ -1228,7 +1226,7 @@ export const allQuestions: Question[] = [
             "Cambiarse al carril izquierdo con precaución."
         ],
         correctAnswer: "Cambiarse al carril izquierdo con precaución.",
-        image: quizImages[10],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/10.png",
         imageAlt: "Flechas de cambio de carril"
     },
     {
@@ -1290,7 +1288,7 @@ export const allQuestions: Question[] = [
             "Puede hacerlo por la izquierda."
         ],
         correctAnswer: "No puede hacerlo.",
-        image: quizImages[11],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/11.png",
         imageAlt: "Situación de adelantamiento vehicular"
     },
     {
@@ -1302,7 +1300,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Prohibida la circulación de vehículos automotores.",
-        image: quizImages[12],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/12.png",
         imageAlt: "Señal de prohibición de circulación de vehículos automotores"
     },
     {
@@ -1314,7 +1312,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que está por ingresar a una vía de sentido contrario y no debe entrar.",
-        image: quizImages[13],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/13.png",
         imageAlt: "Señal R-4: sentido contrario prohibido"
     },
     {
@@ -1326,7 +1324,7 @@ export const allQuestions: Question[] = [
             "Mantener la distancia entre vehículos por seguridad."
         ],
         correctAnswer: "Superficie deslizante.",
-        image: quizImages[14],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/14.png",
         imageAlt: "Señal P-36: superficie deslizante"
     },
     {
@@ -1338,7 +1336,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Circular solo en el sentido indicado por la flecha.",
-        image: quizImages[15],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/15.png",
         imageAlt: "Señal R-14: sentido obligatorio"
     },
     {
@@ -1350,7 +1348,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que es una vía de tres carriles y usted puede utilizar los dos de la derecha.",
-        image: quizImages[16],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/16.png",
         imageAlt: "Señal R-11a: carriles permitidos"
     },
     {
@@ -1362,7 +1360,7 @@ export const allQuestions: Question[] = [
             "Que al salir de la vía por donde está circulando, la velocidad mínima es 50 km/h."
         ],
         correctAnswer: "Que al salir de la vía por donde está circulando, la velocidad máxima es 50 km/h.",
-        image: quizImages[17],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/17.png",
         imageAlt: "Señal R-30c: límite de velocidad al salir"
     },
     {
@@ -1374,7 +1372,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que la intersección contempla giros tangentes a la izquierda en ambos sentidos.",
-        image: quizImages[18],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/18.png",
         imageAlt: "Señal R-5-4: giros tangentes a la izquierda"
     },
     {
@@ -1386,7 +1384,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que está permitido el giro en U.",
-        image: quizImages[19],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/19.png",
         imageAlt: "Señal R-9: giro en U permitido"
     },
     {
@@ -1398,7 +1396,7 @@ export const allQuestions: Question[] = [
             "No es una señal válida en el Perú."
         ],
         correctAnswer: "Que el carril por donde circula permite girar a la izquierda o seguir de frente.",
-        image: quizImages[20],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/20.png",
         imageAlt: "Señal R-5-2: giro a la izquierda o de frente"
     },
     {
@@ -1410,7 +1408,7 @@ export const allQuestions: Question[] = [
             "Que los peatones deben circular por la derecha."
         ],
         correctAnswer: "Que los peatones deben circular por la derecha.",
-        image: quizImages[21],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/21.png",
         imageAlt: "Señal R-20: circulación peatonal por la derecha"
     },
     {
@@ -1422,7 +1420,7 @@ export const allQuestions: Question[] = [
             "Circular con luces bajas."
         ],
         correctAnswer: "Circular con luces bajas.",
-        image: quizImages[22],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/22.png",
         imageAlt: "Señal R-40: circular con luces bajas"
     },
     {
@@ -1434,7 +1432,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Zona de carga y descarga.",
-        image: quizImages[23],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/23.png",
         imageAlt: "Señal R-48: zona de carga y descarga"
     },
     {
@@ -1446,7 +1444,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Se debe mantener la distancia de seguridad entre vehículos.",
-        image: quizImages[24],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/24.png",
         imageAlt: "Señal R-49: mantener distancia de seguridad"
     },
     {
@@ -1458,7 +1456,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que si solo hay un carril no tiene preferencia el que está mirando la señal y debe darle paso al del sentido contrario.",
-        image: quizImages[25],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/25.png",
         imageAlt: "Señal R-50: dar paso al sentido contrario"
     },
     {
@@ -1470,7 +1468,7 @@ export const allQuestions: Question[] = [
             "No es una señal válida en el Perú."
         ],
         correctAnswer: "Una señal de obligación.",
-        image: quizImages[26],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/26.png",
         imageAlt: "Señal R-5-1: señal de obligación"
     },
     {
@@ -1482,7 +1480,7 @@ export const allQuestions: Question[] = [
             "Hay una curva y contra-curva pronunciada a la izquierda."
         ],
         correctAnswer: "Hay una curva y contra-curva pronunciada a la derecha.",
-        image: quizImages[27],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/27.png",
         imageAlt: "Señal P-3a: curva y contra-curva pronunciada a la derecha"
     },
     {
@@ -1494,7 +1492,7 @@ export const allQuestions: Question[] = [
             "Se aproxima a un camino sinuoso a la izquierda."
         ],
         correctAnswer: "Se aproxima a un camino sinuoso a la izquierda.",
-        image: quizImages[28],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/28.png",
         imageAlt: "Señal P-5-1a: camino sinuoso a la izquierda"
     },
     {
@@ -1506,7 +1504,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Está circulando por una curva horizontal.",
-        image: quizImages[29],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/29.png",
         imageAlt: "Señal P-61: curva horizontal"
     },
     {
@@ -1518,7 +1516,7 @@ export const allQuestions: Question[] = [
             "Se aproxima a un badén."
         ],
         correctAnswer: "Se aproxima a un badén.",
-        image: quizImages[30],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/30.png",
         imageAlt: "Señal P-34: badén próximo"
     },
     {
@@ -1530,7 +1528,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Una señal preventiva.",
-        image: quizImages[31],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/31.png",
         imageAlt: "Señal P-60: señal preventiva"
     },
     {
@@ -1542,7 +1540,7 @@ export const allQuestions: Question[] = [
             "Cercanía de una ciclovía."
         ],
         correctAnswer: "Ciclistas en la vía.",
-        image: quizImages[32],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/32.png",
         imageAlt: "Señal P-46: ciclistas en la vía"
     },
     {
@@ -1554,7 +1552,7 @@ export const allQuestions: Question[] = [
             "Todas las alternativas son correctas."
         ],
         correctAnswer: "Que nos aproximamos a un cruce de ciclovía.",
-        image: quizImages[33],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/33.png",
         imageAlt: "Señal P-46-a: cruce de ciclovía próximo"
     },
     {
@@ -1566,7 +1564,7 @@ export const allQuestions: Question[] = [
             "La ubicación de un cruce de ciclistas."
         ],
         correctAnswer: "La ubicación de un cruce de ciclistas.",
-        image: quizImages[34],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/34.png",
         imageAlt: "Señal P-46b: ubicación de cruce de ciclistas"
     },
     {
@@ -1578,7 +1576,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Zona con presencia de peatones.",
-        image: quizImages[35],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/35.png",
         imageAlt: "Señal P-48: zona con presencia de peatones"
     },
     {
@@ -1590,7 +1588,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Proximidad a un cruce peatonal.",
-        image: quizImages[36],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/36.png",
         imageAlt: "Señal P-48a: proximidad a cruce peatonal"
     },
     {
@@ -1602,7 +1600,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Ubicación de un cruce peatonal.",
-        image: quizImages[37],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/37.png",
         imageAlt: "Señal P-48-b: ubicación de cruce peatonal"
     },
     {
@@ -1614,7 +1612,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Zona escolar.",
-        image: quizImages[38],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/38.png",
         imageAlt: "Señal P-49: zona escolar"
     },
     {
@@ -1626,7 +1624,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Proximidad a un cruce escolar.",
-        image: quizImages[39],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/39.png",
         imageAlt: "Señal P-49a: proximidad a cruce escolar"
     },
     {
@@ -1638,7 +1636,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Ubicación de un cruce escolar.",
-        image: quizImages[40],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/40.png",
         imageAlt: "Señal P-49b: ubicación de cruce escolar"
     },
     {
@@ -1650,7 +1648,7 @@ export const allQuestions: Question[] = [
             "Niños jugando."
         ],
         correctAnswer: "Niños jugando.",
-        image: quizImages[41],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/41.png",
         imageAlt: "Señal P-50: niños jugando"
     },
     {
@@ -1662,7 +1660,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Maquinaria agrícola en la vía.",
-        image: quizImages[42],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/42.png",
         imageAlt: "Señal P-51: maquinaria agrícola en la vía"
     },
     {
@@ -1674,7 +1672,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Animales en la vía.",
-        image: quizImages[43],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/43.png",
         imageAlt: "Señal P-53: animales en la vía"
     },
     {
@@ -1686,7 +1684,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Proximidad a un semáforo.",
-        image: quizImages[44],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/44.png",
         imageAlt: "Señal P-55: proximidad a semáforo"
     },
     {
@@ -1698,7 +1696,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que usted se aproxima a una señal de PARE.",
-        image: quizImages[45],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/45.png",
         imageAlt: "Señal P-58: proximidad a señal PARE"
     },
     {
@@ -1710,7 +1708,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que usted se aproxima a una señal de CEDA EL PASO.",
-        image: quizImages[46],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/46.png",
         imageAlt: "Señal P-59: proximidad a señal CEDA EL PASO"
     },
     {
@@ -1722,7 +1720,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que usted se aproxima a un túnel.",
-        image: quizImages[47],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/47.png",
         imageAlt: "Señal P-41: proximidad a túnel"
     },
     {
@@ -1734,7 +1732,7 @@ export const allQuestions: Question[] = [
             "Aviones que generan ruido."
         ],
         correctAnswer: "Vuelo de aviones a baja altura.",
-        image: quizImages[48],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/48.png",
         imageAlt: "Señal P-45: vuelo de aviones a baja altura"
     },
     {
@@ -1746,7 +1744,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que se aproxima a una salida de vehículos de bomberos.",
-        image: quizImages[49],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/49.png",
         imageAlt: "Señal P-52: salida de vehículos de bomberos"
     },
     {
@@ -1758,7 +1756,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que se aproxima una zona donde hay ráfagas de viento lateral.",
-        image: quizImages[50],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/50.png",
         imageAlt: "Señal P-66: ráfagas de viento lateral"
     },
     {
@@ -1770,7 +1768,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Que se acerca a una zona de arenamiento en la vía.",
-        image: quizImages[51],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/51.png",
         imageAlt: "Señal P-66a: zona de arenamiento en la vía"
     },
     {
@@ -1782,7 +1780,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "En la siguiente intersección está prohibido girar a la izquierda y por lo tanto, si desea seguir esa ruta debe tomar el camino alternativo que muestra la señal.",
-        image: quizImages[52],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/52.png",
         imageAlt: "Señal: desvío por prohibición de giro a la izquierda"
     },
     {
@@ -1794,7 +1792,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Si quiere girar a la izquierda debe pasar la intersección y dar la vuelta a la manzana.",
-        image: quizImages[53],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/53.png",
         imageAlt: "Señal: desvío para giro a la izquierda"
     },
     {
@@ -1806,7 +1804,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Señal de hospital.",
-        image: quizImages[54],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/54.png",
         imageAlt: "Señal I-14: hospital"
     },
     {
@@ -1818,7 +1816,7 @@ export const allQuestions: Question[] = [
             "Proximidad de un estacionamiento para emergencias."
         ],
         correctAnswer: "Proximidad de un estacionamiento para emergencias.",
-        image: quizImages[55],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/55.png",
         imageAlt: "Señal I-31: estacionamiento para emergencias"
     },
     {
@@ -1830,7 +1828,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Zona militar.",
-        image: quizImages[56],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/56.png",
         imageAlt: "Señal I-9: zona militar"
     },
     {
@@ -1842,7 +1840,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Cercanía a un servicio mecánico.",
-        image: quizImages[57],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/57.png",
         imageAlt: "Señal I-18: servicio mecánico"
     },
     {
@@ -1854,7 +1852,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Cercanía a un grifo.",
-        image: quizImages[58],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/58.png",
         imageAlt: "Señal I-19: grifo"
     },
     {
@@ -1866,7 +1864,7 @@ export const allQuestions: Question[] = [
             "Cercanía a una llantería."
         ],
         correctAnswer: "Cercanía a una llantería.",
-        image: quizImages[59],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/59.png",
         imageAlt: "Señal I-20: llantería"
     },
     {
@@ -1878,7 +1876,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Fin de la restricción de prohibido adelantar.",
-        image: quizImages[60],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/60.png",
         imageAlt: "Señal R-16a: fin de prohibido adelantar"
     },
     {
@@ -1910,7 +1908,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Delineadores de curva, que guían al conductor.",
-        image: quizImages[61],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/61.png",
         imageAlt: "Señal P-61: delineadores de curva"
     },
     {
@@ -2212,7 +2210,7 @@ export const allQuestions: Question[] = [
             "La proximidad de una intersección rotatoria (óvalo o rotonda)."
         ],
         correctAnswer: "La proximidad de una intersección rotatoria (óvalo o rotonda).",
-        image: quizImages[62],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/62.png",
         imageAlt: "Señal preventiva P-15 que advierte sobre la proximidad de una rotonda u óvalo"
     },
     {
@@ -2224,7 +2222,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "La proximidad del final de la vía.",
-        image: quizImages[63],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/63.png",
         imageAlt: "Señal preventiva P-31a indicando proximidad del final de la vía"
     },
     {
@@ -2276,7 +2274,7 @@ export const allQuestions: Question[] = [
             "Tocar el claxon para que el peatón no cruce la calzada."
         ],
         correctAnswer: "Dar preferencia de paso al peatón para que cruce la calzada.",
-        image: quizImages[64],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/64.png",
         imageAlt: "Gráfico mostrando situación de conductor girando a la derecha con peatón cruzando"
     },
     {
@@ -2378,7 +2376,7 @@ export const allQuestions: Question[] = [
             "Ninguna de las alternativas es correcta."
         ],
         correctAnswer: "Señalización de tránsito vertical y horizontal en una zona escolar.",
-        image: quizImages[65],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/65.png",
         imageAlt: "Gráfico mostrando señalización de tránsito en zona escolar"
     },
     {
@@ -2400,7 +2398,7 @@ export const allQuestions: Question[] = [
             "Que es una isla de refugio peatonal."
         ],
         correctAnswer: "Que no puede detener el vehículo dentro del área de intersección.",
-        image: quizImages[66],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/66.png",
         imageAlt: "Malla ortogonal amarilla en pavimento de intersección"
     },
     {
@@ -2412,7 +2410,7 @@ export const allQuestions: Question[] = [
             "El conductor del camión puede estacionarse antes de empezar las líneas continuas."
         ],
         correctAnswer: "La zona de no adelantar inicia con las líneas amarillas continuas.",
-        image: quizImages[67],
+        image: "https://lab-ec-upc.github.io/assets/especial-licencias/quiz/67.png",
         imageAlt: "Gráfico mostrando líneas amarillas continuas en carretera y zona de no adelantar"
     }
 ];
