@@ -1,10 +1,11 @@
 @import "tailwindcss";
 @tailwind utilities;
 
-:root {
-    --font-sans: Helvetica, Arial, sans-serif;
+@theme {
+    --font-bitcount: "bitcount-mono-single-square", sans-serif;
+    --font-helvetica: "helvetica-neue-lt-pro", sans-serif;
 }
 
-/*@theme {*/
-/*    */
-/*}*/
+:root {
+    --font-sans: var(--font-helvetica);
+}
