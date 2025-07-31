@@ -1,20 +1,20 @@
 import './index.css'
-import {HeaderSection} from "./features/01-Header/HeaderSection.tsx";
-import {MapSection} from "./features/02-Map/MapSection.tsx";
-import {CausesSection} from "./features/03-Causes/CausesSection.tsx";
-import {HiddenCostSection} from "./features/05-Consequences/HiddenCostSection.tsx";
-import {ConsequencesSection} from "./features/05-Consequences/ConsequencesSection.tsx";
-import {TestimonialsSection} from "./features/06-Testimonials/TestimonialsSection.tsx";
-import {CallToActionSection} from "./features/07-CallToAction/CallToActionSection.tsx";
-import {TriviaQuizSection} from "./features/08-TriviaQuiz/TriviaQuizSection.tsx";
-import {FooterSection} from "./features/09-Footer/FooterSection.tsx";
+import {CallToAction} from "./features/08-CallToAction";
+import {TriviaQuizSection} from "@/features/09-TriviaQuiz/TriviaQuizSection.tsx";
+import {FooterSection} from "@/features/10-Footer/FooterSection.tsx";
+import {Header} from "@/features/01-Header";
+import {RadiografiaNacional} from "@/features/02-Radiografia-Nacional";
+import {DeDondeSonLosEvaluados} from "@/features/03-De-Donde-Son-Los-Evaluados";
+import {LesionesMuertesNacionales} from "@/features/05-Lesiones-Muertes-Nacionales";
+import {Testimonios} from "@/features/06-Testimonios";
+import {CausasRaices} from "@/features/04-Causas-Raices";
 
 function App() {
 
   return (
     <>
       <div>
-        <h1 className="flex items-center justify-center bg-[#FFCB03] text-6xl font-bold p-5">
+        <h1 className="flex items-center justify-center bg-[#FFCB03] text-4xl font-bold p-5">
           El Comercio
         </h1>
         <div className="flex items-center justify-center gap-5 p-2 uppercase text-sm">
@@ -30,15 +30,17 @@ function App() {
           <p>Juegos</p>
         </div>
       </div>
-      <HeaderSection />
-      <MapSection />
-      <CausesSection />
-      <HiddenCostSection />
-      <ConsequencesSection />
-      <TestimonialsSection />
-      <CallToActionSection />
-      <TriviaQuizSection />
-      <FooterSection />
+      <div className="flex flex-col gap-32 bg-white">
+        <Header />
+        <TriviaQuizSection />
+        <RadiografiaNacional />
+        <DeDondeSonLosEvaluados />
+        <CausasRaices />
+        <LesionesMuertesNacionales />
+        <Testimonios />
+        <CallToAction />
+        <FooterSection />
+      </div>
     </>
   )
 }

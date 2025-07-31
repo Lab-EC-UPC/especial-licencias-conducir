@@ -1,2 +1,10 @@
 @import "tailwindcss";
 @tailwind utilities;
+
+:root {
+    --font-sans: Helvetica, Arial, sans-serif;
+}
+
+/*@theme {*/
+/*    */
+/*}*/
