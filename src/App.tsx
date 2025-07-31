@@ -1,7 +1,6 @@
 import './index.css'
 import {CallToAction} from "./features/08-CallToAction";
 import {TriviaQuizSection} from "@/features/09-TriviaQuiz/TriviaQuizSection.tsx";
-import {FooterSection} from "@/features/11-Footer/FooterSection.tsx";
 import {Header} from "@/features/01-Header";
 import {RadiografiaNacional} from "@/features/02-Radiografia-Nacional";
 import {DeDondeSonLosEvaluados} from "@/features/03-De-Donde-Son-Los-Evaluados";
@@ -9,6 +8,7 @@ import {LesionesMuertesNacionales} from "@/features/05-Lesiones-Muertes-Nacional
 import {Testimonios} from "@/features/06-Testimonios";
 import {CausasRaices} from "@/features/04-Causas-Raices";
 import {ProbabilidadAprobarExamen} from "@/features/10-Probabilidad-Aprobar-Examen";
+import {FooterSection} from "@/features/11-Footer";
 
 function App() {
 
