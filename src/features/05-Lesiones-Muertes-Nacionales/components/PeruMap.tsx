@@ -69,11 +69,6 @@ export const PeruMap = () => {
           <div className="flex h-48 md:h-42 w-48 md:w-72 relative">
             <div className="flex flex-col w-full text-left">
               <p className="text-sm font-medium mb-1 text-[#ED548C]">Coste de región {hoveredRegion.name}</p>
-              {hoveredRegion.name === "Lima" && (
-                <div className="pt-1 md:text-lg">
-                  (#24  Callao: 6,9)
-                </div>
-              )}
               <div className="flex flex-col justify-between w-full h-full bg-white rounded-md p-4">
                 <div>
                   <div className="flex justify-between text-sm font-medium text-[#ED548C]">

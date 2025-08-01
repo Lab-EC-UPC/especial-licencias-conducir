@@ -4,7 +4,7 @@ export const LesionesMuertesNacionales = () => {
 
   return (
     <div>
-      <div className="mx-auto container w-full min-h-screen">
+      <div className="mx-auto container w-full min-h-screen mt-32">
         <div className="flex flex-col items-center text-center h-full">
           <h1 className="text-5xl mb-4 font-bold font-bitcount text-[#131A31]">Lesiones y muertes nacionales</h1>
           <p className="w-full md:max-w-2/3 font-medium">

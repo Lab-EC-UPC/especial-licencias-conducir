@@ -46,7 +46,7 @@ export const CausasRaices = () => {
   };
 
   return (
-    <div className="bg-blue-200" style={{ paddingBottom: '40px' }}>
+    <div className="mt-32">
       <div className="mx-auto container w-full py-8 px-4">
         <div className="flex flex-col items-center text-center">
           <h1 className="text-5xl mb-4 font-bold font-bitcount text-[#131A31]">Causas Raíces</h1>
