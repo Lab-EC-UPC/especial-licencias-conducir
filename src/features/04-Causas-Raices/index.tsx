@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CausaOverlay } from './components/CausaOverlay';
+import PixelButton from "@/components/PixelButton.tsx";
 
 interface Expert {
   name: string;
@@ -67,12 +68,11 @@ export const CausasRaices = () => {
                 <div className={`${COLORS[index % COLORS.length]} p-8 rounded-[30px] shadow-lg flex flex-col items-center w-full pt-16`}>
                   <h3 className="text-xl font-bold text-[#131A31] mb-2 mt-2">{expert.name}</h3>
                   <p className="text-sm text-[#131A31] mb-6">{expert.quote}</p>
-                  <button
+                  <PixelButton
+                    text="Ver más"
+                    variant="sand"
                     onClick={() => handleOpenOverlay(expert)}
-                    className="bg-[#dbeecb] text-[#131A31] py-2 px-6 rounded-[10px] font-bold shadow-md transition-all duration-200 hover:scale-105"
-                  >
-                    Ver más
-                  </button>
+                  />
                 </div>
               </div>
             ))}
