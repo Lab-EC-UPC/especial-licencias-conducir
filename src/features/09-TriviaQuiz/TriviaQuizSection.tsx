@@ -1,23 +1,22 @@
-import { useState, useEffect, type SetStateAction } from 'react';
-import { allQuestions, type Question } from './questions';
+import { useState, useEffect, type SetStateAction } from "react";
+import { allQuestions, type Question } from "./questions";
+import hero from "@/assets/hero.png";
 
 export const TriviaQuizSection = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [selectedAnswer, setSelectedAnswer] = useState('');
+    const [selectedAnswer, setSelectedAnswer] = useState("");
     const [showResult, setShowResult] = useState(false);
     const [score, setScore] = useState(0);
     const [gameStarted, setGameStarted] = useState(false);
     const [gameFinished, setGameFinished] = useState(false);
     const [timeLeft, setTimeLeft] = useState(20);
 
-    // Función para seleccionar preguntas aleatorias
     const selectRandomQuestions = () => {
         const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
         return shuffled.slice(0, 8);
     };
 
-    // Efecto para inicializar las preguntas aleatorias al montar el componente
     useEffect(() => {
         setQuestions(selectRandomQuestions());
     }, []);
@@ -32,27 +31,24 @@ export const TriviaQuizSection = () => {
     }, [timeLeft, gameStarted, gameFinished, showResult, questions.length]);
 
     const startGame = () => {
-        setQuestions(selectRandomQuestions()); // Seleccionar nuevas preguntas aleatorias
+        setQuestions(selectRandomQuestions());
         setGameStarted(true);
         setCurrentQuestion(0);
         setScore(0);
         setTimeLeft(20);
-        setSelectedAnswer('');
+        setSelectedAnswer("");
         setShowResult(false);
         setGameFinished(false);
     };
 
     const handleAnswerSelect = (answer: SetStateAction<string>) => {
-        if (!showResult) {
-            setSelectedAnswer(answer);
-        }
+        if (!showResult) setSelectedAnswer(answer);
     };
 
     const handleSubmitAnswer = () => {
         if (selectedAnswer === questions[currentQuestion].correctAnswer) {
-            // Puntuación basada en tiempo restante: más puntos si responde rápido
-            const timeBonus = Math.floor(timeLeft / 2); // Bonus de 0-10 puntos
-            const basePoints = 10; // Puntos base por respuesta correcta
+            const timeBonus = Math.floor(timeLeft / 2);
+            const basePoints = 10;
             setScore(score + basePoints + timeBonus);
         }
         setShowResult(true);
@@ -61,7 +57,7 @@ export const TriviaQuizSection = () => {
     const handleNextQuestion = () => {
         if (currentQuestion < questions.length - 1) {
             setCurrentQuestion(currentQuestion + 1);
-            setSelectedAnswer('');
+            setSelectedAnswer("");
             setShowResult(false);
             setTimeLeft(20);
         } else {
@@ -74,13 +70,13 @@ export const TriviaQuizSection = () => {
         setGameFinished(false);
         setCurrentQuestion(0);
         setScore(0);
-        setSelectedAnswer('');
+        setSelectedAnswer("");
         setShowResult(false);
         setTimeLeft(20);
     };
 
     const getScoreMessage = () => {
-        const maxPossibleScore = questions.length * 20; // 10 puntos base + 10 de bonus máximo
+        const maxPossibleScore = questions.length * 20;
         const percentage = (score / maxPossibleScore) * 100;
 
         if (percentage >= 80) return "¡Excelente! Conductor experto 🏆";
@@ -89,278 +85,341 @@ export const TriviaQuizSection = () => {
         return "Necesitas estudiar más las reglas 📖";
     };
 
-    // Función para obtener el mensaje del encabezado según el porcentaje
     const getHeaderMessage = () => {
         const maxPossibleScore = questions.length * 20;
         const percentage = (score / maxPossibleScore) * 100;
 
         if (percentage >= 85) {
-            return {
-                emoji: "🎉",
-                title: "¡Felicitaciones!",
-                subtitle: "Aprobaste el examen"
-            };
+            return { emoji: "🎉", title: "¡Felicitaciones!", subtitle: "Aprobaste el examen" };
         } else if (percentage >= 65) {
-            return {
-                emoji: "😐",
-                title: "Sigue Intentando",
-                subtitle: "Regular, sigue practicando"
-            };
+            return { emoji: "😐", title: "Sigue Intentando", subtitle: "Regular, sigue practicando" };
         } else {
-            return {
-                emoji: "😔",
-                title: "Sigue Intentando",
-                subtitle: "Fallaste, sigue practicando"
-            };
+            return { emoji: "😔", title: "Sigue Intentando", subtitle: "Fallaste, sigue practicando" };
         }
     };
 
-    // Mostrar loading mientras se cargan las preguntas
     if (questions.length === 0) {
         return (
-          <section className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 py-16 px-4">
-              <div className="container mx-auto">
-                  <div className="text-center">
-                      <div className="text-6xl mb-4 animate-spin">🔄</div>
-                      <h2 className="text-3xl font-bold text-white">Cargando preguntas...</h2>
-                  </div>
-              </div>
-          </section>
+            <div className="relative w-full max-w-[924px] mx-auto">
+                <img
+                    src={hero}
+                    alt="Hero"
+                    className="w-full h-auto block"
+                />
+                <div
+                    className="absolute bg-[#131a31]/90 overflow-y-auto rounded-sm shadow-lg p-4 flex flex-col items-center justify-center"
+                    style={{
+                        top: "22.5%",
+                        left: "31.5%",
+                        width: "40%",
+                        aspectRatio: "284 / 175",
+                        color: "#dbeecb",
+                    }}
+                >
+                    <div className="text-4xl mb-2 animate-spin" style={{ color: '#58b7cf' }}>🔄</div>
+                    <h2
+                        className="text-lg font-bold"
+                        style={{ fontFamily: 'var(--font-bitcount, sans-serif)', color: '#dbeecb' }}
+                    >
+                        Cargando preguntas...
+                    </h2>
+                </div>
+            </div>
         );
     }
 
     return (
-      <section className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 py-16 px-4">
-          <div className="container mx-auto">
-              {/* Título de la sección */}
-              <div className="text-center mb-12">
-                  <h2 className="text-5xl font-extrabold text-white mb-6 drop-shadow-lg">
-                      🚗 Pon a Prueba tus Conocimientos
-                  </h2>
-                  <p className="text-2xl text-blue-200 font-medium">
-                      Trivia sobre las reglas de tránsito en el Perú
-                  </p>
-              </div>
+        <div className="relative w-full max-w-[924px] mx-auto">
+            <img
+                src={hero}
+                alt="Hero"
+                className="w-full h-auto block"
+            />
 
-              {/* Pantalla de inicio */}
-              {!gameStarted && (
-                <div className="max-w-lg mx-auto">
-                    <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-10 text-center border border-white/20 hover:shadow-purple-500/25 transition-all duration-300">
-                        <div className="text-8xl mb-6 animate-bounce">🚗</div>
-                        <h3 className="text-3xl font-bold text-gray-800 mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                            Trivia de Conducir
-                        </h3>
-                        <p className="text-xl text-gray-600 mb-8">¿Qué tanto sabes sobre manejo seguro?</p>
+            <div
+                className="absolute bg-[#131a31]/90 overflow-y-auto rounded-sm shadow-lg p-4 flex flex-col"
+                style={{
+                    top: "22.5%",
+                    left: "31.5%",
+                    width: "40%",
+                    aspectRatio: "284 / 175",
+                    color: "#dbeecb",
+                }}
+            >
+                {/* Pantalla inicial */}
+                {!gameStarted && (
+                    <div className="text-center flex flex-col justify-center flex-1">
+                        <h2
+                            className="text-lg md:text-2xl font-bold mb-2 md:mb-4"
+                            style={{ fontFamily: "var(--font-bitcount, sans-serif)", color: "#58b7cf" }}
+                        >
+                            🚗 Trivia de Conducir
+                        </h2>
+                        <p
+                            className="mb-2 md:mb-4 text-[#ffaf42] text-sm md:text-base"
+                            style={{ fontFamily: "var(--font-helvetica, sans-serif)" }}
+                        >
+                            ¿Qué tanto sabes sobre manejo seguro?
+                        </p>
 
-                        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 mb-8 text-left border border-blue-200/50">
-                            <h4 className="font-bold text-blue-800 mb-4 text-lg flex items-center">
-                                <span className="text-2xl mr-2">📋</span>
-                                Reglas del Juego
+                        <div className="rounded p-2 mb-3 text-left text-xs border" style={{ backgroundColor: '#58b7cf', borderColor: '#131a31' }}>
+                            <h4
+                                className="font-bold mb-1"
+                                style={{ color: '#131a31', fontFamily: 'var(--font-bitcount, sans-serif)' }}
+                            >
+                                📋 Reglas
                             </h4>
-                            <ul className="space-y-3 text-blue-700">
-                                <li className="flex items-center">
-                                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                                    <span className="font-medium">{questions.length} preguntas desafiantes</span>
-                                </li>
-                                <li className="flex items-center">
-                                    <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
-                                    <span className="font-medium">20 segundos por pregunta</span>
-                                </li>
-                                <li className="flex items-center">
-                                    <span className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
-                                    <span className="font-medium">Una sola oportunidad</span>
-                                </li>
+                            <ul
+                                className="space-y-1"
+                                style={{ color: '#131a31', fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                            >
+                                <li>• {questions.length} preguntas desafiantes</li>
+                                <li>• 20 segundos por pregunta</li>
+                                <li>• Una sola oportunidad</li>
                             </ul>
                         </div>
 
                         <button
-                          onClick={startGame}
-                          className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-5 px-8 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                            onClick={startGame}
+                            className="w-full py-2 md:py-3 rounded-lg font-bold text-sm md:text-base transition-all hover:opacity-90"
+                            style={{
+                                backgroundColor: "#ed548c",
+                                color: "#131a31",
+                                fontFamily: "var(--font-helvetica, sans-serif)"
+                            }}
                         >
                             🚀 Comenzar Trivia
                         </button>
                     </div>
-                </div>
-              )}
+                )}
 
-              {/* Pantalla de resultados */}
-              {gameFinished && (
-                <div className="max-w-lg mx-auto">
-                    <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-10 text-center border border-white/20">
-                        <div className="text-8xl mb-6 animate-pulse">{getHeaderMessage().emoji}</div>
-                        <h3 className="text-3xl font-bold text-gray-800 mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                {/* Preguntas */}
+                {gameStarted && !gameFinished && (
+                    <div className="flex flex-col flex-1">
+                        {/* Header del juego */}
+                        <div className="flex justify-between items-center mb-2 p-2 rounded" style={{ backgroundColor: '#ffaf42' }}>
+                            <div>
+                                <h3
+                                    className="font-bold text-xs"
+                                    style={{ color: '#131a31', fontFamily: 'var(--font-bitcount, sans-serif)' }}
+                                >
+                                    Pregunta {currentQuestion + 1} / {questions.length}
+                                </h3>
+                                <div className="flex items-center space-x-1">
+                                    <span
+                                        className="text-xs"
+                                        style={{ color: '#131a31', fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                                    >
+                                        Puntos:
+                                    </span>
+                                    <span
+                                        className="px-1 py-0.5 rounded text-white font-bold text-xs"
+                                        style={{ backgroundColor: '#ac5eaa', fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                                    >
+                                        {score}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <div
+                                    className={`text-sm font-bold ${timeLeft <= 5 ? "animate-pulse" : ""}`}
+                                    style={{
+                                        color: timeLeft <= 5 ? '#ed548c' : '#131a31',
+                                        fontFamily: 'var(--font-bitcount, sans-serif)'
+                                    }}
+                                >
+                                    ⏰ {timeLeft}s
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Barra de progreso */}
+                        <div className="bg-white rounded-full h-1 mb-2 overflow-hidden">
+                            <div
+                                className="h-1 rounded-full transition-all duration-500"
+                                style={{
+                                    width: `${((currentQuestion + 1) / questions.length) * 100}%`,
+                                    backgroundColor: '#58b7cf'
+                                }}
+                            />
+                        </div>
+
+                        {/* Pregunta */}
+                        <div className="flex-1 overflow-y-auto">
+                            <h3
+                                className="mb-3 text-sm md:text-base font-bold text-center"
+                                style={{ color: '#dbeecb', fontFamily: 'var(--font-bitcount, sans-serif)' }}
+                            >
+                                {questions[currentQuestion].question}
+                            </h3>
+
+                            {/* Renderizado condicional de la imagen */}
+                            {questions[currentQuestion].image && (
+                                <div className="mb-3 text-center">
+                                    <img
+                                        src={questions[currentQuestion].image}
+                                        alt={questions[currentQuestion].imageAlt || 'Imagen de la pregunta'}
+                                        className="max-w-full max-h-20 mx-auto rounded border"
+                                        style={{ borderColor: '#868686' }}
+                                    />
+                                </div>
+                            )}
+
+                            {/* Opciones */}
+                            <div className="space-y-1">
+                                {questions[currentQuestion].options.map((option, i) => (
+                                    <button
+                                        key={i}
+                                        onClick={() => handleAnswerSelect(option)}
+                                        disabled={showResult}
+                                        className="w-full py-1 px-2 md:py-2 md:px-3 rounded text-left text-xs transition-all"
+                                        style={{
+                                            backgroundColor: showResult
+                                                ? option === questions[currentQuestion].correctAnswer
+                                                    ? '#58b7cf'
+                                                    : option === selectedAnswer && option !== questions[currentQuestion].correctAnswer
+                                                        ? '#ed548c'
+                                                        : '#868686'
+                                                : selectedAnswer === option
+                                                    ? '#ac5eaa'
+                                                    : '#868686',
+                                            color: showResult || selectedAnswer === option ? 'white' : '#131a31',
+                                            fontFamily: 'var(--font-helvetica, sans-serif)'
+                                        }}
+                                    >
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center">
+                                                <span className="w-4 h-4 rounded-full flex items-center justify-center font-bold mr-2 text-xs bg-white" style={{ color: '#131a31' }}>
+                                                    {String.fromCharCode(65 + i)}
+                                                </span>
+                                                <span>{option}</span>
+                                            </div>
+                                            {showResult && option === questions[currentQuestion].correctAnswer && (
+                                                <span className="text-white text-sm">✓</span>
+                                            )}
+                                            {showResult && option === selectedAnswer && option !== questions[currentQuestion].correctAnswer && (
+                                                <span className="text-white text-sm">✗</span>
+                                            )}
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Feedback de respuesta correcta */}
+                            {showResult && selectedAnswer === questions[currentQuestion].correctAnswer && (
+                                <div className="mt-2 p-2 rounded text-center text-xs font-bold" style={{ backgroundColor: '#58b7cf', color: 'white' }}>
+                                    ¡Correcto! +{10 + Math.floor(timeLeft / 2)} puntos
+                                    {Math.floor(timeLeft / 2) > 0 && (
+                                        <span className="block text-xs">(Bonus velocidad: +{Math.floor(timeLeft / 2)})</span>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Botones de acción */}
+                        <div className="mt-2">
+                            {!showResult && selectedAnswer && (
+                                <button
+                                    onClick={handleSubmitAnswer}
+                                    className="w-full py-1 md:py-2 rounded-lg font-bold text-xs md:text-base transition-all hover:opacity-90"
+                                    style={{
+                                        backgroundColor: "#dbeecb",
+                                        color: "#131a31",
+                                        fontFamily: "var(--font-helvetica, sans-serif)"
+                                    }}
+                                >
+                                    ✅ Confirmar Respuesta
+                                </button>
+                            )}
+
+                            {showResult && (
+                                <button
+                                    onClick={handleNextQuestion}
+                                    className="w-full py-1 md:py-2 rounded-lg font-bold text-xs md:text-base transition-all hover:opacity-90"
+                                    style={{
+                                        backgroundColor: "#ffaf42",
+                                        color: "#131a31",
+                                        fontFamily: "var(--font-helvetica, sans-serif)"
+                                    }}
+                                >
+                                    {currentQuestion < questions.length - 1 ? "➡️ Siguiente Pregunta" : "🎯 Ver Resultados"}
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                )}
+
+                {/* Pantalla final */}
+                {gameFinished && (
+                    <div className="text-center flex flex-col justify-center flex-1 text-xs md:text-base">
+                        <div className="text-3xl mb-2">{getHeaderMessage().emoji}</div>
+                        <h2
+                            className="text-lg md:text-xl font-bold mb-2"
+                            style={{ color: '#ed548c', fontFamily: 'var(--font-bitcount, sans-serif)' }}
+                        >
                             {getHeaderMessage().title}
-                        </h3>
-                        <p className="text-lg text-gray-600 mb-6">
+                        </h2>
+                        <p
+                            className="mb-2"
+                            style={{ color: '#868686', fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                        >
                             {getHeaderMessage().subtitle}
                         </p>
 
-                        <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 mb-8 border border-gray-200/50">
-                            <div className="text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
+                        {/* Puntuación detallada */}
+                        <div className="rounded p-3 mb-3 text-xs border" style={{ backgroundColor: '#ffaf42', borderColor: '#131a31' }}>
+                            <div
+                                className="text-xl font-bold mb-1"
+                                style={{ color: '#131a31', fontFamily: 'var(--font-bitcount, sans-serif)' }}
+                            >
                                 {score}
                             </div>
-                            <p className="text-gray-600 mb-2 text-lg">Puntuación total</p>
-                            <div className="text-sm text-gray-500 mb-4">
+                            <p
+                                className="text-xs mb-1"
+                                style={{ color: '#131a31', fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                            >
                                 de {questions.length * 20} puntos posibles
-                            </div>
-                            <div className="bg-gray-200 rounded-full h-6 mb-4 overflow-hidden">
+                            </p>
+                            <div className="bg-white rounded-full h-2 mb-1 overflow-hidden">
                                 <div
-                                  className="bg-gradient-to-r from-blue-500 to-purple-500 h-6 rounded-full transition-all duration-1000 ease-out shadow-lg"
-                                  style={{ width: `${(score / (questions.length * 20)) * 100}%` }}
+                                    className="h-2 rounded-full transition-all duration-1000"
+                                    style={{
+                                        width: `${(score / (questions.length * 20)) * 100}%`,
+                                        backgroundColor: '#ac5eaa'
+                                    }}
                                 />
                             </div>
-                            <p className="text-lg font-bold text-gray-700">{Math.round((score / (questions.length * 20)) * 100)}%</p>
+                            <p
+                                className="font-bold"
+                                style={{ color: '#131a31', fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                            >
+                                {Math.round((score / (questions.length * 20)) * 100)}%
+                            </p>
                         </div>
 
-                        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 mb-8 border border-yellow-200/50">
-                            <p className="text-xl font-bold text-gray-800">
+                        <div className="rounded p-2 mb-3" style={{ backgroundColor: '#ac5eaa' }}>
+                            <p
+                                className="font-bold text-white text-xs"
+                                style={{ fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                            >
                                 {getScoreMessage()}
                             </p>
                         </div>
 
                         <button
-                          onClick={resetGame}
-                          className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white py-5 px-8 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                            onClick={resetGame}
+                            className="w-full py-1 md:py-2 rounded-lg font-bold transition-all hover:opacity-90"
+                            style={{
+                                backgroundColor: "#ac5eaa",
+                                color: "#dbeecb",
+                                fontFamily: "var(--font-helvetica, sans-serif)"
+                            }}
                         >
                             🔄 Jugar de Nuevo
                         </button>
                     </div>
-                </div>
-              )}
-
-              {/* Juego principal */}
-              {gameStarted && !gameFinished && (
-                <div className="max-w-4xl mx-auto">
-                    {/* Header del juego */}
-                    <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 mb-8 border border-white/20">
-                        <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-                            <div className="text-center md:text-left mb-4 md:mb-0">
-                                <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                                    Pregunta {currentQuestion + 1} de {questions.length}
-                                </h3>
-                                <div className="flex items-center justify-center md:justify-start space-x-4">
-                                    <div className="flex items-center">
-                                        <span className="text-lg text-gray-600 mr-2">Puntuación:</span>
-                                        <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full font-bold text-lg">
-                                                {score}
-                                            </span>
-                                    </div>
-                                    <div className="text-sm text-gray-500">
-                                        pts
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="text-center">
-                                <div className={`text-5xl font-bold mb-2 ${timeLeft <= 5 ? 'text-red-500 animate-pulse' : 'text-blue-600'}`}>
-                                    ⏰ {timeLeft}s
-                                </div>
-                                <div className="text-sm text-gray-500">Tiempo restante</div>
-                            </div>
-                        </div>
-
-                        {/* Barra de progreso */}
-                        <div className="bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner">
-                            <div
-                              className="bg-gradient-to-r from-blue-500 to-purple-500 h-4 rounded-full transition-all duration-500 ease-out shadow-lg"
-                              style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
-                            />
-                        </div>
-                        <div className="text-center mt-2 text-sm text-gray-600">
-                            Progreso: {Math.round(((currentQuestion + 1) / questions.length) * 100)}%
-                        </div>
-                    </div>
-
-                    {/* Pregunta */}
-                    <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-10 border border-white/20">
-                        <div className="text-center mb-8">
-                            <div className="text-4xl mb-4">🤔</div>
-                            <h4 className="text-2xl md:text-3xl font-bold text-gray-800 leading-relaxed">
-                                {questions[currentQuestion].question}
-                            </h4>
-
-                            {/* Renderizado condicional de la imagen */}
-                            {questions[currentQuestion].image && (
-                              <div className="mt-6">
-                                  <img
-                                    src={questions[currentQuestion].image}
-                                    alt={questions[currentQuestion].imageAlt || 'Imagen de la pregunta'}
-                                    className="max-w-xs max-h-60 mx-auto rounded-lg shadow-lg border border-gray-200"
-                                  />
-                              </div>
-                            )}
-                        </div>
-
-                        {/* Opciones */}
-                        <div className="space-y-4 mb-10">
-                            {questions[currentQuestion].options.map((option, index) => (
-                              <button
-                                key={index}
-                                onClick={() => handleAnswerSelect(option)}
-                                disabled={showResult}
-                                className={`w-full p-6 rounded-2xl text-left font-medium transition-all duration-300 transform hover:scale-105 ${
-                                  showResult
-                                    ? option === questions[currentQuestion].correctAnswer
-                                      ? 'bg-gradient-to-r from-green-100 to-green-200 border-2 border-green-500 text-green-800 shadow-lg'
-                                      : option === selectedAnswer && option !== questions[currentQuestion].correctAnswer
-                                        ? 'bg-gradient-to-r from-red-100 to-red-200 border-2 border-red-500 text-red-800 shadow-lg'
-                                        : 'bg-gray-100 text-gray-500 border-2 border-gray-200'
-                                    : selectedAnswer === option
-                                      ? 'bg-gradient-to-r from-blue-100 to-purple-100 border-2 border-blue-500 text-blue-800 shadow-lg'
-                                      : 'bg-gradient-to-r from-gray-50 to-gray-100 hover:from-blue-50 hover:to-purple-50 border-2 border-gray-200 hover:border-blue-300 shadow-md hover:shadow-lg'
-                                }`}
-                              >
-                                  <div className="flex items-center justify-between">
-                                      <div className="flex items-center">
-                                                <span className="bg-white/80 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 text-sm">
-                                                    {String.fromCharCode(65 + index)}
-                                                </span>
-                                          <span className="text-lg">{option}</span>
-                                      </div>
-                                      {showResult && option === questions[currentQuestion].correctAnswer && (
-                                        <span className="text-green-600 text-2xl">✓</span>
-                                      )}
-                                      {showResult && option === selectedAnswer && option !== questions[currentQuestion].correctAnswer && (
-                                        <span className="text-red-600 text-2xl">✗</span>
-                                      )}
-                                  </div>
-                              </button>
-                            ))}
-                        </div>
-
-                        {showResult && selectedAnswer === questions[currentQuestion].correctAnswer && (
-                          <div className="mt-4 p-4 bg-green-100 rounded-xl border border-green-300">
-                              <div className="flex items-center justify-center space-x-2">
-                                  <span className="text-green-700 font-bold">¡Correcto!</span>
-                                  <span className="text-green-600">+{10 + Math.floor(timeLeft / 2)} puntos</span>
-                                  {Math.floor(timeLeft / 2) > 0 && (
-                                    <span className="text-sm text-green-600">(Bonus velocidad: +{Math.floor(timeLeft / 2)})</span>
-                                  )}
-                              </div>
-                          </div>
-                        )}
-                        <div className="text-center">
-                            {!showResult && selectedAnswer && (
-                              <button
-                                onClick={handleSubmitAnswer}
-                                className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white py-4 px-10 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-                              >
-                                  ✅ Confirmar Respuesta
-                              </button>
-                            )}
-
-                            {showResult && (
-                              <button
-                                onClick={handleNextQuestion}
-                                className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-4 px-10 rounded-2xl font-bold text-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-                              >
-                                  {currentQuestion < questions.length - 1 ? '➡️ Siguiente Pregunta' : '🎯 Ver Resultados'}
-                              </button>
-                            )}
-                        </div>
-                    </div>
-                </div>
-              )}
-          </div>
-      </section>
+                )}
+            </div>
+        </div>
     );
 };
