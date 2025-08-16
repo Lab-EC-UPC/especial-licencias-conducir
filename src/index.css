@@ -1,7 +1,17 @@
 @import "tailwindcss";
-@tailwind utilities;
+@layer theme, base, components, utilities;
+@plugin './hero.ts';
+
+@source "../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
+@custom-variant dark (&:is(.dark *));
 
 @theme {
+    --color-primary: #131A31;
+    --color-skyblue: #58b7cf;
+    --color-pink: #ed548c;
+    --color-purple: #ac5eaa;
+    --color-green: #dbeecb;
+    --color-grey: #868686;
     --font-bitcount: "bitcount-mono-single-square", sans-serif;
     --font-helvetica: "helvetica-neue-lt-pro", sans-serif;
 }

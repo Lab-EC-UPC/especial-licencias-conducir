@@ -47,11 +47,13 @@ export const CausasRaices = () => {
   };
 
   return (
-    <div className="mt-32">
-      <div className="mx-auto container w-full py-8 px-4">
-        <div className="flex flex-col items-center text-center">
-          <h1 className="text-5xl mb-4 font-bold font-bitcount text-[#131A31]">Causas Raíces</h1>
-          <p className="w-full md:max-w-2/3 font-medium mb-12" style={{ marginBottom: '80px' }}>
+    <>
+      <div className="mx-auto container w-full h-screen h-full">
+        <div className="flex flex-col items-center justify-center h-full text-center">
+          <h1 className="text-5xl mb-8 font-bold font-bitcount text-[#131A31]">
+            Causas Raíces
+          </h1>
+          <p className="w-full md:max-w-2/3 font-medium text-xl mb-24">
             Bajada de 2 líneas (máx 15-20 palabras) Lorem ips um dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
           </p>
 
@@ -85,6 +87,6 @@ export const CausasRaices = () => {
         title={overlayContent.title}
         content={overlayContent.content}
       />
-    </div>
+    </>
   );
 };

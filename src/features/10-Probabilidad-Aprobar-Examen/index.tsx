@@ -1,15 +1,17 @@
-import React, { useMemo, useState } from "react";
+import React, {type ReactNode, useMemo, useState} from "react";
 import Button from "@/features/10-Probabilidad-Aprobar-Examen/components/button.tsx";
 import FIELD_PX from "@/assets/field.png";
 import CHECKBOX_PX from "@/assets/checkbox.png";
 import VECTOR_PX from "@/assets/vector.png";
 import {predictProbabilidad} from "@/services/probabilidad.service.ts";
+import {PixelProgress} from "@/features/10-Probabilidad-Aprobar-Examen/components/PixelProgress.tsx";
+
 export const ProbabilidadAprobarExamen = () => {
   const [edad, setEdad] = useState("");
   const [region, setRegion] = useState("");
   const [sexo, setSexo] = useState("");
   const [yaDiste, setYaDiste] = useState(false);
-  const [percent, setPercent] = useState(70);
+  const [percent, setPercent] = useState(75);
   const [loading, setLoading] = useState(false);
 
   const isFormValid = useMemo(() => edad && region && sexo, [edad, region, sexo]);
@@ -29,7 +31,7 @@ export const ProbabilidadAprobarExamen = () => {
 
   const mapSexoToApi = (s: string) => (s === "M" ? "Hombre" : s === "F" ? "Mujer" : "Otro");
 
-  const onCalcular = async (e) => {
+  const onCalcular = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isFormValid) return;
     setLoading(true);
@@ -130,25 +132,27 @@ export const ProbabilidadAprobarExamen = () => {
 
             <div className="pt-2 flex justify-center">
               <Button
-                  text={loading ? "Calculando…" : "Calcular"}
-                  variant="blue"
-                  onClick={onCalcular}
+                text={loading ? "Calculando…" : "Calcular"}
+                variant="blue"
+                type="submit"
               />
             </div>
           </form>
 
-          <div className="mt-10">
-            <p className="font-semibold text-center text-sm mb-3 text-white/90">
-              Probabilidad estimada de aprobar
-            </p>
-            <PixelProgress value={percent} />
-          </div>
+          {percent && (
+            <div className="mt-10">
+              <p className="font-semibold text-center text-xl mb-1 text-white/90">
+                Probabilidad estimada de aprobar
+              </p>
+              <PixelProgress value={percent} />
+            </div>
+          )}
         </div>
       </div>
   );
 };
 
-function PixelField({ children }) {
+function PixelField({ children }: { children: ReactNode }) {
   return (
       <div
           className="w-full h-[56px] px-1 py-1 flex items-center"
@@ -164,20 +168,20 @@ function PixelField({ children }) {
   );
 }
 
-function PixelProgress({ value }) {
-  const pct = Math.max(0, Math.min(100, value));
-  return (
-      <div className="bg-[#ff5290] rounded-[14px] p-2">
-        <div className="relative h-[42px] rounded-[10px] overflow-hidden bg-[#ff8db3]">
-          <div
-              className="h-full bg-[#ffb3c9] transition-[width] duration-500"
-              style={{ width: `${pct}%` }}
-          />
-          <div className="absolute right-2 top-1/2 -translate-y-1/2 font-extrabold bg-[#ffdbe6] text-[#111] px-3 py-1 rounded-md flex items-center gap-2 font-bitcount">
-            <span role="img" aria-label="medal">🏅</span>
-            {pct}%
-          </div>
-        </div>
-      </div>
-  );
-}
+// function PixelProgress({ value }: { value: number }) {
+//   const pct = Math.max(0, Math.min(100, value));
+//   return (
+//       <div className="bg-[#ff5290] rounded-[14px] p-2">
+//         <div className="relative h-[42px] rounded-[10px] overflow-hidden bg-[#ff8db3]">
+//           <div
+//               className="h-full bg-[#ffb3c9] transition-[width] duration-500"
+//               style={{ width: `${pct}%` }}
+//           />
+//           <div className="absolute right-2 top-1/2 -translate-y-1/2 font-extrabold bg-[#ffdbe6] text-[#111] px-3 py-1 rounded-md flex items-center gap-2 font-bitcount">
+//             <span role="img" aria-label="medal">🏅</span>
+//             {pct}%
+//           </div>
+//         </div>
+//       </div>
+//   );
+// }

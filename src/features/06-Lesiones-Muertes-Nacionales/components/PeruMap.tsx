@@ -101,6 +101,8 @@ export const PeruMap = () => {
       >
         <g clipPath="url(#clip0_433_177)">
           {peruRegions.map((region, index) => {
+            const isHovered = hoveredRegion?.name === region.name;
+
             return (
               <g
                 key={index}
@@ -109,9 +111,11 @@ export const PeruMap = () => {
               >
                 <path
                   className="transition duration-200 ease-in-out relative"
-                  fill={region.fill || "#ffe2e2"}
+                  // fill={region.fill || "#ffe2e2"}
+                  fill={isHovered ? region.fill : "#DBEECB"}
                   d={region.path}
-                  stroke="white"
+                  // stroke="white"
+                  stroke="#131A31"
                   strokeWidth="2"
                   ref={(el) => {
                     if (el && !region.center) {

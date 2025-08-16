@@ -18,7 +18,7 @@ export async function predictProbabilidad(
             signal: controller.signal,
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                data: [0, edad, sexo, region], // hardcodeado, lele integracion
+                data: [0.5, edad, sexo, region], // hardcodeado, lele integracion
             }),
         });
 
@@ -30,7 +30,7 @@ export async function predictProbabilidad(
         const json = await res.json();
 
 
-        let val = Array.isArray(json?.data) ? json.data[0] : json?.data;
+        const val = Array.isArray(json?.data) ? json.data[0] : json?.data;
         const num = typeof val === "number" ? val : Number.parseFloat(String(val));
 
         if (Number.isNaN(num)) {
