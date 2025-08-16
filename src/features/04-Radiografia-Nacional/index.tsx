@@ -37,7 +37,7 @@ export const RadiografiaNacional = () => {
               </div>
               <div className="absolute right-0">
                 <div className="flex flex-col items-center relative">
-                  <div className="absolute right-0 translate-x-full w-2 bg-black top-[6px] bottom-[15px]" />
+                  <div className="absolute right-0 translate-x-full w-2 bg-black top-[6px] bottom-[16px]" />
 
                   <div className="relative w-full flex justify-center">
                     <div className="relative bg-[#294368] h-2 w-[80%]">

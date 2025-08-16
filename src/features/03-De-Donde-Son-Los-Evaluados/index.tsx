@@ -1,5 +1,4 @@
-import {motion, type Variants} from "framer-motion";
-
+import {motion} from "framer-motion";
 import CARD_1 from "@/assets/where-from/card-1.png";
 import CARD_2 from "@/assets/where-from/card-2.png";
 import CARD_3 from "@/assets/where-from/card-3.png";
@@ -7,19 +6,13 @@ import CAR_1 from "@/assets/where-from/cars/car-1.png";
 import CAR_2 from "@/assets/where-from/cars/car-2.png";
 import CAR_3 from "@/assets/where-from/cars/car-3.png";
 import CAR_4 from "@/assets/where-from/cars/car-4.png";
-
-const carVariants: Variants = {
-  hidden: { y: -80, opacity: 0 },
-  show: (i: number = 0) => ({
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      delay: i * 0.15,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  }),
-};
+import CHAR_1 from "@/assets/where-from/characters/1.png";
+import CHAR_2 from "@/assets/where-from/characters/2.png";
+import CHAR_3 from "@/assets/where-from/characters/3.png";
+import CHAR_4 from "@/assets/where-from/characters/4.png";
+import CHAR_5 from "@/assets/where-from/characters/5.png";
+import CHAR_6 from "@/assets/where-from/characters/6.png";
+import {Car} from "@/features/03-De-Donde-Son-Los-Evaluados/components/Car.tsx";
 
 export const DeDondeSonLosEvaluados = () => {
   return (
@@ -64,26 +57,29 @@ export const DeDondeSonLosEvaluados = () => {
                   alt="Card 1"
                 />
 
-                <motion.img
-                  custom={0}
-                  variants={carVariants}
+                <Car
                   src={CAR_1}
-                  className="not-selectable h-auto w-12 absolute z-50 left-1/2 -translate-x-1/2 top-1/6"
-                  alt="Car 1"
+                  className="w-12 left-1/2 -translate-x-1/2 top-1/6"
+                  custom={0}
+                  character={CHAR_1}
+                  percentage={6.1}
+                  label="de Lima"
                 />
-                <motion.img
-                  custom={1}
-                  variants={carVariants}
+                <Car
                   src={CAR_2}
-                  className="not-selectable h-auto w-14 absolute z-50 left-1/5 -translate-x-1/2 top-1/3"
-                  alt="Car 2"
+                  className="w-14 left-1/5 -translate-x-1/2 top-1/3"
+                  custom={1}
+                  character={CHAR_2}
+                  percentage={34}
+                  label="de Junín"
                 />
-                <motion.img
-                  custom={2}
-                  variants={carVariants}
+                <Car
                   src={CAR_3}
-                  className="not-selectable h-auto w-14 absolute z-50 left-2/3 -translate-x-1/2 top-1/2"
-                  alt="Car 3"
+                  className="w-14 left-2/3 -translate-x-1/2 top-1/2"
+                  custom={2}
+                  character={CHAR_3}
+                  percentage={35.5}
+                  label="sin declarar"
                 />
 
                 <h1 className="text-center w-full pl-8 font-medium text-lg">Oxapampa</h1>
@@ -112,19 +108,21 @@ export const DeDondeSonLosEvaluados = () => {
                   alt="Card 2"
                 />
 
-                <motion.img
-                  custom={0}
-                  variants={carVariants}
+                <Car
                   src={CAR_4}
-                  className="not-selectable h-auto w-14 absolute z-50 left-1/2 -translate-x-1/2 top-1/6"
-                  alt="Car 4"
+                  className="w-14 left-1/2 -translate-x-1/2 top-1/6"
+                  custom={0}
+                  character={CHAR_4}
+                  percentage={49}
+                  label="de Lima"
                 />
-                <motion.img
-                  custom={1}
-                  variants={carVariants}
+                <Car
                   src={CAR_2}
-                  className="not-selectable h-auto w-14 absolute z-50 left-1/4 -translate-x-1/2 top-1/3"
-                  alt="Car 2"
+                  className="w-14 left-1/4 -translate-x-1/2 top-1/3"
+                  custom={1}
+                  character={CHAR_5}
+                  percentage={40}
+                  label="de ellos son de L. Metropolitana"
                 />
 
                 <h1 className="text-center w-full pl-8 font-medium text-lg">Huacho</h1>
@@ -153,12 +151,13 @@ export const DeDondeSonLosEvaluados = () => {
                   alt="Card 3"
                 />
 
-                <motion.img
-                  custom={0}
-                  variants={carVariants}
+                <Car
                   src={CAR_1}
-                  className="not-selectable h-auto w-12 absolute z-50 left-1/3 -translate-x-1/2 top-1/6"
-                  alt="Car 1"
+                  className="w-12 left-1/3 -translate-x-1/2 top-1/6"
+                  custom={0}
+                  character={CHAR_6}
+                  percentage={50}
+                  label="sin declarar"
                 />
 
                 <h1 className="text-center w-full pl-8 font-medium text-lg">Ica</h1>
