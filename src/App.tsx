@@ -31,7 +31,7 @@ function App() {
           <p>Juegos</p>
         </div>
       </div>
-      <div className="flex flex-col gap-32 bg-white">
+      <div className="flex flex-col bg-white">
         <Header />
         <TriviaQuizSection />
         <RadiografiaNacional />
