@@ -2,7 +2,23 @@ import { useState, useEffect, type SetStateAction } from "react";
 import { allQuestions, type Question } from "./questions";
 import hero from "@/assets/hero.png";
 
-export const TriviaQuizSection = () => {
+export const TriviaQuizSection = ({
+                                      heroImage = hero,
+                                      heroContainerWidth = "w-full",
+                                      heroContainerMaxWidth = "max-w-[924px]",
+                                      // Props para personalizar el overlay/pantalla del quiz
+                                      overlayWidth="60%",
+                                      overlayHeight="49%",
+                                      overlayLeft="20%",
+                                      overlayTop="18%",
+                                      overlayAspectRatio = "483 / 230",
+                                      overlayPadding = "p-2 sm:p-4",
+                                      overlayRounded = "rounded-sm",
+                                      // Props para el juego y pantalla final (cuando se expande)
+                                      gameContainerWidth = "w-full",
+                                      gameContainerMaxWidth = "max-w-[924px]",
+                                      gameContainerHeight = "min-h-[600px]"
+                                  } = {}) => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState("");
@@ -98,27 +114,29 @@ export const TriviaQuizSection = () => {
         }
     };
 
+    // Estado de carga
     if (questions.length === 0) {
         return (
-            <div className="relative w-full max-w-[924px] mx-auto">
+            <div className={`relative ${heroContainerWidth} ${heroContainerMaxWidth} mx-auto`}>
                 <img
-                    src={hero}
+                    src={heroImage}
                     alt="Hero"
                     className="w-full h-auto block"
                 />
                 <div
-                    className="absolute bg-[#131a31]/90 overflow-y-auto rounded-sm shadow-lg p-4 flex flex-col items-center justify-center"
+                    className={`absolute bg-[#131a31]/90 ${overlayRounded} shadow-lg ${overlayPadding} flex flex-col items-center justify-center`}
                     style={{
-                        top: "22.5%",
-                        left: "31.5%",
-                        width: "40%",
-                        aspectRatio: "284 / 175",
+                        top: overlayTop,
+                        left: overlayLeft,
+                        width: overlayWidth,
+                        height: overlayHeight === "auto" ? undefined : overlayHeight,
+                        aspectRatio: overlayHeight === "auto" ? overlayAspectRatio : undefined,
                         color: "#dbeecb",
                     }}
                 >
-                    <div className="text-4xl mb-2 animate-spin" style={{ color: '#58b7cf' }}>🔄</div>
+                    <div className="text-2xl sm:text-4xl mb-2 animate-spin" style={{ color: '#58b7cf' }}>🔄</div>
                     <h2
-                        className="text-lg font-bold"
+                        className="text-sm sm:text-lg font-bold text-center"
                         style={{ fontFamily: 'var(--font-bitcount, sans-serif)', color: '#dbeecb' }}
                     >
                         Cargando preguntas...
@@ -128,298 +146,344 @@ export const TriviaQuizSection = () => {
         );
     }
 
-    return (
-        <div className="relative w-full max-w-[924px] mx-auto">
-            <img
-                src={hero}
-                alt="Hero"
-                className="w-full h-auto block"
-            />
+    // Pantalla inicial con hero image - RESPONSIVE MEJORADA PARA MÓVIL
+    if (!gameStarted) {
+        return (
+            <div className={`relative ${heroContainerWidth} ${heroContainerMaxWidth} mx-auto`}>
+                <img
+                    src={heroImage}
+                    alt="Hero"
+                    className="w-full h-auto block"
+                />
 
-            <div
-                className="absolute bg-[#131a31]/90 overflow-y-auto rounded-sm shadow-lg p-4 flex flex-col"
-                style={{
-                    top: "22.5%",
-                    left: "31.5%",
-                    width: "40%",
-                    aspectRatio: "284 / 175",
-                    color: "#dbeecb",
-                }}
-            >
-                {/* Pantalla inicial */}
-                {!gameStarted && (
-                    <div className="text-center flex flex-col justify-center flex-1">
-                        <h2
-                            className="text-lg md:text-2xl font-bold mb-2 md:mb-4"
-                            style={{ fontFamily: "var(--font-bitcount, sans-serif)", color: "#58b7cf" }}
-                        >
-                            🚗 Trivia de Conducir
-                        </h2>
-                        <p
-                            className="mb-2 md:mb-4 text-[#ffaf42] text-sm md:text-base"
-                            style={{ fontFamily: "var(--font-helvetica, sans-serif)" }}
-                        >
-                            ¿Qué tanto sabes sobre manejo seguro?
-                        </p>
+                <div
+                    className={`absolute bg-[#131a31]/90 ${overlayRounded} shadow-lg flex flex-col`}
+                    style={{
+                        top: overlayTop,
+                        left: overlayLeft,
+                        width: overlayWidth,
+                        height: overlayHeight === "auto" ? undefined : overlayHeight,
+                        aspectRatio: overlayHeight === "auto" ? overlayAspectRatio : undefined,
+                        color: "#dbeecb",
+                        padding: "clamp(0.25rem, 1.5vw, 1rem)", // Padding más reducido en móvil
+                        overflow: "hidden",
+                    }}
+                >
+                    <div className="flex flex-col justify-between h-full">
+                        {/* Título principal */}
+                        <div className="text-center">
+                            <h2
+                                className="font-bold leading-none"
+                                style={{
+                                    fontFamily: "var(--font-bitcount, sans-serif)",
+                                    color: "#58b7cf",
+                                    fontSize: "clamp(0.6rem, 2.8vw, 1.25rem)",
+                                    marginBottom: "clamp(0.125rem, 0.5vw, 0.25rem)"
+                                }}
+                            >
+                                🚗 Trivia de Conducir
+                            </h2>
+                            <p
+                                className="leading-none"
+                                style={{
+                                    fontFamily: "var(--font-helvetica, sans-serif)",
+                                    color: "#ffaf42",
+                                    fontSize: "clamp(0.5rem, 2.2vw, 0.875rem)",
+                                    marginBottom: "clamp(0.25rem, 1vw, 0.5rem)"
+                                }}
+                            >
+                                ¿Qué tanto sabes sobre manejo seguro?
+                            </p>
+                        </div>
 
-                        <div className="rounded p-2 mb-3 text-left text-xs border" style={{ backgroundColor: '#58b7cf', borderColor: '#131a31' }}>
+                        {/* Reglas - ultra compactas para móvil */}
+                        <div
+                            className="rounded border"
+                            style={{
+                                backgroundColor: '#58b7cf',
+                                borderColor: '#131a31',
+                                padding: "clamp(0.25rem, 1vw, 0.5rem)",
+                                marginBottom: "clamp(0.25rem, 1vw, 0.5rem)"
+                            }}
+                        >
                             <h4
-                                className="font-bold mb-1"
-                                style={{ color: '#131a31', fontFamily: 'var(--font-bitcount, sans-serif)' }}
+                                className="font-bold leading-none"
+                                style={{
+                                    color: '#131a31',
+                                    fontFamily: 'var(--font-bitcount, sans-serif)',
+                                    fontSize: "clamp(0.5rem, 2vw, 0.75rem)",
+                                    marginBottom: "clamp(0.125rem, 0.5vw, 0.25rem)"
+                                }}
                             >
                                 📋 Reglas
                             </h4>
                             <ul
-                                className="space-y-1"
-                                style={{ color: '#131a31', fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                                className="leading-none"
+                                style={{
+                                    color: '#131a31',
+                                    fontFamily: 'var(--font-helvetica, sans-serif)',
+                                    fontSize: "clamp(0.375rem, 1.8vw, 0.625rem)",
+                                    lineHeight: "1.1"
+                                }}
                             >
-                                <li>• {questions.length} preguntas desafiantes</li>
-                                <li>• 20 segundos por pregunta</li>
+                                <li style={{ marginBottom: "clamp(0.0625rem, 0.25vw, 0.125rem)" }}>• {questions.length} preguntas desafiantes</li>
+                                <li style={{ marginBottom: "clamp(0.0625rem, 0.25vw, 0.125rem)" }}>• 20 segundos por pregunta</li>
                                 <li>• Una sola oportunidad</li>
                             </ul>
                         </div>
 
+                        {/* Botón */}
                         <button
                             onClick={startGame}
-                            className="w-full py-2 md:py-3 rounded-lg font-bold text-sm md:text-base transition-all hover:opacity-90"
+                            className="w-full rounded font-bold transition-all hover:opacity-90 leading-none"
                             style={{
                                 backgroundColor: "#ed548c",
                                 color: "#131a31",
-                                fontFamily: "var(--font-helvetica, sans-serif)"
+                                fontFamily: "var(--font-helvetica, sans-serif)",
+                                padding: "clamp(0.25rem, 1.5vw, 0.75rem) clamp(0.375rem, 2vw, 1rem)",
+                                fontSize: "clamp(0.5rem, 2.2vw, 0.875rem)"
                             }}
                         >
                             🚀 Comenzar Trivia
                         </button>
                     </div>
-                )}
+                </div>
+            </div>
+        );
+    }
 
-                {/* Preguntas */}
-                {gameStarted && !gameFinished && (
-                    <div className="flex flex-col flex-1">
-                        {/* Header del juego */}
-                        <div className="flex justify-between items-center mb-2 p-2 rounded" style={{ backgroundColor: '#ffaf42' }}>
-                            <div>
-                                <h3
-                                    className="font-bold text-xs"
-                                    style={{ color: '#131a31', fontFamily: 'var(--font-bitcount, sans-serif)' }}
-                                >
-                                    Pregunta {currentQuestion + 1} / {questions.length}
-                                </h3>
-                                <div className="flex items-center space-x-1">
-                                    <span
-                                        className="text-xs"
-                                        style={{ color: '#131a31', fontFamily: 'var(--font-helvetica, sans-serif)' }}
-                                    >
-                                        Puntos:
-                                    </span>
-                                    <span
-                                        className="px-1 py-0.5 rounded text-white font-bold text-xs"
-                                        style={{ backgroundColor: '#ac5eaa', fontFamily: 'var(--font-helvetica, sans-serif)' }}
-                                    >
-                                        {score}
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="text-center">
-                                <div
-                                    className={`text-sm font-bold ${timeLeft <= 5 ? "animate-pulse" : ""}`}
-                                    style={{
-                                        color: timeLeft <= 5 ? '#ed548c' : '#131a31',
-                                        fontFamily: 'var(--font-bitcount, sans-serif)'
-                                    }}
-                                >
-                                    ⏰ {timeLeft}s
-                                </div>
-                            </div>
+    // Juego activo - ocupa el espacio del componente
+    if (gameStarted && !gameFinished) {
+        return (
+            <div className={`${gameContainerWidth} ${gameContainerMaxWidth} ${gameContainerHeight} mx-auto bg-[#131a31] rounded-lg shadow-lg p-4 md:p-6 flex flex-col`} style={{ color: "#dbeecb" }}>
+                {/* Header del juego */}
+                <div className="flex justify-between items-center mb-4 p-3 md:p-4 rounded flex-shrink-0" style={{ backgroundColor: '#ffaf42' }}>
+                    <div>
+                        <h3
+                            className="font-bold text-sm md:text-base"
+                            style={{ color: '#131a31', fontFamily: 'var(--font-bitcount, sans-serif)' }}
+                        >
+                            Pregunta {currentQuestion + 1} / {questions.length}
+                        </h3>
+                        <div className="flex items-center space-x-2 mt-1">
+                            <span
+                                className="text-xs md:text-sm"
+                                style={{ color: '#131a31', fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                            >
+                                Puntos:
+                            </span>
+                            <span
+                                className="px-2 py-1 rounded font-bold text-xs md:text-sm text-white"
+                                style={{ backgroundColor: '#ac5eaa', fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                            >
+                                {score}
+                            </span>
                         </div>
+                    </div>
+                    <div className="text-center">
+                        <div
+                            className={`text-lg md:text-xl font-bold ${timeLeft <= 5 ? "animate-pulse" : ""}`}
+                            style={{
+                                color: timeLeft <= 5 ? '#ed548c' : '#131a31',
+                                fontFamily: 'var(--font-bitcount, sans-serif)'
+                            }}
+                        >
+                            ⏰ {timeLeft}s
+                        </div>
+                    </div>
+                </div>
 
-                        {/* Barra de progreso */}
-                        <div className="bg-white rounded-full h-1 mb-2 overflow-hidden">
-                            <div
-                                className="h-1 rounded-full transition-all duration-500"
+                {/* Barra de progreso */}
+                <div className="bg-white rounded-full h-2 mb-6 overflow-hidden">
+                    <div
+                        className="h-2 rounded-full transition-all duration-500"
+                        style={{
+                            width: `${((currentQuestion + 1) / questions.length) * 100}%`,
+                            backgroundColor: '#58b7cf'
+                        }}
+                    />
+                </div>
+
+                {/* Contenido del juego */}
+                <div className="flex-1 flex flex-col">
+                    <h3
+                        className="mb-6 text-lg md:text-xl font-bold text-center"
+                        style={{ color: '#dbeecb', fontFamily: 'var(--font-bitcount, sans-serif)' }}
+                    >
+                        {questions[currentQuestion].question}
+                    </h3>
+
+                    {/* Imagen de pregunta si existe */}
+                    {questions[currentQuestion].image && (
+                        <div className="mb-4 text-center">
+                            <img
+                                src={questions[currentQuestion].image}
+                                alt={questions[currentQuestion].imageAlt || 'Imagen de la pregunta'}
+                                className="max-w-full max-h-32 mx-auto rounded border"
+                                style={{ borderColor: '#868686' }}
+                            />
+                        </div>
+                    )}
+
+                    {/* Opciones */}
+                    <div className="space-y-3 flex-1">
+                        {questions[currentQuestion].options.map((option, i) => (
+                            <button
+                                key={i}
+                                onClick={() => handleAnswerSelect(option)}
+                                disabled={showResult}
+                                className="w-full py-3 px-4 rounded-lg text-left text-sm md:text-base transition-all hover:scale-[1.02]"
                                 style={{
-                                    width: `${((currentQuestion + 1) / questions.length) * 100}%`,
-                                    backgroundColor: '#58b7cf'
+                                    backgroundColor: showResult
+                                        ? option === questions[currentQuestion].correctAnswer
+                                            ? '#58b7cf'
+                                            : option === selectedAnswer && option !== questions[currentQuestion].correctAnswer
+                                                ? '#ed548c'
+                                                : '#868686'
+                                        : selectedAnswer === option
+                                            ? '#ac5eaa'
+                                            : '#868686',
+                                    color: showResult || selectedAnswer === option ? 'white' : '#131a31',
+                                    fontFamily: 'var(--font-helvetica, sans-serif)'
+                                }}
+                            >
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center">
+                                        <span className="w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center font-bold mr-3 bg-white text-sm md:text-base" style={{ color: '#131a31' }}>
+                                            {String.fromCharCode(65 + i)}
+                                        </span>
+                                        <span className="flex-1">{option}</span>
+                                    </div>
+                                    {showResult && option === questions[currentQuestion].correctAnswer && (
+                                        <span className="text-white text-lg">✓</span>
+                                    )}
+                                    {showResult && option === selectedAnswer && option !== questions[currentQuestion].correctAnswer && (
+                                        <span className="text-white text-lg">✗</span>
+                                    )}
+                                </div>
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Feedback de respuesta correcta */}
+                    {showResult && selectedAnswer === questions[currentQuestion].correctAnswer && (
+                        <div className="mt-4 p-3 rounded-lg text-center font-bold" style={{ backgroundColor: '#58b7cf', color: 'white' }}>
+                            ¡Correcto! +{10 + Math.floor(timeLeft / 2)} puntos
+                            {Math.floor(timeLeft / 2) > 0 && (
+                                <div className="text-xs md:text-sm mt-1">(Bonus velocidad: +{Math.floor(timeLeft / 2)})</div>
+                            )}
+                        </div>
+                    )}
+
+                    {/* Botones de acción */}
+                    <div className="mt-4">
+                        {!showResult && selectedAnswer && (
+                            <button
+                                onClick={handleSubmitAnswer}
+                                className="w-full py-3 rounded-lg font-bold text-base transition-all hover:opacity-90"
+                                style={{
+                                    backgroundColor: "#dbeecb",
+                                    color: "#131a31",
+                                    fontFamily: "var(--font-helvetica, sans-serif)"
+                                }}
+                            >
+                                ✅ Confirmar Respuesta
+                            </button>
+                        )}
+
+                        {showResult && (
+                            <button
+                                onClick={handleNextQuestion}
+                                className="w-full py-3 rounded-lg font-bold text-base transition-all hover:opacity-90"
+                                style={{
+                                    backgroundColor: "#ffaf42",
+                                    color: "#131a31",
+                                    fontFamily: "var(--font-helvetica, sans-serif)"
+                                }}
+                            >
+                                {currentQuestion < questions.length - 1 ? "➡️ Siguiente Pregunta" : "🎯 Ver Resultados"}
+                            </button>
+                        )}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // Pantalla final - ocupa el espacio del componente
+    if (gameFinished) {
+        return (
+            <div className={`${gameContainerWidth} ${gameContainerMaxWidth} ${gameContainerHeight} mx-auto bg-[#131a31] rounded-lg shadow-lg p-4 md:p-6 flex flex-col justify-center text-center`}>
+                <div className="max-w-lg mx-auto w-full">
+                    <div className="text-4xl md:text-6xl mb-4">{getHeaderMessage().emoji}</div>
+                    <h2
+                        className="text-2xl md:text-3xl font-bold mb-3"
+                        style={{ color: '#ed548c', fontFamily: 'var(--font-bitcount, sans-serif)' }}
+                    >
+                        {getHeaderMessage().title}
+                    </h2>
+                    <p
+                        className="mb-6 text-lg"
+                        style={{ color: '#868686', fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                    >
+                        {getHeaderMessage().subtitle}
+                    </p>
+
+                    {/* Puntuación detallada */}
+                    <div className="rounded-lg p-4 mb-4 max-w-md mx-auto border" style={{ backgroundColor: '#ffaf42', borderColor: '#131a31' }}>
+                        <div
+                            className="text-3xl font-bold mb-2"
+                            style={{ color: '#131a31', fontFamily: 'var(--font-bitcount, sans-serif)' }}
+                        >
+                            {score}
+                        </div>
+                        <p
+                            className="mb-3 text-sm"
+                            style={{ color: '#131a31', fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                        >
+                            de {questions.length * 20} puntos posibles
+                        </p>
+                        <div className="bg-white rounded-full h-3 mb-3 overflow-hidden">
+                            <div
+                                className="h-3 rounded-full transition-all duration-1000"
+                                style={{
+                                    width: `${(score / (questions.length * 20)) * 100}%`,
+                                    backgroundColor: '#ac5eaa'
                                 }}
                             />
                         </div>
-
-                        {/* Pregunta */}
-                        <div className="flex-1 overflow-y-auto">
-                            <h3
-                                className="mb-3 text-sm md:text-base font-bold text-center"
-                                style={{ color: '#dbeecb', fontFamily: 'var(--font-bitcount, sans-serif)' }}
-                            >
-                                {questions[currentQuestion].question}
-                            </h3>
-
-                            {/* Renderizado condicional de la imagen */}
-                            {questions[currentQuestion].image && (
-                                <div className="mb-3 text-center">
-                                    <img
-                                        src={questions[currentQuestion].image}
-                                        alt={questions[currentQuestion].imageAlt || 'Imagen de la pregunta'}
-                                        className="max-w-full max-h-20 mx-auto rounded border"
-                                        style={{ borderColor: '#868686' }}
-                                    />
-                                </div>
-                            )}
-
-                            {/* Opciones */}
-                            <div className="space-y-1">
-                                {questions[currentQuestion].options.map((option, i) => (
-                                    <button
-                                        key={i}
-                                        onClick={() => handleAnswerSelect(option)}
-                                        disabled={showResult}
-                                        className="w-full py-1 px-2 md:py-2 md:px-3 rounded text-left text-xs transition-all"
-                                        style={{
-                                            backgroundColor: showResult
-                                                ? option === questions[currentQuestion].correctAnswer
-                                                    ? '#58b7cf'
-                                                    : option === selectedAnswer && option !== questions[currentQuestion].correctAnswer
-                                                        ? '#ed548c'
-                                                        : '#868686'
-                                                : selectedAnswer === option
-                                                    ? '#ac5eaa'
-                                                    : '#868686',
-                                            color: showResult || selectedAnswer === option ? 'white' : '#131a31',
-                                            fontFamily: 'var(--font-helvetica, sans-serif)'
-                                        }}
-                                    >
-                                        <div className="flex items-center justify-between">
-                                            <div className="flex items-center">
-                                                <span className="w-4 h-4 rounded-full flex items-center justify-center font-bold mr-2 text-xs bg-white" style={{ color: '#131a31' }}>
-                                                    {String.fromCharCode(65 + i)}
-                                                </span>
-                                                <span>{option}</span>
-                                            </div>
-                                            {showResult && option === questions[currentQuestion].correctAnswer && (
-                                                <span className="text-white text-sm">✓</span>
-                                            )}
-                                            {showResult && option === selectedAnswer && option !== questions[currentQuestion].correctAnswer && (
-                                                <span className="text-white text-sm">✗</span>
-                                            )}
-                                        </div>
-                                    </button>
-                                ))}
-                            </div>
-
-                            {/* Feedback de respuesta correcta */}
-                            {showResult && selectedAnswer === questions[currentQuestion].correctAnswer && (
-                                <div className="mt-2 p-2 rounded text-center text-xs font-bold" style={{ backgroundColor: '#58b7cf', color: 'white' }}>
-                                    ¡Correcto! +{10 + Math.floor(timeLeft / 2)} puntos
-                                    {Math.floor(timeLeft / 2) > 0 && (
-                                        <span className="block text-xs">(Bonus velocidad: +{Math.floor(timeLeft / 2)})</span>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Botones de acción */}
-                        <div className="mt-2">
-                            {!showResult && selectedAnswer && (
-                                <button
-                                    onClick={handleSubmitAnswer}
-                                    className="w-full py-1 md:py-2 rounded-lg font-bold text-xs md:text-base transition-all hover:opacity-90"
-                                    style={{
-                                        backgroundColor: "#dbeecb",
-                                        color: "#131a31",
-                                        fontFamily: "var(--font-helvetica, sans-serif)"
-                                    }}
-                                >
-                                    ✅ Confirmar Respuesta
-                                </button>
-                            )}
-
-                            {showResult && (
-                                <button
-                                    onClick={handleNextQuestion}
-                                    className="w-full py-1 md:py-2 rounded-lg font-bold text-xs md:text-base transition-all hover:opacity-90"
-                                    style={{
-                                        backgroundColor: "#ffaf42",
-                                        color: "#131a31",
-                                        fontFamily: "var(--font-helvetica, sans-serif)"
-                                    }}
-                                >
-                                    {currentQuestion < questions.length - 1 ? "➡️ Siguiente Pregunta" : "🎯 Ver Resultados"}
-                                </button>
-                            )}
-                        </div>
-                    </div>
-                )}
-
-                {/* Pantalla final */}
-                {gameFinished && (
-                    <div className="text-center flex flex-col justify-center flex-1 text-xs md:text-base">
-                        <div className="text-3xl mb-2">{getHeaderMessage().emoji}</div>
-                        <h2
-                            className="text-lg md:text-xl font-bold mb-2"
-                            style={{ color: '#ed548c', fontFamily: 'var(--font-bitcount, sans-serif)' }}
-                        >
-                            {getHeaderMessage().title}
-                        </h2>
                         <p
-                            className="mb-2"
-                            style={{ color: '#868686', fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                            className="font-bold text-xl"
+                            style={{ color: '#131a31', fontFamily: 'var(--font-helvetica, sans-serif)' }}
                         >
-                            {getHeaderMessage().subtitle}
+                            {Math.round((score / (questions.length * 20)) * 100)}%
                         </p>
-
-                        {/* Puntuación detallada */}
-                        <div className="rounded p-3 mb-3 text-xs border" style={{ backgroundColor: '#ffaf42', borderColor: '#131a31' }}>
-                            <div
-                                className="text-xl font-bold mb-1"
-                                style={{ color: '#131a31', fontFamily: 'var(--font-bitcount, sans-serif)' }}
-                            >
-                                {score}
-                            </div>
-                            <p
-                                className="text-xs mb-1"
-                                style={{ color: '#131a31', fontFamily: 'var(--font-helvetica, sans-serif)' }}
-                            >
-                                de {questions.length * 20} puntos posibles
-                            </p>
-                            <div className="bg-white rounded-full h-2 mb-1 overflow-hidden">
-                                <div
-                                    className="h-2 rounded-full transition-all duration-1000"
-                                    style={{
-                                        width: `${(score / (questions.length * 20)) * 100}%`,
-                                        backgroundColor: '#ac5eaa'
-                                    }}
-                                />
-                            </div>
-                            <p
-                                className="font-bold"
-                                style={{ color: '#131a31', fontFamily: 'var(--font-helvetica, sans-serif)' }}
-                            >
-                                {Math.round((score / (questions.length * 20)) * 100)}%
-                            </p>
-                        </div>
-
-                        <div className="rounded p-2 mb-3" style={{ backgroundColor: '#ac5eaa' }}>
-                            <p
-                                className="font-bold text-white text-xs"
-                                style={{ fontFamily: 'var(--font-helvetica, sans-serif)' }}
-                            >
-                                {getScoreMessage()}
-                            </p>
-                        </div>
-
-                        <button
-                            onClick={resetGame}
-                            className="w-full py-1 md:py-2 rounded-lg font-bold transition-all hover:opacity-90"
-                            style={{
-                                backgroundColor: "#ac5eaa",
-                                color: "#dbeecb",
-                                fontFamily: "var(--font-helvetica, sans-serif)"
-                            }}
-                        >
-                            🔄 Jugar de Nuevo
-                        </button>
                     </div>
-                )}
+
+                    <div className="rounded-lg p-3 mb-6 max-w-md mx-auto" style={{ backgroundColor: '#ac5eaa' }}>
+                        <p
+                            className="font-bold text-white text-base"
+                            style={{ fontFamily: 'var(--font-helvetica, sans-serif)' }}
+                        >
+                            {getScoreMessage()}
+                        </p>
+                    </div>
+
+                    <button
+                        onClick={resetGame}
+                        className="w-full max-w-md mx-auto py-3 rounded-lg font-bold text-base transition-all hover:opacity-90"
+                        style={{
+                            backgroundColor: "#ac5eaa",
+                            color: "#dbeecb",
+                            fontFamily: "var(--font-helvetica, sans-serif)"
+                        }}
+                    >
+                        🔄 Jugar de Nuevo
+                    </button>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+
+    return null;
 };
