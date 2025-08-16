@@ -9,3 +9,13 @@
 :root {
     --font-sans: var(--font-helvetica);
 }
+
+.not-selectable {
+    user-select: none; /* Prevents text selection behavior on the image */
+    -webkit-user-select: none; /* For older WebKit browsers (e.g., Safari, Chrome) */
+    -moz-user-select: none; /* For older Firefox browsers */
+    -ms-user-select: none; /* For older Internet Explorer/Edge browsers */
+
+    user-drag: none; /* Prevents dragging the image */
+    -webkit-user-drag: none; /* For older WebKit browsers */
+}
