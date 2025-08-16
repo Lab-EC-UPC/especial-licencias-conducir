@@ -24,7 +24,7 @@ const carVariants: Variants = {
 export const DeDondeSonLosEvaluados = () => {
   return (
     <div>
-      <div className="mx-auto container w-full min-h-screen h-full my-32">
+      <div className="mx-auto container w-full h-full my-32">
         <div className="flex flex-col items-center text-center h-full px-4">
           <h1 className="text-5xl mb-8 font-bold font-bitcount text-[#131A31]">
             ¿De dónde son los evaluados?
@@ -40,7 +40,7 @@ export const DeDondeSonLosEvaluados = () => {
               <h2 className="font-light text-[#868686]">Destino</h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 w-full h-[60vh]">
+            <div className="grid md:grid-cols-3 gap-4 w-full min-h-[60vh]">
               <motion.div
                 className="flex flex-col gap-2 relative"
                 initial="hidden"
