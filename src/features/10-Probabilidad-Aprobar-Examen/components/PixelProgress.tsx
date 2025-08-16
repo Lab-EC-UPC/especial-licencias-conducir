@@ -29,10 +29,15 @@ export function PixelProgress({ value }: { value: number }) {
         type: "tween",
       });
     }
-  }, [inView, target]);
+  }, [inView, target, progress]);
 
+  // Barra (ancho en %)
   const widthPct = useTransform(progress, (v) => `${v}%`);
-  const leftPct = useTransform(progress, (v) => `${v}%`);
+
+  const leftPx = useTransform(progress, (v) => {
+    const t = Math.max(0, Math.min(100, v)) / 100;
+    return `min(calc(8px + ${t} * (100% - 16px)), calc(100% - 120px))`;
+  });
 
   const [shown, setShown] = React.useState(0);
   useMotionValueEvent(progress, "change", (v) => setShown(Math.round(v)));
@@ -49,12 +54,8 @@ export function PixelProgress({ value }: { value: number }) {
           />
 
           <motion.div
-            className="absolute top-1/2 -translate-x-1/2 flex items-center gap-2 pointer-events-none z-[3]"
-            style={{
-              left: leftPct,
-              translateX: "-50%",
-              translateY: "-50%",
-            }}
+            className="absolute top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none z-[3]"
+            style={{ left: value === 100 ? "calc(100% - 120px)" : leftPx }}
           >
             <img
               src={CAR}
@@ -63,7 +64,7 @@ export function PixelProgress({ value }: { value: number }) {
               style={{ imageRendering: "pixelated" }}
               draggable={false}
             />
-            <span className="font-bold text-2xl text-primary py-1 rounded-md font-bitcount">
+            <span className="font-bold text-2xl text-primary py-1 rounded-md font-bitcount pr-2">
               {shown}%
             </span>
           </motion.div>
