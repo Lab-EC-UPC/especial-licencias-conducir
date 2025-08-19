@@ -13,12 +13,15 @@ export async function predictProbabilidad(
     const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
     try {
+        const result = localStorage.getItem("trivia-score");
+
+        const score = Number(result) || 0.5;
         const res = await fetch(url, {
             method: "POST",
             signal: controller.signal,
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                data: [0.5, edad, sexo, region], // hardcodeado, lele integracion
+                data: [score, edad, sexo, region], // hardcodeado, lele integracion
             }),
         });
 

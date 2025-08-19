@@ -20,6 +20,7 @@ export const TriviaQuizModal = ({
       isOpen={isOpen}
       onOpenChange={setIsOpen}
       size="full"
+      scrollBehavior="inside"
       hideCloseButton={true}
       classNames={{
         body: "bg-[#131a31]"
@@ -51,7 +52,9 @@ export const TriviaQuizModal = ({
                     </button>
                   </div>
                 </div>
-                <TriviaQuizGame setIsOpen={setIsOpen} />
+                <div className="pb-20">
+                  <TriviaQuizGame setIsOpen={setIsOpen} />
+                </div>
               </div>
             </ModalBody>
           </>

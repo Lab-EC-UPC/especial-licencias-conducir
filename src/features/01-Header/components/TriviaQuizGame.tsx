@@ -62,6 +62,10 @@ export const TriviaQuizGame = ({
       setShowResult(false);
       setTimeLeft(20);
     } else {
+      const maxPossibleScore = questions.length * 20;
+      const finalScore = Number(score / maxPossibleScore).toFixed(2);
+      localStorage.setItem("trivia-score", String(finalScore));
+      console.log(finalScore, "Final Score");
       setGameFinished(true);
     }
   };
