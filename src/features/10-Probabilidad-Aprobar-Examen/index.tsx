@@ -31,6 +31,8 @@ export const ProbabilidadAprobarExamen = () => {
   // }
 
   const mapSexoToApi = (s: string) => (s === "M" ? "Hombre" : s === "F" ? "Mujer" : "Otro");
+  const normalizeRegion = (region: string) =>
+    region.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
   function mensajeToPercent(mensaje: string): number {
     if (mensaje.includes("primer intento")) return 75;
@@ -46,10 +48,11 @@ export const ProbabilidadAprobarExamen = () => {
 
     try {
       setPercent(0);
+
       const mensaje = await predictProbabilidad({
         edad,
         sexo: mapSexoToApi(sexo),
-        region,
+        region: normalizeRegion(region),
       });
       console.log("Mensaje del modelo:", mensaje);
 

@@ -18,6 +18,7 @@ function parseSSEorJSON(text: string): any {
             try {
                 return JSON.parse(payload);
             } catch {
+                return payload;
             }
         }
     }
