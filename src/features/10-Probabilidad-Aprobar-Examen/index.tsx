@@ -31,18 +31,27 @@ export const ProbabilidadAprobarExamen = () => {
 
   const mapSexoToApi = (s: string) => (s === "M" ? "Hombre" : s === "F" ? "Mujer" : "Otro");
 
+  function mensajeToPercent(mensaje: string): number {
+    if (mensaje.includes("primer intento")) return 75;
+    if (mensaje.includes("segundo intento")) return 50;
+    if (mensaje.includes("3 o más intentos")) return 25;
+    return 0;
+  }
+
   const onCalcular = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isFormValid) return;
     setLoading(true);
 
     try {
-      const valor = await predictProbabilidad({
+      const mensaje = await predictProbabilidad({
         edad,
         sexo: mapSexoToApi(sexo),
         region,
       });
+      console.log("Mensaje del modelo:", mensaje);
 
+      const valor = mensajeToPercent(mensaje);
       setPercent(0);
       animateValue(0, valor, 1200, setPercent);
     } catch (err) {
@@ -51,6 +60,7 @@ export const ProbabilidadAprobarExamen = () => {
       setLoading(false);
     }
   };
+
   return (
       <div className="w-full flex justify-center p-4">
         <div className="w-full max-w-[740px] rounded-[28px] bg-[#131A31] text-white p-6 md:p-10 shadow-xl">
