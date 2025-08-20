@@ -11,23 +11,24 @@ export const ProbabilidadAprobarExamen = () => {
   const [region, setRegion] = useState("");
   const [sexo, setSexo] = useState("");
   const [yaDiste, setYaDiste] = useState(false);
-  const [percent, setPercent] = useState(75);
+  const [percent, setPercent] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const isFormValid = useMemo(() => edad && region && sexo, [edad, region, sexo]);
-  function animateValue(start: number, end: number, ms: number, cb: (v:number)=>void) {
-    let raf: number | null = null;
-    const t0 = performance.now();
-    const step = (t: number) => {
-      const p = Math.min(1, (t - t0) / ms);
-      const eased = 1 - Math.pow(1 - p, 3); // ease-out-cubic
-      const v = Math.round(start + (end - start) * eased);
-      cb(v);
-      if (p < 1) raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => raf && cancelAnimationFrame(raf);
-  }
+
+  // function animateValue(start: number, end: number, ms: number, cb: (v:number)=>void) {
+  //   let raf: number | null = null;
+  //   const t0 = performance.now();
+  //   const step = (t: number) => {
+  //     const p = Math.min(1, (t - t0) / ms);
+  //     const eased = 1 - Math.pow(1 - p, 3); // ease-out-cubic
+  //     const v = Math.round(start + (end - start) * eased);
+  //     cb(v);
+  //     if (p < 1) raf = requestAnimationFrame(step);
+  //   };
+  //   raf = requestAnimationFrame(step);
+  //   return () => raf && cancelAnimationFrame(raf);
+  // }
 
   const mapSexoToApi = (s: string) => (s === "M" ? "Hombre" : s === "F" ? "Mujer" : "Otro");
 
@@ -44,6 +45,7 @@ export const ProbabilidadAprobarExamen = () => {
     setLoading(true);
 
     try {
+      setPercent(0);
       const mensaje = await predictProbabilidad({
         edad,
         sexo: mapSexoToApi(sexo),
@@ -52,8 +54,7 @@ export const ProbabilidadAprobarExamen = () => {
       console.log("Mensaje del modelo:", mensaje);
 
       const valor = mensajeToPercent(mensaje);
-      setPercent(0);
-      animateValue(0, valor, 1200, setPercent);
+      setPercent(valor);
     } catch (err) {
       console.error(err);
     } finally {
@@ -62,119 +63,121 @@ export const ProbabilidadAprobarExamen = () => {
   };
 
   return (
-      <div className="w-full flex justify-center p-4">
-        <div className="w-full max-w-[740px] rounded-[28px] bg-[#131A31] text-white p-6 md:p-10 shadow-xl">
-          <h1 className="text-center text-2xl md:text-3xl font-black leading-tight font-bitcount">
-            ¿Cuál es tu probabilidad de aprobar
-            <br className="hidden md:block" /> el examen de licencia?
-          </h1>
-          <p className="text-center mt-3 text-sm text-white/80">
-            Completa el siguiente simulador para estimar tu resultado
-            <br />
-            <span className="font-semibold">análisis exclusivo</span> con datos reales de postulantes peruanos
-          </p>
+    <div className="w-full flex justify-center p-4">
+      <div className="w-full max-w-[740px] rounded-[28px] bg-[#131A31] text-white p-6 md:p-10 shadow-xl">
+        <h1 className="text-center text-2xl md:text-3xl font-black leading-tight font-bitcount">
+          ¿Cuál es tu probabilidad de aprobar
+          <br className="hidden md:block" /> el examen de licencia?
+        </h1>
+        <p className="text-center mt-3 text-sm text-white/80">
+          Completa el siguiente simulador para estimar tu resultado
+          <br />
+          <span className="font-semibold">análisis exclusivo</span> con datos reales de postulantes peruanos
+        </p>
 
-          <form onSubmit={onCalcular} className="mt-8 space-y-5">
-            <PixelField>
-              <div className="relative w-full h-full">
-                <select
-                    value={edad}
-                    onChange={(e) => setEdad(e.target.value)}
-                    className="w-full h-full bg-transparent outline-none pr-10 pl-4 font-bold text-[#131A31] appearance-none"
-                >
-                  <option value="">Edad</option>
-                  {["18-24", "25-34", "35-44", "45-54", "55-64", "65+"].map((r) => (
-                      <option key={r} value={r}>{r}</option>
-                  ))}
-                </select>
-                <img src={VECTOR_PX} alt="flecha" className="pointer-events-none absolute right-3 top-6.5 -translate-y-1/2 w-5 h-3" style={{ imageRendering: 'pixelated' }} />
-              </div>
-            </PixelField>
-
-            <PixelField>
-              <div className="relative w-full h-full">
+        <form onSubmit={onCalcular} className="mt-8 space-y-5">
+          <PixelField>
+            <div className="relative w-full h-full">
               <select
-                  value={region}
-                  onChange={(e) => setRegion(e.target.value)}
-                  className="w-full h-full bg-transparent outline-none pr-10 pl-4 font-bold text-[#131A31] appearance-none"
+                required
+                value={edad}
+                onChange={(e) => setEdad(e.target.value)}
+                className="w-full h-full bg-transparent outline-none pr-10 pl-4 font-bold text-[#131A31] appearance-none"
               >
-                <option value="">Región</option>
-                {["Amazonas","Áncash","Apurímac","Arequipa","Ayacucho","Cajamarca","Callao","Cusco","Huancavelica","Huánuco","Ica","Junín","La Libertad","Lambayeque","Lima","Loreto","Madre de Dios","Moquegua","Pasco","Piura","Puno","San Martín","Tacna","Tumbes","Ucayali"].map((z) => (
-                    <option key={z} value={z}>{z}</option>
+                <option value="">Edad</option>
+                {["18-24", "25-34", "35-44", "45-54", "55-64", "65+"].map((r) => (
+                  <option key={r} value={r}>{r}</option>
                 ))}
               </select>
               <img src={VECTOR_PX} alt="flecha" className="pointer-events-none absolute right-3 top-6.5 -translate-y-1/2 w-5 h-3" style={{ imageRendering: 'pixelated' }} />
-              </div>
-            </PixelField>
+            </div>
+          </PixelField>
 
-
-            <PixelField>
-              <div className="relative w-full h-full">
-                <select
-                    value={sexo}
-                    onChange={(e) => setSexo(e.target.value)}
-                    className="w-full h-full bg-transparent outline-none pr-10 pl-4 font-bold text-[#131A31] appearance-none"
-                >
-                  <option value="">Sexo</option>
-                  <option value="F">Femenino</option>
-                  <option value="M">Masculino</option>
-                  <option value="X">Prefiero no decirlo</option>
-                </select>
-                <img src={VECTOR_PX} alt="flecha" className="pointer-events-none absolute right-3 top-6.5 -translate-y-1/2 w-5 h-3" style={{ imageRendering: 'pixelated' }} />
-              </div>
-            </PixelField>
-
-            <label className="flex items-center gap-3 select-none mt-3">
-              <input
-                  type="checkbox"
-                  className="peer sr-only"
-                  checked={yaDiste}
-                  onChange={(e) => setYaDiste(e.target.checked)}
-              />
-              <span
-                  className="inline-flex items-center justify-center h-7 w-7"
-                  style={{ backgroundImage: `url('${CHECKBOX_PX}')`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', imageRendering: 'pixelated' }}
+          <PixelField>
+            <div className="relative w-full h-full">
+              <select
+                required
+                value={region}
+                onChange={(e) => setRegion(e.target.value)}
+                className="w-full h-full bg-transparent outline-none pr-10 pl-4 font-bold text-[#131A31] appearance-none"
               >
+                <option value="">Región</option>
+                {["Amazonas","Áncash","Apurímac","Arequipa","Ayacucho","Cajamarca","Callao","Cusco","Huancavelica","Huánuco","Ica","Junín","La Libertad","Lambayeque","Lima","Loreto","Madre de Dios","Moquegua","Pasco","Piura","Puno","San Martín","Tacna","Tumbes","Ucayali"].map((z) => (
+                  <option key={z} value={z}>{z}</option>
+                ))}
+              </select>
+              <img src={VECTOR_PX} alt="flecha" className="pointer-events-none absolute right-3 top-6.5 -translate-y-1/2 w-5 h-3" style={{ imageRendering: 'pixelated' }} />
+            </div>
+          </PixelField>
+
+
+          <PixelField>
+            <div className="relative w-full h-full">
+              <select
+                required
+                value={sexo}
+                onChange={(e) => setSexo(e.target.value)}
+                className="w-full h-full bg-transparent outline-none pr-10 pl-4 font-bold text-[#131A31] appearance-none"
+              >
+                <option value="">Sexo</option>
+                <option value="F">Femenino</option>
+                <option value="M">Masculino</option>
+                <option value="X">Prefiero no decirlo</option>
+              </select>
+              <img src={VECTOR_PX} alt="flecha" className="pointer-events-none absolute right-3 top-6.5 -translate-y-1/2 w-5 h-3" style={{ imageRendering: 'pixelated' }} />
+            </div>
+          </PixelField>
+
+          <label className="flex items-center gap-3 select-none mt-3">
+            <input
+              type="checkbox"
+              className="peer sr-only"
+              checked={yaDiste}
+              onChange={(e) => setYaDiste(e.target.checked)}
+            />
+            <span
+              className="inline-flex items-center justify-center h-7 w-7"
+              style={{ backgroundImage: `url('${CHECKBOX_PX}')`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', imageRendering: 'pixelated' }}
+            >
               {yaDiste && <span className="h-3.5 w-3.5 bg-[#131A31]"></span>}
             </span>
-              <span className="text-white/90">¿Ya diste la prueba antes?</span>
-            </label>
+            <span className="text-white/90">¿Ya diste la prueba antes?</span>
+          </label>
 
-            <div className="pt-2 flex justify-center">
-              <Button
-                text={loading ? "Calculando…" : "Calcular"}
-                variant="blue"
-                type="submit"
-              />
-            </div>
-          </form>
-
-          {percent && (
-            <div className="mt-10">
-              <p className="font-semibold text-center text-xl mb-1 text-white/90">
-                Probabilidad estimada de aprobar
-              </p>
-              <PixelProgress value={percent} />
-            </div>
-          )}
-        </div>
+          <div className="pt-2 flex justify-center">
+            <Button
+              text={loading ? "Calculando…" : "Calcular"}
+              variant="blue"
+              type="submit"
+            />
+          </div>
+        </form>
+        {percent > 0 && (
+          <div className="mt-10">
+            <p className="font-semibold text-center text-xl mb-1 text-white/90">
+              Probabilidad estimada de aprobar
+            </p>
+            <PixelProgress value={percent} />
+          </div>
+        )}
       </div>
+    </div>
   );
 };
 
 function PixelField({ children }: { children: ReactNode }) {
   return (
-      <div
-          className="w-full h-[56px] px-1 py-1 flex items-center"
-          style={{
-            backgroundImage: `url('${FIELD_PX}')`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: '100% 100%',
-            imageRendering: 'pixelated',
-          }}
-      >
-        <div className="w-full h-full flex items-center">{children}</div>
-      </div>
+    <div
+      className="w-full h-[56px] px-1 py-1 flex items-center"
+      style={{
+        backgroundImage: `url('${FIELD_PX}')`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '100% 100%',
+        imageRendering: 'pixelated',
+      }}
+    >
+      <div className="w-full h-full flex items-center">{children}</div>
+    </div>
   );
 }
 
