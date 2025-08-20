@@ -30,7 +30,7 @@ export const ProbabilidadAprobarExamen = () => {
   //   return () => raf && cancelAnimationFrame(raf);
   // }
 
-  const mapSexoToApi = (s: string) => (s === "M" ? "Hombre" : s === "F" ? "Mujer" : "Otro");
+  const mapSexoToApi = (s: string) => (s === "M" ? "Hombre" : s === "F" ? "Mujer" : "Hombre");
   const normalizeRegion = (region: string) =>
     region.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
