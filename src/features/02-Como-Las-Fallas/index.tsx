@@ -14,24 +14,37 @@ export const ComoLasFallas = () => {
 
     return (
       <div
-        className="flex flex-col items-center w-[631px] cursor-pointer"
+        className="flex flex-col items-center w-full max-w-[631px] cursor-pointer"
         onClick={() => setShowAnswer(!showAnswer)}
       >
-        <div className="relative w-[500px] h-[600px] flex items-center justify-center">
+        <div
+          className="
+            relative flex items-center justify-center 
+            w-[300px] h-[360px]
+            sm:w-[380px] sm:h-[460px]
+            md:w-[450px] md:h-[540px]
+            lg:w-[500px] lg:h-[600px]
+          "
+        >
           <img
             src={src}
             alt="Llantita-pixel"
             className="w-full h-full object-contain"
           />
 
-          <div className="absolute text-center max-w-[160px] leading-snug text-[#131A31] text-sm font-medium">
+          <div
+            className="
+              absolute text-center leading-snug text-[#131A31] text-xs sm:text-sm md:text-base font-medium 
+              max-w-[120px] sm:max-w-[140px] md:max-w-[160px]
+            "
+          >
             {showAnswer ? answer : question}
           </div>
 
           <div
-            className="absolute bottom-9 left-1/2 -translate-x-1/2 translate-y-[50%] 
-                          bg-[#E91E63] px-4 py-1 flex items-center justify-center 
-                          text-white font-bold italic text-[12px] rounded-md shadow-md"
+            className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 translate-y-[50%] 
+                        bg-[#E91E63] px-2 sm:px-3 md:px-4 py-1 flex items-center justify-center 
+                        text-white font-bold italic text-[10px] sm:text-[11px] md:text-[12px] rounded-md shadow-md"
           >
             Cantidad fallida | {count}
           </div>
@@ -41,20 +54,20 @@ export const ComoLasFallas = () => {
   };
 
   return (
-    <div className="mx-auto container w-full min-h-screen h-full my-32">
-      <div className="flex flex-col items-center text-center h-full px-4">
-        <h1 className="text-5xl mb-8 font-bold font-bitcount text-[#131A31]">
+    <div className="mx-auto container w-full min-h-screen h-full my-16 sm:my-20 md:my-32 px-4">
+      <div className="flex flex-col items-center text-center h-full">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl mb-6 md:mb-8 font-bold font-bitcount text-[#131A31]">
           ¿Cómo las fallas en el examen de manejo incrementan las papeletas y
           accidentes de tránsito en el Perú?
         </h1>
 
-        <p className="w-full md:max-w-2/3 font-medium text-xl mb-12">
+        <p className="w-full md:max-w-2/3 font-medium text-base sm:text-lg md:text-xl mb-8 md:mb-12">
           Descubre la conexión crítica entre las 5 preguntas más desafiantes del
           examen de conducción de los últimos 4 años y las papeletas más
           frecuentes en todo el país en el mismo periodo.
         </p>
 
-        <div className="flex gap-[75px]">
+        <div className="flex flex-col md:flex-row gap-10 md:gap-[75px] items-center">
           <Wheel
             src={grafico_fallas}
             question="Al cambiar de dirección, un conductor debe:"
@@ -69,7 +82,7 @@ export const ComoLasFallas = () => {
           />
         </div>
 
-        <p className="text-xl font-medium italic mt-20">
+        <p className="text-base sm:text-lg md:text-xl font-medium italic mt-10 md:mt-20">
           Haz clic en cada elemento circular para saber cuántas papeletas se
           colocan a nivel nacional
         </p>
