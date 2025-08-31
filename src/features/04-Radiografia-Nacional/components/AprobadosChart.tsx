@@ -201,23 +201,40 @@ export const AprobadosChart = () => {
       {/* === Labels estáticos cuando el mouse está fuera del SVG (pueden sobresalir) === */}
       {!inside && (
         <>
-          <div
-            className="absolute pointer-events-none"
-            style={{ left: staticApproved.left, top: staticApproved.top, transform: staticApproved.transform }}
-          >
-            <div className="rounded-xl bg-pink-500 text-white shadow-[0_6px_0_#a94c6d]">
-              <div className="font-bold text-lg px-4 pt-2">{nf.format(totalAprobados)}</div>
-              <div className="text-sm px-4 pb-2 opacity-90">de aprobados</div>
+          <div className="hidden md:flex">
+            <div
+              className="absolute pointer-events-none"
+              style={{ left: staticApproved.left, top: staticApproved.top, transform: staticApproved.transform }}
+            >
+              <div className="rounded-xl bg-pink-500 text-white shadow-[0_6px_0_#a94c6d]">
+                <div className="font-bold text-lg px-4 pt-2">{nf.format(totalAprobados)}</div>
+                <div className="text-sm px-4 pb-2 opacity-90">de aprobados</div>
+              </div>
+            </div>
+
+            <div
+              className="absolute pointer-events-none"
+              style={{ left: staticNot.left, top: staticNot.top, transform: staticNot.transform }}
+            >
+              <div className="rounded-xl bg-white text-pink-600 shadow-[0_6px_0_#6db0d1]">
+                <div className="font-bold text-lg px-4 pt-2">{nf.format(totalNoAprobados)}</div>
+                <div className="text-sm px-4 pb-2 opacity-90">de desaprobados</div>
+              </div>
             </div>
           </div>
+          <div className="md:hidden flex justify-center gap-4 items-center">
+            <div>
+              <div className="rounded-xl bg-pink-500 text-white shadow-[0_6px_0_#a94c6d]">
+                <div className="font-bold text-lg px-4 pt-2">{nf.format(totalAprobados)}</div>
+                <div className="text-sm px-4 pb-2 opacity-90">de aprobados</div>
+              </div>
+            </div>
 
-          <div
-            className="absolute pointer-events-none"
-            style={{ left: staticNot.left, top: staticNot.top, transform: staticNot.transform }}
-          >
-            <div className="rounded-xl bg-white text-pink-600 shadow-[0_6px_0_#6db0d1]">
-              <div className="font-bold text-lg px-4 pt-2">{nf.format(totalNoAprobados)}</div>
-              <div className="text-sm px-4 pb-2 opacity-90">de desaprobados</div>
+            <div>
+              <div className="rounded-xl bg-white text-pink-600 shadow-[0_6px_0_#6db0d1]">
+                <div className="font-bold text-lg px-4 pt-2">{nf.format(totalNoAprobados)}</div>
+                <div className="text-sm px-4 pb-2 opacity-90">de desaprobados</div>
+              </div>
             </div>
           </div>
         </>
@@ -243,6 +260,21 @@ export const AprobadosChart = () => {
           )}
         </div>
       )}
+
+      <div className="flex flex-col justify-center mt-8">
+        <h2 className="text-lg md:text-xl">Aprobación total</h2>
+        <div className="flex gap-2 items-center justify-center font-light text-sm md:text-lg">
+          <h3>Resultados</h3>
+          <div className="flex gap-2 items-center">
+            <div className="bg-green w-2 h-2"  />
+            <h3>Aprobado</h3>
+          </div>
+          <div className="flex gap-2 items-center">
+            <div className="bg-purple w-2 h-2"  />
+            <h3>No aprobado</h3>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
