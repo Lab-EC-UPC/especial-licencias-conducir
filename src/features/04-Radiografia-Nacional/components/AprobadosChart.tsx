@@ -262,15 +262,17 @@ export const AprobadosChart = () => {
       )}
 
       <div className="flex flex-col justify-center mt-8">
-        <h2 className="text-lg md:text-xl">Aprobación total</h2>
-        <div className="flex gap-2 items-center justify-center font-light text-sm md:text-lg">
+        <h2 className="text-lg md:text-xl">
+          Aprobación total
+        </h2>
+        <div className="flex gap-2 md:gap-4 items-center justify-center font-light text-sm md:text-lg">
           <h3>Resultados</h3>
           <div className="flex gap-2 items-center">
-            <div className="bg-green w-2 h-2"  />
+            <div className="bg-green size-2 md:size-4"  />
             <h3>Aprobado</h3>
           </div>
           <div className="flex gap-2 items-center">
-            <div className="bg-purple w-2 h-2"  />
+            <div className="bg-purple size-2 md:size-4"  />
             <h3>No aprobado</h3>
           </div>
         </div>

@@ -14,23 +14,6 @@ function App() {
 
   return (
     <>
-      <div>
-        <h1 className="flex items-center justify-center bg-[#FFCB03] text-4xl font-bold p-5">
-          El Comercio
-        </h1>
-        <div className="flex items-center justify-center gap-5 p-2 uppercase text-sm overflow-x-auto">
-          <p>Lo último</p>
-          <p>Editorial</p>
-          <p>Política</p>
-          <p>ECData</p>
-          <p>Mundo</p>
-          <p>Economía</p>
-          <p>DT</p>
-          <p>Suscriptores</p>
-          <p>Newsletters</p>
-          <p>Juegos</p>
-        </div>
-      </div>
       <div className="flex flex-col bg-white">
         <Header />
         <ComoLasFallas />

@@ -36,7 +36,7 @@ export const ComoLasFallas = () => {
   };
 
   return (
-    <div className="mx-auto container w-full min-h-screen h-full mt-16 sm:mt-20 md:mt-32 px-4">
+    <div className="mx-auto container w-full h-full px-4 my-16 md:my-32">
       <div className="flex flex-col items-center text-center h-full">
         <h1 className="text-2xl sm:text-3xl md:text-5xl mb-6 md:mb-8 font-bold font-bitcount text-[#131A31]">
           ¿Cómo las fallas en el examen de manejo incrementan las papeletas y

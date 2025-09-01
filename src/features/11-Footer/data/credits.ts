@@ -29,43 +29,43 @@ export const credits: Credit[] = [
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Franca Alatrista Valdivia",
+        role: "Investigación y reporteo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Francisco Calderón Mosca",
+        role: "Investigación y reporteo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Fabiana Arambulo Alberca",
+        role: "Investigación y reporteo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Diego Aquino Pedraza",
+        role: "Investigación y reporteo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Josselyn Gavancho Tenorio",
+        role: "Investigación y reporteo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Nicole Córdova Moquillaza",
+        role: "Investigación y reporteo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Joaquín Niño de Guzmán",
+        role: "Investigación y reporteo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Camila Mandujano Meza",
+        role: "Investigación y reporteo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
     ]
@@ -76,38 +76,38 @@ export const credits: Credit[] = [
     assetOrientation: "right",
     members: [
       {
-        name: "",
-        role: "",
+        name: "Gustavo Huamaní Pimentel",
+        role: "Coordinador de Diseño",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "María “Mar” Jiménez León",
+        role: "Diseño",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Sofianne Condor Hurtado",
+        role: "Diseño",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Stefany More Maza",
+        role: "Diseño",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Flavia Torres Pajilla",
+        role: "Diseño",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Claudia Navarrete Gutierrez",
+        role: "Diseño",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Jessica Quispe Eusebio",
+        role: "Diseño",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
     ]
@@ -118,43 +118,43 @@ export const credits: Credit[] = [
     assetOrientation: "left",
     members: [
       {
-        name: "",
-        role: "",
+        name: "Daniel Zapata Trelles",
+        role: "Coordinador de Desarrollo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Liliana Fu Ye",
+        role: "Coordinador de Desarrollo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Matías Ascasibe Paucar",
+        role: "Gamificación y Desarrollo de página web",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "William “Liam” Ramos Vicente",
+        role: "Gamificación y Desarrollo de página web",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Daniella Vargas Saldaña",
+        role: "Modelo Predictivo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Luciano Ruiz Blas",
+        role: "Desarrollo de página web",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Luís Sandoval Verde",
+        role: "Desarrollo de página web",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Piero Valverde Cora",
+        role: "Desarrollo de página web",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
     ]
@@ -165,13 +165,13 @@ export const credits: Credit[] = [
     assetOrientation: "right",
     members: [
       {
-        name: "",
-        role: "",
+        name: "Fabrizio Monge Proa",
+        role: "Coordinador de Análisis de Datos",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Sofía Enciso Goicochea",
+        role: "Análisis de Datos",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
     ]
@@ -182,13 +182,53 @@ export const credits: Credit[] = [
     assetOrientation: "left",
     members: [
       {
-        name: "",
-        role: "",
+        name: "Franca Alatrista Valdivia",
+        role: "Coordinadora y Productora Ejecutiva",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "André Poma",
+        role: "Director y Director de Fotografía",
+        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+      },
+      {
+        name: "Yuri Ramirez Trujillo",
+        role: "Actriz",
+        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+      },
+      {
+        name: "Valery Montoya Yopla",
+        role: "Directora de Arte",
+        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+      },
+      {
+        name: "Marcelo Mesarina Rivera",
+        role: "Editor",
+        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+      },
+      {
+        name: "Paolo Lovatón Flores",
+        role: "Diseñador de Producción",
+        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+      },
+      {
+        name: "Joaquín Ciriaco",
+        role: "Compositor",
+        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+      },
+      {
+        name: "Josselyn Gavancho",
+        role: "Apoyo de contenido",
+        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+      },
+      {
+        name: "Francisco Calderón",
+        role: "Apoyo de contenido",
+        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+      },
+      {
+        name: "Diego Aquino",
+        role: "Apoyo de contenido",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
     ]
@@ -199,23 +239,23 @@ export const credits: Credit[] = [
     assetOrientation: "left",
     members: [
       {
-        name: "",
-        role: "",
+        name: "Mayté Ciriaco",
+        role: "Coordinación General, Supervisión y Edición",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Sebastian Fernandez Moris",
+        role: "Coordinador de Proyecto",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Ariana Lira",
+        role: "Supervisión y Edición General",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
       {
-        name: "",
-        role: "",
+        name: "Gino Alva Olivera",
+        role: "Asistencia Editorial",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
     ]

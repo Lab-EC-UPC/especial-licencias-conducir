@@ -73,11 +73,11 @@ const getResponsiveValue = (
   return desktopValue;
 };
 
-const getNubeSize = (windowWidth: number) => {
-  const width = getResponsiveValue(windowWidth, 80, 110, 135);
-  const height = getResponsiveValue(windowWidth, 40, 55, 67.5);
-  return { width: `${width}px`, height: `${height}px` };
-};
+// const getNubeSize = (windowWidth: number) => {
+//   const width = getResponsiveValue(windowWidth, 80, 110, 135);
+//   const height = getResponsiveValue(windowWidth, 40, 55, 67.5);
+//   return { width: `${width}px`, height: `${height}px` };
+// };
 
 const getNubeMargin = (windowWidth: number): string => {
   const margin = getResponsiveValue(windowWidth, 25, 35, 50);
@@ -220,7 +220,7 @@ export const EdadChart: React.FC = () => {
   }), [windowSize.width]);
 
   // Memoized size calculations
-  const nubeSize = useMemo(() => getNubeSize(windowSize.width), [windowSize.width]);
+  // const nubeSize = useMemo(() => getNubeSize(windowSize.width), [windowSize.width]);
   const nubeMargin = useMemo(() => getNubeMargin(windowSize.width), [windowSize.width]);
 
   // Calculate label margin with proper parsing
@@ -241,31 +241,34 @@ export const EdadChart: React.FC = () => {
         Gráfico de barras que muestra la distribución por edades de los evaluados para licencias de conducir
       </div>
       
-      <div 
-        className="flex items-end justify-center h-full"
-        style={{ 
-          height: `${config.containerHeight}px`,
-          gap: `${config.barSpacing}px`,
-        }}
+      <div
+        // style={{
+        //   height: `${config.containerHeight}px`,
+        //   gap: `${config.barSpacing}px`,
+        // }}
+        className={`flex items-end justify-center h-full gap-0 md:gap-2 mt-24 md:mt-10 xl:mt-0`}
       >
         {AGE_GROUPS_DATA.map((ageGroup, index) => (
           <div 
             key={ageGroup.label} 
-            className="flex flex-col items-center" 
+            className="flex flex-col items-center"
             style={{ width: `${config.barWidth}px` }}
           >
             {/* Icon container */}
-            <div className="mb-2 relative flex justify-center">
-              <div style={{ 
-                width: nubeSize.width, 
-                height: nubeSize.height,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginLeft: nubeMargin,
-                position: 'relative',
-                zIndex: 10,
-              }}>
+            <div className="mb-2 relative flex">
+              <div
+                // style={{
+                //   width: nubeSize.width,
+                //   height: nubeSize.height,
+                //   display: 'flex',
+                //   alignItems: 'center',
+                //   justifyContent: 'right',
+                //   marginLeft: nubeMargin,
+                //   position: 'relative',
+                //   zIndex: 10,
+                // }}
+                className="w-16 md:w-28 xl:w-32 h-auto relative z-10 right-1 md:right-0 left-0 md:left-2"
+              >
                 <img 
                   src={ageGroup.icon} 
                   alt={`Icono representativo para el grupo de edad ${ageGroup.label}`}
@@ -312,10 +315,10 @@ export const EdadChart: React.FC = () => {
       </div>
       
       {/* Chart title */}
-      <div className="mt-11 text-center">
+      <div className="mt-8 md:mt-10 text-center">
         <h4 
           id="edad-chart-title"
-          className="text-2xl font-medium text-white" 
+          className="text-lg md:text-xl font-medium text-white"
           style={{ fontFamily: config.typography.fontFamily }}
         >
           Edad de los evaluados

@@ -23,7 +23,7 @@ export const RadiografiaNacional = () => {
       <div className="bg-primary">
         <div className="mx-auto container w-full min-h-screen">
           <div className="flex flex-col items-center text-center text-white h-full py-16 px-4">
-            <h1 className="text-4xl md:text-5xl mb-6 md:mb-16 font-bold font-bitcount text-white">
+            <h1 className="text-4xl md:text-5xl mb-6 md:mb-8 font-bold font-bitcount text-white">
               Radiografía Nacional
             </h1>
             <p className="w-full md:max-w-2/3 font-medium text-md md:text-xl">
@@ -101,7 +101,7 @@ export const RadiografiaNacional = () => {
                 </div>
               </div>
 
-              <div className="absolute bottom-0 right-0 hidden md:flex flex-col items-center w-32 gap-2">
+              <div className="absolute bottom-5 right-0 hidden md:flex flex-col items-center w-32 gap-2">
                 <p className="text-center text-xs">
                   Haz clic en los íconos para conocer la data
                 </p>
@@ -112,10 +112,11 @@ export const RadiografiaNacional = () => {
                 />
               </div>
 
-              <div className="py-4">
+              <div className="py-4 h-[80vh] md:h-[75vh] flex flex-col justify-center items-center">
                 {selected === "aprobados" && <AprobadosChart />}
                 {selected === "genero" && <GeneroChart />}
                 {selected === "edad" && <EdadChart />}
+                {selected === "mapa" && <p>Falta hacer este gráfico (por las dudas)</p>}
                 {selected === "mapa" && <MapaChart />}
               </div>
             </div>

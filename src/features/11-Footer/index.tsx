@@ -29,7 +29,7 @@ export const FooterSection = () => {
                     {credit.group}
                   </h2>
                 </div>
-                <div className="grid gap-5 items-start justify-center">
+                <div className="grid gap-5 items-start justify-start">
                   {credit.members.map((member, index) => (
                     <div
                       key={index}
