@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CausaOverlay } from './components/CausaOverlay';
-import PixelButton from "@/components/PixelButton.tsx";
+import { PixelCard } from './components/PixelCard';
 
 interface Expert {
   name: string;
@@ -9,41 +9,64 @@ interface Expert {
   image: string;
 }
 
+// Interfaz para la configuración de colores
+interface ColorConfig {
+    base: string;
+    outline: string;
+    light: string;
+}
+
+// CAMBIO: Interfaz para los datos que necesita el overlay
+interface OverlayData {
+    title: string;
+    content: string;
+    colors: ColorConfig;
+}
+
+
 const EXPERT_CONTENT: Expert[] = [
   {
-    name: "Nombre experto 1",
-    quote: "Cita causa (máx 20-25 palabras) Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna",
-    fullText: "Resumen causa en base a la entrevista al experto (Máx 210 palabras) Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.\n\nIn enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.\n\nEtiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat. leo eget bibendum sodales. auque velit cursus nunc.",
-    image: "https://via.placeholder.com/100" // Reemplaza esto con la URL de la foto del primer experto
+    name: "Elvis Santi",
+    quote: "\"Cita causa (máx 20-25 palabras) Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna\"",
+    fullText: "Aquí debería ir el pregunta-respuesta. Por ahora, un placeholder: El vídeo proporciona una manera eficaz para ayudarle a demostrar el punto. Cuando haga clic en Vídeo en línea, puede pegar el código para insertar del vídeo que desea agregar. También puede escribir una palabra clave para buscar en línea el vídeo que mejor se adapte a su documento. Para otorgar a su documento un aspecto profesional, Word proporciona encabezados, pies de página, páginas de portada y diseños de cuadro de texto que se complementan entre sí. Por ejemplo, puede agregar una portada coincidente, el encabezado y la barra lateral. Haga clic en Insertar y elija los elementos que desee de las distintas galerías. Los temas y estilos también ayudan a mantener su documento coordinado. Cuando haga clic en Diseño y seleccione un tema nuevo, cambiarán las imágenes, gráficos y gráficos SmartArt para que coincidan con el nuevo tema. Al aplicar los estilos, los títulos cambian para coincidir con el nuevo tema. Ahorre tiempo en Word con nuevos botones que se muestran donde se necesiten. Para cambiar la forma en que se ajusta una imagen en el documento, haga clic y aparecerá un botón de opciones de diseño junto a la imagen. Cuando trabaje en una tabla, haga clic donde desee agregar una fila o columna y, a continuación, haga clic en el signo más. La lectura es más fácil, también, en la nueva vista de lectura. Puede contraer partes del documento y centrarse en el texto que desee. Si necesita detener la lectura antes de llegar al final, Word le recordará dónde dejó la lectura, incluso en otros dispositivos.",
+    image: "https://i.ibb.co/VWjTQ7M1/elvis-Santi.jpg",
   },
   {
-    name: "Nombre experto 2",
-    quote: "Cita causa (máx 20-25 palabras) Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna",
-    fullText: "Resumen causa en base a la entrevista al experto (Máx 210 palabras) Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.\n\nIn enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.\n\nEtiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat. leo eget bibendum sodales. auque velit cursus nunc.",
-    image: "https://via.placeholder.com/100" // Reemplaza esto con la URL de la foto del segundo experto
+    name: "Federico Battifora",
+    quote: "\"Cita causa (máx 20-25 palabras) Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna\"",
+    fullText: "Aquí debería ir el pregunta-respuesta. Por ahora, un placeholder: El vídeo proporciona una manera eficaz para ayudarle a demostrar el punto. Cuando haga clic en Vídeo en línea, puede pegar el código para insertar del vídeo que desea agregar. También puede escribir una palabra clave para buscar en línea el vídeo que mejor se adapte a su documento. Para otorgar a su documento un aspecto profesional, Word proporciona encabezados, pies de página, páginas de portada y diseños de cuadro de texto que se complementan entre sí. Por ejemplo, puede agregar una portada coincidente, el encabezado y la barra lateral. Haga clic en Insertar y elija los elementos que desee de las distintas galerías. Los temas y estilos también ayudan a mantener su documento coordinado. Cuando haga clic en Diseño y seleccione un tema nuevo, cambiarán las imágenes, gráficos y gráficos SmartArt para que coincidan con el nuevo tema. Al aplicar los estilos, los títulos cambian para coincidir con el nuevo tema. Ahorre tiempo en Word con nuevos botones que se muestran donde se necesiten. Para cambiar la forma en que se ajusta una imagen en el documento, haga clic y aparecerá un botón de opciones de diseño junto a la imagen. Cuando trabaje en una tabla, haga clic donde desee agregar una fila o columna y, a continuación, haga clic en el signo más. La lectura es más fácil, también, en la nueva vista de lectura. Puede contraer partes del documento y centrarse en el texto que desee. Si necesita detener la lectura antes de llegar al final, Word le recordará dónde dejó la lectura, incluso en otros dispositivos.",
+    image: "https://i.ibb.co/FqV98m51/federico-Battifora.jpg",
   },
   {
-    name: "Nombre experto 3",
-    quote: "Cita causa (máx 20-25 palabras) Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna",
-    fullText: "Resumen causa en base a la entrevista al experto (Máx 210 palabras) Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.\n\nIn enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat. leo eget bibendum sodales. auque velit cursus nunc.",
-    image: "https://via.placeholder.com/100" // Reemplaza esto con la URL de la foto del tercer experto
+    name: "Luis Quispe",
+    quote: "\"Cita causa (máx 20-25 palabras) Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna\"",
+    fullText: "Aquí debería ir el pregunta-respuesta. Por ahora, un placeholder: El vídeo proporciona una manera eficaz para ayudarle a demostrar el punto. Cuando haga clic en Vídeo en línea, puede pegar el código para insertar del vídeo que desea agregar. También puede escribir una palabra clave para buscar en línea el vídeo que mejor se adapte a su documento. Para otorgar a su documento un aspecto profesional, Word proporciona encabezados, pies de página, páginas de portada y diseños de cuadro de texto que se complementan entre sí. Por ejemplo, puede agregar una portada coincidente, el encabezado y la barra lateral. Haga clic en Insertar y elija los elementos que desee de las distintas galerías. Los temas y estilos también ayudan a mantener su documento coordinado. Cuando haga clic en Diseño y seleccione un tema nuevo, cambiarán las imágenes, gráficos y gráficos SmartArt para que coincidan con el nuevo tema. Al aplicar los estilos, los títulos cambian para coincidir con el nuevo tema. Ahorre tiempo en Word con nuevos botones que se muestran donde se necesiten. Para cambiar la forma en que se ajusta una imagen en el documento, haga clic y aparecerá un botón de opciones de diseño junto a la imagen. Cuando trabaje en una tabla, haga clic donde desee agregar una fila o columna y, a continuación, haga clic en el signo más. La lectura es más fácil, también, en la nueva vista de lectura. Puede contraer partes del documento y centrarse en el texto que desee. Si necesita detener la lectura antes de llegar al final, Word le recordará dónde dejó la lectura, incluso en otros dispositivos.",
+    image: "https://i.ibb.co/cXJndfs5/luis-Quispe.jpg",
   },
 ];
 
-const COLORS = ['bg-[#58b7cf]', 'bg-[#ffaf42]', 'bg-[#ed548c]'];
+const COLOR_CONFIGS: ColorConfig[] = [
+  { base: '#58b7cf', outline: '#3E95AC', light: '#e4f8ff' },
+  { base: '#ffaf42', outline: '#E09B3A', light: '#ffe7cb' },
+  { base: '#ac5eaa', outline: '#8F4D8D', light: '#ffd9fe' }
+];
 
 export const CausasRaices = () => {
-  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-  const [overlayContent, setOverlayContent] = useState({ title: '', content: '' });
+  // CAMBIO: Se unifica el estado en un solo objeto. Si es `null`, el overlay está cerrado.
+  // EXPLICACIÓN: Así guardamos toda la info necesaria (título, contenido Y COLORES) en un solo lugar.
+  const [overlayData, setOverlayData] = useState<OverlayData | null>(null);
 
-  const handleOpenOverlay = (expert: Expert) => {
-    setOverlayContent({ title: expert.name, content: expert.fullText });
-    setIsOverlayOpen(true);
+  // CAMBIO: La función ahora también recibe la configuración de color.
+  const handleOpenOverlay = (expert: Expert, colors: ColorConfig) => {
+    setOverlayData({
+      title: expert.name,
+      content: expert.fullText,
+      colors: colors, // Se guardan los colores
+    });
   };
 
   const handleCloseOverlay = () => {
-    setIsOverlayOpen(false);
-    setOverlayContent({ title: '', content: '' });
+    setOverlayData(null); // Simplemente se limpia el estado para cerrar
   };
 
   return (
@@ -53,40 +76,38 @@ export const CausasRaices = () => {
           <h1 className="text-5xl mb-8 font-bold font-bitcount text-[#131A31]">
             Causas Raíces
           </h1>
-          <p className="w-full md:max-w-2/3 font-medium text-xl mb-24">
-            Bajada de 2 líneas (máx 15-20 palabras) Lorem ips um dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+          <p className="w-full md:max-w-2/3 font-medium text-xl mb-24 px-4">
+            Bajada de 5 líneas Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo
           </p>
 
-          <div className="flex flex-col md:flex-row gap-8 justify-center mx-auto max-w-6xl w-full">
-            {EXPERT_CONTENT.map((expert, index) => (
-              <div key={index} className="flex flex-col items-center relative w-full max-w-sm">
-                <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center shadow-lg absolute -top-12 z-10 overflow-hidden">
-                  {expert.image ? (
-                    <img src={expert.image} alt={`Foto de ${expert.name}`} className="w-full h-full object-cover" />
-                  ) : (
-                    <span className="text-xs text-gray-500 text-center">FOTO DEL EXPERTO</span>
-                  )}
-                </div>
-                <div className={`${COLORS[index % COLORS.length]} p-8 rounded-[30px] shadow-lg flex flex-col items-center w-full pt-16`}>
-                  <h3 className="text-xl font-bold text-[#131A31] mb-2 mt-2">{expert.name}</h3>
-                  <p className="text-sm text-[#131A31] mb-6">{expert.quote}</p>
-                  <PixelButton
-                    text="Ver más"
-                    variant="sand"
-                    onClick={() => handleOpenOverlay(expert)}
-                  />
-                </div>
-              </div>
-            ))}
+          <div className="flex flex-col md:flex-row gap-8 justify-center items-start mx-auto max-w-6xl w-full px-4">
+            {EXPERT_CONTENT.map((expert, index) => {
+              const colors = COLOR_CONFIGS[index % COLOR_CONFIGS.length];
+              return (
+                <PixelCard
+                  key={index}
+                  expert={expert}
+                  colorConfig={colors}
+                  // CAMBIO: Se pasan tanto el experto como sus colores al hacer clic.
+                  onVerMasClick={() => handleOpenOverlay(expert, colors)}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
-      <CausaOverlay
-        isOpen={isOverlayOpen}
-        onClose={handleCloseOverlay}
-        title={overlayContent.title}
-        content={overlayContent.content}
-      />
+      
+      {/* CAMBIO: La renderización ahora depende de `overlayData` */}
+      {overlayData && (
+        <CausaOverlay
+          isOpen={!!overlayData}
+          onClose={handleCloseOverlay}
+          title={overlayData.title}
+          content={overlayData.content}
+          // ¡Aquí está la clave! Se pasa la configuración de color al overlay.
+          colorConfig={overlayData.colors}
+        />
+      )}
     </>
   );
 };
