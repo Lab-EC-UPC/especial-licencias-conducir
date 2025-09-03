@@ -120,7 +120,7 @@ export const PeruMap = () => {
                       className="relative px-6 py-2 text-black"
                       style={{ backgroundColor: years[selectedYear] }}
                     >
-                      <h1 className="text-:lg md:text-xl mb-2">Costo de región {region.name}</h1>
+                      <h1 className="text-lg md:text-xl mb-2">Costo de región {region.name}</h1>
                       <div className="grid grid-cols-4 gap-2 mb-3">
                         {["2021","2022", "2023", "2024"].map((year) => (
                           <button

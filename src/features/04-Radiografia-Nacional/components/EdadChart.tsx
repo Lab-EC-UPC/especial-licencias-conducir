@@ -246,7 +246,7 @@ export const EdadChart: React.FC = () => {
         //   height: `${config.containerHeight}px`,
         //   gap: `${config.barSpacing}px`,
         // }}
-        className={`flex items-end justify-center h-full gap-0 md:gap-2 mt-24 md:mt-10 xl:mt-0`}
+        className={`flex items-end justify-center h-full gap-0 md:gap-2`}
       >
         {AGE_GROUPS_DATA.map((ageGroup, index) => (
           <div 

@@ -13,10 +13,10 @@ export const LesionesMuertesNacionales = () => {
       <div className="bg-primary">
         <div className="mx-auto container w-full min-h-screen">
           <div className="flex flex-col items-center text-center text-white h-full py-16 px-4">
-            <h1 className="text-5xl mb-4 font-bold font-bitcount">
+            <h1 className="text-4xl md:text-5xl mb-6 md:mb-8 font-bold font-bitcount text-white">
               Lesiones y muertes nacionales
             </h1>
-            <p className="w-full md:max-w-2/3 font-medium">
+            <p className="w-full md:max-w-2/3 font-medium text-md md:text-xl">
               Lorem Ipsum is simply dummy text of the printing and typesetting industry.
               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
               when an unknown printer took a galley of type and scrambled it to make a type

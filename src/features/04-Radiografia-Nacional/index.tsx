@@ -116,7 +116,6 @@ export const RadiografiaNacional = () => {
                 {selected === "aprobados" && <AprobadosChart />}
                 {selected === "genero" && <GeneroChart />}
                 {selected === "edad" && <EdadChart />}
-                {selected === "mapa" && <p>Falta hacer este gráfico (por las dudas)</p>}
                 {selected === "mapa" && <MapaChart />}
               </div>
             </div>

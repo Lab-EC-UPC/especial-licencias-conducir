@@ -107,7 +107,9 @@ export const Testimonios = () => {
       <div>
           <div className="mx-auto container w-full">
               <div className="flex flex-col items-center text-center py-8 px-4">
-                  <h1 className="text-5xl mb-4 font-bold font-bitcount text-[#131A31]">Testimonios</h1>
+                  <h1 className="text-4xl md:text-5xl mb-6 md:mb-8 font-bold font-bitcount text-primary">
+                      Testimonios
+                  </h1>
 
                   <div className="flex flex-col lg:flex-row items-center justify-center gap-16 mb-12">
                       {testimonios.map((testimonio, index) => (

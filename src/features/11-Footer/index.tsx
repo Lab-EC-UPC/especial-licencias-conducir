@@ -6,7 +6,7 @@ export const FooterSection = () => {
     <div className="bg-primary min-h-screen py-24">
       <div className="mx-auto container w-full">
         <div className="flex flex-col items-center justify-center text-center h-full">
-          <h1 className="text-4xl md:text-5xl mb-16 font-bold font-bitcount text-white">
+          <h1 className="text-4xl md:text-5xl mb-12 md:mb-16 font-bold font-bitcount text-white">
             Créditos
           </h1>
           <div className="space-y-16">
