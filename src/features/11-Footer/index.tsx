@@ -15,11 +15,8 @@ export const FooterSection = () => {
                 key={index}
                 className="flex flex-col items-center gap-4"
               >
-                <div
-                  className={`flex items-end mb-8 gap-4 ${
-                    credit.assetOrientation === "right" ? "flex-row-reverse" : "flex-row"
-                  }`}
-                >
+                {/*${credit.assetOrientation === "right" ? "flex-row-reverse" : "flex-row"}*/}
+                <div className={`flex flex-col items-center mb-8 gap-4`}>
                   <img
                     src={credit.asset}
                     alt={credit.group}
@@ -31,9 +28,11 @@ export const FooterSection = () => {
                 </div>
                 <div className="grid gap-5 items-start justify-start">
                   {credit.members.map((member, index) => (
-                    <div
+                    <a
                       key={index}
-                      className="flex gap-5 items-center"
+                      href={member.url}
+                      target="_blank"
+                      className={`flex gap-5 items-center ${member.url && "hover:cursor-pointer hover:scale-105 duration-200"}`}
                     >
                       <div>
                         <img
@@ -46,7 +45,7 @@ export const FooterSection = () => {
                         <h3 className="text-xl md:text-2xl font-semibold">{member.name}</h3>
                         <p className="text-md md:text-lg font-medium">{member.role}</p>
                       </div>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </div>

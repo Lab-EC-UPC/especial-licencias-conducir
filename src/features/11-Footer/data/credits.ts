@@ -14,7 +14,8 @@ export interface Credit {
     name: string;
     role: string;
     photo: string;
-  }[]
+    url?: string;
+  }[];
 }
 
 export const credits: Credit[] = [
@@ -126,6 +127,7 @@ export const credits: Credit[] = [
         name: "Liliana Fu Ye",
         role: "Coordinador de Desarrollo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+        url: "https://lilianafu.com/",
       },
       {
         name: "Matías Ascasibe Paucar",
