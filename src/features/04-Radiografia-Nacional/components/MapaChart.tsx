@@ -1,60 +1,22 @@
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import {Tooltip} from "@heroui/react";
-import {peruRegions} from "@/features/04-Radiografia-Nacional/utils/peruRegions.ts";
+import {type PeruRegion, peruRegions} from "@/features/04-Radiografia-Nacional/utils/peruRegions.ts";
 import TOOLTIP_BG from "@/assets/mapa-chart-cloud.png";
 import {MapDataIcon} from "@/assets/icons/MapDataIcon.tsx";
 import {MapDataIconHalf} from "@/assets/icons/MapDataIconHalf.tsx";
 import {Heatline} from "@/features/04-Radiografia-Nacional/components/Heatline.tsx";
 
 export const MapaChart = () => {
-  // const [hoveredRegion, setHoveredRegion] = useState<PeruRegion | undefined>(undefined);
-  // const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
-  // const tooltipRef = useRef<HTMLDivElement | null>(null);
-
   const svgRef = useRef<SVGSVGElement | null>(null);
+  const [selectedCity, setSelectedCity] = useState<string>("Lima");
 
-  // const getCenterOfPath = (pathElement: SVGPathElement) => {
-  //   const bbox = pathElement.getBBox();
-  //   const centerX = bbox.x + bbox.width / 2;
-  //   const centerY = bbox.y + bbox.height / 2;
-  //   return { centerX, centerY };
-  // };
-
-  // const handleMouseMove = (
-  //   // event: React.MouseEvent<SVGGElement, MouseEvent>,
-  //   region: PeruRegion,
-  // ) => {
-    // const mapContainer = event.currentTarget.closest("div");
-    // if (!mapContainer) return;
-    // const containerRect = mapContainer.getBoundingClientRect();
-    //
-    // const padding = 10;
-    // const tooltipEl = tooltipRef.current;
-    // const tooltipWidth = tooltipEl?.offsetWidth || 288;
-    // const tooltipHeight = tooltipEl?.offsetHeight || 144;
-    //
-    // let x = event.clientX - containerRect.left + padding;
-    // let y = event.clientY - containerRect.top;
-    //
-    // if (x + tooltipWidth > containerRect.width) {
-    //   x = event.clientX - containerRect.left - tooltipWidth - padding;
-    // }
-    //
-    // if (x < 0) {
-    //   x = padding;
-    // }
-    //
-    // if (y + tooltipHeight > containerRect.height) {
-    //   y = containerRect.height - tooltipHeight - padding;
-    // }
-
-    // setHoveredRegion(region);
-    // setTooltipPosition({ x, y });
-  // };
-
-  // const handleMouseLeave = () => {
-  //   setHoveredRegion(undefined);
-  // };
+  const getRegionGenderData = (region: PeruRegion, selectedCity: string) => {
+    const sub = region.subregions?.find(s => s.city === selectedCity);
+    return {
+      mujer: sub?.mujer ?? region.mujer ?? 0,
+      hombre: sub?.hombre ?? region.hombre ?? 0,
+    };
+  };
 
   const getIconsFromValue = (value: number) => {
     const total = Math.max(0, Math.min(10, value * 10));
@@ -104,49 +66,52 @@ export const MapaChart = () => {
                     className="w-54 h-44 bg-no-repeat bg-cover bg-center rounded-lg"
                     style={{ backgroundImage: `url(${TOOLTIP_BG})` }}
                   >
-                    <h1 className="text-center text-xs leading-none pt-2">
-                      {region.name}
-                      {region.name === "Lima" && (
-                        <span>
-                          {" "}(Callao M:0.75 - H:0.6)
-                        </span>
-                      )}
-                    </h1>
-                    <div className="flex w-full gap-4 items-start justify-center text-center mt-1">
-                      <div>
-                        <h1 className="font-bitcount font-bold text-xl md:text-2xl">{region.mujer}</h1>
-                        {renderDotsTopLeft(region.mujer || 0, "text-yellow")}
-                        <h1 className="text-lg md:text-xl">M</h1>
+                    {region.subregions?.length ? (
+                      <div className="grid grid-cols-2 gap-2 px-4 pt-2">
+                        {region.subregions.map(sr => (
+                          <button
+                            key={sr.city}
+                            className={`hover:cursor-pointer ${
+                              selectedCity === sr.city
+                                ? "bg-primary text-white"
+                                : "text-primary border-2 border-primary"
+                            }`}
+                            onClick={() => setSelectedCity(sr.city)}
+                          >
+                            {sr.city}
+                          </button>
+                        ))}
                       </div>
-                      <div>
-                        <h1 className="font-bitcount font-bold text-xl md:text-2xl">{region.hombre}</h1>
-                        {renderDotsTopLeft(region.hombre || 0, "text-skyblue")}
-                        <h1 className="text-lg md:text-xl">H</h1>
-                      </div>
-                    </div>
+                    ) : (
+                      <h1 className="text-center text-xs leading-none pt-2">{region.name}</h1>
+                    )}
+                    {(() => {
+                      const { mujer, hombre } = getRegionGenderData(region, selectedCity);
+                      return (
+                        <div className="flex w-full gap-4 items-start justify-center text-center mt-1">
+                          <div>
+                            <h1 className="font-bitcount font-bold text-xl md:text-2xl">{mujer}</h1>
+                            {renderDotsTopLeft(mujer, "text-yellow")}
+                            <h1 className="text-lg md:text-xl">M</h1>
+                          </div>
+                          <div>
+                            <h1 className="font-bitcount font-bold text-xl md:text-2xl">{hombre}</h1>
+                            {renderDotsTopLeft(hombre, "text-skyblue")}
+                            <h1 className="text-lg md:text-xl">H</h1>
+                          </div>
+                        </div>
+                      );
+                    })()}
                   </div>
                 }
               >
-                <g
-                  key={index}
-                  // onMouseMove={(event) => handleMouseMove(event, region)}
-                  // onMouseMove={() => handleMouseMove(region)}
-                  // onMouseLeave={handleMouseLeave}
-                >
+                <g key={index}>
                   <path
                     className="transition duration-200 ease-in-out relative"
-                    // fill={region.fill || "#ffe2e2"}
                     fill={region.fill}
                     d={region.path}
-                    // stroke="white"
                     stroke="#131A31"
                     strokeWidth="2"
-                    // ref={(el) => {
-                    //   if (el && !region.center) {
-                    //     const { centerX, centerY } = getCenterOfPath(el);
-                    //     region.center = { centerX, centerY };
-                    //   }
-                    // }}
                   />
                 </g>
               </Tooltip>
