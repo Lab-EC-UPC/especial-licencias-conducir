@@ -139,9 +139,9 @@ export const TriviaQuizSection = () => {
             <div
                 className="absolute bg-[#131a31]/90 overflow-y-auto rounded-sm shadow-lg p-4 flex flex-col"
                 style={{
-                    top: "22.5%",
-                    left: "31.5%",
-                    width: "40%",
+                    top: "22%",
+                    left: "31%",
+                    width: "41%",
                     aspectRatio: "284 / 175",
                     color: "#dbeecb",
                 }}
