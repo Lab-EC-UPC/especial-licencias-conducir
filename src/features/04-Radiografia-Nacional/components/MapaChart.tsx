@@ -32,7 +32,7 @@ export const MapaChart = () => {
     const blanks = Math.max(0, totalSlots - count);
 
     return (
-      <div className="inline-grid [grid-template-columns:repeat(3,1rem)] gap-x-1 gap-y-1">
+      <div className="inline-grid [grid-template-columns:repeat(3,1rem)] gap-x-[3px] gap-y-[3px]">
         {Array.from({ length: full }).map((_, i) => (
           <MapDataIcon key={`full-${i}`} className={`${className} size-5`} />
         ))}
@@ -96,19 +96,19 @@ export const MapaChart = () => {
                         ))}
                       </div>
                     ) : (
-                      <h1 className="text-center text-xs leading-none pt-2">{region.name}</h1>
+                      <h1 className="text-center text-xs leading-none pt-4">{region.name}</h1>
                     )}
                     {(() => {
                       const { mujer, hombre } = getRegionGenderData(region, selectedCity);
                       return (
-                        <div className="flex w-full gap-4 items-start justify-center text-center mt-1">
+                        <div className="flex w-full gap-[3px] items-start justify-center text-center">
                           <div>
-                            <h1 className="font-bitcount font-bold text-xl md:text-2xl">{mujer}</h1>
+                            <h1 className="font-bitcount font-bold text-xl md:text-2xl leading-none text-left">{mujer}</h1>
                             {renderDotsTopLeft(mujer, "text-yellow")}
                             <h1 className="text-lg md:text-xl">M</h1>
                           </div>
                           <div>
-                            <h1 className="font-bitcount font-bold text-xl md:text-2xl">{hombre}</h1>
+                            <h1 className="font-bitcount font-bold text-xl md:text-2xl leading-none text-right">{hombre}</h1>
                             {renderDotsTopLeft(hombre, "text-skyblue")}
                             <h1 className="text-lg md:text-xl">H</h1>
                           </div>
