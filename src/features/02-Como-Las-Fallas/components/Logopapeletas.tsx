@@ -10,7 +10,7 @@ export const Wheel = ({ question, title, answer, count }: WheelProps) => {
 
   return (
     <div
-      className="flex flex-col items-center w-full max-w-[320px] sm:max-w-[380px] md:max-w-[450px] cursor-pointer"
+      className="flex flex-col items-center w-full max-w-[90%] sm:max-w-[380px] md:max-w-[450px] cursor-pointer"
       onClick={handleClick}
       role="button"
       aria-pressed={showAnswer}
@@ -18,10 +18,11 @@ export const Wheel = ({ question, title, answer, count }: WheelProps) => {
       <div
         className="
           relative flex items-center justify-center 
-          w-[250px] h-[300px]
-          sm:w-[320px] sm:h-[380px]
-          md:w-[380px] md:h-[460px]
-          lg:w-[420px] lg:h-[500px]
+          size-[250px]
+          sm:size-[320px]
+          md:size-[380px]
+          lg:size-[420px]
+          xl:size-[480px] 
         select-none"
       >
         <img
@@ -62,9 +63,13 @@ export const Wheel = ({ question, title, answer, count }: WheelProps) => {
         </div>
 
         <div
-          className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 translate-y-[50%] 
-                      bg-[#E91E63] px-2 sm:px-3 md:px-4 py-1 flex items-center justify-center 
-                      text-white font-bold italic text-[10px] sm:text-[11px] md:text-[12px] rounded-md shadow-md"
+          className="absolute bottom-1 sm:bottom-2 md:bottom-3 
+                     left-1/2 -translate-x-1/2
+                     bg-[#E91E63]/90 px-2 sm:px-3 md:px-4 py-0.5 sm:py-1 
+                     flex items-center justify-center 
+                     text-white font-bold italic 
+                     text-[9px] sm:text-[11px] md:text-[12px] 
+                     rounded-md shadow-md"
         >
           Cantidad fallida | {count}
         </div>
