@@ -1,0 +1,74 @@
+import { useState } from "react";
+import type { WheelProps } from "../utils/wheel";
+import grafico_fallas from "@/assets/grafico_fallas.png";
+import ansgrafico_fallas from "@/assets/ans_grafico_falla.png";
+
+export const Wheel = ({ question, title, answer, count }: WheelProps) => {
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  const handleClick = () => setShowAnswer((prev) => !prev);
+
+  return (
+    <div
+      className="flex flex-col items-center w-full max-w-[320px] sm:max-w-[380px] md:max-w-[450px] cursor-pointer"
+      onClick={handleClick}
+      role="button"
+      aria-pressed={showAnswer}
+    >
+      <div
+        className="
+          relative flex items-center justify-center 
+          w-[250px] h-[300px]
+          sm:w-[320px] sm:h-[380px]
+          md:w-[380px] md:h-[460px]
+          lg:w-[420px] lg:h-[500px]
+        select-none"
+      >
+        <img
+          src={grafico_fallas}
+          alt="Llantita-pixel"
+          className="w-full h-full object-contain"
+        />
+
+        {showAnswer && (
+          <img
+            src={ansgrafico_fallas}
+            alt="Llantita-respuesta"
+            className="absolute w-full h-full object-contain"
+          />
+        )}
+
+        <div
+          className="
+            absolute text-center leading-snug text-[#131A31] text-xs sm:text-sm md:text-base font-medium 
+            max-w-[120px] sm:max-w-[140px] md:max-w-[160px]
+          "
+        >
+          {showAnswer ? (
+            <div>
+              <h2 className="font-bold text-[#FFAF42] text-4xl sm:text-5xl">
+                {title}
+              </h2>
+              <div className="w-full h-[1px] bg-[#FFAF42] my-2"></div>
+              <p className="mt-2 text-white text-xs sm:text-sm md:text-base">
+                {answer}
+              </p>
+            </div>
+          ) : (
+            <p className="mt-2 text-[11px] sm:text-base md:text-lg">
+              {question}
+            </p>
+          )}
+        </div>
+
+        <div
+          className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 translate-y-[50%] 
+                      bg-[#E91E63] px-2 sm:px-3 md:px-4 py-1 flex items-center justify-center 
+                      text-white font-bold italic text-[10px] sm:text-[11px] md:text-[12px] rounded-md shadow-md"
+        >
+          Cantidad fallida | {count}
+        </div>
+      </div>
+    </div>
+  );
+};

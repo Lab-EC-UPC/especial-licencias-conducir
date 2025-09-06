@@ -1,11 +1,32 @@
 @import "tailwindcss";
-@tailwind utilities;
+@layer theme, base, components, utilities;
+@plugin './hero.ts';
+
+@source "../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
+@custom-variant dark (&:is(.dark *));
 
 @theme {
+    --color-primary: #131A31;
+    --color-skyblue: #58b7cf;
+    --color-pink: #ed548c;
+    --color-purple: #ac5eaa;
+    --color-green: #dbeecb;
+    --color-grey: #868686;
+    --color-yellow: #FFAF42;
     --font-bitcount: "bitcount-mono-single-square", sans-serif;
     --font-helvetica: "helvetica-neue-lt-pro", sans-serif;
 }
 
 :root {
     --font-sans: var(--font-helvetica);
+}
+
+.not-selectable {
+    user-select: none; /* Prevents text selection behavior on the image */
+    -webkit-user-select: none; /* For older WebKit browsers (e.g., Safari, Chrome) */
+    -moz-user-select: none; /* For older Firefox browsers */
+    -ms-user-select: none; /* For older Internet Explorer/Edge browsers */
+
+    user-drag: none; /* Prevents dragging the image */
+    -webkit-user-drag: none; /* For older WebKit browsers */
 }
