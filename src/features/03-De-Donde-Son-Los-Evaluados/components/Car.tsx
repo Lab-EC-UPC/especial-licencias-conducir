@@ -1,6 +1,6 @@
 import {motion, type Variants} from "framer-motion";
-import {Tooltip} from "@heroui/react";
 import TOOLTIP_BG from "@/assets/where-from/popup.png";
+import {Popover, PopoverContent, PopoverTrigger} from "@heroui/popover";
 
 interface Props {
   className: string;
@@ -35,9 +35,19 @@ export const Car = ({
 }: Props) => {
 
   return (
-    <Tooltip
+    <Popover
       classNames={{content: "bg-transparent p-0 shadow-none border-none"}}
-      content={
+    >
+      <PopoverTrigger>
+        <motion.img
+          custom={custom}
+          variants={carVariants}
+          src={src}
+          className={`not-selectable hover:cursor-pointer hover:scale-110 duration-200 h-auto absolute z-50 ${className}`}
+          alt={src}
+        />
+      </PopoverTrigger>
+      <PopoverContent>
         <div
           className="h-32 w-64 bg-no-repeat bg-cover bg-center rounded-lg"
           style={{ backgroundImage: `url(${TOOLTIP_BG})` }}
@@ -54,15 +64,7 @@ export const Car = ({
             </div>
           </div>
         </div>
-      }
-    >
-      <motion.img
-        custom={custom}
-        variants={carVariants}
-        src={src}
-        className={`not-selectable hover:cursor-pointer hover:scale-110 duration-200 h-auto absolute z-50 ${className}`}
-        alt={src}
-      />
-    </Tooltip>
+      </PopoverContent>
+    </Popover>
   )
 }

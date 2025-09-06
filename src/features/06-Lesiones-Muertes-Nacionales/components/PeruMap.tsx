@@ -1,9 +1,9 @@
-import { useState, useRef } from "react";
+import {useState, useRef, useEffect} from "react";
 import {peruRegions, type PeruRegion } from "../utils/peruRegions";
-import {Tooltip} from "@heroui/react";
+import {Popover, PopoverContent, PopoverTrigger} from "@heroui/popover";
 
 export const PeruMap = () => {
-  const [hoveredRegion, setHoveredRegion] = useState<PeruRegion | undefined>(undefined);
+  const [selectedRegion, setSelectedRegion] = useState<PeruRegion | null>(null);
   const [selectedYear, setSelectedYear] = useState<string>("2021");
   const years: { [key: string]: string } = {
     "2021": "#58b7cf",
@@ -11,93 +11,28 @@ export const PeruMap = () => {
     "2023": "#ED548C",
     "2024": "#AC5EAA",
   }
-  // const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
-  // const tooltipRef = useRef<HTMLDivElement | null>(null);
 
   const svgRef = useRef<SVGSVGElement | null>(null);
 
-  // const getCenterOfPath = (pathElement: SVGPathElement) => {
-  //   const bbox = pathElement.getBBox();
-  //   const centerX = bbox.x + bbox.width / 2;
-  //   const centerY = bbox.y + bbox.height / 2;
-  //   return { centerX, centerY };
-  // };
-
-  const handleMouseMove = (
-    // event: React.MouseEvent<SVGGElement, MouseEvent>,
-    region: PeruRegion,
-  ) => {
-    // const mapContainer = event.currentTarget.closest("div");
-    // if (!mapContainer) return;
-    // const containerRect = mapContainer.getBoundingClientRect();
-    //
-    // const padding = 10;
-    // const tooltipEl = tooltipRef.current;
-    // const tooltipWidth = tooltipEl?.offsetWidth || 288;
-    // const tooltipHeight = tooltipEl?.offsetHeight || 144;
-    //
-    // let x = event.clientX - containerRect.left + padding;
-    // let y = event.clientY - containerRect.top;
-    //
-    // if (x + tooltipWidth > containerRect.width) {
-    //   x = event.clientX - containerRect.left - tooltipWidth - padding;
-    // }
-    //
-    // if (x < 0) {
-    //   x = padding;
-    // }
-    //
-    // if (y + tooltipHeight > containerRect.height) {
-    //   y = containerRect.height - tooltipHeight - padding;
-    // }
-
-    setHoveredRegion(region);
-    // setTooltipPosition({ x, y });
+  const toggleSelect = (region: PeruRegion) => {
+    setSelectedRegion((prev) =>
+      prev?.name === region.name ? null : region
+    );
   };
 
-  const handleMouseLeave = () => {
-    setHoveredRegion(undefined);
-  };
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      const svg = svgRef.current;
+      if (svg && !svg.contains(e.target as Node)) {
+        setSelectedRegion(null);
+      }
+    };
+    document.addEventListener("pointerdown", handleOutsideClick);
+    return () => document.removeEventListener("pointerdown", handleOutsideClick);
+  }, []);
 
   return (
     <div className="flex items-center h-full justify-center relative scrollbar-hidden">
-      {/*{hoveredRegion && (*/}
-      {/*  <div*/}
-      {/*    ref={tooltipRef}*/}
-      {/*    onClick={()=>setHoveredRegion(undefined)}*/}
-      {/*    className="absolute bg-[#DBEECB] text-xs p-2 md:p-4 rounded-[10px] shadow-md"*/}
-      {/*    style={{*/}
-      {/*      top: `${tooltipPosition.y}px`,*/}
-      {/*      left: `${tooltipPosition.x}px`,*/}
-      {/*      pointerEvents: "none",*/}
-      {/*      zIndex: 30,*/}
-      {/*    }}*/}
-      {/*  >*/}
-      {/*    <div className="flex h-48 md:h-42 w-48 md:w-72 relative">*/}
-      {/*      <div className="flex flex-col w-full text-left">*/}
-      {/*        <p className="text-sm font-medium mb-1 text-[#ED548C]">Coste de región {hoveredRegion.name}</p>*/}
-      {/*        <div className="flex flex-col justify-between w-full h-full bg-white rounded-md p-4">*/}
-      {/*          <div>*/}
-      {/*            <div className="flex justify-between text-sm font-medium text-[#ED548C]">*/}
-      {/*              <p>Fallecido:</p><p>X</p>*/}
-      {/*            </div>*/}
-      {/*            <div className="flex justify-between text-sm font-medium text-[#ED548C]">*/}
-      {/*              <p>Ileso:</p><p>X</p>*/}
-      {/*            </div>*/}
-      {/*            <div className="flex justify-between text-sm font-medium text-[#ED548C]">*/}
-      {/*              <p>Lesionado:</p><p>X</p>*/}
-      {/*            </div>*/}
-      {/*            <div className="flex justify-between text-sm font-medium text-[#ED548C]">*/}
-      {/*              <p>No se conoce:</p><p>X</p>*/}
-      {/*            </div>*/}
-      {/*          </div>*/}
-      {/*          <small className="italic font-light text-[10px]">Data obtenida de</small>*/}
-      {/*        </div>*/}
-      {/*      </div>*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*)}*/}
-
       <svg
         ref={svgRef}
         width="100%"
@@ -108,12 +43,30 @@ export const PeruMap = () => {
       >
         <g clipPath="url(#clip0_433_177)">
           {peruRegions.map((region, index) => {
-            const isHovered = hoveredRegion?.name === region.name;
+            const isSelected = selectedRegion?.name === region.name;
+            const fillColor = isSelected ? region.fill : "#DBEECB";
 
             return (
-              <Tooltip
+              <Popover
+                key={index}
+                triggerScaleOnOpen={false}
                 classNames={{content: "bg-transparent p-0 shadow-none border-none"}}
-                content={
+                onClose={() => {
+                  if (selectedRegion?.name === region.name) setSelectedRegion(null);
+                }}
+              >
+                <PopoverTrigger>
+                  <g onClick={() => toggleSelect(region)} style={{ cursor: "pointer" }}>
+                    <path
+                      className="transition ease-in-out relative hover:cursor-pointer hover:opacity-80 duration-200"
+                      fill={fillColor}
+                      d={region.path}
+                      stroke="#131A31"
+                      strokeWidth="2"
+                    />
+                  </g>
+                </PopoverTrigger>
+                <PopoverContent>
                   <div className="relative flex flex-col items-center">
                     <div className="w-[95%] h-2" style={{ backgroundColor: years[selectedYear] }} />
                     <div
@@ -183,31 +136,8 @@ export const PeruMap = () => {
                     <div style={{ backgroundColor: `${years[selectedYear]}80`}} className="w-[10px] h-2 absolute bottom-2 left-0" />
                     <div style={{ backgroundColor: `${years[selectedYear]}80`}} className="w-[10px] h-2 absolute bottom-2 right-0" />
                   </div>
-                }
-              >
-                <g
-                  key={index}
-                  // onMouseMove={(event) => handleMouseMove(event, region)}
-                  onMouseMove={() => handleMouseMove(region)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <path
-                    className="transition duration-200 ease-in-out relative"
-                    // fill={region.fill || "#ffe2e2"}
-                    fill={isHovered ? region.fill : "#DBEECB"}
-                    d={region.path}
-                    // stroke="white"
-                    stroke="#131A31"
-                    strokeWidth="2"
-                    // ref={(el) => {
-                    //   if (el && !region.center) {
-                    //     const { centerX, centerY } = getCenterOfPath(el);
-                    //     region.center = { centerX, centerY };
-                    //   }
-                    // }}
-                  />
-                </g>
-              </Tooltip>
+                </PopoverContent>
+              </Popover>
             );
           })}
         </g>

@@ -1,10 +1,10 @@
 import {useRef, useState} from "react";
-import {Tooltip} from "@heroui/react";
 import {type PeruRegion, peruRegions} from "@/features/04-Radiografia-Nacional/utils/peruRegions.ts";
 import TOOLTIP_BG from "@/assets/mapa-chart-cloud.png";
 import {MapDataIcon} from "@/assets/icons/MapDataIcon.tsx";
 import {MapDataIconHalf} from "@/assets/icons/MapDataIconHalf.tsx";
 import {Heatline} from "@/features/04-Radiografia-Nacional/components/Heatline.tsx";
+import {Popover, PopoverContent, PopoverTrigger} from "@heroui/popover";
 
 export const MapaChart = () => {
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -59,9 +59,22 @@ export const MapaChart = () => {
         <g clipPath="url(#clip0_433_177)">
           {peruRegions.map((region, index) => {
             return (
-              <Tooltip
+              <Popover
+                triggerScaleOnOpen={false}
                 classNames={{content: "bg-transparent p-0 shadow-none border-none"}}
-                content={
+              >
+                <PopoverTrigger>
+                  <g key={index} style={{ cursor: "pointer" }}>
+                    <path
+                      className="transition ease-in-out relative hover:cursor-pointer hover:opacity-80 duration-200"
+                      fill={region.fill}
+                      d={region.path}
+                      stroke="#131A31"
+                      strokeWidth="2"
+                    />
+                  </g>
+                </PopoverTrigger>
+                <PopoverContent>
                   <div
                     className="w-54 h-44 bg-no-repeat bg-cover bg-center rounded-lg"
                     style={{ backgroundImage: `url(${TOOLTIP_BG})` }}
@@ -103,18 +116,8 @@ export const MapaChart = () => {
                       );
                     })()}
                   </div>
-                }
-              >
-                <g key={index}>
-                  <path
-                    className="transition duration-200 ease-in-out relative"
-                    fill={region.fill}
-                    d={region.path}
-                    stroke="#131A31"
-                    strokeWidth="2"
-                  />
-                </g>
-              </Tooltip>
+                </PopoverContent>
+              </Popover>
             );
           })}
         </g>
