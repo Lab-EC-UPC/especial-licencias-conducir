@@ -125,6 +125,7 @@ export const credits: Credit[] = [
         name: "Jessica Quispe Eusebio",
         role: "Diseño",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+        url: "https://pe.linkedin.com/in/jessica-eusebio-0557802a7"
       },
     ]
   },
@@ -223,11 +224,13 @@ export const credits: Credit[] = [
         name: "Yuri Ramirez Trujillo",
         role: "Actriz",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+        url: "https://www.linkedin.com/in/yuri-ramírez-trujillo-549711358/"
       },
       {
         name: "Valery Montoya Yopla",
         role: "Directora de Arte",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+        url: "https://www.linkedin.com/in/valery-montoya-83026b363/",
       },
       {
         name: "Marcelo Mesarina Rivera",
