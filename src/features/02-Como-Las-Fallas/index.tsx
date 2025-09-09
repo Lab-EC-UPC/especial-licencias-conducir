@@ -4,35 +4,44 @@ import { Wheel } from "./components/Logopapeletas";
 import items from "./utils/wheel";
 
 export const ComoLasFallas = () => {
-  const [index, setIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(2);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
-  // Detectar el tamaño de pantalla para cambiar la cantidad por página
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setItemsPerPage(1);
-      } else {
-        setItemsPerPage(2);
-      }
+      const newItemsPerPage = window.innerWidth < 768 ? 1 : 2;
+      setItemsPerPage(newItemsPerPage);
+      setCurrentIndex(0);
     };
+
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handlePrev = () => {
-    setIndex((prev) =>
-      prev - itemsPerPage < 0
-        ? items.length - itemsPerPage
-        : prev - itemsPerPage
-    );
+    setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
   };
 
   const handleNext = () => {
-    setIndex((prev) =>
-      prev + itemsPerPage >= items.length ? 0 : prev + itemsPerPage
-    );
+    setCurrentIndex((prev) => (prev + 1) % items.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    const distance = touchStart - touchEnd;
+    if (distance > 50) handleNext();
+    else if (distance < -50) handlePrev();
   };
 
   return (
@@ -49,26 +58,67 @@ export const ComoLasFallas = () => {
           frecuentes en todo el país en el mismo periodo.
         </p>
 
-        <div className="relative group w-full flex justify-center">
-          <div
+        <div className="relative w-full max-w-6xl">
+          {/* Btn izquierda */}
+          <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 hidden group-hover:flex bg-white p-2 rounded-full shadow-md cursor-pointer z-10"
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md cursor-pointer z-10 opacity-80 hover:opacity-100 transition-opacity"
           >
-            <ChevronLeft className="w-6 h-6 text-gray-700" />
-          </div>
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
+          </button>
 
-          <div className="flex gap-6 sm:gap-10 md:gap-[75px] lg:gap-[100px] items-center transition-all duration-500">
-            {items.slice(index, index + itemsPerPage).map((item, i) => (
-              <Wheel key={i} {...item} />
-            ))}
-          </div>
-
-          <div
+          {/* Btn derecha */}
+          <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 hidden group-hover:flex bg-white p-2 rounded-full shadow-md cursor-pointer z-10"
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md cursor-pointer z-10 opacity-80 hover:opacity-100 transition-opacity"
           >
-            <ChevronRight className="w-6 h-6 text-gray-700" />
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
+          </button>
+
+          {/*swipe */}
+          <div
+            className="overflow-hidden"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{
+                transform: `translateX(-${
+                  currentIndex * (100 / itemsPerPage)
+                }%)`,
+              }}
+            >
+              {items.map((item, i) => (
+                <div
+                  key={i}
+                  className={`flex-shrink-0 ${
+                    itemsPerPage === 1 ? "w-full" : "w-1/2"
+                  } px-2 sm:px-4 flex justify-center`}
+                >
+                  <Wheel {...item} />
+                </div>
+              ))}
+            </div>
           </div>
+        </div>
+
+        {/* Indicadores */}
+        <div className="flex justify-center mt-6 space-x-2">
+          {Array.from({
+            length: Math.ceil(items.length / itemsPerPage),
+          }).map((_, i) => (
+            <button
+              key={i}
+              className={`w-2 h-2 rounded-full ${
+                Math.floor(currentIndex / itemsPerPage) === i
+                  ? "bg-[#E91E63]"
+                  : "bg-gray-300"
+              }`}
+              onClick={() => setCurrentIndex(i * itemsPerPage)}
+            />
+          ))}
         </div>
 
         <p className="text-base sm:text-lg md:text-xl font-medium italic mt-10 md:mt-20">
