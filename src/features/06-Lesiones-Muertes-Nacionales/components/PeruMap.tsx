@@ -102,8 +102,7 @@ export const PeruMap = () => {
                           {!region.data && <p>No hay datos registrados en la base</p>}
                           {region.data && (
                             <>
-                              {region.data
-                                .find((d) => d.year === selectedYear) && (
+                              {region.data.find((d) => d.year === selectedYear) ? (
                                 <div className="grid text-sm md:text-md">
                                   <div className="flex w-full justify-between">
                                     <label>Fallecido:</label>
@@ -122,6 +121,8 @@ export const PeruMap = () => {
                                     <p>{region.data.find((d) => d.year === selectedYear)?.noSeConoce || 0}</p>
                                   </div>
                                 </div>
+                              ) : (
+                                <p>No hay datos registrados en la base</p>
                               )}
                             </>
                           )}

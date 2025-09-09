@@ -100,7 +100,7 @@ export const CausaOverlay = ({
             {/* Botón de cierre */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-xl font-bold p-2 leading-none z-10 opacity-70 hover:opacity-100"
+              className="absolute top-4 right-4 text-xl font-bold p-2 leading-none z-10 opacity-70 hover:opacity-100 hover:cursor-pointer"
               style={{ color: colorConfig.outline }}
             >
               <svg

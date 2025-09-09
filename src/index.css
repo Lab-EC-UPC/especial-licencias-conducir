@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @layer theme, base, components, utilities;
+@import url("https://use.typekit.net/qyi2bdd.css");
 @plugin './hero.ts';
 
 @source "../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
@@ -15,6 +16,11 @@
     --color-yellow: #FFAF42;
     --font-bitcount: "bitcount-mono-single-square", sans-serif;
     --font-helvetica: "helvetica-neue-lt-pro", sans-serif;
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
 }
 
 :root {

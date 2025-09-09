@@ -230,11 +230,11 @@ export const Testimonios = () => {
 
     // Render
     return (
-      <div className="bg-yellow-100 min-h-screen">
+      <div className="min-h-screen">
           <div className="mx-auto container w-full px-4">
               <div className="flex flex-col items-center text-center py-8">
                   {/* Título Principal */}
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl mb-8 font-bold font-bitcount text-[#131A31]">
+                  <h1 className="text-4xl xl:text-5xl mb-6 md:mb-8 font-semibold font-bitcount">
                       Testimonios
                   </h1>
 
@@ -350,9 +350,9 @@ export const Testimonios = () => {
 
                   {/* Sección Autoridades */}
                   <div className="max-w-4xl mx-auto w-full">
-                      <h2 className="text-xl md:text-2xl font-bold font-bitcount text-[#131A31] text-center mb-8">
+                      <h1 className="text-2xl sm:text-3xl md:text-5xl mb-6 md:mb-8 font-semibold font-bitcount text-[#131A31]">
                           ¿Qué dicen las autoridades y organizaciones?
-                      </h2>
+                      </h1>
 
                       <div className="bg-[#ffaf42] rounded-[25px] p-6 md:p-8 mb-8">
                           <div className="flex flex-col sm:flex-row justify-center gap-4">

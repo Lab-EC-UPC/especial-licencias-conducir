@@ -68,7 +68,7 @@ export const ProbabilidadAprobarExamen = () => {
   return (
     <div className="w-full flex justify-center p-4">
       <div className="w-full max-w-[740px] rounded-[28px] bg-[#131A31] text-white p-6 md:p-10 shadow-xl">
-        <h1 className="text-center text-2xl md:text-3xl font-black leading-tight font-bitcount">
+        <h1 className="text-center text-2xl md:text-3xl font-semibold leading-tight font-bitcount">
           ¿Cuál es tu probabilidad de aprobar
           <br className="hidden md:block" /> el examen de licencia?
         </h1>

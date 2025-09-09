@@ -73,14 +73,14 @@ export const CausasRaices = () => {
     <>
       <div className="mx-auto container w-full my-32">
         <div className="flex flex-col items-center justify-center h-full text-center">
-          <h1 className="text-4xl md:text-5xl mb-6 md:mb-8 font-bold font-bitcount text-primary">
+          <h1 className="text-4xl xl:text-5xl mb-6 md:mb-8 font-semibold font-bitcount">
             Causas Raíces
           </h1>
           <p className="w-full md:max-w-2/3 font-medium text-md md:text-xl mb-16 md:mb-24">
             Bajada de 5 líneas Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo
           </p>
 
-          <div className="flex flex-col md:flex-row gap-16 md:gap-8 justify-center items-start mx-auto max-w-6xl w-full px-4">
+          <div className="grid xl:grid-cols-3 gap-16 md:gap-8 justify-center items-start mx-auto max-w-6xl w-full px-4">
             {EXPERT_CONTENT.map((expert, index) => {
               const colors = COLOR_CONFIGS[index % COLOR_CONFIGS.length];
               return (

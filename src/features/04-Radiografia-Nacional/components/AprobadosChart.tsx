@@ -19,8 +19,8 @@ export const AprobadosChart = () => {
   // Colores de los HEXÁGONOS
   const colors = useMemo(
     () => ({
-      approved: "#D6F0A1", // interior (aprobados)
-      not: "#A0579B",      // anillo (desaprobados)
+      approved: "#DBEECB", // interior (aprobados)
+      not: "#AC5EAA",      // anillo (desaprobados)
       stroke: "#0d1321",   // borde de cada hex
     }),
     []
@@ -142,7 +142,7 @@ export const AprobadosChart = () => {
   }, [size, hexSize, approvedRatio, colors]);
 
   // ===== Tooltip dinámico (cuando el mouse está dentro) =====
-  const nf = new Intl.NumberFormat("es-PE");
+  const nf = new Intl.NumberFormat("fr-FR");
   const isApproved = tooltip.region === "approved";
   const labelValue = isApproved ? nf.format(totalAprobados) : nf.format(totalNoAprobados);
   const labelText  = isApproved ? "de aprobados" : "de desaprobados";
@@ -187,6 +187,9 @@ export const AprobadosChart = () => {
     transform: "translate(0, -50%)" as const, // anclamos borde izquierdo al punto
   };
 
+  const formatWithSpaces = (num: number) =>
+    nf.format(num).replace(/\u202F/g, " ");
+
   return (
     // importante para permitir que los labels salgan del SVG
     <div ref={wrapRef} className="relative overflow-visible">
@@ -194,21 +197,21 @@ export const AprobadosChart = () => {
         ref={svgRef}
         width={size}
         height={size}
-        className="max-w-full h-auto block bg-transparent"
+        className="max-w-full h-auto block bg-transparent hover:cursor-pointer"
         aria-label="Aprobados (interior) y no aprobados (anillo exterior)"
       />
 
       {/* === Labels estáticos cuando el mouse está fuera del SVG (pueden sobresalir) === */}
       {!inside && (
         <>
-          <div className="hidden md:flex">
+          <div className="hidden xl:flex text-left">
             <div
               className="absolute pointer-events-none"
               style={{ left: staticApproved.left, top: staticApproved.top, transform: staticApproved.transform }}
             >
-              <div className="rounded-xl bg-pink-500 text-white shadow-[0_6px_0_#a94c6d]">
-                <div className="font-bold text-lg px-4 pt-2">{nf.format(totalAprobados)}</div>
-                <div className="text-sm px-4 pb-2 opacity-90">de aprobados</div>
+              <div className="rounded-xl font-medium bg-pink text-white text-left shadow-[0_6px_0_#a94c6d]">
+                <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalAprobados)}</div>
+                <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">de aprobados</div>
               </div>
             </div>
 
@@ -216,24 +219,24 @@ export const AprobadosChart = () => {
               className="absolute pointer-events-none"
               style={{ left: staticNot.left, top: staticNot.top, transform: staticNot.transform }}
             >
-              <div className="rounded-xl bg-white text-pink-600 shadow-[0_6px_0_#6db0d1]">
-                <div className="font-bold text-lg px-4 pt-2">{nf.format(totalNoAprobados)}</div>
-                <div className="text-sm px-4 pb-2 opacity-90">de desaprobados</div>
+              <div className="rounded-xl font-medium bg-white text-pink text-left shadow-[0_6px_0_#6db0d1]">
+                <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalNoAprobados)}</div>
+                <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">de desaprobados</div>
               </div>
             </div>
           </div>
-          <div className="md:hidden flex justify-center gap-4 items-center">
+          <div className="xl:hidden flex justify-center gap-4 items-center text-left">
             <div>
-              <div className="rounded-xl bg-pink-500 text-white shadow-[0_6px_0_#a94c6d]">
-                <div className="font-bold text-lg px-4 pt-2">{nf.format(totalAprobados)}</div>
-                <div className="text-sm px-4 pb-2 opacity-90">de aprobados</div>
+              <div className="rounded-xl font-medium bg-pink text-white shadow-[0_6px_0_#a94c6d]">
+                <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalAprobados)}</div>
+                <div className="text-sm md:text-md px-4 pb-2 opacity-90">de aprobados</div>
               </div>
             </div>
 
             <div>
-              <div className="rounded-xl bg-white text-pink-600 shadow-[0_6px_0_#6db0d1]">
-                <div className="font-bold text-lg px-4 pt-2">{nf.format(totalNoAprobados)}</div>
-                <div className="text-sm px-4 pb-2 opacity-90">de desaprobados</div>
+              <div className="rounded-xl font-medium bg-white text-pink shadow-[0_6px_0_#6db0d1]">
+                <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalNoAprobados)}</div>
+                <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">de desaprobados</div>
               </div>
             </div>
           </div>
@@ -244,18 +247,18 @@ export const AprobadosChart = () => {
       {inside && tooltip.show && tooltip.region && (
         <div
           ref={tipRef}
-          className="absolute pointer-events-none"
+          className="absolute pointer-events-none text-left"
           style={{ left, top, whiteSpace: "nowrap" }}
         >
           {isApproved ? (
-            <div className="rounded-xl bg-pink-500 text-white shadow-[0_6px_0_#a94c6d]">
-              <div className="font-bold text-lg px-4 pt-2">{labelValue}</div>
-              <div className="text-sm px-4 pb-2 opacity-90">{labelText}</div>
+            <div className="rounded-xl font-medium bg-pink text-white shadow-[0_6px_0_#a94c6d]">
+              <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{labelValue}</div>
+              <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">{labelText}</div>
             </div>
           ) : (
-            <div className="rounded-xl bg-white text-pink-600 shadow-[0_6px_0_#6db0d1]">
-              <div className="font-bold text-lg px-4 pt-2">{labelValue}</div>
-              <div className="text-sm px-4 pb-2 opacity-90">{labelText}</div>
+            <div className="rounded-xl font-medium bg-white text-pink shadow-[0_6px_0_#6db0d1]">
+              <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{labelValue}</div>
+              <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">{labelText}</div>
             </div>
           )}
         </div>

@@ -17,9 +17,9 @@ import {Car} from "@/features/03-De-Donde-Son-Los-Evaluados/components/Car.tsx";
 export const DeDondeSonLosEvaluados = () => {
   return (
     <div>
-      <div className="mx-auto container w-full h-full my-32">
+      <div className="mx-auto container w-full h-full my-16 xl:my-32">
         <div className="flex flex-col items-center text-center h-full px-4">
-          <h1 className="text-4xl md:text-5xl mb-6 md:mb-8 font-bold font-bitcount">
+          <h1 className="text-4xl xl:text-5xl mb-6 md:mb-8 font-semibold font-bitcount">
             ¿De dónde son los evaluados?
           </h1>
           <p className="w-full md:max-w-2/3 font-medium text-md md:text-xl">
@@ -33,7 +33,7 @@ export const DeDondeSonLosEvaluados = () => {
               <h2 className="font-light text-[#868686]">Destino</h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-20 md:gap-4 w-full min-h-[60vh]">
+            <div className="grid xl:grid-cols-3 gap-20 md:gap-4 w-full min-h-[60vh]">
               <motion.div
                 className="flex flex-col gap-2 relative"
                 initial="hidden"
@@ -41,11 +41,11 @@ export const DeDondeSonLosEvaluados = () => {
                 viewport={{ amount: 0.3 }}
               >
                 <div className="flex justify-between w-full items-end">
-                  <div>
+                  <div className="pl-0 md:pl-8 xl:pl-0">
                     <p className="text-[#58B7CF] text-5xl font-black leading-none">80%</p>
                     <p className="text-[#868686] text-lg leading-none">Foráneos</p>
                   </div>
-                  <div className="text-left pr-8 xl:pr-16">
+                  <div className="text-left pr-8 md:pr-18 xl:pr-16">
                     <p className="text-[#868686] text-3xl font-bold leading-none">20%</p>
                     <p className="text-[#868686] text-lg leading-none">Residentes</p>
                   </div>
@@ -95,11 +95,11 @@ export const DeDondeSonLosEvaluados = () => {
                 viewport={{ amount: 0.3 }}
               >
                 <div className="flex justify-between w-full items-end">
-                  <div className="text-left pl-4">
+                  <div className="text-left pl-4 md:pl-30 xl:pl-4">
                     <p className="text-[#58B7CF] text-5xl font-black leading-none">70%</p>
                     <p className="text-[#868686] text-lg leading-none">Foráneos</p>
                   </div>
-                  <div className="text-left pr-2 md:pr-10">
+                  <div className="text-left pr-2 md:pr-3 xl:pr-10">
                     <p className="text-[#868686] text-3xl font-bold leading-none">20%</p>
                     <p className="text-[#868686] text-lg leading-none">Residentes</p>
                   </div>
@@ -141,11 +141,11 @@ export const DeDondeSonLosEvaluados = () => {
                 viewport={{ amount: 0.3 }}
               >
                 <div className="flex justify-between w-full items-end">
-                  <div className="text-left pl-8">
+                  <div className="text-left  pl-4 md:pl-32 xl:pl-8">
                     <p className="text-[#58B7CF] text-5xl font-black leading-none">80%</p>
                     <p className="text-[#868686] text-lg leading-none">Foráneos</p>
                   </div>
-                  <div className="text-left pr-6 md:pr-18">
+                  <div className="text-left pr-6 md:pr-56 xl:pr-18">
                     <p className="text-[#868686] text-3xl font-bold leading-none">40%</p>
                     <p className="text-[#868686] text-lg leading-none">Residentes</p>
                   </div>

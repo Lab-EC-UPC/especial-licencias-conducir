@@ -23,35 +23,35 @@ export const RadiografiaNacional = () => {
       <div className="bg-primary">
         <div className="mx-auto container w-full min-h-screen">
           <div className="flex flex-col items-center text-center text-white h-full py-16 px-4">
-            <h1 className="text-4xl md:text-5xl mb-6 md:mb-8 font-bold font-bitcount text-white">
+            <h1 className="text-4xl xl:text-5xl mb-6 md:mb-8 font-semibold font-bitcount">
               Radiografía Nacional
             </h1>
-            <p className="w-full md:max-w-2/3 font-medium text-md md:text-xl">
+            <p className="w-full xl:max-w-2/3 font-medium text-md xl:text-xl">
               Lorem Ipsum is simply dummy text of the printing and typesetting industry.
               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
             </p>
 
-            <div className="grid md:flex items-center justify-center py-8 relative w-full min-h-[70vh]">
-              <div className="md:absolute right-0">
-                <div className="flex md:flex-col h-full items-center justify-center relative">
+            <div className="grid xl:flex items-center justify-center py-8 relative w-full min-h-[70vh]">
+              <div className="xl:absolute right-0">
+                <div className="flex xl:flex-col h-full items-center justify-center relative">
 
                   {/*Desktop*/}
-                  <div className="hidden md:flex absolute right-0 translate-x-full w-2 bg-black top-[6px] bottom-[16px]" />
-                  <div className="relative w-full hidden md:flex justify-center">
+                  <div className="hidden xl:flex absolute right-0 translate-x-full w-2 bg-black top-[6px] bottom-[16px]" />
+                  <div className="relative w-full hidden xl:flex justify-center">
                     <div className="relative bg-[#294368] h-2 w-[80%]">
                       <div className="absolute -right-2 top-0 h-2 w-2 bg-black" />
                     </div>
                   </div>
 
                   {/*Mobile*/}
-                  <div className="relative h-12 w-2 flex md:hidden">
+                  <div className="relative h-12 w-2 flex xl:hidden">
                     <div className="absolute h-2 w-2 -bottom-2 bg-black" />
                     <div className="w-full h-full bg-[#294368]" />
                   </div>
 
                   <div>
-                    <div className="bg-[#294368] p-2 md:p-4 w-full">
-                      <div className="flex md:flex-col items-center gap-4">
+                    <div className="bg-[#294368] p-2 xl:p-4 w-full">
+                      <div className="flex xl:flex-col items-center gap-4">
                         <button
                           onClick={() => setSelected("aprobados")}
                           className={`p-2 hover:cursor-pointer ${selected === "aprobados" ? "text-white" : "text-[#3C5C8B]"}`}
@@ -78,20 +78,20 @@ export const RadiografiaNacional = () => {
                         </button>
                       </div>
                     </div>
-                    <div className="h-2 w-full bg-black flex md:hidden" />
+                    <div className="h-2 w-full bg-black flex xl:hidden" />
                   </div>
 
                   {/*Desktop*/}
-                  <div className="relative w-full hidden md:flex justify-center">
+                  <div className="relative w-full hidden xl:flex justify-center">
                     <div className="relative bg-[#294368] h-2 w-[80%]">
                       <div className="absolute -left-2 bottom-0 h-2 w-2 bg-black" />
                       <div className="absolute -right-2 bottom-0 h-2 w-2 bg-black" />
                     </div>
                   </div>
-                  <div className="bg-black h-2 w-[80%] hidden md:flex" />
+                  <div className="bg-black h-2 w-[80%] hidden xl:flex" />
 
                   {/*Mobile*/}
-                  <div className="relative h-12 w-2 flex md:hidden">
+                  <div className="relative h-12 w-2 flex xl:hidden">
                     <div className="absolute h-2 w-2 -top-2 bg-black" />
                     <div className="w-full h-full bg-[#294368]" />
                     <div className="absolute h-12 w-2 -right-2 bg-black" />
@@ -101,7 +101,7 @@ export const RadiografiaNacional = () => {
                 </div>
               </div>
 
-              <div className="absolute bottom-5 right-0 hidden md:flex flex-col items-center w-32 gap-2">
+              <div className="absolute bottom-5 right-0 hidden xl:flex flex-col items-center w-32 gap-2">
                 <p className="text-center text-xs">
                   Haz clic en los íconos para conocer la data
                 </p>
@@ -112,7 +112,7 @@ export const RadiografiaNacional = () => {
                 />
               </div>
 
-              <div className="py-4 h-[80vh] md:h-[75vh] flex flex-col justify-center items-center">
+              <div className="py-4 h-[80vh] md:h-[70vh] xl:h-[75vh] flex flex-col justify-center items-center">
                 {selected === "aprobados" && <AprobadosChart />}
                 {selected === "genero" && <GeneroChart />}
                 {selected === "edad" && <EdadChart />}
