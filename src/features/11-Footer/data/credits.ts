@@ -26,7 +26,7 @@ export const credits: Credit[] = [
     members: [
       {
         name: "Sebastian Fernandez Moris",
-        role: "Coordinador de Periodismo",
+        role: "Coordinador de periodismo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://www.linkedin.com/in/sebastian-fernandez-moris-469a43292/",
       },
@@ -87,7 +87,7 @@ export const credits: Credit[] = [
     members: [
       {
         name: "Gustavo Huamaní Pimentel",
-        role: "Coordinador de Diseño",
+        role: "Coordinador de diseño",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://www.linkedin.com/in/gustavo-huamani-pimentel-086261254/",
       },
@@ -136,31 +136,31 @@ export const credits: Credit[] = [
     members: [
       {
         name: "Daniel Zapata Trelles",
-        role: "Coordinador de Desarrollo",
+        role: "Coordinador de desarrollo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://www.linkedin.com/in/daniel-alonso-zapata-trelles-1664aa1b9/",
       },
       {
         name: "Liliana Fu Ye",
-        role: "Coordinador de Desarrollo",
+        role: "Coordinadora de desarrollo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://lilianafu.com/",
       },
       {
         name: "Matías Ascasibe Paucar",
-        role: "Gamificación y Desarrollo de página web",
+        role: "Gamificación y desarrollo de página web",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://www.linkedin.com/in/matiasascasibe",
       },
       {
         name: "William Ramos Vicente",
-        role: "Gamificación y Desarrollo de página web",
+        role: "Gamificación y desarrollo de página web",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://williamramos.netlify.app/",
       },
       {
         name: "Daniella Vargas Saldaña",
-        role: "Modelo Predictivo",
+        role: "Modelo predictivo",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://daniellavargas.netlify.app",
       },
@@ -191,13 +191,13 @@ export const credits: Credit[] = [
     members: [
       {
         name: "Fabrizio Monge Proa",
-        role: "Coordinador de Análisis de Datos",
+        role: "Coordinador de análisis de datos",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://www.linkedin.com/in/fabrizio-monge-3970b9239/",
       },
       {
         name: "Sofía Enciso Goicochea",
-        role: "Análisis de Datos",
+        role: "Coordinadora de análisis de políticas públicas",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://www.linkedin.com/in/sof%C3%ADa-enciso-goicochea-41bbb8258/",
       },
@@ -210,13 +210,13 @@ export const credits: Credit[] = [
     members: [
       {
         name: "Franca Alatrista Valdivia",
-        role: "Coordinadora y Productora Ejecutiva",
+        role: "Coordinadora y productora ejecutiva",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://www.linkedin.com/in/franca-alatrista-466307249/",
       },
       {
         name: "André Poma",
-        role: "Director y Director de Fotografía",
+        role: "Director y director de fotografía",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://u202020552.myportfolio.com/work?fbclid=PAZXh0bgNhZW0CMTEAAaeeC6XeMyJ8PBxW7XUInDtiAie-OAHzQp37M6-9K6-yH8gev7f8_a1mVXH0YQ_aem_vGHzqKn7TfGRw11cQvtjlg",
       },
@@ -228,7 +228,7 @@ export const credits: Credit[] = [
       },
       {
         name: "Valery Montoya Yopla",
-        role: "Directora de Arte",
+        role: "Directora de arte",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://www.linkedin.com/in/valery-montoya-83026b363/",
       },
@@ -240,12 +240,12 @@ export const credits: Credit[] = [
       },
       {
         name: "Paolo Lovatón Flores",
-        role: "Diseñador de Producción",
+        role: "Diseñador de producción",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://www.linkedin.com/in/paolo-alejandro-lovaton-flores-2a259a21b/",
       },
       {
-        name: "Joaquín Ciriaco",
+        name: "Joaquín Villalobos",
         role: "Compositor",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
@@ -276,25 +276,25 @@ export const credits: Credit[] = [
     members: [
       {
         name: "Mayté Ciriaco",
-        role: "Coordinación General, Supervisión y Edición",
+        role: "Coordinación general, supervisión y edición",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://www.linkedin.com/in/mayt%C3%A9-ciriaco-ruiz-7b5738141/",
       },
       {
         name: "Sebastian Fernandez Moris",
-        role: "Coordinador de Proyecto",
+        role: "Coordinador de proyecto",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://www.linkedin.com/in/sebastian-fernandez-moris-469a43292/",
       },
       {
         name: "Ariana Lira",
-        role: "Supervisión y Edición General",
+        role: "Supervisión y edición General",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://www.linkedin.com/in/ariana-lira-delcore/",
       },
       {
         name: "Gino Alva Olivera",
-        role: "Asistencia Editorial",
+        role: "Asistencia editorial",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
         url: "https://www.linkedin.com/in/gino-alva-olivera-62133b104/",
       },
