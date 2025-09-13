@@ -21,7 +21,7 @@ export const GeneroChart = () => {
   const colors = useMemo(
     () => ({
       masculino: "#58b7cf", // Azul para hombres (anillo exterior)
-      femenino: "#ffaf42",  // Rosa para mujeres (círculo interior)
+      femenino: "#ffaf42",  // Naranja para mujeres (círculo interior)
       stroke: "#0d1321",    // Borde de cada hex
     }),
     []
@@ -60,9 +60,7 @@ export const GeneroChart = () => {
     const cy = size / 2;
 
     // Anillo exterior para hombres (80%)
-    const outerCircleR = size * 0.40; 
-
-
+    const outerCircleR = size * 0.40;
 
     const svg = d3
       .select(svgRef.current)
@@ -152,7 +150,7 @@ export const GeneroChart = () => {
   const nf = new Intl.NumberFormat("fr-FR");
   const isMasculino = tooltip.region === "masculino";
   const labelValue = isMasculino ? nf.format(totalFemenino) : nf.format(totalMasculino);
-  const labelText  = isMasculino ? "de mujeres" : "de hombres";
+  const labelText  = isMasculino ? "son mujeres" : "son hombres";
 
   // Medidas actuales del wrapper (por si el SVG se escala por CSS)
   const WRAP_W = wrapRef.current?.clientWidth ?? size;
@@ -213,7 +211,7 @@ export const GeneroChart = () => {
               className="absolute pointer-events-none"
               style={{ left: staticMasculino.left, top: staticMasculino.top, transform: staticMasculino.transform }}
             >
-              <div className="rounded-xl font-medium bg-blue-500 text-white text-left shadow-[0_6px_0_#4A90E2]">
+              <div className="rounded-xl font-medium bg-white text-pink text-left shadow-[0_6px_0_#6db0d1]">
                 <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalMasculino)}</div>
                 <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">de hombres</div>
               </div>
@@ -223,7 +221,7 @@ export const GeneroChart = () => {
               className="absolute pointer-events-none"
               style={{ left: staticFemenino.left, top: staticFemenino.top, transform: staticFemenino.transform }}
             >
-              <div className="rounded-xl font-medium bg-pink text-white text-left shadow-[0_6px_0_#E91E63]">
+              <div className="rounded-xl font-medium bg-pink text-white shadow-[0_6px_0_#a94c6d]">
                 <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalFemenino)}</div>
                 <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">de mujeres</div>
               </div>
@@ -240,18 +238,16 @@ export const GeneroChart = () => {
           style={{ left, top, whiteSpace: "nowrap" }}
         >
           {isMasculino ? (
-            <div className="rounded-xl font-medium bg-pink text-white shadow-[0_6px_0_#E91E63]">
+            <div className="rounded-xl font-medium bg-pink text-white shadow-[0_6px_0_#a94c6d]">
               <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{labelValue}</div>
-              <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">{labelText}</div>
+              <div className="font-bitcount text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">{labelText}</div>
             </div>
 
-
-
-    
           ) : (
-        <div className="rounded-xl font-medium bg-blue-500 text-white shadow-[0_6px_0_#4A90E2]">
+            
+            <div className="rounded-xl font-medium bg-white text-pink text-left shadow-[0_6px_0_#6db0d1]">
               <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{labelValue}</div>
-              <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">{labelText}</div>
+              <div className="font-bitcount text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">{labelText}</div>
             </div>
           )}
         </div>
@@ -264,11 +260,11 @@ export const GeneroChart = () => {
         <div className="flex gap-2 md:gap-4 items-center justify-center font-light text-sm md:text-lg">
           <h3>Resultados</h3>
           <div className="flex gap-2 items-center">
-            <div className="bg-blue-500 size-2 md:size-4" />
+            <div className="bg-[#58b7cf] size-2 md:size-4" />
             <h3>Masculino</h3>
           </div>
           <div className="flex gap-2 items-center">
-            <div className="bg-pink size-2 md:size-4" />
+            <div className="bg-[#ffaf42] size-2 md:size-4" />
             <h3>Femenino</h3>
           </div>
         </div>
