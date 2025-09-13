@@ -87,7 +87,7 @@ export const MapaChart = () => {
                 classNames={{content: "bg-transparent p-0 shadow-none border-none"}}
               >
                 <PopoverTrigger>
-                  <g key={index} style={{ cursor: "pointer" }}>
+                  <g key={index}>
                     <path
                       className="transition ease-in-out relative hover:cursor-pointer hover:opacity-80 duration-200"
                       fill={region.fill}
@@ -108,19 +108,45 @@ export const MapaChart = () => {
                     }}
                   >
                     <div className="flex flex-col items-center justify-center w-full h-full bg-center rounded-lg pb-2">
+                      {/*{region.subregions?.length ? (*/}
+                      {/*  <div className="relative grid grid-cols-2 gap-2 hover:cursor-pointer">*/}
+                      {/*    <motion.div*/}
+                      {/*      className="absolute top-0 left-0 h-6 rounded bg-primary w-[50%] object-cover pointer-events-none"*/}
+                      {/*      animate={{*/}
+                      {/*        x: selectedCity === "Lima" ? "0%" : "105%",*/}
+                      {/*      }}*/}
+                      {/*      transition={{ type: "spring", stiffness: 300, damping: 25 }}*/}
+                      {/*    />*/}
+                      {/*    {region.subregions.map(sr => (*/}
+                      {/*      <button*/}
+                      {/*        key={sr.city}*/}
+                      {/*        className={`hover:cursor-pointer rounded z-50 ${*/}
+                      {/*          selectedCity === sr.city*/}
+                      {/*            ? "text-white"*/}
+                      {/*            : "text-primary border-2 border-primary/50"*/}
+                      {/*        }`}*/}
+                      {/*        onClick={() => setSelectedCity(sr.city)}*/}
+                      {/*      >*/}
+                      {/*        <label className="px-1">{sr.city}</label>*/}
+                      {/*      </button>*/}
+                      {/*    ))}*/}
+                      {/*  </div>*/}
+                      {/*) : (*/}
+                      {/*  <h1 className="text-center text-xs leading-none">{region.name}</h1>*/}
+                      {/*)}*/}
                       {region.subregions?.length ? (
                         <div className="grid grid-cols-2 gap-2">
-                          {region.subregions.map(sr => (
+                          {region.subregions.map((sr, index) => (
                             <button
-                              key={sr.city}
-                              className={`hover:cursor-pointer rounded ${
+                              key={index}
+                              className={`!cursor-pointer rounded px-2 ${
                                 selectedCity === sr.city
                                   ? "bg-primary text-white"
                                   : "text-primary border-2 border-primary"
                               }`}
                               onClick={() => setSelectedCity(sr.city)}
                             >
-                              <label className="px-2">{sr.city}</label>
+                              {sr.city}
                             </button>
                           ))}
                         </div>

@@ -6,6 +6,7 @@ import TWENTYTWO from "@/assets/buttons-map/2022.png";
 import TWENTYTHREE from "@/assets/buttons-map/2023.png";
 import TWENTYFOUR from "@/assets/buttons-map/2024.png";
 import SELECTED from "@/assets/buttons-map/selected.png";
+import BACKGROUND_MAP from "@/assets/buttons-map/background-map.png";
 import { motion } from "framer-motion";
 
 export const PeruMap = () => {
@@ -45,6 +46,26 @@ export const PeruMap = () => {
     return () => document.removeEventListener("pointerdown", handleOutsideClick);
   }, []);
 
+  const getStats = (
+    region: PeruRegion,
+    year: string,
+    selectedCity: string
+  ) => {
+    const dataset = region.name === "Lima" && selectedCity === "Callao"
+      ? region.subcity
+      : region.data;
+
+    const row = dataset?.find(d => d.year === year);
+    return {
+      label: region.name === "Lima" ? selectedCity : region.name,
+      hasData: !!row,
+      fallecido: row?.fallecido ?? 0,
+      lesionado: row?.lesionado ?? 0,
+      ileso: row?.ileso ?? 0,
+      noSeConoce: row?.noSeConoce ?? 0,
+    };
+  };
+
   return (
     <div className="flex items-center h-full justify-center relative scrollbar-hidden">
       <svg
@@ -59,6 +80,7 @@ export const PeruMap = () => {
           {peruRegions.map((region, index) => {
             const isSelected = selectedRegion?.name === region.name;
             const fillColor = isSelected ? region.fill : "#DBEECB";
+            const stats = getStats(region, selectedYear, selectedCity);
 
             return (
               <Popover
@@ -90,7 +112,13 @@ export const PeruMap = () => {
                       {region.name !== "Lima" && <h1 className="text-lg md:text-xl mb-2">{region.name}</h1>}
                       {region.name === "Lima" && (
                         <div
-                          className="grid grid-cols-2 w-1/2 py-[12px] relative font-bitcount font-semibold text-lg"
+                          className="grid grid-cols-2 w-1/2 py-[13px] relative font-bitcount font-semibold text-lg"
+                          style={{
+                            backgroundImage: `url(${BACKGROUND_MAP})`,
+                            backgroundSize: "100% auto",
+                            backgroundRepeat: "no-repeat",
+                            backgroundPosition: "center"
+                          }}
                         >
                           <motion.img
                             src={SELECTED}
@@ -103,13 +131,15 @@ export const PeruMap = () => {
                           />
                           <button
                             onClick={() => setSelectedCity("Lima")}
-                            className={`relative z-10 hover:cursor-pointer ${selectedCity === "Lima" ? "text-black" : `text-[${years[selectedYear]}]`}`}
+                            style={{ color: selectedCity === "Lima" ? "black" : years[selectedYear] }}
+                            className={`relative z-10 hover:cursor-pointer`}
                           >
                             Lima
                           </button>
                           <button
                             onClick={() => setSelectedCity("Callao")}
-                            className={`relative z-10 hover:cursor-pointer ${selectedCity === "Lima" ? "text-black" : `text-[${years[selectedYear]}]`}`}
+                            style={{ color: selectedCity === "Callao" ? "black" : years[selectedYear] }}
+                            className={`relative z-10 hover:cursor-pointer`}
                           >
                             Callao
                           </button>
@@ -140,32 +170,15 @@ export const PeruMap = () => {
                       <div className="flex flex-col items-center relative">
                         <div className="w-[95%] h-2 bg-white"/>
                         <div className="flex flex-col gap-2 px-5 w-full py-2 relative bg-white h-28">
-                          {!region.data && <p>No hay datos registrados en la base</p>}
-                          {region.data && (
-                            <>
-                              {region.data.find((d) => d.year === selectedYear) ? (
-                                <div className="grid text-sm md:text-md">
-                                  <div className="flex w-full justify-between">
-                                    <label>Fallecidos:</label>
-                                    <p>{region.data.find((d) => d.year === selectedYear)?.fallecido || 0}</p>
-                                  </div>
-                                  <div className="flex w-full justify-between">
-                                    <label>Ilesos:</label>
-                                    <p>{region.data.find((d) => d.year === selectedYear)?.ileso || 0}</p>
-                                  </div>
-                                  <div className="flex w-full justify-between">
-                                    <label>Lesionados:</label>
-                                    <p>{region.data.find((d) => d.year === selectedYear)?.lesionado || 0}</p>
-                                  </div>
-                                  <div className="flex w-full justify-between">
-                                    <label>No se conoce:</label>
-                                    <p>{region.data.find((d) => d.year === selectedYear)?.noSeConoce || 0}</p>
-                                  </div>
-                                </div>
-                              ) : (
-                                <p>No hay datos registrados en la base</p>
-                              )}
-                            </>
+                          {!stats.hasData ? (
+                            <p>No hay datos registrados en la base</p>
+                          ) : (
+                            <div className="grid text-[15px]">
+                              <div className="flex w-full justify-between"><label>Fallecidos:</label><p>{stats.fallecido}</p></div>
+                              <div className="flex w-full justify-between"><label>Lesionados:</label><p>{stats.lesionado}</p></div>
+                              <div className="flex w-full justify-between"><label>Ilesos:</label><p>{stats.ileso}</p></div>
+                              <div className="flex w-full justify-between"><label>No se conoce:</label><p>{stats.noSeConoce}</p></div>
+                            </div>
                           )}
                         </div>
                         <div className="w-[95%] bg-[#C1E8F2] h-2"/>

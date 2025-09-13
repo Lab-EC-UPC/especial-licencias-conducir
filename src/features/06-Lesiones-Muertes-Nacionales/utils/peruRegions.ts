@@ -10,6 +10,13 @@ export interface PeruRegion {
     lesionado: number;
     noSeConoce: number;
   }[]
+  subcity?: {
+    year: string;
+    fallecido: number;
+    ileso: number;
+    lesionado: number;
+    noSeConoce: number;
+  }[]
 }
 
 export const peruRegions: PeruRegion[] = [
@@ -159,7 +166,13 @@ export const peruRegions: PeruRegion[] = [
       { year: "2022", fallecido: 12, ileso: 42, lesionado: 3, noSeConoce: 1 },
       { year: "2023", fallecido: 9, ileso: 66, lesionado: 6, noSeConoce: 1 },
       { year: "2024", fallecido: 3, ileso: 11, lesionado: 2, noSeConoce: 0 },
-    ]
+    ],
+    subcity: [
+      { year: "2021", fallecido: 0, ileso: 3, lesionado: 2, noSeConoce: 0 },
+      { year: "2022", fallecido: 1, ileso: 3, lesionado: 0, noSeConoce: 0 },
+      { year: "2023", fallecido: 0, ileso: 6, lesionado: 0, noSeConoce: 0 },
+      { year: "2024", fallecido: 0, ileso: 5, lesionado: 0, noSeConoce: 0 },
+    ],
   },
   {
     name: "Loreto",
