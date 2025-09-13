@@ -1,6 +1,11 @@
 import {useState, useRef, useEffect} from "react";
 import {peruRegions, type PeruRegion } from "../utils/peruRegions";
 import {Popover, PopoverContent, PopoverTrigger} from "@heroui/popover";
+import TWENTYONE from "@/assets/buttons-map/2021.png";
+import TWENTYTWO from "@/assets/buttons-map/2022.png";
+import TWENTYTHREE from "@/assets/buttons-map/2023.png";
+import TWENTYFOUR from "@/assets/buttons-map/2024.png";
+import SELECTED from "@/assets/buttons-map/selected.png";
 
 export const PeruMap = () => {
   const [selectedRegion, setSelectedRegion] = useState<PeruRegion | null>(null);
@@ -11,6 +16,13 @@ export const PeruMap = () => {
     "2023": "#ED548C",
     "2024": "#AC5EAA",
   }
+
+  const btnYears: { [key: string]: string } = {
+    "2021": TWENTYONE,
+    "2022": TWENTYTWO,
+    "2023": TWENTYTHREE,
+    "2024": TWENTYFOUR,
+  };
 
   const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -77,23 +89,21 @@ export const PeruMap = () => {
                       <div className="grid grid-cols-4 gap-2 mb-3">
                         {["2021", "2022", "2023", "2024"].map((year) => (
                           <button
+                            style={{
+                              backgroundImage: selectedYear === year ? `url(${SELECTED})` : `url(${btnYears[year]})`,
+                              backgroundSize: "100% auto",
+                              backgroundRepeat: "no-repeat",
+                              backgroundPosition: "center"
+                            }}
                             className={`
-                            pixel-clip
-                            relative hover:cursor-pointer py-2 font-semibold font-bitcount text-2xl rounded shadow-[0_6px_0_#a94c6d]
+                            relative hover:cursor-pointer py-2 font-semibold font-bitcount text-2xl rounded
                             ${selectedYear === year ? "text-black" : "text-white"}
                           `}
-                            style={{backgroundColor: selectedYear === year ? "#FFFFFF" : years[year]}}
                             onClick={() => setSelectedYear(year)}
                           >
                             <p className="px-4">
                               {year}
                             </p>
-                            <div className="absolute top-1 w-full px-4 pt-[2px] flex justify-center items-center gap-1">
-                              <div className="h-[1.5px] w-[50%]" style={{ backgroundColor: selectedYear === year ? "#C1E8F2" : "#FFFFFF" }} />
-                              <div className="h-[1.5px] w-[10%]" style={{ backgroundColor: selectedYear === year ? "#C1E8F2" : "#FFFFFF" }} />
-                              <div className="h-[1.5px] w-[30%]" style={{ backgroundColor: selectedYear === year ? "#C1E8F2" : "#FFFFFF" }} />
-                              <div className="h-[1.5px] w-[10%]" style={{ backgroundColor: selectedYear === year ? "#C1E8F2" : "#FFFFFF" }} />
-                            </div>
                           </button>
                         ))}
                       </div>
