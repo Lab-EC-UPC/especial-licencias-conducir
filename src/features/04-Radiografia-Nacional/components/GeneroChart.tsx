@@ -60,7 +60,7 @@ export const GeneroChart = () => {
     const cy = size / 2;
 
     // Anillo exterior para hombres (80%)
-    const outerCircleR = size * 0.45; 
+    const outerCircleR = size * 0.40; 
 
 
 
