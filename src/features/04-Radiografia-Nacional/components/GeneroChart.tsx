@@ -255,10 +255,10 @@ export const GeneroChart = () => {
 
       <div className="flex flex-col justify-center mt-8">
         <h2 className="text-lg md:text-xl">
-          Género
+            Género de los evaluados
         </h2>
         <div className="flex gap-2 md:gap-4 items-center justify-center font-light text-sm md:text-lg">
-          <h3>Resultados</h3>
+          <h3>Género</h3>
           <div className="flex gap-2 items-center">
             <div className="bg-[#58b7cf] size-2 md:size-4" />
             <h3>Masculino</h3>
