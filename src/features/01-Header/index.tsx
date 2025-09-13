@@ -17,19 +17,19 @@ const CONFIG = {
 
     // Configuración para WEB - Overlay más grande para desktop
     webOverlay: {
-        width: "60%",        // Puedes cambiar este valor
-        height: "50%",       // Puedes cambiar este valor
-        left: "20%",         // Puedes cambiar este valor
-        top: "18%",           // Puedes cambiar este valor
+        width: "63%",        // Puedes cambiar este valor
+        height: "54%",       // Puedes cambiar este valor
+        left: "19%",         // Puedes cambiar este valor
+        top: "9%",           // Puedes cambiar este valor
         padding: "clamp(0.5rem, 2vw, 2rem)",
     },
 
     // Configuración para MÓVIL - Overlay más pequeño para móviles
     mobileOverlay: {
-        width: "24%",        // Puedes cambiar este valor - más pequeño que web
-        height: "63%",      // Altura automática para móviles
-        left: "37%",       // Puedes cambiar este valor - centrado
-        top: "16%",          // Puedes cambiar este valor - dentro de la pantalla
+        width: "70%",        // Puedes cambiar este valor - más pequeño que web
+        height: "66%",      // Altura automática para móviles
+        left: "15%",       // Puedes cambiar este valor - centrado
+        top: "13%",          // Puedes cambiar este valor - dentro de la pantalla
         padding: "clamp(0.125rem, 1.5vw, 0.75rem)",
     },
 
@@ -47,21 +47,21 @@ export const Header = () => {
             <div className={`relative ${CONFIG.heroContainerWidth} ${CONFIG.heroContainerMaxWidth} mx-auto`}>
                 {/* Imágenes para WEB (pantallas grandes) con soporte WebP */}
                 <picture className="hidden md:block">
-                    <source srcSet={CONFIG.heroWebp} type="image/webp" />
+                    {/*<source srcSet={CONFIG.heroWebp} type="image/webp" />*/}
                     <img
                         src={CONFIG.heroImage}
                         alt="Hero Desktop"
-                        className="w-full h-auto"
+                        className="w-full h-full"
                     />
                 </picture>
 
                 {/* Imágenes para MÓVIL/TABLET con soporte WebP */}
                 <picture className="block md:hidden">
-                    <source srcSet={CONFIG.mobileHeroImageWebp} type="image/webp" />
+                    {/*<source srcSet={CONFIG.mobileHeroImageWebp} type="image/webp" />*/}
                     <img
                         src={CONFIG.mobileHeroImage}
                         alt="Hero Mobile"
-                        className="w-full h-auto"
+                        className="w-full h-full"
                     />
                 </picture>
 
@@ -81,7 +81,7 @@ export const Header = () => {
                 >
                     <div className="flex flex-col justify-center gap-4 lg:gap-6 xl:gap-8 h-full p-4 lg:p-6 xl:p-8">
                         <div className="text-center">
-                            <h2 className="font-bold leading-tight font-bitcount text-[#58b7cf] text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl mb-2 lg:mb-3">
+                            <h2 className="font-bold leading-tight font-bitcount text-[#58b7cf] text-2xl md:text-3xl mb-2 lg:mb-3">
                                 🚗 Trivia de Conducir
                             </h2>
                             <p className="leading-tight text-[#ffaf42] text-sm lg:text-base xl:text-lg 2xl:text-xl font-bold">
@@ -125,19 +125,19 @@ export const Header = () => {
                 >
                     <div className="flex flex-col justify-center gap-1 sm:gap-2 h-full p-1 sm:p-2">
                         <div className="text-center">
-                            <h2 className="font-bold leading-tight font-bitcount text-[#58b7cf] text-[2.2vw] sm:text-[1.8vw] mb-1">
+                            <h2 className="font-bold leading-tight font-bitcount text-[#58b7cf] text-2xl mb-1">
                                 🚗 Trivia de Conducir
                             </h2>
-                            <p className="leading-tight text-[#ffaf42] text-[1.8vw] sm:text-[1.5vw] font-bold">
+                            <p className="leading-tight text-[#ffaf42] text-xs mb-2 font-bold">
                                 ¿Qué tanto sabes sobre manejo seguro?
                             </p>
                         </div>
 
-                        <div className="rounded border bg-[#58b7cf] border-white p-1 sm:p-1.5">
-                            <h4 className="font-bold font-bitcount text-[#131a31] text-[1.6vw] sm:text-[1.4vw] mb-1">
+                        <div className="rounded border bg-[#58b7cf] border-white px-2 py-4 mb-2">
+                            <h4 className="font-bold font-bitcount text-[#131a31] mb-1">
                                 📋 Reglas
                             </h4>
-                            <ul className="leading-tight list-disc text-[#131a31] pl-2 sm:pl-3 space-y-0.5 text-[1.4vw] sm:text-[1.2vw]">
+                            <ul className="leading-tight list-disc text-[#131a31] pl-5 sm:pl-3 space-y-0.5 text-xs">
                                 <li>20 preguntas desafiantes</li>
                                 <li>20 segundos por pregunta</li>
                                 <li>Una sola oportunidad</li>
@@ -146,7 +146,7 @@ export const Header = () => {
 
                         <button
                             onClick={()=>setIsGameOpen(true)}
-                            className="bg-[#ed548c] w-full rounded font-bold transition-all hover:opacity-90 leading-tight text-[#131a31] hover:cursor-pointer p-1.5 sm:p-2 text-[1.6vw] sm:text-[1.4vw]"
+                            className="bg-[#ed548c] w-full rounded font-bold transition-all hover:opacity-90 leading-tight text-[#131a31] hover:cursor-pointer p-1.5 sm:p-2 text-sm"
                         >
                             🚀 Comenzar Trivia
                         </button>

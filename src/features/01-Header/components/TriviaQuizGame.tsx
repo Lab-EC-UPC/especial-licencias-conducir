@@ -1,12 +1,16 @@
-import { useState, useEffect, type SetStateAction } from "react";
+import {useState, useEffect, type SetStateAction, useRef} from "react";
 import { allQuestions, type Question } from "../utils/questions.ts";
+import SUCCESS_SOUND from "@/assets/audio/success-sound.wav";
+import ERROR_SOUND from "@/assets/audio/fail-sound.wav";
 
 interface Props {
   setIsOpen: (isOpen: boolean) => void;
+  isMuted: boolean;
 }
 
 export const TriviaQuizGame = ({
   setIsOpen,
+  isMuted,
 }: Props) => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -16,6 +20,14 @@ export const TriviaQuizGame = ({
   const [gameStarted, setGameStarted] = useState(false);
   const [gameFinished, setGameFinished] = useState(false);
   const [timeLeft, setTimeLeft] = useState(20);
+
+  const successRef = useRef<HTMLAudioElement | null>(null);
+  const failRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (successRef.current) successRef.current.muted = isMuted;
+    if (failRef.current) failRef.current.muted = isMuted;
+  }, [isMuted]);
 
   const selectRandomQuestions = () => {
     const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
@@ -47,12 +59,30 @@ export const TriviaQuizGame = ({
   };
 
   const handleSubmitAnswer = () => {
-    if (selectedAnswer === questions[currentQuestion].correctAnswer) {
+    const isCorrect = selectedAnswer === questions[currentQuestion].correctAnswer;
+
+    if (isCorrect) {
       const timeBonus = Math.floor(timeLeft / 2);
       const basePoints = 10;
       setScore(score + basePoints + timeBonus);
+
+      if (successRef.current) {
+        successRef.current.currentTime = 0;
+        successRef.current.play().catch(() => {});
+      }
+    } else {
+      if (failRef.current) {
+        failRef.current.currentTime = 0;
+        failRef.current.play().catch(() => {});
+      }
     }
     setShowResult(true);
+
+    // if (selectedAnswer === questions[currentQuestion].correctAnswer) {
+    //   const timeBonus = Math.floor(timeLeft / 2);
+    //   const basePoints = 10;
+    //   setScore(score + basePoints + timeBonus);
+    // }
   };
 
   const handleNextQuestion = () => {
@@ -115,134 +145,138 @@ export const TriviaQuizGame = ({
   // Juego activo - ocupa el espacio del componente
   if (gameStarted && !gameFinished) {
     return (
-      <div className="flex flex-col text-[#dbeecb]">
-        {/* Header del juego */}
-        <div className="flex justify-between items-center mb-4 p-4 rounded flex-shrink-0 bg-[#ffaf42]">
-          <div>
-            <h3 className="font-bold text-sm md:text-base text-[#131a31] font-bitcount">
-              Pregunta {currentQuestion + 1} / {questions.length}
+      <>
+        <audio ref={successRef} src={SUCCESS_SOUND} preload="auto" />
+        <audio ref={failRef} src={ERROR_SOUND} preload="auto" />
+        <div className="flex flex-col text-[#dbeecb]">
+          {/* Header del juego */}
+          <div className="flex justify-between items-center mb-4 p-4 rounded flex-shrink-0 bg-[#ffaf42]">
+            <div>
+              <h3 className="font-bold text-sm md:text-base text-[#131a31] font-bitcount">
+                Pregunta {currentQuestion + 1} / {questions.length}
+              </h3>
+              <div className="flex items-center space-x-2 mt-1">
+                <p className="text-xs md:text-sm text-[#131a31]">Puntos:</p>
+                <p className="px-2 py-1 rounded font-bold text-xs md:text-sm text-white bg-[#ac5eaa]">{score}</p>
+              </div>
+            </div>
+            <div className={`text-center text-lg md:text-xl font-bold font-bitcount ${timeLeft <= 5 ? "animate-pulse text-[#ed548c]" : "text-[#131a31]"}`}>
+              ⏰ {timeLeft}s
+            </div>
+          </div>
+
+          {/* Barra de progreso */}
+          <div className="bg-white rounded-full h-2 mb-6 overflow-hidden">
+            <div
+              className="h-2 rounded-full transition-all duration-500"
+              style={{
+                width: `${((currentQuestion + 1) / questions.length) * 100}%`,
+                backgroundColor: '#58b7cf'
+              }}
+            />
+          </div>
+
+          {/* Contenido del juego */}
+          <div className="flex-1 flex flex-col">
+            <h3 className="mb-6 text-lg md:text-3xl font-bold text-center text-[#dbeecb]">
+              {questions[currentQuestion].question}
             </h3>
-            <div className="flex items-center space-x-2 mt-1">
-              <p className="text-xs md:text-sm text-[#131a31]">Puntos:</p>
-              <p className="px-2 py-1 rounded font-bold text-xs md:text-sm text-white bg-[#ac5eaa]">{score}</p>
-            </div>
-          </div>
-          <div className={`text-center text-lg md:text-xl font-bold font-bitcount ${timeLeft <= 5 ? "animate-pulse text-[#ed548c]" : "text-[#131a31]"}`}>
-            ⏰ {timeLeft}s
-          </div>
-        </div>
 
-        {/* Barra de progreso */}
-        <div className="bg-white rounded-full h-2 mb-6 overflow-hidden">
-          <div
-            className="h-2 rounded-full transition-all duration-500"
-            style={{
-              width: `${((currentQuestion + 1) / questions.length) * 100}%`,
-              backgroundColor: '#58b7cf'
-            }}
-          />
-        </div>
+            {/* Imagen de pregunta si existe */}
+            {questions[currentQuestion].image && (
+              <div className="mb-4 text-center">
+                <img
+                  src={questions[currentQuestion].image}
+                  alt={questions[currentQuestion].imageAlt || 'Imagen de la pregunta'}
+                  className="max-w-full max-h-32 mx-auto rounded border"
+                  style={{ borderColor: '#868686' }}
+                />
+              </div>
+            )}
 
-        {/* Contenido del juego */}
-        <div className="flex-1 flex flex-col">
-          <h3 className="mb-6 text-lg md:text-3xl font-bold text-center text-[#dbeecb]">
-            {questions[currentQuestion].question}
-          </h3>
-
-          {/* Imagen de pregunta si existe */}
-          {questions[currentQuestion].image && (
-            <div className="mb-4 text-center">
-              <img
-                src={questions[currentQuestion].image}
-                alt={questions[currentQuestion].imageAlt || 'Imagen de la pregunta'}
-                className="max-w-full max-h-32 mx-auto rounded border"
-                style={{ borderColor: '#868686' }}
-              />
-            </div>
-          )}
-
-          {/* Opciones */}
-          <div className="space-y-3 flex-1">
-            {questions[currentQuestion].options.map((option, i) => (
-              <button
-                key={i}
-                onClick={() => handleAnswerSelect(option)}
-                disabled={showResult}
-                className="w-full py-3 px-4 rounded-lg text-left text-sm md:text-base transition-all hover:scale-[1.02] hover:cursor-pointer"
-                style={{
-                  backgroundColor: showResult
-                    ? option === questions[currentQuestion].correctAnswer
-                      ? '#58b7cf'
-                      : option === selectedAnswer && option !== questions[currentQuestion].correctAnswer
-                        ? '#ed548c'
-                        : '#868686'
-                    : selectedAnswer === option
-                      ? '#ac5eaa'
-                      : '#868686',
-                  color: showResult || selectedAnswer === option ? 'white' : '#131a31',
-                  fontFamily: 'var(--font-helvetica, sans-serif)'
-                }}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <p className="w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center font-bold mr-3 bg-white text-sm md:text-base" style={{ color: '#131a31' }}>
-                      {String.fromCharCode(65 + i)}
-                    </p>
-                    <p className="flex-1">{option}</p>
+            {/* Opciones */}
+            <div className="space-y-3 flex-1">
+              {questions[currentQuestion].options.map((option, i) => (
+                <button
+                  key={i}
+                  onClick={() => handleAnswerSelect(option)}
+                  disabled={showResult}
+                  className="w-full py-3 px-4 rounded-lg text-left text-sm md:text-base transition-all hover:scale-[1.02] hover:cursor-pointer"
+                  style={{
+                    backgroundColor: showResult
+                      ? option === questions[currentQuestion].correctAnswer
+                        ? '#58b7cf'
+                        : option === selectedAnswer && option !== questions[currentQuestion].correctAnswer
+                          ? '#ed548c'
+                          : '#868686'
+                      : selectedAnswer === option
+                        ? '#ac5eaa'
+                        : '#868686',
+                    color: showResult || selectedAnswer === option ? 'white' : '#131a31',
+                    fontFamily: 'var(--font-helvetica, sans-serif)'
+                  }}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <p className="w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center font-bold mr-3 bg-white text-sm md:text-base" style={{ color: '#131a31' }}>
+                        {String.fromCharCode(65 + i)}
+                      </p>
+                      <p className="flex-1">{option}</p>
+                    </div>
+                    {showResult && option === questions[currentQuestion].correctAnswer && (
+                      <p className="text-white text-lg">✓</p>
+                    )}
+                    {showResult && option === selectedAnswer && option !== questions[currentQuestion].correctAnswer && (
+                      <p className="text-white text-lg">✗</p>
+                    )}
                   </div>
-                  {showResult && option === questions[currentQuestion].correctAnswer && (
-                    <p className="text-white text-lg">✓</p>
-                  )}
-                  {showResult && option === selectedAnswer && option !== questions[currentQuestion].correctAnswer && (
-                    <p className="text-white text-lg">✗</p>
-                  )}
-                </div>
-              </button>
-            ))}
-          </div>
+                </button>
+              ))}
+            </div>
 
-          {/* Feedback de respuesta correcta */}
-          {showResult && selectedAnswer === questions[currentQuestion].correctAnswer && (
-            <div className="mt-4 p-3 rounded-lg text-center font-bold" style={{ backgroundColor: '#58b7cf', color: 'white' }}>
-              ¡Correcto! +{10 + Math.floor(timeLeft / 2)} puntos
-              {Math.floor(timeLeft / 2) > 0 && (
-                <div className="text-xs md:text-sm mt-1">(Bonus velocidad: +{Math.floor(timeLeft / 2)})</div>
+            {/* Feedback de respuesta correcta */}
+            {showResult && selectedAnswer === questions[currentQuestion].correctAnswer && (
+              <div className="mt-4 p-3 rounded-lg text-center font-bold" style={{ backgroundColor: '#58b7cf', color: 'white' }}>
+                ¡Correcto! +{10 + Math.floor(timeLeft / 2)} puntos
+                {Math.floor(timeLeft / 2) > 0 && (
+                  <div className="text-xs md:text-sm mt-1">(Bonus velocidad: +{Math.floor(timeLeft / 2)})</div>
+                )}
+              </div>
+            )}
+
+            {/* Botones de acción */}
+            <div className="mt-4">
+              {!showResult && selectedAnswer && (
+                <button
+                  onClick={handleSubmitAnswer}
+                  className="w-full py-3 rounded-lg font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer"
+                  style={{
+                    backgroundColor: "#dbeecb",
+                    color: "#131a31",
+                    fontFamily: "var(--font-helvetica, sans-serif)"
+                  }}
+                >
+                  ✅ Confirmar Respuesta
+                </button>
+              )}
+
+              {showResult && (
+                <button
+                  onClick={handleNextQuestion}
+                  className="w-full py-3 rounded-lg font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer"
+                  style={{
+                    backgroundColor: "#ffaf42",
+                    color: "#131a31",
+                    fontFamily: "var(--font-helvetica, sans-serif)"
+                  }}
+                >
+                  {currentQuestion < questions.length - 1 ? "➡️ Siguiente Pregunta" : "🎯 Ver Resultados"}
+                </button>
               )}
             </div>
-          )}
-
-          {/* Botones de acción */}
-          <div className="mt-4">
-            {!showResult && selectedAnswer && (
-              <button
-                onClick={handleSubmitAnswer}
-                className="w-full py-3 rounded-lg font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer"
-                style={{
-                  backgroundColor: "#dbeecb",
-                  color: "#131a31",
-                  fontFamily: "var(--font-helvetica, sans-serif)"
-                }}
-              >
-                ✅ Confirmar Respuesta
-              </button>
-            )}
-
-            {showResult && (
-              <button
-                onClick={handleNextQuestion}
-                className="w-full py-3 rounded-lg font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer"
-                style={{
-                  backgroundColor: "#ffaf42",
-                  color: "#131a31",
-                  fontFamily: "var(--font-helvetica, sans-serif)"
-                }}
-              >
-                {currentQuestion < questions.length - 1 ? "➡️ Siguiente Pregunta" : "🎯 Ver Resultados"}
-              </button>
-            )}
           </div>
         </div>
-      </div>
+      </>
     );
   }
 

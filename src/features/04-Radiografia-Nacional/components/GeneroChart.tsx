@@ -2,6 +2,8 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import * as d3 from "d3";
 import { hexbin as d3Hexbin } from "d3-hexbin";
 import type { Hexbin, HexbinBin } from "d3-hexbin";
+import PASSED_BUTTON from "@/assets/radiografia-nacional-aprobados.png";
+import NOT_PASSED_BUTTON from "@/assets/radiografia-nacional-desaprobados.png";
 
 type Region = "masculino" | "femenino";
 type ExtendedBin = HexbinBin<[number, number]> & { region: Region };
@@ -149,8 +151,8 @@ export const GeneroChart = () => {
   // ===== Tooltip dinámico (cuando el mouse está dentro) =====
   const nf = new Intl.NumberFormat("fr-FR");
   const isMasculino = tooltip.region === "masculino";
-  const labelValue = isMasculino ? nf.format(totalFemenino) : nf.format(totalMasculino);
-  const labelText  = isMasculino ? "son mujeres" : "son hombres";
+  // const labelValue = isMasculino ? nf.format(totalFemenino) : nf.format(totalMasculino);
+  // const labelText  = isMasculino ? "son mujeres" : "son hombres";
 
   // Medidas actuales del wrapper (por si el SVG se escala por CSS)
   const WRAP_W = wrapRef.current?.clientWidth ?? size;
@@ -178,15 +180,15 @@ export const GeneroChart = () => {
 
   // Hombres: a la izquierda, un poco abajo
   const staticMasculino = {
-    left: (cx - r - marginOutside) * sx,
-    top:  (cy + r * 0.10) * sy,
+    left: (cx + r + marginOutside) * sx*1.05,
+    top:  (cy + r * 0.1) * sy/2,
     transform: "translate(-100%, -50%)" as const, // anclamos borde derecho al punto
   };
 
   // Mujeres: a la derecha, un poco arriba
   const staticFemenino = {
-    left: (cx + r + marginOutside) * sx,
-    top:  (cy - r * 0.10) * sy,
+    left: (cx + r + marginOutside) * sx/2,
+    top:  (cy - r * 0.20) * sy,
     transform: "translate(0, -50%)" as const, // anclamos borde izquierdo al punto
   };
 
@@ -206,27 +208,85 @@ export const GeneroChart = () => {
       {/* === Labels estáticos cuando el mouse está fuera del SVG === */}
       {!inside && (
         <>
-          <div className="hidden xl:flex text-left">
+          <div className="flex justify-center gap-4 items-center text-left">
             <div
-              className="absolute pointer-events-none"
-              style={{ left: staticMasculino.left, top: staticMasculino.top, transform: staticMasculino.transform }}
+              className="md:absolute pointer-events-none"
+              style={window.innerWidth >= 768 ? {
+                left: staticMasculino.left,
+                top: staticMasculino.top,
+                transform: staticMasculino.transform
+              } : {}}
             >
-              <div className="rounded-xl font-medium bg-white text-pink text-left shadow-[0_6px_0_#6db0d1]">
-                <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalMasculino)}</div>
-                <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">de hombres</div>
+              <div
+                className="font-medium text-white text-left w-40 md:w-50 h-auto"
+                style={{
+                  backgroundImage: `url(${NOT_PASSED_BUTTON})`,
+                  backgroundSize: "100% auto",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center"
+                }}
+              >
+                <div className="flex flex-col px-6 pt-3 pb-5 text-pink">
+                  <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                    {formatWithSpaces(totalMasculino)}
+                  </div>
+                  <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                    hombres
+                  </div>
+                </div>
               </div>
             </div>
 
             <div
-              className="absolute pointer-events-none"
-              style={{ left: staticFemenino.left, top: staticFemenino.top, transform: staticFemenino.transform }}
+              className="md:absolute pointer-events-none"
+              style={window.innerWidth >= 768 ? {
+                left: staticFemenino.left,
+                top: staticFemenino.top,
+                transform: staticFemenino.transform
+              } : {}}
             >
-              <div className="rounded-xl font-medium bg-pink text-white shadow-[0_6px_0_#a94c6d]">
-                <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalFemenino)}</div>
-                <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">de mujeres</div>
+              <div
+                className="font-medium text-white text-left w-40 md:w-50 h-auto"
+                style={{
+                  backgroundImage: `url(${PASSED_BUTTON})`,
+                  backgroundSize: "100% auto",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center"
+                }}
+              >
+                <div className="flex flex-col px-6 pt-3 pb-5">
+                  <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                    {formatWithSpaces(totalFemenino)}
+                  </div>
+                  <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                    mujeres
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+
+          {/*<div className="hidden xl:flex text-left">*/}
+          {/*  <div*/}
+          {/*    className="absolute pointer-events-none"*/}
+          {/*    style={{ left: staticMasculino.left, top: staticMasculino.top, transform: staticMasculino.transform }}*/}
+          {/*  >*/}
+          {/*    <div className="rounded-xl font-medium bg-white text-pink text-left shadow-[0_6px_0_#6db0d1]">*/}
+          {/*      <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalMasculino)}</div>*/}
+          {/*      <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">hombres</div>*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
+
+          {/*  <div*/}
+          {/*    className="absolute pointer-events-none"*/}
+          {/*    style={{ left: staticFemenino.left, top: staticFemenino.top, transform: staticFemenino.transform }}*/}
+          {/*  >*/}
+          {/*    <div className="rounded-xl font-medium bg-pink text-white shadow-[0_6px_0_#a94c6d]">*/}
+          {/*      <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalFemenino)}</div>*/}
+          {/*      <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">mujeres</div>*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </>
       )}
 
@@ -237,17 +297,43 @@ export const GeneroChart = () => {
           className="absolute pointer-events-none text-left"
           style={{ left, top, whiteSpace: "nowrap" }}
         >
-          {isMasculino ? (
-            <div className="rounded-xl font-medium bg-pink text-white shadow-[0_6px_0_#a94c6d]">
-              <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{labelValue}</div>
-              <div className="font-bitcount text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">{labelText}</div>
+          {!isMasculino ? (
+            <div
+              className="font-medium text-white text-left w-40 md:w-50 h-auto"
+              style={{
+                backgroundImage: `url(${NOT_PASSED_BUTTON})`,
+                backgroundSize: "100% auto",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center"
+              }}
+            >
+              <div className="flex flex-col px-6 pt-3 pb-5 text-pink">
+                <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                  {formatWithSpaces(totalMasculino)}
+                </div>
+                <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                  hombres
+                </div>
+              </div>
             </div>
-
           ) : (
-            
-            <div className="rounded-xl font-medium bg-white text-pink text-left shadow-[0_6px_0_#6db0d1]">
-              <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{labelValue}</div>
-              <div className="font-bitcount text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">{labelText}</div>
+            <div
+              className="font-medium text-white text-left w-40 md:w-50 h-auto"
+              style={{
+                backgroundImage: `url(${PASSED_BUTTON})`,
+                backgroundSize: "100% auto",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center"
+              }}
+            >
+              <div className="flex flex-col px-6 pt-3 pb-5">
+                <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                  {formatWithSpaces(totalFemenino)}
+                </div>
+                <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                  mujeres
+                </div>
+              </div>
             </div>
           )}
         </div>

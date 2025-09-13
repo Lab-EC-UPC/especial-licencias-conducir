@@ -2,6 +2,8 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import * as d3 from "d3";
 import { hexbin as d3Hexbin } from "d3-hexbin";
 import type { Hexbin, HexbinBin } from "d3-hexbin";
+import PASSED_BUTTON from "@/assets/radiografia-nacional-aprobados.png";
+import NOT_PASSED_BUTTON from "@/assets/radiografia-nacional-desaprobados.png";
 
 type Region = "approved" | "not";
 type ExtendedBin = HexbinBin<[number, number]> & { region: Region };
@@ -144,8 +146,8 @@ export const AprobadosChart = () => {
   // ===== Tooltip dinámico (cuando el mouse está dentro) =====
   const nf = new Intl.NumberFormat("fr-FR");
   const isApproved = tooltip.region === "approved";
-  const labelValue = isApproved ? nf.format(totalAprobados) : nf.format(totalNoAprobados);
-  const labelText  = isApproved ? "de aprobados" : "de desaprobados";
+  // const labelValue = isApproved ? nf.format(totalAprobados) : nf.format(totalNoAprobados);
+  // const labelText  = isApproved ? "aprobados" : "desaprobados";
 
   // Medidas actuales del wrapper (por si el SVG se escala por CSS)
   const WRAP_W = wrapRef.current?.clientWidth ?? size;
@@ -175,15 +177,15 @@ export const AprobadosChart = () => {
 
   // Aprobados: a la izquierda, un poco abajo
   const staticApproved = {
-    left: (cx - r - marginOutside) * sx,
+    left: (cx + r + marginOutside) * sx/4,
     top:  (cy + r * 0.10) * sy,
     transform: "translate(-100%, -50%)" as const, // anclamos borde derecho al punto
   };
 
   // Desaprobados: a la derecha, un poco arriba
   const staticNot = {
-    left: (cx + r + marginOutside) * sx,
-    top:  (cy - r * 0.10) * sy,
+    left: (cx + r + marginOutside) * sx/1.4,
+    top:  (cy - r * 0.20) * sy/2,
     transform: "translate(0, -50%)" as const, // anclamos borde izquierdo al punto
   };
 
@@ -204,40 +206,69 @@ export const AprobadosChart = () => {
       {/* === Labels estáticos cuando el mouse está fuera del SVG (pueden sobresalir) === */}
       {!inside && (
         <>
-          <div className="hidden xl:flex text-left">
+          <div className="flex justify-center gap-4 items-center text-left">
             <div
-              className="absolute pointer-events-none"
-              style={{ left: staticApproved.left, top: staticApproved.top, transform: staticApproved.transform }}
+              className="md:absolute pointer-events-none"
+              style={window.innerWidth >= 768 ? {
+                left: staticApproved.left,
+                top: staticApproved.top,
+                transform: staticApproved.transform
+              } : {}}
             >
-              <div className="rounded-xl font-medium bg-pink text-white text-left shadow-[0_6px_0_#a94c6d]">
-                <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalAprobados)}</div>
-                <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">de aprobados</div>
+              <div
+                className="font-medium text-white text-left w-40 md:w-50 h-auto"
+                style={{
+                  backgroundImage: `url(${PASSED_BUTTON})`,
+                  backgroundSize: "100% auto",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center"
+                }}
+              >
+                <div className="flex flex-col px-6 pt-3 pb-5">
+                  <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                    {formatWithSpaces(totalAprobados)}
+                  </div>
+                  <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                    aprobados
+                  </div>
+                </div>
               </div>
+              {/*<div className="rounded-xl font-medium bg-pink text-white text-left shadow-[0_6px_0_#a94c6d]">*/}
+              {/*  <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalAprobados)}</div>*/}
+              {/*  <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">aprobados</div>*/}
+              {/*</div>*/}
             </div>
 
             <div
-              className="absolute pointer-events-none"
-              style={{ left: staticNot.left, top: staticNot.top, transform: staticNot.transform }}
+              className="md:absolute pointer-events-none"
+              style={window.innerWidth >= 768 ? {
+                left: staticNot.left,
+                top: staticNot.top,
+                transform: staticNot.transform
+              } : {}}
             >
-              <div className="rounded-xl font-medium bg-white text-pink text-left shadow-[0_6px_0_#6db0d1]">
-                <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalNoAprobados)}</div>
-                <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">de desaprobados</div>
+              <div
+                className="font-medium text-white text-left w-40 md:w-50 h-auto"
+                style={{
+                  backgroundImage: `url(${NOT_PASSED_BUTTON})`,
+                  backgroundSize: "100% auto",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center"
+                }}
+              >
+                <div className="flex flex-col px-6 pt-3 pb-5 text-pink">
+                  <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                    {formatWithSpaces(totalNoAprobados)}
+                  </div>
+                  <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                    desaprobados
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="xl:hidden flex justify-center gap-4 items-center text-left">
-            <div>
-              <div className="rounded-xl font-medium bg-pink text-white shadow-[0_6px_0_#a94c6d]">
-                <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalAprobados)}</div>
-                <div className="text-sm md:text-md px-4 pb-2 opacity-90">de aprobados</div>
-              </div>
-            </div>
-
-            <div>
-              <div className="rounded-xl font-medium bg-white text-pink shadow-[0_6px_0_#6db0d1]">
-                <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalNoAprobados)}</div>
-                <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">de desaprobados</div>
-              </div>
+              {/*<div className="rounded-xl font-medium bg-white text-pink text-left shadow-[0_6px_0_#6db0d1]">*/}
+              {/*  <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalNoAprobados)}</div>*/}
+              {/*  <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">desaprobados</div>*/}
+              {/*</div>*/}
             </div>
           </div>
         </>
@@ -251,14 +282,42 @@ export const AprobadosChart = () => {
           style={{ left, top, whiteSpace: "nowrap" }}
         >
           {isApproved ? (
-            <div className="rounded-xl font-medium bg-pink text-white shadow-[0_6px_0_#a94c6d]">
-              <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{labelValue}</div>
-              <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">{labelText}</div>
+            <div
+              className="font-medium text-white text-left w-full"
+              style={{
+                backgroundImage: `url(${PASSED_BUTTON})`,
+                backgroundSize: "100% auto",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center"
+              }}
+            >
+              <div className="flex flex-col px-6 pt-3 pb-5">
+                <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                  {formatWithSpaces(totalAprobados)}
+                </div>
+                <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                  aprobados
+                </div>
+              </div>
             </div>
           ) : (
-            <div className="rounded-xl font-medium bg-white text-pink shadow-[0_6px_0_#6db0d1]">
-              <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{labelValue}</div>
-              <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">{labelText}</div>
+            <div
+              className="font-medium text-white text-left w-full"
+              style={{
+                backgroundImage: `url(${NOT_PASSED_BUTTON})`,
+                backgroundSize: "100% auto",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center"
+              }}
+            >
+              <div className="flex flex-col px-6 pt-3 pb-5 text-pink">
+                <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                  {formatWithSpaces(totalNoAprobados)}
+                </div>
+                <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                  desaprobados
+                </div>
+              </div>
             </div>
           )}
         </div>

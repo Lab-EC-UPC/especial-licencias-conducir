@@ -57,7 +57,7 @@ export const Wheel = ({ question, title, answer, count }: WheelProps) => {
             </div>
           ) : (
             <p className="mt-2 text-[11px] sm:text-base md:text-lg">
-              {question}
+              "{question}"
             </p>
           )}
         </div>

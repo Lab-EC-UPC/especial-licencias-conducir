@@ -25,14 +25,14 @@ export const MapaChart = () => {
     return { full, half };
   };
 
-  const renderDotsTopLeft = (value: number, className: string) => {
+  const renderDotsMen = (value: number, className: string) => {
     const { full, half } = getIconsFromValue(value || 0);
     const count = full + half;
     const totalSlots = 9;
     const blanks = Math.max(0, totalSlots - count);
 
     return (
-      <div className="inline-grid [grid-template-columns:repeat(3,1rem)] gap-x-[3px] gap-y-[3px]">
+      <div className="inline-grid [grid-template-columns:repeat(3,1rem)] gap-[3px]">
         {Array.from({ length: full }).map((_, i) => (
           <MapDataIcon key={`full-${i}`} className={`${className} size-5`} />
         ))}
@@ -45,6 +45,29 @@ export const MapaChart = () => {
       </div>
     );
   };
+
+  const renderDotsWomen = (value: number, className: string) => {
+    const { full, half } = getIconsFromValue(value || 0);
+    const totalSlots = 9;
+
+    return (
+      <div
+        className="inline-grid [grid-template-columns:repeat(3,1rem)] gap-[3px]"
+        style={{ direction: "rtl" }}
+      >
+        {Array.from({ length: totalSlots }).map((_, i) => {
+          if (i < full) {
+            return <MapDataIcon key={`full-${i}`} className={`${className} size-5`} />;
+          }
+          if (i < full + half) {
+            return <MapDataIconHalf key={`half-${i}`} className={`${className} size-5`} />;
+          }
+          return <span key={`ph-${i}`} className="size-5 opacity-0" />;
+        })}
+      </div>
+    );
+  };
+
 
   return (
     <div className="flex flex-col items-center h-full justify-center relative scrollbar-hidden py-8 md:py-4">
@@ -76,45 +99,56 @@ export const MapaChart = () => {
                 </PopoverTrigger>
                 <PopoverContent>
                   <div
-                    className="w-54 h-44 bg-no-repeat bg-cover bg-center rounded-lg"
-                    style={{ backgroundImage: `url(${TOOLTIP_BG})` }}
+                    className="w-50 h-40"
+                    style={{
+                      backgroundImage: `url(${TOOLTIP_BG})`,
+                      backgroundSize: "100% auto",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center"
+                    }}
                   >
-                    {region.subregions?.length ? (
-                      <div className="grid grid-cols-2 gap-2 px-4 pt-2">
-                        {region.subregions.map(sr => (
-                          <button
-                            key={sr.city}
-                            className={`hover:cursor-pointer ${
-                              selectedCity === sr.city
-                                ? "bg-primary text-white"
-                                : "text-primary border-2 border-primary"
-                            }`}
-                            onClick={() => setSelectedCity(sr.city)}
-                          >
-                            {sr.city}
-                          </button>
-                        ))}
-                      </div>
-                    ) : (
-                      <h1 className="text-center text-xs leading-none pt-4">{region.name}</h1>
-                    )}
-                    {(() => {
-                      const { mujer, hombre } = getRegionGenderData(region, selectedCity);
-                      return (
-                        <div className="flex w-full gap-[3px] items-start justify-center text-center">
-                          <div>
-                            <h1 className="font-bitcount font-bold text-xl md:text-2xl leading-none text-left">{mujer}</h1>
-                            {renderDotsTopLeft(mujer, "text-yellow")}
-                            <h1 className="text-lg md:text-xl">M</h1>
-                          </div>
-                          <div>
-                            <h1 className="font-bitcount font-bold text-xl md:text-2xl leading-none text-right">{hombre}</h1>
-                            {renderDotsTopLeft(hombre, "text-skyblue")}
-                            <h1 className="text-lg md:text-xl">H</h1>
-                          </div>
+                    <div className="flex flex-col items-center justify-center w-full h-full bg-center rounded-lg pb-2">
+                      {region.subregions?.length ? (
+                        <div className="grid grid-cols-2 gap-2">
+                          {region.subregions.map(sr => (
+                            <button
+                              key={sr.city}
+                              className={`hover:cursor-pointer rounded ${
+                                selectedCity === sr.city
+                                  ? "bg-primary text-white"
+                                  : "text-primary border-2 border-primary"
+                              }`}
+                              onClick={() => setSelectedCity(sr.city)}
+                            >
+                              <label className="px-2">{sr.city}</label>
+                            </button>
+                          ))}
                         </div>
-                      );
-                    })()}
+                      ) : (
+                        <h1 className="text-center text-xs leading-none">{region.name}</h1>
+                      )}
+                      {(() => {
+                        const { mujer, hombre } = getRegionGenderData(region, selectedCity);
+                        return (
+                          <div className="flex w-full gap-[2px] items-start justify-center text-center">
+                            <div>
+                              <h1 className="font-bitcount font-semibold text-2xl leading-none text-left">{mujer}</h1>
+                              <div>
+                                {renderDotsWomen(mujer, "text-yellow")}
+                              </div>
+                              <h1 className="text-lg md:text-xl leading-none">M</h1>
+                            </div>
+                            <div>
+                              <h1 className="font-bitcount font-semibold text-2xl leading-none text-right">{hombre}</h1>
+                              <div>
+                                {renderDotsMen(hombre, "text-skyblue")}
+                              </div>
+                              <h1 className="text-lg md:text-xl leading-none">H</h1>
+                            </div>
+                          </div>
+                        );
+                      })()}
+                    </div>
                   </div>
                 </PopoverContent>
               </Popover>
@@ -132,11 +166,14 @@ export const MapaChart = () => {
         <h4 className="text-lg md:text-xl font-medium text-white mb-4">
           Aprobación según región y género
         </h4>
-        <div className="flex gap-4 w-full items-start">
-          <h4 className="text-sm md:text-md text-white whitespace-nowrap font-light leading-none">
+        <div className="flex flex-col md:flex-row gap-4 w-full items-start">
+          <h4 className="text-sm md:text-md text-white whitespace-nowrap font-light leading-none hidden md:flex">
             Grado de aprobación
           </h4>
           <Heatline />
+          <h4 className="text-sm md:text-md pt-8 text-white whitespace-nowrap font-light leading-none text-center w-full md:hidden">
+            Grado de aprobación
+          </h4>
         </div>
       </div>
     </div>

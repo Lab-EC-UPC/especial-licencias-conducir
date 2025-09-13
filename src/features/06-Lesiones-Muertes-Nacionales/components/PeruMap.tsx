@@ -71,33 +71,34 @@ export const PeruMap = () => {
                     <div className="w-[95%] h-2" style={{ backgroundColor: years[selectedYear] }} />
                     <div
                       className="relative px-6 py-2 text-black"
-                      style={{ backgroundColor: years[selectedYear] }}
+                      style={{backgroundColor: years[selectedYear]}}
                     >
-                      <h1 className="text-lg md:text-xl mb-2">Costo de región {region.name}</h1>
+                      <h1 className="text-lg md:text-xl mb-2">{region.name}</h1>
                       <div className="grid grid-cols-4 gap-2 mb-3">
-                        {["2021","2022", "2023", "2024"].map((year) => (
+                        {["2021", "2022", "2023", "2024"].map((year) => (
                           <button
                             className={`
-                            hover:cursor-pointer py-2 font-bold font-bitcount text-xl relative rounded-xl
+                            pixel-clip
+                            relative hover:cursor-pointer py-2 font-semibold font-bitcount text-2xl rounded shadow-[0_6px_0_#a94c6d]
                             ${selectedYear === year ? "text-black" : "text-white"}
                           `}
-                            style={{ backgroundColor: selectedYear === year  ? "#FFFFFF" : years[year] }}
-                            onClick={()=>setSelectedYear(year)}
+                            style={{backgroundColor: selectedYear === year ? "#FFFFFF" : years[year]}}
+                            onClick={() => setSelectedYear(year)}
                           >
                             <p className="px-4">
                               {year}
                             </p>
-                            <div className="absolute top-1 w-full px-2 flex justify-center items-center gap-1">
-                              <div className="h-[0.5px] w-[50%]" style={{ backgroundColor: selectedYear === year  ? "#C1E8F2" : "#FFFFFF" }} />
-                              <div className="h-[0.5px] w-[10%]" style={{ backgroundColor: selectedYear === year  ? "#C1E8F2" : "#FFFFFF" }} />
-                              <div className="h-[0.5px] w-[30%]" style={{ backgroundColor: selectedYear === year  ? "#C1E8F2" : "#FFFFFF" }} />
-                              <div className="h-[0.5px] w-[10%]" style={{ backgroundColor: selectedYear === year  ? "#C1E8F2" : "#FFFFFF" }} />
+                            <div className="absolute top-1 w-full px-4 pt-[2px] flex justify-center items-center gap-1">
+                              <div className="h-[1.5px] w-[50%]" style={{ backgroundColor: selectedYear === year ? "#C1E8F2" : "#FFFFFF" }} />
+                              <div className="h-[1.5px] w-[10%]" style={{ backgroundColor: selectedYear === year ? "#C1E8F2" : "#FFFFFF" }} />
+                              <div className="h-[1.5px] w-[30%]" style={{ backgroundColor: selectedYear === year ? "#C1E8F2" : "#FFFFFF" }} />
+                              <div className="h-[1.5px] w-[10%]" style={{ backgroundColor: selectedYear === year ? "#C1E8F2" : "#FFFFFF" }} />
                             </div>
                           </button>
                         ))}
                       </div>
                       <div className="flex flex-col items-center relative">
-                        <div className="w-[95%] h-2 bg-white" />
+                        <div className="w-[95%] h-2 bg-white"/>
                         <div className="flex flex-col gap-2 px-5 w-full py-2 relative bg-white h-28">
                           {!region.data && <p>No hay datos registrados en la base</p>}
                           {region.data && (
@@ -105,15 +106,15 @@ export const PeruMap = () => {
                               {region.data.find((d) => d.year === selectedYear) ? (
                                 <div className="grid text-sm md:text-md">
                                   <div className="flex w-full justify-between">
-                                    <label>Fallecido:</label>
+                                    <label>Fallecidos:</label>
                                     <p>{region.data.find((d) => d.year === selectedYear)?.fallecido || 0}</p>
                                   </div>
                                   <div className="flex w-full justify-between">
-                                    <label>Ileso:</label>
+                                    <label>Ilesos:</label>
                                     <p>{region.data.find((d) => d.year === selectedYear)?.ileso || 0}</p>
                                   </div>
                                   <div className="flex w-full justify-between">
-                                    <label>Lesionado:</label>
+                                    <label>Lesionados:</label>
                                     <p>{region.data.find((d) => d.year === selectedYear)?.lesionado || 0}</p>
                                   </div>
                                   <div className="flex w-full justify-between">
@@ -127,15 +128,16 @@ export const PeruMap = () => {
                             </>
                           )}
                         </div>
-                        <div className="w-[95%] bg-[#C1E8F2] h-2" />
-                        <div className="w-[10px] bg-[#C1E8F2] h-2 absolute bottom-2 left-0" />
-                        <div className="w-[10px] bg-[#C1E8F2] h-2 absolute bottom-2 right-0" />
+                        <div className="w-[95%] bg-[#C1E8F2] h-2"/>
+                        <div className="w-[10px] bg-[#C1E8F2] h-2 absolute bottom-2 left-0"/>
+                        <div className="w-[10px] bg-[#C1E8F2] h-2 absolute bottom-2 right-0"/>
                       </div>
                     </div>
-                    <div className="w-[95%] h-2" style={{ backgroundColor: years[selectedYear] }} />
-                    <div style={{ backgroundColor: `${years[selectedYear]}80`}} className="w-[95%] h-2" />
-                    <div style={{ backgroundColor: `${years[selectedYear]}80`}} className="w-[10px] h-2 absolute bottom-2 left-0" />
-                    <div style={{ backgroundColor: `${years[selectedYear]}80`}} className="w-[10px] h-2 absolute bottom-2 right-0" />
+                    <div className="w-[95%] h-2" style={{backgroundColor: years[selectedYear]}}/>
+                    <div style={{backgroundColor: `${years[selectedYear]}`, filter: "brightness(60%)"}} className="w-[95%] h-2"/>
+                    <div style={{backgroundColor: `${years[selectedYear]}`, filter: "brightness(60%)"}}
+                         className="w-[11px] h-2 absolute bottom-2 left-0" />
+                    <div style={{ backgroundColor: `${years[selectedYear]}`, filter: "brightness(60%)"}} className="w-[11px] h-2 absolute bottom-2 right-0" />
                   </div>
                 </PopoverContent>
               </Popover>

@@ -22,7 +22,7 @@ export const RadiografiaNacional = () => {
       />
       <div className="bg-primary">
         <div className="mx-auto container w-full min-h-screen">
-          <div className="flex flex-col items-center text-center text-white h-full py-16 px-4">
+          <div className="flex flex-col items-center text-center text-white h-full py-16 pb-24 px-4">
             <h1 className="text-4xl xl:text-5xl mb-6 md:mb-8 font-semibold font-bitcount">
               Radiografía Nacional
             </h1>
@@ -101,7 +101,7 @@ export const RadiografiaNacional = () => {
                 </div>
               </div>
 
-              <div className="absolute bottom-5 right-0 hidden xl:flex flex-col items-center w-32 gap-2">
+              <div className="absolute bottom-5 right-0 translate-x-1/5 hidden xl:flex flex-col items-center w-32 gap-2">
                 <p className="text-center text-xs">
                   Haz clic en los íconos para conocer la data
                 </p>
