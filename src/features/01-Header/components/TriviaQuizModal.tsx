@@ -82,11 +82,13 @@ export const TriviaQuizModal = ({
                     </button>
                   </div>
                 </div>
-                <div className="pb-20">
-                  <TriviaQuizGame
-                    setIsOpen={setIsOpen}
-                    isMuted={isMuted}
-                  />
+                <div className="flex items-center justify-center">
+                  <div className="pb-20 w-full xl:w-1/2">
+                    <TriviaQuizGame
+                      setIsOpen={setIsOpen}
+                      isMuted={isMuted}
+                    />
+                  </div>
                 </div>
               </div>
             </ModalBody>

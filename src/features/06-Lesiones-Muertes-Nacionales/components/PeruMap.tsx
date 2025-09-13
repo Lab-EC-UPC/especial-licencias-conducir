@@ -6,10 +6,12 @@ import TWENTYTWO from "@/assets/buttons-map/2022.png";
 import TWENTYTHREE from "@/assets/buttons-map/2023.png";
 import TWENTYFOUR from "@/assets/buttons-map/2024.png";
 import SELECTED from "@/assets/buttons-map/selected.png";
+import { motion } from "framer-motion";
 
 export const PeruMap = () => {
   const [selectedRegion, setSelectedRegion] = useState<PeruRegion | null>(null);
   const [selectedYear, setSelectedYear] = useState<string>("2021");
+  const [selectedCity, setSelectedCity] = useState<string>("Lima");
   const years: { [key: string]: string } = {
     "2021": "#58b7cf",
     "2022": "#FFAF42",
@@ -85,7 +87,35 @@ export const PeruMap = () => {
                       className="relative px-6 py-2 text-black"
                       style={{backgroundColor: years[selectedYear]}}
                     >
-                      <h1 className="text-lg md:text-xl mb-2">{region.name}</h1>
+                      {region.name !== "Lima" && <h1 className="text-lg md:text-xl mb-2">{region.name}</h1>}
+                      {region.name === "Lima" && (
+                        <div
+                          className="grid grid-cols-2 w-1/2 py-[12px] relative font-bitcount font-semibold text-lg"
+                        >
+                          <motion.img
+                            src={SELECTED}
+                            alt="selector"
+                            className="absolute top-0 translate-y-[10%] left-0 h-auto w-1/2 object-cover pointer-events-none"
+                            animate={{
+                              x: selectedCity === "Lima" ? "0%" : "100%",
+                            }}
+                            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                          />
+                          <button
+                            onClick={() => setSelectedCity("Lima")}
+                            className={`relative z-10 hover:cursor-pointer ${selectedCity === "Lima" ? "text-black" : `text-[${years[selectedYear]}]`}`}
+                          >
+                            Lima
+                          </button>
+                          <button
+                            onClick={() => setSelectedCity("Callao")}
+                            className={`relative z-10 hover:cursor-pointer ${selectedCity === "Lima" ? "text-black" : `text-[${years[selectedYear]}]`}`}
+                          >
+                            Callao
+                          </button>
+                        </div>
+                      )}
+
                       <div className="grid grid-cols-4 gap-2 mb-3">
                         {["2021", "2022", "2023", "2024"].map((year) => (
                           <button
