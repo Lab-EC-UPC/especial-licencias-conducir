@@ -57,7 +57,7 @@ export const AprobadosChart = () => {
   useEffect(() => {
     const cx = size / 2;
     const cy = size / 2;
-    const circleR = size * 0.45;
+    const circleR = size * 0.40;
 
     const svg = d3
       .select(svgRef.current)
