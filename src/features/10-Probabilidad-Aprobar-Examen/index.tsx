@@ -5,6 +5,7 @@ import CHECKBOX_PX from "@/assets/checkbox.png";
 import VECTOR_PX from "@/assets/vector.png";
 import {predictProbabilidad} from "@/services/probabilidad.service.ts";
 import {PixelProgress} from "@/features/10-Probabilidad-Aprobar-Examen/components/PixelProgress.tsx";
+import FORM_BG from "@/assets/form.png";
 
 export const ProbabilidadAprobarExamen = () => {
   const [edad, setEdad] = useState("");
@@ -66,8 +67,16 @@ export const ProbabilidadAprobarExamen = () => {
   };
 
   return (
-    <div className="w-full flex justify-center p-4">
-      <div className="w-full max-w-[740px] rounded-[28px] bg-[#131A31] text-white p-6 md:p-10 shadow-xl">
+    <div className="w-full flex justify-center p-3 mb-[50px]">
+      <div
+        className="w-full md:w-2/3 xl:w-1/2 rounded-[28px] bg-[#131A31] text-white p-8 md:p-12 xl:p-16 shadow-xl"
+        style={{
+          backgroundImage: `url(${FORM_BG})`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+        }}
+      >
         <h1 className="text-center text-2xl md:text-3xl font-semibold leading-tight font-bitcount">
           ¿Cuál es tu probabilidad de aprobar
           <br className="hidden md:block" /> el examen de licencia?

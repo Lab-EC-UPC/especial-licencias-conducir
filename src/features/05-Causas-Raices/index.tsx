@@ -71,9 +71,9 @@ export const CausasRaices = () => {
 
   return (
     <>
-      <div className="mx-auto container w-full my-32">
+      <div className="mx-auto container w-full mb-[50px]">
         <div className="flex flex-col items-center justify-center h-full text-center">
-          <h1 className="text-4xl xl:text-5xl mb-6 md:mb-8 font-semibold font-bitcount">
+          <h1 className="text-3xl md:text-4xl xl:text-5xl mb-2 md:mb-6 font-semibold font-bitcount">
             Causas Raíces
           </h1>
           <p className="w-full md:max-w-2/3 font-medium text-md md:text-xl mb-16 md:mb-24">

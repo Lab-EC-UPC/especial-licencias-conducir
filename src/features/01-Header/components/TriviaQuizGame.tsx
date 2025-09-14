@@ -6,11 +6,13 @@ import ERROR_SOUND from "@/assets/audio/fail-sound.wav";
 interface Props {
   setIsOpen: (isOpen: boolean) => void;
   isMuted: boolean;
+  volume: number;
 }
 
 export const TriviaQuizGame = ({
   setIsOpen,
   isMuted,
+  volume,
 }: Props) => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -25,9 +27,15 @@ export const TriviaQuizGame = ({
   const failRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (successRef.current) successRef.current.muted = isMuted;
-    if (failRef.current) failRef.current.muted = isMuted;
-  }, [isMuted]);
+    if (successRef.current) {
+      successRef.current.muted = isMuted;
+      successRef.current.volume = volume;
+    }
+    if (failRef.current) {
+      failRef.current.muted = isMuted;
+      failRef.current.volume = volume;
+    }
+  }, [isMuted, volume]);
 
   const selectRandomQuestions = () => {
     const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
@@ -39,6 +47,10 @@ export const TriviaQuizGame = ({
       const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
       return () => clearTimeout(timer);
     } else if (timeLeft === 0 && !showResult) {
+      if (failRef.current && !isMuted) {
+        failRef.current.currentTime = 0;
+        failRef.current.play().catch(() => {});
+      }
       setShowResult(true);
     }
   }, [timeLeft, gameStarted, gameFinished, showResult, questions.length]);
@@ -66,12 +78,12 @@ export const TriviaQuizGame = ({
       const basePoints = 10;
       setScore(score + basePoints + timeBonus);
 
-      if (successRef.current) {
+      if (successRef.current && !isMuted) {
         successRef.current.currentTime = 0;
         successRef.current.play().catch(() => {});
       }
     } else {
-      if (failRef.current) {
+      if (failRef.current && !isMuted) {
         failRef.current.currentTime = 0;
         failRef.current.play().catch(() => {});
       }
@@ -150,17 +162,17 @@ export const TriviaQuizGame = ({
         <audio ref={failRef} src={ERROR_SOUND} preload="auto" />
         <div className="flex flex-col text-[#dbeecb]">
           {/* Header del juego */}
-          <div className="flex justify-between items-center mb-4 p-4 rounded flex-shrink-0 bg-[#ffaf42]">
+          <div className="flex justify-between items-center mb-4 p-4 rounded-lg flex-shrink-0 bg-[#ffaf42]">
             <div>
-              <h3 className="font-bold text-sm md:text-base text-[#131a31] font-bitcount">
+              <h3 className="font-bold text-base md:text-lg text-primary font-bitcount">
                 Pregunta {currentQuestion + 1} / {questions.length}
               </h3>
               <div className="flex items-center space-x-2 mt-1">
-                <p className="text-xs md:text-sm text-[#131a31]">Puntos:</p>
+                <p className="text-xs md:text-sm text-primary">Puntos:</p>
                 <p className="px-2 py-1 rounded font-bold text-xs md:text-sm text-white bg-[#ac5eaa]">{score}</p>
               </div>
             </div>
-            <div className={`text-center text-lg md:text-xl font-bold font-bitcount ${timeLeft <= 5 ? "animate-pulse text-[#ed548c]" : "text-[#131a31]"}`}>
+            <div className={`text-center text-lg md:text-xl font-bold font-bitcount ${timeLeft <= 5 ? "animate-pulse text-pink" : "text-primary"}`}>
               ⏰ {timeLeft}s
             </div>
           </div>
@@ -245,11 +257,12 @@ export const TriviaQuizGame = ({
             )}
 
             {/* Botones de acción */}
+            {/* Botones de acción */}
             <div className="mt-4">
               {!showResult && selectedAnswer && (
                 <button
                   onClick={handleSubmitAnswer}
-                  className="w-full py-3 rounded-lg font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer"
+                  className="w-full py-4 rounded-lg font-bold text-lg transition-all hover:opacity-90 hover:cursor-pointer"
                   style={{
                     backgroundColor: "#dbeecb",
                     color: "#131a31",
@@ -263,7 +276,7 @@ export const TriviaQuizGame = ({
               {showResult && (
                 <button
                   onClick={handleNextQuestion}
-                  className="w-full py-3 rounded-lg font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer"
+                  className="w-full py-4 rounded-lg font-bold text-lg transition-all hover:opacity-90 hover:cursor-pointer"
                   style={{
                     backgroundColor: "#ffaf42",
                     color: "#131a31",
@@ -332,7 +345,7 @@ export const TriviaQuizGame = ({
 
           <div className="rounded-lg p-3 mb-6 max-w-md mx-auto bg-[#ffaf42]">
             <p
-              className="font-bold text-[#131a31] text-base"
+              className="font-bold text-primary text-base"
             >
               {getScoreMessage()}
             </p>

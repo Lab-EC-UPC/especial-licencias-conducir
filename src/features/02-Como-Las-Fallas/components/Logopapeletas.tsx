@@ -65,11 +65,11 @@ export const Wheel = ({ question, title, answer, count }: WheelProps) => {
         <div
           className="absolute bottom-1 sm:bottom-2 md:bottom-3 
                      left-1/2 -translate-x-1/2
-                     bg-[#E91E63]/90 px-2 sm:px-3 md:px-4 py-0.5 sm:py-1 
+                     bg-[#E91E63]/90 px-2 sm:px-3 md:px-4 py-0.5 sm:py-1
                      flex items-center justify-center 
                      text-white font-bold italic 
-                     text-[9px] sm:text-[11px] md:text-[12px] 
-                     rounded-md shadow-md"
+                     text-[12px] md:text-[16px]
+                     rounded-md shadow-md whitespace-nowrap"
         >
           Cantidad fallida | {count}
         </div>

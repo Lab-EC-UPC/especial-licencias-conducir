@@ -15,13 +15,14 @@ export const TriviaQuizModal = ({
   setIsOpen,
 }: Props) => {
   const [isMuted, setIsMuted] = useState<boolean>(true);
+  const [volume, setVolume] = useState<number>(0.3);
   const bgmRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const el = bgmRef.current;
     if (!el) return;
 
-    el.volume = 0.05;
+    el.volume = volume;
     el.muted = isMuted;
 
     if (isOpen) {
@@ -37,12 +38,13 @@ export const TriviaQuizModal = ({
     const el = bgmRef.current;
     if (!el) return;
     el.muted = isMuted;
+    el.volume = volume / 3;
 
     if (!isMuted && isOpen && el.paused) {
       const p = el.play();
       if (p && typeof p.catch === "function") p.catch(() => {});
     }
-  }, [isMuted, isOpen]);
+  }, [isMuted, isOpen, volume]);
 
   return (
     <Modal
@@ -62,12 +64,23 @@ export const TriviaQuizModal = ({
             <ModalBody>
               <div className="w-full h-full p-2 md:p-4 xl:p-8">
                 <div className="flex justify-between items-center w-full py-4 text-white">
-                  <button
-                    className="hover:cursor-pointer text-2xl p-4 bg-[#ac5eaa] rounded-full"
-                    onClick={()=>setIsMuted(!isMuted)}
-                  >
-                    {isMuted ? <IoVolumeMute /> : <IoMdVolumeMute />}
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      className="hover:cursor-pointer text-2xl p-4 bg-[#ac5eaa] rounded-full"
+                      onClick={()=>setIsMuted(!isMuted)}
+                    >
+                      {isMuted ? <IoVolumeMute /> : <IoMdVolumeMute />}
+                    </button>
+                    <input
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                      value={volume}
+                      onChange={(e) => setVolume(Number(e.target.value))}
+                      className="mx-4 w-32 accent-[#ac5eaa] cursor-pointer"
+                    />
+                  </div>
                   <div>
                     <button
                       onClick={()=>setIsOpen(false)}
@@ -87,6 +100,7 @@ export const TriviaQuizModal = ({
                     <TriviaQuizGame
                       setIsOpen={setIsOpen}
                       isMuted={isMuted}
+                      volume={volume}
                     />
                   </div>
                 </div>

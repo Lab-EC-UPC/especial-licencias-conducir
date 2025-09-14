@@ -17,9 +17,9 @@ import {Car} from "@/features/03-De-Donde-Son-Los-Evaluados/components/Car.tsx";
 export const DeDondeSonLosEvaluados = () => {
   return (
     <div>
-      <div className="mx-auto container w-full h-full my-16 xl:my-32">
+      <div className="mx-auto container w-full h-full mt-[60px] mb-[86px]">
         <div className="flex flex-col items-center text-center h-full px-4">
-          <h1 className="text-4xl xl:text-5xl mb-6 md:mb-8 font-semibold font-bitcount">
+          <h1 className="text-3xl md:text-4xl xl:text-5xl mb-2 md:mb-6 font-semibold font-bitcount">
             ¿De dónde son los evaluados?
           </h1>
           <p className="w-full md:max-w-2/3 font-medium text-md md:text-xl">

@@ -54,7 +54,7 @@ export const PixelYellowButton = ({ onClick, disabled = false }: Props) => {
       onClick={onClick}
       disabled={disabled}
       className={`
-        relative w-auto max-w-md transition-all duration-200
+        relative w-auto max-w-md transition-all duration-200 hover:cursor-pointer
         ${disabled ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105 active:scale-95'}
       `}
       style={{
@@ -65,7 +65,7 @@ export const PixelYellowButton = ({ onClick, disabled = false }: Props) => {
         backgroundPosition: 'center',
         // Dimensiones mínimas para acomodar el texto de dos líneas
         minHeight: '80px',
-        padding: '12px 24px'
+        padding: '12px 72px'
       }}
     >
       {/* Contenedor del contenido del botón */}
