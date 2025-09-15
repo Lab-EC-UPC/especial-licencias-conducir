@@ -161,7 +161,7 @@ export const PeruMap = () => {
                           `}
                             onClick={() => setSelectedYear(year)}
                           >
-                            <p className="px-4">
+                            <p className="px-2 md:px-4 text-center">
                               {year}
                             </p>
                           </button>

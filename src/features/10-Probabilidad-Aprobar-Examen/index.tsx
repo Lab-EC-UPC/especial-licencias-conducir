@@ -69,7 +69,7 @@ export const ProbabilidadAprobarExamen = () => {
   return (
     <div className="w-full flex justify-center p-3 mb-[50px]">
       <div
-        className="w-full md:w-2/3 xl:w-1/2 rounded-[28px] bg-[#131A31] text-white p-8 md:p-12 xl:p-16 shadow-xl"
+        className="w-full md:w-3/4 xl:w-1/2 rounded-[28px] bg-[#131A31] text-white p-8 md:p-12 xl:p-16 shadow-xl"
         style={{
           backgroundImage: `url(${FORM_BG})`,
           backgroundSize: '100% 100%',

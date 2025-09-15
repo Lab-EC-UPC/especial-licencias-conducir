@@ -1,252 +1,187 @@
-import {ChevronLeft, ChevronRight, Play} from "lucide-react";
-import {useState} from "react";
+import React, {useState, useRef} from "react";
+import TESTIMONIO1 from "@/assets/testimonio-1.png";
+import TESTIMONIO2 from "@/assets/testimonio-2.png";
+import TESTIMONIO3 from "@/assets/testimonio-3.png";
+import TESTIMONIO4 from "@/assets/testimonio-4.png";
+import FLECHA from "@/assets/flecha-causas.png";
+import {Modal, ModalBody, ModalContent} from "@heroui/modal";
 
 type Testimonio = {
-  nombre: string;
-  texto: string;
+  bgColor?: string;
   avatarUrl: string;
-  bgColor: string;
+  title: string;
+  text: string;
+  video?: React.ReactNode;
 };
-
-type Empresa = {
-  nombre: string;
-  texto: string;
-  avatarUrl: string;
-  bgColor: string;
-};
-
-const TestimonioCard = ({ testimonio }: { testimonio: Testimonio }) => (
-  <div className="flex items-center gap-4 md:gap-6 max-w-lg mx-auto px-4">
-    <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full ${testimonio.bgColor} flex items-center justify-center shadow-lg flex-shrink-0 overflow-hidden`}>
-      <img
-        src={testimonio.avatarUrl}
-        alt={testimonio.nombre}
-        className="object-cover w-full h-full rounded-full"
-        sizes="(max-width: 375px) 48px, (max-width: 820px) 64px, 80px"
-        style={{ width: '100%', height: '100%', minWidth: 0, minHeight: 0 }}
-      />
-    </div>
-    <div className="flex-1 min-w-0">
-      <h3 className="font-bold text-base md:text-lg text-[#131A31] mb-2 font-bitcount">
-        {testimonio.nombre}
-      </h3>
-      <p className="text-[#131A31] text-xs md:text-sm leading-relaxed mb-3">
-        "{testimonio.texto}"
-      </p>
-      <button className="flex items-center gap-2 text-[#131A31] underline font-medium text-xs md:text-sm hover:text-[#ac5eaa] transition-colors">
-        <Play size={12} />
-        Ver video
-      </button>
-    </div>
-  </div>
-);
-
-const EmpresaCard = ({ empresa }: { empresa: Empresa }) => (
-  <div className="flex items-center gap-4 md:gap-6 max-w-lg mx-auto px-4">
-    <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full ${empresa.bgColor} flex items-center justify-center shadow-lg flex-shrink-0 relative overflow-hidden`}>
-      <div className="absolute inset-2 bg-white rounded-full opacity-20"></div>
-      <div className="absolute inset-3 bg-white rounded-full opacity-40"></div>
-      <img
-        src={empresa.avatarUrl}
-        alt={empresa.nombre}
-        className="object-cover w-full h-full rounded-full relative z-10"
-        sizes="(max-width: 375px) 48px, (max-width: 820px) 64px, 80px"
-        style={{ width: '100%', height: '100%', minWidth: 0, minHeight: 0 }}
-      />
-    </div>
-    <div className="flex-1 min-w-0">
-      <h3 className="font-bold text-base md:text-lg text-[#131A31] mb-2 font-bitcount">
-        {empresa.nombre}
-      </h3>
-      <p className="text-[#131A31] text-xs md:text-sm leading-relaxed mb-3">
-        "{empresa.texto}"
-      </p>
-      <button className="text-[#131A31] underline font-medium text-xs md:text-sm hover:text-[#ac5eaa] transition-colors">
-        Ver más
-      </button>
-    </div>
-  </div>
-);
 
 export const TestimoniosSection = () => {
-  const [currentTestimonioSlide, setCurrentTestimonioSlide] = useState(0);
-  const [currentEmpresaSlide, setCurrentEmpresaSlide] = useState(0);
+  const [selected, setSelected] = useState<Testimonio | undefined>(undefined);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  // Data
   const testimonios: Testimonio[] = [
     {
-      nombre: "Ana Paula Díez",
-      texto: "Siento que los circuitos y los evaluadores hacen las cosas confusas a propósito, para que tengamos que repetir más veces el proceso y gastar más dinero",
-      avatarUrl: '/anaPaula.png',
-      bgColor: "bg-[#58b7cf]"
+      avatarUrl: TESTIMONIO1,
+      title: "Ana Paula Diez",
+      text: "“Afuerita nomás, antes de entrar a la evaluación, hay un montón de gente que te quiere vender el exámen, que te dice que te va a aprobar. Hay gente que te dice: “yo te ayudo, amiga”.",
+      video:
+        <iframe
+          src="https://www.youtube.com/embed/pygGug3TCaI?si=aciVCgdbIfsJtek3"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          style={{ width: '100%', height: '50vh', display: 'block' }}
+        />
     },
     {
-      nombre: "Anónimo",
-      texto: "La falta de transparencia en las condiciones actuales limita nuestras oportunidades",
-      avatarUrl: "/anonimo1.png",
-      bgColor: "bg-[#ac5eaa]"
+      avatarUrl: TESTIMONIO2,
+      title: "Anónimo",
+      text: "“Tienen un montón de personas dando su examen, y cuando manejaba podía ir máximo a 10 km/h. La cola dentro del circuito era enorme”.",
+      video:
+        <iframe
+          src="https://www.youtube.com/embed/pygGug3TCaI?si=aciVCgdbIfsJtek3"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          style={{ width: '100%', height: '50vh', display: 'block' }}
+        />
     },
     {
-      nombre: "María González",
-      texto: "El proceso debería ser más claro y accesible para todos los ciudadanos",
-      avatarUrl: "/avatars/maria.jpg",
-      bgColor: "bg-[#ff6b6b]"
-    }
+      avatarUrl: TESTIMONIO3,
+      title: "Ariana Vargas",
+      text: "“En el reglamento indican que tienes que prender tu luz direccional (para estacionar en diagonal). A mí me desaprobaron por prenderlas. En mi siguiente examen, decidí no hacerlo, y me desaprobaron por no prenderlas”. ",
+      video:
+        <iframe
+          src="https://www.youtube.com/embed/pygGug3TCaI?si=aciVCgdbIfsJtek3"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          style={{ width: '100%', height: '50vh', display: 'block' }}
+        />
+    },
+    {
+      avatarUrl: TESTIMONIO4,
+      title: "Mario Muñoz",
+      text: "“Es un circuito pequeño donde realmente no aprueba el que tenga mejor habilidad conductiva, sino el que el que se han memorizado todos los pequeños detallitos que tiene que hacer y ya está.",
+      video:
+        <iframe
+          src="https://www.youtube.com/embed/pygGug3TCaI?si=aciVCgdbIfsJtek3"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          style={{ width: '100%', height: '50vh', display: 'block' }}
+        />
+    },
   ];
 
-  const empresas: Empresa[] = [
-    {
-      nombre: "Escuela Dakar Perú",
-      texto: "Siento que los circuitos y los evaluadores hacen las cosas confusas a propósito, para que tengamos que repetir más veces el proceso y gastar más dinero",
-      avatarUrl: "corrupcion.png",
-      bgColor: "bg-[#ff69b4]"
-    },
-    {
-      nombre: "Escuela Automovilística",
-      texto: "La falta de transparencia en las condiciones actuales limita nuestras oportunidades",
-      avatarUrl: "/escuelaJose.png",
-      bgColor: "bg-[#ac5eaa]"
-    },
-    {
-      nombre: "Instituto Vial",
-      texto: "Necesitamos procesos más transparentes y eficientes",
-      avatarUrl: "/avatars/vial.jpg",
-      bgColor: "bg-[#4ecdc4]"
-    }
-  ];
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const isDown = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
 
-  // Handlers
-  const nextTestimonioSlide = () => {
-    setCurrentTestimonioSlide((prev) => (prev + 1) % testimonios.length);
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollRef.current) return;
+    isDown.current = true;
+    startX.current = e.pageX - scrollRef.current.offsetLeft;
+    scrollLeft.current = scrollRef.current.scrollLeft;
   };
 
-  const prevTestimonioSlide = () => {
-    setCurrentTestimonioSlide((prev) => (prev - 1 + testimonios.length) % testimonios.length);
+  const handleMouseLeave = () => {
+    isDown.current = false;
   };
 
-  const nextEmpresaSlide = () => {
-    setCurrentEmpresaSlide((prev) => (prev + 1) % empresas.length);
+  const handleMouseUp = () => {
+    isDown.current = false;
   };
 
-  const prevEmpresaSlide = () => {
-    setCurrentEmpresaSlide((prev) => (prev - 1 + empresas.length) % empresas.length);
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDown.current || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = x - startX.current
+    scrollRef.current.scrollLeft = scrollLeft.current - walk;
   };
+
+  const TestimonioCard = ({testimonio}: {testimonio: Testimonio}) => {
+    return (
+      <div className="flex items-center gap-4 md:gap-6 mx-auto px-4 select-none shrink-0">
+        <div className="size-32 md:size-40 shrink-0">
+          <img
+            src={testimonio.avatarUrl}
+            alt={testimonio.title}
+            className="object-cover w-full h-full relative z-10 pointer-events-none"
+            draggable={false}
+          />
+        </div>
+        <div className="w-[300px] md:w-[450px] text-primary">
+          <h3 className="font-bold text-xl md:text-2xl text-[#131A31] mb-0 md:mb-2">
+            {testimonio.title}
+          </h3>
+          <p className="text-md md:text-lg leading-relaxed mb-2">
+            {testimonio.text}
+          </p>
+          <button
+            onClick={() => {
+              setSelected(testimonio);
+              setIsOpen(true);
+            }}
+            className="underline font-bold text-md md:text-lg hover:text-purple transition-colors cursor-pointer duration-200"
+          >
+            Ver video
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <div className="w-full">
-      <h1 className="text-3xl md:text-4xl xl:text-5xl mb-2 md:mb-6 font-semibold font-bitcount">
+    <div className="w-full mb-[66px]">
+      <h1 className="text-3xl md:text-4xl xl:text-5xl mb-8 md:mb-12 font-semibold font-bitcount">
         Testimonios
       </h1>
-
-      {/* Slider de Testimonios */}
-      <div className="w-full mb-12 relative">
-        <div className="flex items-center justify-center">
-          <button
-            onClick={prevTestimonioSlide}
-            className="hidden md:flex absolute left-4 lg:left-8 z-10 w-12 h-12 bg-white rounded-full items-center justify-center shadow-lg hover:shadow-xl transition-shadow text-[#ac5eaa]"
-          >
-            <ChevronLeft size={24} />
-          </button>
-
-          <div className="w-full max-w-lg">
-            <TestimonioCard testimonio={testimonios[currentTestimonioSlide]} />
-          </div>
-
-          <button
-            onClick={nextTestimonioSlide}
-            className="hidden md:flex absolute right-4 lg:right-8 z-10 w-12 h-12 bg-white rounded-full items-center justify-center shadow-lg hover:shadow-xl transition-shadow text-[#ac5eaa]"
-          >
-            <ChevronRight size={24} />
-          </button>
-        </div>
-
-        {/* Indicadores móvil */}
-        <div className="flex justify-center mt-6 gap-2 md:hidden">
-          {testimonios.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentTestimonioSlide(index)}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                index === currentTestimonioSlide ? 'bg-[#ac5eaa]' : 'bg-gray-300'
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* Botones de navegación móvil */}
-        <div className="flex justify-center gap-4 mt-4 md:hidden">
-          <button
-            onClick={prevTestimonioSlide}
-            className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg text-[#ac5eaa]"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            onClick={nextTestimonioSlide}
-            className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg text-[#ac5eaa]"
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
+      <div
+        ref={scrollRef}
+        className="flex gap-8 overflow-x-auto w-full scrollbar-hide items-center text-left cursor-grab active:cursor-grabbing"
+        onMouseDown={handleMouseDown}
+        onMouseLeave={handleMouseLeave}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
+      >
+        <TestimonioCard testimonio={testimonios[0]} />
+        <img
+          src={FLECHA}
+          alt="Flecha"
+          className="h-12 md:h-16 w-auto object-contain"
+        />
+        <TestimonioCard testimonio={testimonios[1]} />
+        <TestimonioCard testimonio={testimonios[2]} />
+        <TestimonioCard testimonio={testimonios[3]} />
       </div>
 
-      {/* Sección Empresas */}
-      <div className="w-full mb-12">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl mb-8 font-bold font-bitcount text-[#131A31]">
-          Empresas
-        </h2>
-
-        <div className="relative">
-          <div className="flex items-center justify-center">
-            <button
-              onClick={prevEmpresaSlide}
-              className="hidden md:flex absolute left-4 lg:left-8 z-10 w-12 h-12 bg-white rounded-full items-center justify-center shadow-lg hover:shadow-xl transition-shadow text-[#ac5eaa]"
-            >
-              <ChevronLeft size={24} />
-            </button>
-
-            <div className="w-full max-w-lg">
-              <EmpresaCard empresa={empresas[currentEmpresaSlide]} />
-            </div>
-
-            <button
-              onClick={nextEmpresaSlide}
-              className="hidden md:flex absolute right-4 lg:right-8 z-10 w-12 h-12 bg-white rounded-full items-center justify-center shadow-lg hover:shadow-xl transition-shadow text-[#ac5eaa]"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
-
-          {/* Indicadores móvil */}
-          <div className="flex justify-center mt-6 gap-2 md:hidden">
-            {empresas.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentEmpresaSlide(index)}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentEmpresaSlide ? 'bg-[#ac5eaa]' : 'bg-gray-300'
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Botones de navegación móvil */}
-          <div className="flex justify-center gap-4 mt-4 md:hidden">
-            <button
-              onClick={prevEmpresaSlide}
-              className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg text-[#ac5eaa]"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              onClick={nextEmpresaSlide}
-              className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg text-[#ac5eaa]"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
-        </div>
-      </div>
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={()=>setIsOpen(!isOpen)}
+        hideCloseButton={true}
+        size="3xl"
+        placement="center"
+        scrollBehavior="inside"
+        classNames={{
+          base: "bg-transparent shadow-none p-0"
+        }}
+      >
+        <ModalContent>
+          {() => (
+            <>
+              <ModalBody>
+                {selected?.video}
+              </ModalBody>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
-  )
-}
+  );
+};

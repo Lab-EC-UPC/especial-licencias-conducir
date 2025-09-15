@@ -46,7 +46,7 @@ export const CallToAction = () => {
   return (
     <>
       {/* Contenedor principal de la sección CallToAction */}
-      <div className="my-[86px]">
+      <div className="my-[60px] md:my-[86px]">
         {/* Layout responsive con altura mínima de pantalla */}
         <div className="mx-auto container w-full">
           {/* Contenedor centrado vertical y horizontalmente */}

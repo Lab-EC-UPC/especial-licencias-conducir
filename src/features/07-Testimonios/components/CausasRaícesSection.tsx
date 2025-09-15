@@ -62,7 +62,6 @@ export const CausasRaicesSection = () => {
     }
   ];
 
-  // --- lógica drag scroll ---
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const isDown = useRef(false);
   const startX = useRef(0);
@@ -87,7 +86,7 @@ export const CausasRaicesSection = () => {
     if (!isDown.current || !scrollRef.current) return;
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5; // factor de velocidad
+    const walk = x - startX.current
     scrollRef.current.scrollLeft = scrollLeft.current - walk;
   };
 

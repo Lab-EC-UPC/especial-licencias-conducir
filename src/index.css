@@ -48,3 +48,15 @@
     transform: translateY(0.25rem) scale(0.995);
 }
 
+@keyframes pulseScale {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.item-pulse {
+    animation: pulseScale 1s infinite ease-in-out;
+}
