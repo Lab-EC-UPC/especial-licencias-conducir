@@ -1,25 +1,21 @@
 import React, {type ReactNode, useMemo, useState} from "react";
 import Button from "@/features/10-Probabilidad-Aprobar-Examen/components/button.tsx";
 import FIELD_PX from "@/assets/field.png";
-import CHECKBOX_PX from "@/assets/checkbox.png";
+// import CHECKBOX_PX from "@/assets/checkbox.png";
 import VECTOR_PX from "@/assets/vector.png";
 import {predictProbabilidad} from "@/services/probabilidad.service.ts";
 import {PixelProgress} from "@/features/10-Probabilidad-Aprobar-Examen/components/PixelProgress.tsx";
 import FORM_BG from "@/assets/form.png";
-import {DisclaimerModal} from "@/features/shared/components/DisclaimerModal.tsx";
-import {IoIosInformationCircle} from "react-icons/io";
 
 export const ProbabilidadAprobarExamen = () => {
   const [edad, setEdad] = useState("");
   const [region, setRegion] = useState("");
   const [sexo, setSexo] = useState("");
-  const [yaDiste, setYaDiste] = useState(false);
+  // const [yaDiste, setYaDiste] = useState(false);
   const [percent, setPercent] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const isFormValid = useMemo(() => edad && region && sexo, [edad, region, sexo]);
-
-  const [disclaimerModal, setDisclaimerModal] = useState<boolean>(false)
 
   // function animateValue(start: number, end: number, ms: number, cb: (v:number)=>void) {
   //   let raf: number | null = null;
@@ -81,12 +77,6 @@ export const ProbabilidadAprobarExamen = () => {
           backgroundPosition: 'center',
         }}
       >
-        <button
-          onClick={()=>setDisclaimerModal(true)}
-          className="absolute top-0 right-0 m-4 md:m-6 xl:m-8 p-2 bg-skyblue rounded-full font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer"
-        >
-          <IoIosInformationCircle className="text-white text-lg md:text-2xl" />
-        </button>
         <h1 className="text-center text-2xl md:text-3xl font-semibold leading-tight font-bitcount">
           ¿Cuál es tu probabilidad de aprobar
           <br className="hidden md:block" /> el examen de licencia?
@@ -151,19 +141,24 @@ export const ProbabilidadAprobarExamen = () => {
           </PixelField>
 
           <label className="flex items-center gap-3 select-none mt-3">
-            <input
-              type="checkbox"
-              className="peer sr-only"
-              checked={yaDiste}
-              onChange={(e) => setYaDiste(e.target.checked)}
-            />
-            <span
-              className="inline-flex items-center justify-center h-7 w-7"
-              style={{ backgroundImage: `url('${CHECKBOX_PX}')`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', imageRendering: 'pixelated' }}
-            >
-              {yaDiste && <span className="h-3.5 w-3.5 bg-[#131A31]"></span>}
+            {/*<input*/}
+            {/*  type="checkbox"*/}
+            {/*  className="peer sr-only"*/}
+            {/*  checked={yaDiste}*/}
+            {/*  onChange={(e) => setYaDiste(e.target.checked)}*/}
+            {/*/>*/}
+            {/*<span*/}
+            {/*  className="inline-flex items-center justify-center h-7 w-7"*/}
+            {/*  style={{ backgroundImage: `url('${CHECKBOX_PX}')`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', imageRendering: 'pixelated' }}*/}
+            {/*>*/}
+            {/*  {yaDiste && <span className="h-3.5 w-3.5 bg-[#131A31]"></span>}*/}
+            {/*</span>*/}
+            {/*<span className="text-white/90">*/}
+            {/*  ¿Ya diste la prueba antes?*/}
+            {/*</span>*/}
+            <span className="text-white/90">
+              Si no diste la prueba al inicio y no registraste un porcentaje de aprobación o desaprobación, el modelo considerará una cifra referencial.
             </span>
-            <span className="text-white/90">¿Ya diste la prueba antes?</span>
           </label>
 
           <div className="pt-2 flex justify-center">
@@ -183,38 +178,6 @@ export const ProbabilidadAprobarExamen = () => {
           </div>
         )}
       </div>
-
-      <DisclaimerModal
-        isOpen={disclaimerModal}
-        setIsOpen={setDisclaimerModal}
-        title="Disclaimer"
-        content={
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-            been the industry's standard dummy text ever since the 1500s, when an unknown printer took
-            a galley of type and scrambled it to make a type specimen book. It has survived not only
-            five centuries, but also the leap into electronic typesetting, remaining essentially
-            unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-            Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
-            <br/><br/>
-            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece
-            of classical Latin literature from 45 BC, making it over 2000 years old. Richard
-            McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the
-            more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the
-            cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum
-            comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
-            of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of
-            ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum
-            dolor sit amet..", comes from a line in section 1.10.32.
-            <br/><br/>
-            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
-            interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero
-            are also reproduced in their exact original form, accompanied by English versions from the
-            1914 translation by H. Rackham.
-          </p>
-        }
-      />
     </div>
   );
 };
