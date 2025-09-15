@@ -6,6 +6,8 @@ import VECTOR_PX from "@/assets/vector.png";
 import {predictProbabilidad} from "@/services/probabilidad.service.ts";
 import {PixelProgress} from "@/features/10-Probabilidad-Aprobar-Examen/components/PixelProgress.tsx";
 import FORM_BG from "@/assets/form.png";
+import {DisclaimerModal} from "@/features/shared/components/DisclaimerModal.tsx";
+import {IoIosInformationCircle} from "react-icons/io";
 
 export const ProbabilidadAprobarExamen = () => {
   const [edad, setEdad] = useState("");
@@ -16,6 +18,8 @@ export const ProbabilidadAprobarExamen = () => {
   const [loading, setLoading] = useState(false);
 
   const isFormValid = useMemo(() => edad && region && sexo, [edad, region, sexo]);
+
+  const [disclaimerModal, setDisclaimerModal] = useState<boolean>(false)
 
   // function animateValue(start: number, end: number, ms: number, cb: (v:number)=>void) {
   //   let raf: number | null = null;
@@ -69,7 +73,7 @@ export const ProbabilidadAprobarExamen = () => {
   return (
     <div className="w-full flex justify-center p-3 mb-[50px]">
       <div
-        className="w-full md:w-3/4 xl:w-1/2 rounded-[28px] bg-[#131A31] text-white p-8 md:p-12 xl:p-16 shadow-xl"
+        className="w-full md:w-3/4 xl:w-1/2 rounded-[28px] bg-[#131A31] text-white p-8 md:p-12 xl:p-16 shadow-xl relative"
         style={{
           backgroundImage: `url(${FORM_BG})`,
           backgroundSize: '100% 100%',
@@ -77,6 +81,12 @@ export const ProbabilidadAprobarExamen = () => {
           backgroundPosition: 'center',
         }}
       >
+        <button
+          onClick={()=>setDisclaimerModal(true)}
+          className="absolute top-0 right-0 m-4 md:m-6 xl:m-8 p-2 bg-skyblue rounded-full font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer"
+        >
+          <IoIosInformationCircle className="text-white text-lg md:text-2xl" />
+        </button>
         <h1 className="text-center text-2xl md:text-3xl font-semibold leading-tight font-bitcount">
           ¿Cuál es tu probabilidad de aprobar
           <br className="hidden md:block" /> el examen de licencia?
@@ -173,6 +183,38 @@ export const ProbabilidadAprobarExamen = () => {
           </div>
         )}
       </div>
+
+      <DisclaimerModal
+        isOpen={disclaimerModal}
+        setIsOpen={setDisclaimerModal}
+        title="Disclaimer"
+        content={
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+            been the industry's standard dummy text ever since the 1500s, when an unknown printer took
+            a galley of type and scrambled it to make a type specimen book. It has survived not only
+            five centuries, but also the leap into electronic typesetting, remaining essentially
+            unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+            Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.
+            <br/><br/>
+            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece
+            of classical Latin literature from 45 BC, making it over 2000 years old. Richard
+            McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the
+            more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the
+            cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum
+            comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
+            of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of
+            ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum
+            dolor sit amet..", comes from a line in section 1.10.32.
+            <br/><br/>
+            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
+            interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero
+            are also reproduced in their exact original form, accompanied by English versions from the
+            1914 translation by H. Rackham.
+          </p>
+        }
+      />
     </div>
   );
 };
