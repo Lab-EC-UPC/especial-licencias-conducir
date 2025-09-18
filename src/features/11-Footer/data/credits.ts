@@ -330,7 +330,8 @@ export const credits: Credit[] = [
       {
         name: "Carls Mayo",
         role: "Edición de Prompts",
-        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+        photo: "https://elcomercio.pe/resizer/v2/https%3A%2F%2Fs3.amazonaws.com%2Farc-authors%2Felcomercio%2Fb8194040-9eee-4e56-9a37-4ce254681572.jpg?auth=948d598f5d22b77038a6a296ca3e8d4504a888d0989ff42863e93eb435a5982b&width=191&height=191&quality=75&smart=true",
+        url: "https://elcomercio.pe/autor/carls-mayo/"
       },
     ]
   },
