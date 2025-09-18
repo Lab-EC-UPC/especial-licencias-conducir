@@ -14,6 +14,7 @@ interface Props {
 interface FormData {
   nombre: string;
   ciudad: string;
+  contacto: string;
   experiencia: string;
 }
 
@@ -71,6 +72,7 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
   const [formData, setFormData] = useState<FormData>({
     nombre: '',
     ciudad: '',
+    contacto: '',
     experiencia: ''
   });
 
@@ -117,6 +119,11 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
 
   const handleSubmit = async () => {
     setSubmitError(null);
+    if (!formData.contacto.trim()) {
+      alert('Por favor, ingresa tu celular o correo electrónico');
+      return;
+    }
+
     if (!formData.experiencia.trim()) {
       alert('Por favor, ingresa tu experiencia');
       return;
@@ -135,10 +142,12 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
     try {
          const nombre = formData.nombre.trim();
          const ciudad = formData.ciudad.trim();
+         const contacto = formData.contacto.trim();
          const experiencia = formData.experiencia.trim();
          const params = new URLSearchParams();
          params.append('nombre', nombre);
          params.append('ciudad', ciudad);
+         params.append('contacto', contacto);
          params.append('experiencia', experiencia);
          params.append('consent', checkboxChecked ? '1' : '0');
          params.append('userAgent', navigator.userAgent);
@@ -162,7 +171,7 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
              throw new Error('No se pudo guardar tu testimonio. Inténtalo nuevamente.');
          }
          setSubmitOk(true);
-         setFormData({ nombre: '', ciudad: '', experiencia: '' });
+         setFormData({ nombre: '', ciudad: '', contacto: '', experiencia: '' });
          setCheckboxChecked(false);
          alert('¡Gracias por compartir tu experiencia!');
          onClose();
@@ -292,6 +301,15 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
                             value={formData.ciudad}
                             onChange={(value) => handleInputChange('ciudad', value)}
                             required={false}
+                          />
+
+                          {/* Campo Contacto */}
+                          <PixelTextField
+                            label="Celular o correo electrónico:"
+                            placeholder="Ingresa tu celular o correo electrónico"
+                            value={formData.contacto}
+                            onChange={(value) => handleInputChange('contacto', value)}
+                            required={true}
                           />
 
                           {/* Campo Experiencia */}
