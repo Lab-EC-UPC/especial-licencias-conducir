@@ -1,4 +1,4 @@
-import {type Credit, credits} from "@/features/11-Footer/data/credits.ts";
+import { type Credit, credits } from "@/features/11-Footer/data/credits.ts";
 
 export const FooterSection = () => {
 
@@ -38,7 +38,7 @@ export const FooterSection = () => {
                         <img
                           src={member.photo}
                           alt={member.name}
-                          className="w-14 md:w-16 h-auto object-cover rounded-full"
+                          className={`w-14 h-14 md:w-16 md:h-16 object-cover rounded-full ${member.objectPosition === "center" ? "object-center" : "object-top"}`}
                         />
                       </div>
                       <div className="text-left text-white">
@@ -51,6 +51,14 @@ export const FooterSection = () => {
               </div>
             ))}
           </div>
+
+
+          <img src = "https://raw.githubusercontent.com/Lab-EC-UPC/assets/refs/heads/main/logo-ec-upc-png.png"
+          width= "330" style={{marginTop: "90px"}}
+          />
+          <img src = "https://raw.githubusercontent.com/Lab-EC-UPC/assets/refs/heads/main/logo-unidad-ec-data.png"
+          width= "250" style={{marginTop: "90px"}}
+          />
         </div>
       </div>
     </div>
