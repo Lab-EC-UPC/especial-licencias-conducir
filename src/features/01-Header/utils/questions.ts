@@ -840,10 +840,10 @@ export const allQuestions: Question[] = [
         options: [
             "30km/h.",
             "40km/h.",
-            "60km/h.",
+            "50km/h.",
             "80km/h."
         ],
-        correctAnswer: "60km/h."
+        correctAnswer: "50km/h."
     },
     {
         question: "Siempre que no exista una señal de límite de velocidad, en zonas urbanas el límite máximo de velocidad en vías expresas es de:",

@@ -296,13 +296,12 @@ export const TriviaQuizGame = ({
             </p>
           </div>
 
-          <div className="rounded-lg p-3 mb-6 max-w-md mx-auto bg-[#ffaf42]">
-            <p
-              className="font-bold text-[#131a31] text-base"
-            >
-              {getScoreMessage()}
-            </p>
-          </div>
+          <p
+              className="font-bold text-[#868686] text-lg mb-6"
+              style={{ fontFamily: 'var(--font-helvetica, sans-serif)' }}
+          >
+            {getScoreMessage()}
+          </p>
 
           <button
             onClick={startGame}
