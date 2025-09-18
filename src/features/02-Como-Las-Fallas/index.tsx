@@ -113,7 +113,7 @@ export const ComoLasFallas = () => {
               key={i}
               className={`w-2 h-2 rounded-full ${
                 Math.floor(currentIndex / itemsPerPage) === i
-                  ? "bg-[#E91E63]"
+                  ? "bg-[#ED548C]"
                   : "bg-gray-300"
               }`}
               onClick={() => setCurrentIndex(i * itemsPerPage)}
