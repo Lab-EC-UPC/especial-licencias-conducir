@@ -1,8 +1,10 @@
-// src/features/08-CallToAction/components/TestimonioModal.tsx
+
 import { useState, useEffect } from 'react';
 import { Modal, ModalBody, ModalContent } from "@heroui/modal";
 import { PixelTextField } from './PixelTextField';
 import { PixelSubmitButton } from './PixelSubmitButton';
+
+const SHEETS_URL = import.meta.env.VITE_SHEETS_WEBAPP_URL as string;
 
 interface Props {
   isOpen: boolean;
@@ -74,7 +76,10 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
 
   const [checkboxChecked, setCheckboxChecked] = useState(false);
 
-  // Aplicar estilos de scrollbar dinámicamente
+    const [submitting, setSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
+    const [submitOk, setSubmitOk] = useState(false);
+
   useEffect(() => {
     if (isOpen) {
       const style = document.createElement('style');
@@ -110,15 +115,64 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
     };
   }, [isOpen]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    setSubmitError(null);
     if (!formData.experiencia.trim()) {
       alert('Por favor, ingresa tu experiencia');
       return;
     }
-    
-    console.log('Datos del formulario:', formData);
-    alert('¡Gracias por compartir tu experiencia!');
-    onClose(); // Cerrar el modal después de enviar
+
+    if (!checkboxChecked) {
+        alert('Debes autorizar el uso anónimo del testimonio para continuar.');
+        return;
+    }
+
+    if (!SHEETS_URL) {
+        alert('Falta configurar la URL del Web App (VITE_SHEETS_WEBAPP_URL).');
+        return;
+    }
+    setSubmitting(true);
+    try {
+         const nombre = formData.nombre.trim();
+         const ciudad = formData.ciudad.trim();
+         const experiencia = formData.experiencia.trim();
+         const params = new URLSearchParams();
+         params.append('nombre', nombre);
+         params.append('ciudad', ciudad);
+         params.append('experiencia', experiencia);
+         params.append('consent', checkboxChecked ? '1' : '0');
+         params.append('userAgent', navigator.userAgent);
+         params.append('page', window.location.href);
+
+         const res = await fetch(SHEETS_URL, {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+             },
+             body: params.toString(),
+         });
+         let ok = false;
+         try {
+             const data = await res.json();
+             ok = !!data?.ok;
+         } catch {
+             ok = res.ok;
+         }
+         if (!ok) {
+             throw new Error('No se pudo guardar tu testimonio. Inténtalo nuevamente.');
+         }
+         setSubmitOk(true);
+         setFormData({ nombre: '', ciudad: '', experiencia: '' });
+         setCheckboxChecked(false);
+         alert('¡Gracias por compartir tu experiencia!');
+         onClose();
+    } catch (err: any) {
+         console.error(err);
+         setSubmitError(err?.message || 'Error desconocido al enviar el formulario.');
+         alert('Ocurrió un error al enviar. Por favor, inténtalo de nuevo.');
+    } finally {
+         setSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: keyof FormData, value: string) => {
@@ -285,13 +339,26 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
                             Autorizo el uso de mi testimonio con fines periodísticos, manteniendo mi anonimato. Los datos como el celular y el correo no serán publicados.
                           </p>
                         </div>
+                        {submitError && (
+                            <p className="mt-2 text-sm" style={{ color: '#b00020' }}>
+                                {submitError}
+                            </p>
+                        )}
+                        {submitOk && (
+                            <p className="mt-2 text-sm" style={{ color: 'green' }}>
+                                ¡Enviado correctamente!
+                            </p>
+                        )}
 
                         {/* Botón de envío */}
-                        <div className="flex justify-start">
-                          <PixelSubmitButton 
-                            text="Enviar mi historia" 
-                            onClick={handleSubmit}
-                          />
+                        <div className="flex justify-start mt-2">
+                            <div className={submitting ? 'pointer-events-none opacity-70' : ''}>
+                                <PixelSubmitButton
+                                    text={submitting ? 'Enviando...' : 'Enviar mi historia'}
+                                    onClick={handleSubmit}
+                                    disabled={submitting}
+                                />
+                            </div>
                         </div>
                       </div>
                     </div>

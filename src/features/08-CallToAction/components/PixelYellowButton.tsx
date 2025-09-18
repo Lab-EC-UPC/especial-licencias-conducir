@@ -1,53 +1,11 @@
-/**
- * PixelYellowButton Component
- * 
- * Botón con diseño pixelado amarillo para la sección CallToAction.
- * Utiliza la imagen button-yellow.png como fondo y muestra texto
- * en dos líneas con tipografía Helvetica Neue LT Pro.
- * 
- * Características:
- * - Diseño pixelado con imagen de fondo
- * - Texto en dos líneas: hashtag principal y texto secundario
- * - Efectos hover y active con transformaciones CSS
- * - Tipografía responsive con clamp()
- * - Estados disabled con opacidad reducida
- * 
- * @fileoverview Componente de botón pixelado amarillo
- * @author Sistema de Licencias de Conducir
- * @version 1.0.0
- */
-
 import buttonYellow from '../../../assets/buttons/button-yellow.png';
 
-/**
- * Props del componente PixelYellowButton
- * @interface Props
- */
 interface Props {
   /** Función que se ejecuta al hacer click en el botón */
   onClick: () => void;
   /** Estado deshabilitado del botón (opcional) */
   disabled?: boolean;
 }
-
-/**
- * Componente de botón pixelado amarillo
- * 
- * Renderiza un botón con diseño pixelado que utiliza la imagen
- * button-yellow.png como fondo. Incluye dos líneas de texto:
- * la principal con el hashtag y la secundaria con instrucciones.
- * 
- * @param {Props} props - Propiedades del componente
- * @returns {JSX.Element} Botón pixelado amarillo renderizado
- * 
- * @example
- * ```tsx
- * <PixelYellowButton 
- *   onClick={() => console.log('Button clicked')}
- *   disabled={false}
- * />
- * ```
- */
 export const PixelYellowButton = ({ onClick, disabled = false }: Props) => {
   return (
     <button
