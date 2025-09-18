@@ -1,12 +1,13 @@
 import buttonBlue from '../../../assets/buttons/button-blue.png';
 interface Props {
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean;
 }
 export const PixelSubmitButton = ({ text, onClick, disabled = false }: Props) => {
   return (
     <button
+      type="submit"
       onClick={onClick}
       disabled={disabled}
       className={`

@@ -50,6 +50,7 @@ export const PixelTextField = ({
           {multiline ? (
             /* Textarea para campos multilinea */
             <textarea
+              required={required}
               value={value}
               onChange={(e) => onChange(e.target.value)}
               placeholder={placeholder}
@@ -66,6 +67,7 @@ export const PixelTextField = ({
           ) : (
             /* Input de una línea */
             <input
+              required={required}
               type="text"
               value={value}
               onChange={(e) => onChange(e.target.value)}

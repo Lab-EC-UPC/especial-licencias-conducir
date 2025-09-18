@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, ModalBody, ModalContent } from "@heroui/modal";
 import { PixelTextField } from './PixelTextField';
 import { PixelSubmitButton } from './PixelSubmitButton';
@@ -115,21 +115,25 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
     };
   }, [isOpen]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setSubmitError(null);
     if (!formData.experiencia.trim()) {
-      alert('Por favor, ingresa tu experiencia');
+      setSubmitError("Por favor, ingresa tu experiencia.");
+      // alert('Por favor, ingresa tu experiencia');
       return;
     }
 
     if (!checkboxChecked) {
-        alert('Debes autorizar el uso anónimo del testimonio para continuar.');
+        setSubmitError("Debes autorizar el uso anónimo del testimonio para continuar.");
+        // alert('Debes autorizar el uso anónimo del testimonio para continuar.');
         return;
     }
 
     if (!SHEETS_URL) {
-        alert('Falta configurar la URL del Web App (VITE_SHEETS_WEBAPP_URL).');
-        return;
+        throw new Error('Falta configurar la URL');
+        // alert('Falta configurar la URL del Web App (VITE_SHEETS_WEBAPP_URL).');
+        // return;
     }
     setSubmitting(true);
     try {
@@ -166,10 +170,11 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
          setCheckboxChecked(false);
          alert('¡Gracias por compartir tu experiencia!');
          onClose();
-    } catch (err: any) {
-         console.error(err);
-         setSubmitError(err?.message || 'Error desconocido al enviar el formulario.');
-         alert('Ocurrió un error al enviar. Por favor, inténtalo de nuevo.');
+    } catch {
+         // console.error(err);
+         // setSubmitError(err?.message || 'Error desconocido al enviar el formulario.');
+         setSubmitError('Ocurrió un error desconocido al enviar el formulario. Por favor, inténtalo de nuevo más tarde.');
+         // alert('Ocurrió un error al enviar. Por favor, inténtalo de nuevo.');
     } finally {
          setSubmitting(false);
     }
@@ -181,6 +186,13 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
       [field]: value
     }));
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      setSubmitError(null);
+      setSubmitOk(false);
+    }
+  }, [isOpen]);
 
   if (!isOpen) {
     return null;
@@ -213,14 +225,15 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
                   <div className="relative pt-2 pb-2 px-2">
                     {/* Borde Exterior */}
                     <PixelBorder color={colorConfig.outline} />
-                    
+
                     {/* Contenedor Interior */}
                     <div className="relative p-1 pt-3 sm:p-2 sm:pt-4" style={{paddingTop: "16px"}}>
                       {/* Borde Interior (color base) */}
                       <PixelBorder color={colorConfig.base} />
                       
                       {/* Contenido Real */}
-                      <div 
+                      <form
+                        onSubmit={handleSubmit}
                         className="relative p-3 sm:p-4 pt-8 pb-10 overflow-y-auto w-full h-full max-h-[85vh] sm:max-h-[80vh] text-white testimonio-modal-content"
                         style={{
                           scrollbarWidth: 'thin',
@@ -229,6 +242,7 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
                       >
                         {/* Botón de cierre */}
                         <button
+                          type="button"
                           onClick={onClose}
                           className="absolute top-4 right-4 text-xl font-bold p-2 leading-none z-10 opacity-70 hover:opacity-100 hover:cursor-pointer"
                           style={{ color: colorConfig.outline }}
@@ -355,12 +369,12 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
                             <div className={submitting ? 'pointer-events-none opacity-70' : ''}>
                                 <PixelSubmitButton
                                     text={submitting ? 'Enviando...' : 'Enviar mi historia'}
-                                    onClick={handleSubmit}
+                                    // onClick={handleSubmit}
                                     disabled={submitting}
                                 />
                             </div>
                         </div>
-                      </div>
+                      </form>
                     </div>
                   </div>
                 </div>
