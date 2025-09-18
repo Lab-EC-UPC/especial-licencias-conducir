@@ -9,7 +9,7 @@ export const FooterSection = () => {
           <h1 className="text-4xl xl:text-5xl mb-6 md:mb-8 font-semibold font-bitcount text-white">
             Créditos
           </h1>
-          <div className="space-y-16">
+          <div className="space-y-10 md:space-y-16 px-4">
             {credits.map((credit: Credit, index) => (
               <div
                 key={index}
@@ -53,12 +53,16 @@ export const FooterSection = () => {
           </div>
 
 
-          <img src = "https://raw.githubusercontent.com/Lab-EC-UPC/assets/refs/heads/main/logo-ec-upc-png.png"
-          width= "330" style={{marginTop: "90px"}}
-          />
-          <img src = "https://raw.githubusercontent.com/Lab-EC-UPC/assets/refs/heads/main/logo-unidad-ec-data.png"
-          width= "250" style={{marginTop: "90px"}}
-          />
+          <a target="_blank" href="https://lab-ecdata-upc.netlify.app/" className="mt-16 md:mt-[90px] hover:scale-105 duration-200">
+            <img src="https://raw.githubusercontent.com/Lab-EC-UPC/assets/refs/heads/main/logo-ec-upc-png.png"
+                 width= "330"
+            />
+          </a>
+          <a target="_blank" href="" className="mt-16 md:mt-[90px] hover:scale-105 duration-200">
+            <img src="https://raw.githubusercontent.com/Lab-EC-UPC/assets/refs/heads/main/logo-unidad-ec-data.png"
+                 width="250"
+            />
+          </a>
         </div>
       </div>
     </div>
