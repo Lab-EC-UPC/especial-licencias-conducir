@@ -40,7 +40,7 @@ export const FooterSection = () => {
                         <img
                           src={member.photo}
                           alt={member.name}
-                          className={`w-14 h-14 md:w-16 md:h-16 object-cover rounded-full ${member.objectPosition === "center" ? "object-center" : "object-top"}`}
+                          className={`w-14 md:w-16 object-cover ${member.photoNotRound ? "h-auto" : "rounded-full h-14 md:h-16"} ${member.objectPosition === "center" ? "object-center" : "object-top"}`}
                         />
                       </div>
                       <div className="text-left text-white">

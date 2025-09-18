@@ -14,6 +14,7 @@ export interface Credit {
     name: string;
     role: string;
     photo: string;
+    photoNotRound?: boolean;
     url?: string;
     objectPosition?: "center" | "top" ; 
   }[];
@@ -317,8 +318,9 @@ export const credits: Credit[] = [
       {
         name: "Nuevas Narrativas",
         role: "Revisión visual",
-        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        url: "https://especiales.elcomercio.pe/?q=especiales-multimedia/especiales-nuevas-narrativas-especdis/index.html"
+        photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/NN.png?raw=true",
+        url: "https://especiales.elcomercio.pe/?q=especiales-multimedia/especiales-nuevas-narrativas-especdis/index.html",
+        photoNotRound: true,
       },
     ]
   },
@@ -330,7 +332,7 @@ export const credits: Credit[] = [
       {
         name: "Carls Mayo",
         role: "Edición de Prompts",
-        photo: "https://elcomercio.pe/resizer/v2/https%3A%2F%2Fs3.amazonaws.com%2Farc-authors%2Felcomercio%2Fb8194040-9eee-4e56-9a37-4ce254681572.jpg?auth=948d598f5d22b77038a6a296ca3e8d4504a888d0989ff42863e93eb435a5982b&width=191&height=191&quality=75&smart=true",
+        photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/carls%20mayo.jpg?raw=true",
         url: "https://elcomercio.pe/autor/carls-mayo/"
       },
     ]
