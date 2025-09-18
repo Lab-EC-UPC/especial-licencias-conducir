@@ -17,11 +17,13 @@ export const FooterSection = () => {
               >
                 {/*${credit.assetOrientation === "right" ? "flex-row-reverse" : "flex-row"}*/}
                 <div className={`flex flex-col items-center mb-8 gap-4`}>
-                  <img
-                    src={credit.asset}
-                    alt={credit.group}
-                    className="w-10 md:w-12 h-auto mr-2 md:mr-4"
-                  />
+                  {credit.asset && (
+                    <img
+                      src={credit.asset}
+                      alt={credit.group}
+                      className="w-10 md:w-12 h-auto mr-2 md:mr-4"
+                    />
+                  )}
                   <h2 className="text-3xl md:text-4xl font-bold font-bitcount text-yellow">
                     {credit.group}
                   </h2>

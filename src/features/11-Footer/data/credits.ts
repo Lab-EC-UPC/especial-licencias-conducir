@@ -8,7 +8,7 @@ import EDICION from "@/assets/credits/edicion-visual.png";
 
 export interface Credit {
   group: string;
-  asset: string;
+  asset?: string;
   assetOrientation: "left" | "right";
   members: {
     name: string;
@@ -79,6 +79,12 @@ export const credits: Credit[] = [
         role: "Investigación y reporteo",
         photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/Camila%20Mandujano%20Meza.png?raw=true",
         url: "https://www.linkedin.com/in/camila-rebeca-mandujano-meza-b806111b2/",
+      },
+      {
+        name: "Fabrizio Monge Proa",
+        role: "Elaboración de entrevistas",
+        photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/Fabrizio%20Monge.png?raw=true",
+        url: "https://www.linkedin.com/in/fabrizio-monge-3970b9239/",
       },
     ]
   },
@@ -225,7 +231,7 @@ export const credits: Credit[] = [
       {
         name: "Yuri Ramirez Trujillo",
         role: "Actriz",
-        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+        photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/Yuri.jpg?raw=true",
         url: "https://www.linkedin.com/in/yuri-ramírez-trujillo-549711358/"
       },
       {
@@ -298,7 +304,7 @@ export const credits: Credit[] = [
       {
         name: "Gino Alva Olivera",
         role: "Asistencia editorial",
-        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+        photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/Gino.jpg?raw=true",
         url: "https://www.linkedin.com/in/gino-alva-olivera-62133b104/",
       },
     ]
@@ -311,6 +317,19 @@ export const credits: Credit[] = [
       {
         name: "Nuevas Narrativas",
         role: "Revisión visual",
+        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+        url: "https://especiales.elcomercio.pe/?q=especiales-multimedia/especiales-nuevas-narrativas-especdis/index.html"
+      },
+    ]
+  },
+  {
+    group: "Agradecimientos especiales",
+    // asset: EDICION,
+    assetOrientation: "left",
+    members: [
+      {
+        name: "Carls Mayo",
+        role: "Edición de Prompts",
         photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
       },
     ]

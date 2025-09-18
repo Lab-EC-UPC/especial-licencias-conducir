@@ -71,7 +71,7 @@ export const Wheel = ({ question, title, answer, count }: WheelProps) => {
                      text-[12px] md:text-[16px]
                      rounded-md shadow-md whitespace-nowrap"
         >
-          Cantidad fallida | {count}
+          Veces que se respondió incorrectamente | {count}
         </div>
       </div>
     </div>
