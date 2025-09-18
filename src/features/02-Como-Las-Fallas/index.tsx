@@ -45,7 +45,7 @@ export const ComoLasFallas = () => {
   };
 
   return (
-    <div className="mx-auto container w-full h-full px-4 my-16 md:my-32">
+    <div className="mx-auto container w-full h-full px-4 mt-[86px] mb-[50px]">
       <div className="flex flex-col items-center text-center h-full">
         <h1 className="text-3xl xl:text-5xl mb-6 md:mb-8 font-semibold font-bitcount">
           ¿Cómo las fallas en el examen de manejo incrementan las papeletas y
@@ -113,7 +113,7 @@ export const ComoLasFallas = () => {
               key={i}
               className={`w-2 h-2 rounded-full ${
                 Math.floor(currentIndex / itemsPerPage) === i
-                  ? "bg-[#E91E63]"
+                  ? "bg-[#ED548C]"
                   : "bg-gray-300"
               }`}
               onClick={() => setCurrentIndex(i * itemsPerPage)}

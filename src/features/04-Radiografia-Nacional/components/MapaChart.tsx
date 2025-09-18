@@ -83,11 +83,12 @@ export const MapaChart = () => {
           {peruRegions.map((region, index) => {
             return (
               <Popover
+                key={index}
                 triggerScaleOnOpen={false}
                 classNames={{content: "bg-transparent p-0 shadow-none border-none"}}
               >
                 <PopoverTrigger>
-                  <g key={index}>
+                  <g>
                     <path
                       className="transition ease-in-out relative hover:cursor-pointer hover:opacity-80 duration-200"
                       fill={region.fill}

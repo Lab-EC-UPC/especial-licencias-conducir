@@ -312,7 +312,7 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
                           <button
                             type="button"
                             onClick={() => setCheckboxChecked(!checkboxChecked)}
-                            className="w-5 h-5 flex items-center justify-center rounded border-2 transition-colors duration-200 flex-shrink-0 mt-0.5"
+                            className="w-5 h-5 flex items-center justify-center rounded border-2 transition-colors duration-200 flex-shrink-0 mt-0.5 hover:cursor-pointer"
                             style={{
                               backgroundColor: '#58B7CF',
                               borderColor: '#58B7CF'

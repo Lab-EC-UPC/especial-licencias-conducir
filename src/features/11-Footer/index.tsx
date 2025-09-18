@@ -1,4 +1,4 @@
-import {type Credit, credits} from "@/features/11-Footer/data/credits.ts";
+import { type Credit, credits } from "@/features/11-Footer/data/credits.ts";
 
 export const FooterSection = () => {
 
@@ -9,7 +9,7 @@ export const FooterSection = () => {
           <h1 className="text-4xl xl:text-5xl mb-6 md:mb-8 font-semibold font-bitcount text-white">
             Créditos
           </h1>
-          <div className="space-y-16">
+          <div className="space-y-10 md:space-y-16 px-4">
             {credits.map((credit: Credit, index) => (
               <div
                 key={index}
@@ -38,7 +38,7 @@ export const FooterSection = () => {
                         <img
                           src={member.photo}
                           alt={member.name}
-                          className="w-14 md:w-16 h-auto object-cover rounded-full"
+                          className={`w-14 h-14 md:w-16 md:h-16 object-cover rounded-full ${member.objectPosition === "center" ? "object-center" : "object-top"}`}
                         />
                       </div>
                       <div className="text-left text-white">
@@ -51,6 +51,18 @@ export const FooterSection = () => {
               </div>
             ))}
           </div>
+
+
+          <a target="_blank" href="https://lab-ecdata-upc.netlify.app/" className="mt-16 md:mt-[90px] hover:scale-105 duration-200">
+            <img src="https://raw.githubusercontent.com/Lab-EC-UPC/assets/refs/heads/main/logo-ec-upc-png.png"
+                 width= "330"
+            />
+          </a>
+          <a target="_blank" href="" className="mt-16 md:mt-[90px] hover:scale-105 duration-200">
+            <img src="https://raw.githubusercontent.com/Lab-EC-UPC/assets/refs/heads/main/logo-unidad-ec-data.png"
+                 width="250"
+            />
+          </a>
         </div>
       </div>
     </div>

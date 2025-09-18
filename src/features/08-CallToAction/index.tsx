@@ -29,7 +29,7 @@ export const CallToAction = () => {
               <div className="mt-6 sm:mt-8 md:mt-10 flex justify-center">
                 <PixelYellowButton
                   onClick={handleOpenModal}
-                />
+              />
               </div>
             </div>
           </div>

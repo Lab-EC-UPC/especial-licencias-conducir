@@ -1,16 +1,17 @@
 import React, {type ReactNode, useMemo, useState} from "react";
 import Button from "@/features/10-Probabilidad-Aprobar-Examen/components/button.tsx";
 import FIELD_PX from "@/assets/field.png";
-import CHECKBOX_PX from "@/assets/checkbox.png";
+// import CHECKBOX_PX from "@/assets/checkbox.png";
 import VECTOR_PX from "@/assets/vector.png";
 import {predictProbabilidad} from "@/services/probabilidad.service.ts";
 import {PixelProgress} from "@/features/10-Probabilidad-Aprobar-Examen/components/PixelProgress.tsx";
+import FORM_BG from "@/assets/form.png";
 
 export const ProbabilidadAprobarExamen = () => {
   const [edad, setEdad] = useState("");
   const [region, setRegion] = useState("");
   const [sexo, setSexo] = useState("");
-  const [yaDiste, setYaDiste] = useState(false);
+  // const [yaDiste, setYaDiste] = useState(false);
   const [percent, setPercent] = useState(0);
   const [loading, setLoading] = useState(false);
 
@@ -66,8 +67,16 @@ export const ProbabilidadAprobarExamen = () => {
   };
 
   return (
-    <div className="w-full flex justify-center p-4">
-      <div className="w-full max-w-[740px] rounded-[28px] bg-[#131A31] text-white p-6 md:p-10 shadow-xl">
+    <div className="w-full flex justify-center p-3 mb-[50px]">
+      <div
+        className="w-full md:w-3/4 xl:w-1/2 rounded-[28px] bg-[#131A31] text-white p-8 md:p-12 xl:p-16 shadow-xl relative"
+        style={{
+          backgroundImage: `url(${FORM_BG})`,
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+        }}
+      >
         <h1 className="text-center text-2xl md:text-3xl font-semibold leading-tight font-bitcount">
           ¿Cuál es tu probabilidad de aprobar
           <br className="hidden md:block" /> el examen de licencia?
@@ -132,19 +141,24 @@ export const ProbabilidadAprobarExamen = () => {
           </PixelField>
 
           <label className="flex items-center gap-3 select-none mt-3">
-            <input
-              type="checkbox"
-              className="peer sr-only"
-              checked={yaDiste}
-              onChange={(e) => setYaDiste(e.target.checked)}
-            />
-            <span
-              className="inline-flex items-center justify-center h-7 w-7"
-              style={{ backgroundImage: `url('${CHECKBOX_PX}')`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', imageRendering: 'pixelated' }}
-            >
-              {yaDiste && <span className="h-3.5 w-3.5 bg-[#131A31]"></span>}
+            {/*<input*/}
+            {/*  type="checkbox"*/}
+            {/*  className="peer sr-only"*/}
+            {/*  checked={yaDiste}*/}
+            {/*  onChange={(e) => setYaDiste(e.target.checked)}*/}
+            {/*/>*/}
+            {/*<span*/}
+            {/*  className="inline-flex items-center justify-center h-7 w-7"*/}
+            {/*  style={{ backgroundImage: `url('${CHECKBOX_PX}')`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', imageRendering: 'pixelated' }}*/}
+            {/*>*/}
+            {/*  {yaDiste && <span className="h-3.5 w-3.5 bg-[#131A31]"></span>}*/}
+            {/*</span>*/}
+            {/*<span className="text-white/90">*/}
+            {/*  ¿Ya diste la prueba antes?*/}
+            {/*</span>*/}
+            <span className="text-white/90">
+              Si no diste la prueba al inicio y no registraste un porcentaje de aprobación o desaprobación, el modelo considerará una cifra referencial.
             </span>
-            <span className="text-white/90">¿Ya diste la prueba antes?</span>
           </label>
 
           <div className="pt-2 flex justify-center">

@@ -23,7 +23,7 @@ export const RadiografiaNacional = () => {
       <div className="bg-primary">
         <div className="mx-auto container w-full min-h-screen">
           <div className="flex flex-col items-center text-center text-white h-full py-16 pb-24 px-4">
-            <h1 className="text-4xl xl:text-5xl mb-6 md:mb-8 font-semibold font-bitcount">
+            <h1 className="text-3xl md:text-4xl xl:text-5xl mb-2 md:mb-6 font-semibold font-bitcount">
               Radiografía Nacional
             </h1>
             <p className="w-full xl:max-w-2/3 font-medium text-md xl:text-xl">

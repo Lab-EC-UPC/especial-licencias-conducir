@@ -10,7 +10,7 @@ export const PixelSubmitButton = ({ text, onClick, disabled = false }: Props) =>
       onClick={onClick}
       disabled={disabled}
       className={`
-        relative w-64 max-w-lg transition-all duration-200
+        relative w-64 max-w-lg transition-all duration-200 hover:cursor-pointer
         ${disabled ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105 active:scale-95'}
       `}
       style={{

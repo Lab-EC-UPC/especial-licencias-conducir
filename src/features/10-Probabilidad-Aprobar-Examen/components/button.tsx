@@ -26,7 +26,7 @@ const Button = ({
     <button
       type={type}
       onClick={onClick}
-      className="w-[163px] h-[38px] bg-no-repeat bg-contain text-[#0f1629] font-bold font-bitcount leading-none flex items-center justify-center duration-200 hover:translate-y-[10%] hover:cursor-pointer"
+      className="w-[200px] h-[48px] bg-no-repeat bg-contain text-[#0f1629] font-bold font-bitcount leading-none flex items-center justify-center duration-200 hover:translate-y-[10%] hover:cursor-pointer"
       style={{
         backgroundImage: `url('${bgImage}')`,
         imageRendering: 'pixelated',
