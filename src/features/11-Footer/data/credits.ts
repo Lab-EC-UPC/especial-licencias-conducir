@@ -256,7 +256,7 @@ export const credits: Credit[] = [
       {
         name: "Joaquín Villalobos",
         role: "Compositor",
-        photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+        photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/Joaquin.jpg?raw=true",
       },
       {
         name: "Josselyn Gavancho",

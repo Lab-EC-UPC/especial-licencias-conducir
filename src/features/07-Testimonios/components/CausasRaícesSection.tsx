@@ -69,7 +69,7 @@ export const CausasRaicesSection = () => {
       bgColor: "#DAE9CA",
       bgColor2: "#98AA83",
       avatarUrl: BARRERAS,
-      title: "Causa Raíz: Barreras Lingüísticas",
+      title: "Causa Raíz 3: Barreras Lingüísticas",
       text: "“No podemos evaluar igual a alguien que conduce en la selva y a quien maneja en Lima. Las condiciones viales y culturales son totalmente distintas",
       modalTitle: "Causa Raíz 3: Barreras Lingüísticas",
       modalText:

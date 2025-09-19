@@ -8,6 +8,9 @@ import {DisclaimerModal} from "@/features/shared/components/DisclaimerModal.tsx"
 import {IoIosInformationCircle} from "react-icons/io";
 import {DisclaimerInfo} from "@/features/01-Header/components/DisclaimerInfo.tsx";
 import Button from "@/features/10-Probabilidad-Aprobar-Examen/components/button.tsx";
+import HEADER_TOP from "@/assets/header-top.png";
+import HEADER_BOTTOM from "@/assets/header-bottom.png";
+import TITLE from "@/assets/header-title.png";
 
 const CONFIG = {
   // Imágenes para diferentes dispositivos
@@ -72,56 +75,50 @@ export const Header = () => {
 
         {/* Overlay para WEB - Tamaño configurable para desktop */}
         <div
-          className={`hidden md:flex flex-col ${CONFIG.overlayRounded} absolute bg-[#162141]`}
+          className={`hidden md:flex flex-col ${CONFIG.overlayRounded} absolute bg-gradient-to-b from-[#131A31] to-[#1B2859]`}
           style={{
             top: CONFIG.webOverlay.top,
             left: CONFIG.webOverlay.left,
             width: CONFIG.webOverlay.width,
             height: CONFIG.webOverlay.height,
             color: "#dbeecb",
-            padding: CONFIG.webOverlay.padding,
+            // padding: CONFIG.webOverlay.padding,
             overflow: "hidden",
             minHeight: "fit-content",
           }}
         >
-          <div className="flex flex-col justify-center gap-4 lg:gap-6 xl:gap-8 h-full p-4 lg:p-6 xl:p-8 text-center">
-
-            <div className="flex justify-center w-full">
-              <p className="font-bold font-bitcount text-skyblue text-2xl xl:text-3xl max-w-2/3">
-                Cómo el actual examen de manejo en Perú falla en preparar conductores capacitados
-              </p>
+          <div className="flex flex-col justify-between h-full">
+            <img
+              src={HEADER_TOP}
+              alt="Header Top"
+              className="w-full h-auto"
+            />
+            <div className="flex flex-col gap-2 lg:gap-4 xl:gap-6 p-2 lg:p-4 xl:p-6 2xl:p-8 text-center">
+              <div className="flex justify-center">
+                <img
+                  src={TITLE}
+                  alt="Title"
+                  className="w-1/2 h-auto"
+                />
+              </div>
+              <div className="flex justify-center w-full">
+                <p className="font-bold font-bitcount text-skyblue text-base md:text-lg xl:text-xl 2xl:text-2xl w-full 2xl:max-w-2/3">
+                  Cómo el actual examen de manejo en Perú falla en preparar conductores capacitados
+                </p>
+              </div>
+              <div className="flex justify-center">
+                <Button
+                  text="🚀 Comenzar Trivia"
+                  onClick={()=>setIsGameOpen(true)}
+                  variant="pink"
+                />
+              </div>
             </div>
-            <div className="flex justify-center">
-              <Button
-                text="🚀 Comenzar Trivia"
-                onClick={()=>setIsGameOpen(true)}
-                variant="pink"
-              />
-            </div>
-            {/*<div className="text-center">*/}
-            {/*  <h2 className="font-bold leading-tight font-bitcount text-[#58b7cf] text-2xl md:text-3xl mb-2 lg:mb-3">*/}
-            {/*    🚗 Trivia de Conducir*/}
-            {/*  </h2>*/}
-            {/*  <p className="leading-tight text-[#ffaf42] text-sm lg:text-base xl:text-lg 2xl:text-xl font-bold">*/}
-            {/*    ¿Qué tanto sabes sobre manejo seguro?*/}
-            {/*  </p>*/}
-            {/*</div>*/}
-            {/*<div className="rounded border bg-[#58b7cf] border-white p-3 lg:p-4 xl:p-5">*/}
-            {/*  <h4 className="font-bold font-bitcount text-[#131a31] text-sm lg:text-base xl:text-lg 2xl:text-xl mb-2 lg:mb-3">*/}
-            {/*    📋 Reglas*/}
-            {/*  </h4>*/}
-            {/*  <ul className="leading-tight list-disc text-[#131a31] pl-5 lg:pl-6 xl:pl-7 space-y-1 lg:space-y-1.5 text-sm lg:text-base">*/}
-            {/*    <li>20 preguntas desafiantes</li>*/}
-            {/*    <li>20 segundos por pregunta</li>*/}
-            {/*    <li>Una sola oportunidad</li>*/}
-            {/*  </ul>*/}
-            {/*</div>*/}
-            {/*<button*/}
-            {/*  onClick={()=>setIsGameOpen(true)}*/}
-            {/*  className="bg-[#ed548c] w-full rounded font-bold transition-all hover:opacity-90 leading-tight text-[#131a31] hover:cursor-pointer p-3 lg:p-3.5 xl:p-4 text-sm lg:text-base xl:text-lg"*/}
-            {/*>*/}
-            {/*  🚀 Comenzar Trivia*/}
-            {/*</button>*/}
+            <img
+              src={HEADER_BOTTOM}
+              alt="Header Bottom"
+              className="w-full h-auto"
+            />
           </div>
 
           <button
@@ -146,50 +143,43 @@ export const Header = () => {
             width: CONFIG.mobileOverlay.width,
             height: CONFIG.mobileOverlay.height,
             color: "#dbeecb",
-            padding: CONFIG.mobileOverlay.padding,
+            // padding: CONFIG.mobileOverlay.padding,
             overflow: "hidden",
             minHeight: "fit-content",
           }}
         >
-          <div className="flex flex-col justify-center gap-1 sm:gap-2 h-full p-1 sm:p-2 text-center">
-            <div className="flex justify-center w-full">
-              <p className="font-semibold font-bitcount text-skyblue text-sm w-full mb-2">
-                Cómo el actual examen de manejo en Perú falla en preparar conductores capacitados
-              </p>
+          <div className="flex flex-col justify-between h-full">
+            <img
+              src={HEADER_TOP}
+              alt="Header Top"
+              className="w-full h-auto"
+            />
+            <div className="flex flex-col justify-center gap-2 sm:gap-4 h-full p-1 sm:p-2 text-center">
+              <div className="flex justify-center">
+                <img
+                  src={TITLE}
+                  alt="Title"
+                  className="w-full px-2 sm:w-3/4 h-auto"
+                />
+              </div>
+              <div className="flex justify-center w-full">
+                <p className="font-semibold font-bitcount text-skyblue text-sm w-full mb-2">
+                  Cómo el actual examen de manejo en Perú falla en preparar conductores capacitados
+                </p>
+              </div>
+              <div className="flex justify-center">
+                <Button
+                  text="🚀 Comenzar Trivia"
+                  onClick={()=>setIsGameOpen(true)}
+                  variant="pink"
+                />
+              </div>
             </div>
-            <div className="flex justify-center">
-              <Button
-                text="🚀 Comenzar Trivia"
-                onClick={()=>setIsGameOpen(true)}
-                variant="pink"
-              />
-            </div>
-
-            {/*<div className="text-center">*/}
-            {/*  <h2 className="font-bold leading-tight font-bitcount text-[#58b7cf] text-2xl mb-1">*/}
-            {/*    🚗 Trivia de Conducir*/}
-            {/*  </h2>*/}
-            {/*  <p className="leading-tight text-[#ffaf42] text-xs mb-2 font-bold">*/}
-            {/*    ¿Qué tanto sabes sobre manejo seguro?*/}
-            {/*  </p>*/}
-            {/*</div>*/}
-
-            {/*<div className="rounded border bg-[#58b7cf] border-white px-2 py-4 mb-2">*/}
-            {/*  <h4 className="font-bold font-bitcount text-[#131a31] mb-1">*/}
-            {/*    📋 Reglas*/}
-            {/*  </h4>*/}
-            {/*  <ul className="leading-tight list-disc text-[#131a31] pl-5 sm:pl-3 space-y-0.5 text-xs">*/}
-            {/*    <li>20 preguntas desafiantes</li>*/}
-            {/*    <li>20 segundos por pregunta</li>*/}
-            {/*    <li>Una sola oportunidad</li>*/}
-            {/*  </ul>*/}
-            {/*</div>*/}
-            {/*<button*/}
-            {/*  onClick={()=>setIsGameOpen(true)}*/}
-            {/*  className="bg-[#ed548c] w-full rounded font-bold transition-all hover:opacity-90 leading-tight text-[#131a31] hover:cursor-pointer p-1.5 sm:p-2 text-sm"*/}
-            {/*>*/}
-            {/*  🚀 Comenzar Trivia*/}
-            {/*</button>*/}
+            <img
+              src={HEADER_BOTTOM}
+              alt="Header Bottom"
+              className="w-full h-auto"
+            />
           </div>
 
           <button
