@@ -40,7 +40,7 @@ export const PixelYellowButton = ({ onClick, disabled = false }: Props) => {
             lineHeight: '1.2'
           }}
         >
-          #licenciaresponsable
+          #LicenciaResponsable
         </span>
         
         {/* Texto secundario: Instrucciones de interacción */}
@@ -54,7 +54,7 @@ export const PixelYellowButton = ({ onClick, disabled = false }: Props) => {
             lineHeight: '1.2'
           }}
         >
-          (Haz click aquí)
+          (haz click aquí)
         </span>
       </div>
     </button>

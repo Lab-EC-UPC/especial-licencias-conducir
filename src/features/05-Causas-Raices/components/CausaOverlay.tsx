@@ -1,5 +1,6 @@
 // --- CONSTANTES DE DISEÑO ---
 import {Modal, ModalBody, ModalContent} from "@heroui/modal";
+import React from "react";
 
 const PIXEL_UNIT = 6;
 const pixelClipPath = `polygon(
@@ -40,7 +41,7 @@ interface CausaOverlayProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  content: string;
+  content: React.ReactNode;
   colorConfig?: {
     base: string;
     outline: string;
@@ -132,8 +133,17 @@ export const CausaOverlay = ({
 
                       {/* Contenido textual con colores dinámicos */}
                       <h2 className="text-2xl font-bold mb-4 font-bitcount text-center" style={{  color: "black"  }}>{title}</h2>
-                      <div className="overflow-y-auto" style={{ color: "black" }}>
-                        <p className="text-sm font-medium whitespace-pre-wrap">{content}</p>
+                      <div
+                        className={`overflow-y-auto custom-scroll h-full max-h-[60vh] ${
+                          title === "Elvis Santi"
+                            ? "scroll-blue"
+                            : title === "Luis Quispe Candia"
+                              ? "scroll-pink"
+                              : "scroll-sand"
+                        }`}
+                        style={{ color: "black" }}
+                      >
+                        <p className="text-sm font-medium whitespace-pre-wrap px-2">{content}</p>
                       </div>
                     </div>
                   </div>

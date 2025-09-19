@@ -8,6 +8,7 @@ interface Props {
     name: string;
     quote: string;
     image: string;
+    title: string;
   };
   colorConfig: {
     base: string;
@@ -65,7 +66,7 @@ export const PixelCard = ({ expert, colorConfig, onVerMasClick }: Props) => {
   return (
     // 1. Contenedor principal ahora es relativo y tiene un margen superior
     // para dejar espacio al avatar que se va a superponer.
-    <div className="w-full max-w-[280px] sm:max-w-xs mx-auto font-bitcount relative mt-14">
+    <div className="w-full h-full mx-auto relative mt-14">
 
       {/* 2. El Avatar se posiciona de forma absoluta */}
       {/* - Se saca del flujo normal para que flote sobre la tarjeta. */}
@@ -84,20 +85,23 @@ export const PixelCard = ({ expert, colorConfig, onVerMasClick }: Props) => {
       {/* 3. El contenido de la tarjeta se ajusta */}
       {/* - El 'pt-20' es clave: crea el espacio interno superior para que el */}
       {/* texto no quede oculto detrás del avatar. */}
-      <div className="relative pt-2 pb-2 px-2 text-center">
+      <div className="relative pt-2 pb-2 px-2 text-center h-full">
         {/* Borde Exterior */}
         <PixelBorder color={colorConfig.outline} />
         
         {/* Contenedor Interior */}
-        <div className="relative p-1 pt-4" style={{paddingTop: "20px"}}>
+        <div className="relative p-1 pt-4 h-full" style={{paddingTop: "20px"}}>
           {/* Borde Interior (color base) */}
           <PixelBorder color={colorConfig.base} />
           
           {/* Contenido Real */}
-          <div className="relative p-4 text-white">
+          <div className="relative p-4 flex flex-col h-full justify-between">
             {/* Se elimina el margen superior inline, ahora controlado por el padding del contenedor padre */}
-            <h3 className="text-xl font-bold mb-4" style={{color: "black", fontFamily:"Arial"}}>{expert.name}</h3>
-            <p className="text-sm text-left mb-6 font-sans min-h-[120px]" style={{color: "black"}}>{expert.quote}</p>
+            <div>
+              <h3 className="text-xl md:text-2xl font-bold">{expert.name}</h3>
+              <p className="mb-4 font-medium text-sm md:text-base">{expert.title}</p>
+              <p className="text-base text-center mb-2 h-full" style={{color: "black"}}>{expert.quote}</p>
+            </div>
             <div className="flex justify-center">
               <PixelButton
                 text="Ver más"

@@ -24,28 +24,45 @@ export const CausasRaicesSection = () => {
       bgColor: "#9FEDFF",
       bgColor2: "#58B7CF",
       avatarUrl: CORRUPCION,
-      title: "Causa Raíz: Corrupción",
+      title: "Causa Raíz 1: Corrupción",
       text: "¿Hasta cuándo en nuestro país se van a seguir vendiendo las licencias de conducir? en muchos casos, se compra la licencia fácilmente",
       modalTitle: "Causa Raíz 1: Corrupción",
       modalText:
         <div>
-          El problema que más preocupa a los especialistas, como <strong>Luis Quispe Candia</strong>, es la corrupción sistematizada que ha convertido al examen de manejo en un trámite simbólico y fácilmente burlable.
+          El problema que más preocupa a los especialistas, como <strong>Luis Quispe Candia</strong>, es la corrupción
+          sistematizada que ha convertido al examen de manejo en un trámite simbólico y fácilmente
+          burlable.
           <br/><br/>
-          Por ejemplo, Quispe denuncia que existen mafias y tramitadores que operan en las inmediaciones de centros como los del Callao o Comas, donde se promociona la obtención de licencias sin examen práctico a cambio de sobornos que pueden superar los mil soles. La falsificación de huellas dactilares y la participación de funcionarios públicos corruptos agrava la situación. Esta cultura de impunidad, tal como concluyen los especialistas, no solo afecta la calidad del examen, sino que pone vidas en riesgo al permitir que personas sin preparación estén al volante.
-        </div>
+          Por ejemplo, <strong>Quispe</strong> denuncia que existen mafias y tramitadores que operan en las
+          inmediaciones de centros como los del Callao o Comas, donde se promociona la obtención de
+          licencias sin examen práctico a cambio de sobornos que pueden superar los mil soles. La
+          falsificación de huellas dactilares y la participación de funcionarios públicos corruptos agrava
+          la situación.
+          <br/><br/>
+          Esta cultura de impunidad, tal como concluyen los especialistas, no solo afecta la calidad del
+          examen, sino que pone vidas en riesgo al permitir que personas sin preparación estén al
+          volante.
+         </div>
     },
     {
       bgColor: "#FFD7E7",
       bgColor2: "#AA3D69",
       avatarUrl: EVALUACIONES,
-      title: "Causa Raíz: Evaluaciones ineficaces",
+      title: "Causa Raíz 2: Evaluaciones prácticas y teóricas ineficaces",
       text: "El circuito del touring de Lima apenas permite alcanzar de 5 a 15 km por hora cuando en la vida real se circula a 80 o 90 km/h.",
-      modalTitle: "Causa Raíz 2: Evaluaciones ineficaces",
+      modalTitle: "Causa Raíz 2: Evaluaciones prácticas y teóricas ineficaces",
       modalText:
         <div>
-          La raíz de la deficiencia en la formación de conductores está en la pobre infraestructura de los centros de evaluación, que no reflejan la realidad del tránsito peruano. El circuito del Touring en Lima, según los especialistas entrevistados como <strong>Elvis Santi</strong>, apenas permite alcanzar velocidades mínimas de 5 a 15 km/h, cuando en la vida real se circula a 80 o 90 km/h. Esto genera que los aspirantes salgan con licencias sin haber experimentado las condiciones reales de la vía.
+          La raíz de la deficiencia en la formación de conductores está en la pobre infraestructura de
+          los centros de evaluación, que no reflejan la realidad del tránsito peruano. El circuito del
+          Touring en Lima, según los especialistas entrevistados como <strong>Elvis Santi</strong>, apenas permite
+          alcanzar velocidades mínimas de 5 a 15 km/h, cuando en la vida real se circula a 80 o 90
+          km/h. Esto genera que los aspirantes salgan con licencias sin haber experimentado las
+          condiciones reales de la vía.
           <br/><br/>
-          Por ejemplo, Quispe denuncia que existen mafias y tramitadores que operan en las inmediaciones de centros como los del Callao o Comas, donde se promociona la obtención de licencias sin examen práctico a cambio de sobornos que pueden superar los mil soles. La falsificación de huellas dactilares y la participación de funcionarios públicos corruptos agrava la situación. Esta cultura de impunidad, tal como concluyen los especialistas, no solo afecta la calidad del examen, sino que pone vidas en riesgo al permitir que personas sin preparación estén al volante.
+          Por otro lado, el modelo de examen es memorístico y artificial. Los postulantes aprenden de
+          memoria las señales y maniobras de un recorrido fijo, sin comprender cómo reaccionar ante
+          intersecciones, adelantamientos o imprevistos cotidianos.
         </div>
     },
     {
@@ -53,11 +70,14 @@ export const CausasRaicesSection = () => {
       bgColor2: "#98AA83",
       avatarUrl: BARRERAS,
       title: "Causa Raíz: Barreras Lingüísticas",
-      text: "No podemos evaluar igual a alguien que conduce en la selva...",
+      text: "“No podemos evaluar igual a alguien que conduce en la selva y a quien maneja en Lima. Las condiciones viales y culturales son totalmente distintas",
       modalTitle: "Causa Raíz 3: Barreras Lingüísticas",
       modalText:
         <div>
-          Una de las raíces menos visibles de la desigualdad en el sistema de licencias son las barreras lingüísticas y culturales. La evaluación para obtener un brevete en el Perú está diseñada bajo un modelo uniforme, urbano y centralista, que no considera la diversidad de contextos del país.
+          Una de las raíces menos visibles de la desigualdad en el sistema de licencias son las barreras
+          lingüísticas y culturales. La evaluación para obtener un brevete en el Perú está diseñada bajo
+          un modelo uniforme, urbano y centralista, que no considera la diversidad de contextos del
+          país.
         </div>
     }
   ];
@@ -151,7 +171,7 @@ export const CausasRaicesSection = () => {
         hideCloseButton={true}
         size="3xl"
         placement="center"
-        scrollBehavior="inside"
+        // scrollBehavior="inside"
         classNames={{
           base: "bg-transparent shadow-none p-0"
         }}
@@ -164,14 +184,25 @@ export const CausasRaicesSection = () => {
                   <div className="h-5 w-[3%] bottom-4 left-0 absolute" style={{backgroundColor: selectedCausa?.bgColor2}} />
                   <div className="h-5 w-[3%] bottom-4 right-0 absolute" style={{backgroundColor: selectedCausa?.bgColor2}} />
                   <div
-                    className="py-6 pb-8 px-8 min-h-[35vh]"
+                    className="py-6 pb-8 px-8"
                     style={{
                       backgroundColor: selectedCausa?.bgColor,
                     }}
                   >
                     <div>
                       <h1 className="font-bold font-bitcount text-2xl text-center mb-4">{selectedCausa?.modalTitle}</h1>
-                      <div className="text-sm md:text-lg">{selectedCausa?.modalText}</div>
+                      <div
+                        className={`text-sm md:text-lg max-h-[50vh] overflow-y-auto custom-scroll ${
+                          selectedCausa?.title === "Causa Raíz 1: Corrupción"
+                            ? "scroll-blue"
+                            : selectedCausa?.title ===
+                            "Causa Raíz 2: Evaluaciones prácticas y teóricas ineficaces"
+                              ? "scroll-green"
+                              : "scroll-pink"
+                        }`}
+                      >
+                        {selectedCausa?.modalText}
+                      </div>
                     </div>
                     <button
                       onClick={()=>setIsOpen(false)}

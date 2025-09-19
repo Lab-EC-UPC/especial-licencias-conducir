@@ -62,7 +62,7 @@ export const DisclaimerModal = ({
                       </svg>
                     </button>
                   </div>
-                  <div className="w-full h-[50vh] overflow-y-auto custom-scroll scroll-green">
+                  <div className="w-full h-[50vh] overflow-y-auto custom-scroll scroll-green px-2">
                     {content}
                   </div>
                   <Button

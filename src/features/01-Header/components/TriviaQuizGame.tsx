@@ -116,23 +116,20 @@ export const TriviaQuizGame = ({
     const maxPossibleScore = questions.length * 20;
     const percentage = (score / maxPossibleScore) * 100;
 
-    if (percentage >= 80) return "¡Excelente! Conductor experto 🏆";
-    if (percentage >= 60) return "¡Muy bien! Buen conocimiento 👍";
-    if (percentage >= 40) return "Regular, sigue practicando 📚";
-    return "Necesitas estudiar más las reglas 📖";
+    if (percentage >= 80) return "Ya puedes obtener tu licencia de conducir 🏆.";
+    if (percentage >= 60) return "Debes practicar un poco más 👍.";
+    if (percentage >= 40) return "Regular, sigue practicando 📚.";
+    return "Necesitas estudiar más las reglas. 📖";
   };
 
   const getHeaderMessage = () => {
     const maxPossibleScore = questions.length * 20;
     const percentage = (score / maxPossibleScore) * 100;
 
-    if (percentage >= 85) {
-      return { emoji: "🎉", title: "¡Felicitaciones!", subtitle: "Aprobaste el examen" };
-    } else if (percentage >= 65) {
-      return { emoji: "😐", title: "Sigue Intentando", subtitle: "Regular, sigue practicando" };
-    } else {
-      return { emoji: "😔", title: "Sigue Intentando", subtitle: "Fallaste, sigue practicando" };
-    }
+    if (percentage >= 80) return { emoji: "🎉", title: "¡Aprobaste!", subtitle: "Has superado el examen" };
+    if (percentage >= 60) return { emoji: "😐", title: "Sigue Intentando", subtitle: "Regular, sigue practicando." };
+    if (percentage >= 40) return { emoji: "😔", title: "Sigue Intentando", subtitle: "Fallaste, sigue practicando." };
+    return { emoji: "😔", title: "Sigue Intentando", subtitle: "Fallaste, sigue practicando." };
   };
 
   useEffect(() => {

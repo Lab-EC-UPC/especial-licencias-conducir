@@ -54,7 +54,7 @@ export const TriviaQuizModal = ({
       scrollBehavior="inside"
       hideCloseButton={true}
       classNames={{
-        body: "bg-[#131a31]"
+        body: "bg-[#131a31] custom-scroll scroll-blue h-full"
       }}
     >
       <ModalContent>

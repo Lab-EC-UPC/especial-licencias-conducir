@@ -23,7 +23,7 @@ export const CallToAction = () => {
             </h1>
             <p className="w-full max-w-3xl mx-auto font-medium text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 md:mb-10 leading-relaxed px-2">
               Cuéntanos tu historia llenando este breve formulario.
-              Denuncia irregularidades o comparte tu experiencia en redes con el hashtag #licenciaresponsable.
+              Denuncia irregularidades o comparte tu experiencia en redes con el hashtag #LicenciaResponsable.
             </p>
             <div className="mt-6 sm:mt-8 md:mt-10 flex justify-center">
               <PixelYellowButton

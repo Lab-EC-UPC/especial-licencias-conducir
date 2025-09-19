@@ -16,11 +16,11 @@ function App() {
     <>
       <div className="flex flex-col bg-white">
         <Header />
-        <ComoLasFallas />
         <RadiografiaNacional />
         <DeDondeSonLosEvaluados />
-        <CausasRaices />
         <LesionesMuertesNacionales />
+        <ComoLasFallas />
+        <CausasRaices />
         <Testimonios />
         <CallToAction />
         <ProbabilidadAprobarExamen />

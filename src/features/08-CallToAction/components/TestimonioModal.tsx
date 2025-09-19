@@ -15,6 +15,7 @@ interface FormData {
   nombre: string;
   ciudad: string;
   experiencia: string;
+  contact: string;
 }
 
 const PIXEL_UNIT = 6;
@@ -71,7 +72,8 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
   const [formData, setFormData] = useState<FormData>({
     nombre: '',
     ciudad: '',
-    experiencia: ''
+    experiencia: '',
+    contact: ''
   });
 
   const [checkboxChecked, setCheckboxChecked] = useState(false);
@@ -140,10 +142,12 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
          const nombre = formData.nombre.trim();
          const ciudad = formData.ciudad.trim();
          const experiencia = formData.experiencia.trim();
+         const contact = formData.contact.trim();
          const params = new URLSearchParams();
          params.append('nombre', nombre);
          params.append('ciudad', ciudad);
          params.append('experiencia', experiencia);
+         params.append('contact', contact);
          params.append('consent', checkboxChecked ? '1' : '0');
          params.append('userAgent', navigator.userAgent);
          params.append('page', window.location.href);
@@ -166,7 +170,7 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
              throw new Error('No se pudo guardar tu testimonio. Inténtalo nuevamente.');
          }
          setSubmitOk(true);
-         setFormData({ nombre: '', ciudad: '', experiencia: '' });
+         setFormData({ nombre: '', ciudad: '', experiencia: '', contact: '' });
          setCheckboxChecked(false);
          alert('Gracias por compartir tu historia');
          onClose();
@@ -285,7 +289,7 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
                           }}
                         >
                           Queremos escuchar tu experiencia real para visibilizar los desafíos y promover mejoras en el sistema de emisión de licencias del Perú. Denuncia irregularidades en el siguiente formulario o comparte alguna experiencia que hayas tenido en redes usando el hashtag{' '}
-                          <span className="font-semibold text-blue-600">#licenciaResponsable</span>
+                          <span className="font-semibold text-blue-600">#LicenciaResponsable</span>
                         </p>
 
                         {/* Campos del formulario */}
@@ -306,6 +310,15 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
                             value={formData.ciudad}
                             onChange={(value) => handleInputChange('ciudad', value)}
                             required={false}
+                          />
+
+                          {/* Celular o correo de contacto */}
+                          <PixelTextField
+                            label="Ciudad, región y centro de evaluación:"
+                            placeholder="Celular o correo de contacto "
+                            value={formData.contact}
+                            onChange={(value) => handleInputChange('contact', value)}
+                            required={true}
                           />
 
                           {/* Campo Experiencia */}
