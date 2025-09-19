@@ -27,7 +27,7 @@ interface OverlayData {
 const EXPERT_CONTENT: Expert[] = [
   {
     name: "Elvis Santi",
-    quote: "\"Cita causa (máx 20-25 palabras) Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna\"",
+    quote: "",
     fullText: "Aquí debería ir el pregunta-respuesta. Por ahora, un placeholder: El vídeo proporciona una manera eficaz para ayudarle a demostrar el punto. Cuando haga clic en Vídeo en línea, puede pegar el código para insertar del vídeo que desea agregar. También puede escribir una palabra clave para buscar en línea el vídeo que mejor se adapte a su documento. Para otorgar a su documento un aspecto profesional, Word proporciona encabezados, pies de página, páginas de portada y diseños de cuadro de texto que se complementan entre sí. Por ejemplo, puede agregar una portada coincidente, el encabezado y la barra lateral. Haga clic en Insertar y elija los elementos que desee de las distintas galerías. Los temas y estilos también ayudan a mantener su documento coordinado. Cuando haga clic en Diseño y seleccione un tema nuevo, cambiarán las imágenes, gráficos y gráficos SmartArt para que coincidan con el nuevo tema. Al aplicar los estilos, los títulos cambian para coincidir con el nuevo tema. Ahorre tiempo en Word con nuevos botones que se muestran donde se necesiten. Para cambiar la forma en que se ajusta una imagen en el documento, haga clic y aparecerá un botón de opciones de diseño junto a la imagen. Cuando trabaje en una tabla, haga clic donde desee agregar una fila o columna y, a continuación, haga clic en el signo más. La lectura es más fácil, también, en la nueva vista de lectura. Puede contraer partes del documento y centrarse en el texto que desee. Si necesita detener la lectura antes de llegar al final, Word le recordará dónde dejó la lectura, incluso en otros dispositivos.",
     image: "https://i.ibb.co/Rkc190xy/santi.png",
   },
@@ -74,10 +74,14 @@ export const CausasRaices = () => {
       <div className="mx-auto container w-full mb-[50px]">
         <div className="flex flex-col items-center justify-center h-full text-center">
           <h1 className="text-3xl md:text-4xl xl:text-5xl mb-2 md:mb-6 font-semibold font-bitcount">
-            Causas Raíces
+            ¿Qué dicen los especialistas?
           </h1>
           <p className="w-full md:max-w-2/3 font-medium text-md md:text-xl mb-16 md:mb-24">
-            Bajada de 5 líneas Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo
+            ¿Las autoridades involucradas hacen lo suficiente para garantizar exámenes idóneos?
+            ¿Está bien tener un circuito cerrado como prueba de la preparación del conductor? ¿El
+            examen es lo suficientemente descentralizado? A continuación, los especialistas explican
+            por qué el proceso para obtener una licencia de conducir en Perú continúa siendo
+            deficiente.
           </p>
 
           <div className="grid xl:grid-cols-3 gap-16 md:gap-8 justify-center items-start mx-auto max-w-6xl w-full px-4">

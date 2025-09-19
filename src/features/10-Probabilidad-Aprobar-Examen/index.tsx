@@ -82,9 +82,8 @@ export const ProbabilidadAprobarExamen = () => {
           <br className="hidden md:block" /> el examen de licencia?
         </h1>
         <p className="text-center mt-3 text-sm text-white/80">
-          Completa el siguiente simulador para estimar tu resultado
-          <br />
-          <span className="font-semibold">análisis exclusivo</span> con datos reales de postulantes peruanos
+          Completa el siguiente simulador para estimar tu resultado con un análisis predictivo con
+          datos reales de postulantes peruanos.
         </p>
 
         <form onSubmit={onCalcular} className="mt-8 space-y-5">
@@ -156,8 +155,8 @@ export const ProbabilidadAprobarExamen = () => {
             {/*<span className="text-white/90">*/}
             {/*  ¿Ya diste la prueba antes?*/}
             {/*</span>*/}
-            <span className="text-white/90">
-              Si no diste la prueba al inicio y no registraste un porcentaje de aprobación o desaprobación, el modelo considerará una cifra referencial.
+            <span className="text-white/90 text-xs md:text-md">
+              ¿Rendiste la prueba incluida al inicio del especial? Si no, el modelo considerara una cifra referencial estándar.
             </span>
           </label>
 

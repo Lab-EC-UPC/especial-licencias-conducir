@@ -3,10 +3,10 @@ import {TestimoniosSection} from "@/features/07-Testimonios/components/Testimoni
 import {CausasRaicesSection} from "@/features/07-Testimonios/components/CausasRaícesSection.tsx";
 import Button from "@/features/10-Probabilidad-Aprobar-Examen/components/button.tsx";
 import FLECHA from "@/assets/flecha-causas.png";
-import AUTORIDAD1 from "@/assets/autoridad-1.png";
-import AUTORIDAD2 from "@/assets/autoridad-2.png";
-import AUTORIDAD3 from "@/assets/autoridad-3.png";
-import AUTORIDAD4 from "@/assets/autoridad-4.png";
+// import AUTORIDAD1 from "@/assets/autoridad-1.png";
+// import AUTORIDAD2 from "@/assets/autoridad-2.png";
+// import AUTORIDAD3 from "@/assets/autoridad-3.png";
+// import AUTORIDAD4 from "@/assets/autoridad-4.png";
 
 export const Testimonios = () => {
   const [selectedAutoridad, setSelectedAutoridad] = useState<string>("MTC");
@@ -16,36 +16,36 @@ export const Testimonios = () => {
       nombre: 'MTC',
       color: 'bg-[#58b7cf]',
       descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat (explicación de la función del MTC).(24)",
-      entrevistas: [
-        {
-          titulo: "Entrevista 01",
-          descripcion: "Entrevista 01 dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.(20) ",
-          avatar: AUTORIDAD1,
-        },
-        {
-          titulo: "Entrevista 02",
-          descripcion: "Entrevista 02 dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.(20)",
-          avatar: AUTORIDAD2,
-        }
-      ]
+      // entrevistas: [
+      //   {
+      //     titulo: "Entrevista 01",
+      //     descripcion: "Entrevista 01 dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.(20) ",
+      //     avatar: AUTORIDAD1,
+      //   },
+      //   {
+      //     titulo: "Entrevista 02",
+      //     descripcion: "Entrevista 02 dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.(20)",
+      //     avatar: AUTORIDAD2,
+      //   }
+      // ]
     },
-    {
-      nombre: 'Contraloría',
-      color: 'bg-[#58b7cf]',
-      descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat (explicación de la función de la Contraloría).(18)",
-      entrevistas: [
-        {
-          titulo: "Entrevista 01",
-          descripcion: "dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.(22)",
-          avatar: AUTORIDAD3,
-        },
-        {
-          titulo: "Entrevista 02",
-          descripcion: "dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.(19)",
-          avatar: AUTORIDAD4,
-        }
-      ]
-    }
+    // {
+    //   nombre: 'Contraloría',
+    //   color: 'bg-[#58b7cf]',
+    //   descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat (explicación de la función de la Contraloría).(18)",
+    //   entrevistas: [
+    //     {
+    //       titulo: "Entrevista 01",
+    //       descripcion: "dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.(22)",
+    //       avatar: AUTORIDAD3,
+    //     },
+    //     {
+    //       titulo: "Entrevista 02",
+    //       descripcion: "dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.(19)",
+    //       avatar: AUTORIDAD4,
+    //     }
+    //   ]
+    // }
   ];
 
   const selected = organizaciones.find((org) => org.nombre === selectedAutoridad);
@@ -81,7 +81,7 @@ export const Testimonios = () => {
                         <img
                           src={FLECHA}
                           alt="Flecha"
-                          className="h-8 md:h-10 w-auto object-contain rotate-90 hidden md:flex"
+                          className="h-8 md:h-10 w-auto object-contain rotate-90"
                         />
                       )}
                     </div>
@@ -92,26 +92,26 @@ export const Testimonios = () => {
                     <p className="text-center mb-8">
                       {selected.descripcion}
                     </p>
-                    <div className="flex flex-col gap-4 w-full">
-                      {selected.entrevistas.map((e, index) => (
-                        <div
-                          key={index}
-                          className="flex gap-4 items-center"
-                        >
-                          <div className="size-32 md:size-40 shrink-0">
-                            <img
-                              src={e.avatar}
-                              alt={e.titulo}
-                              className="object-cover w-full h-full relative z-10 pointer-events-none"
-                              draggable={false}
-                            />
-                          </div>
-                          <div className="text-left">
-                            {e.descripcion}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                    {/*<div className="flex flex-col gap-4 w-full">*/}
+                    {/*  {selected.entrevistas.map((e, index) => (*/}
+                    {/*    <div*/}
+                    {/*      key={index}*/}
+                    {/*      className="flex gap-4 items-center"*/}
+                    {/*    >*/}
+                    {/*      <div className="size-32 md:size-40 shrink-0">*/}
+                    {/*        <img*/}
+                    {/*          src={e.avatar}*/}
+                    {/*          alt={e.titulo}*/}
+                    {/*          className="object-cover w-full h-full relative z-10 pointer-events-none"*/}
+                    {/*          draggable={false}*/}
+                    {/*        />*/}
+                    {/*      </div>*/}
+                    {/*      <div className="text-left">*/}
+                    {/*        {e.descripcion}*/}
+                    {/*      </div>*/}
+                    {/*    </div>*/}
+                    {/*  ))}*/}
+                    {/*</div>*/}
                   </div>
                 )}
               </div>

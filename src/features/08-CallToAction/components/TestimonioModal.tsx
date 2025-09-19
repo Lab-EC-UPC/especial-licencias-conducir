@@ -168,7 +168,7 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
          setSubmitOk(true);
          setFormData({ nombre: '', ciudad: '', experiencia: '' });
          setCheckboxChecked(false);
-         alert('¡Gracias por compartir tu experiencia!');
+         alert('Gracias por compartir tu historia');
          onClose();
     } catch {
          // console.error(err);
@@ -270,7 +270,7 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
                             lineHeight: '1.2'
                           }}
                         >
-                          Tu voz también cuenta
+                          Tu voz, puede hacer la diferencia
                         </h1>
 
                         {/* Descripción */}

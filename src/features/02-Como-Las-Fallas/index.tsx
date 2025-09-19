@@ -48,14 +48,12 @@ export const ComoLasFallas = () => {
     <div className="mx-auto container w-full h-full px-4 mt-[86px] mb-[50px]">
       <div className="flex flex-col items-center text-center h-full">
         <h1 className="text-3xl xl:text-5xl mb-6 md:mb-8 font-semibold font-bitcount">
-          ¿Cómo las fallas en el examen de manejo incrementan las papeletas y
-          accidentes de tránsito en el Perú?
+          Fallas en el examen de manejo, papeletas y accidentes de tránsito
         </h1>
 
         <p className="w-full md:max-w-2/3 font-medium text-base sm:text-lg md:text-xl mb-8 md:mb-12">
-          Descubre la conexión crítica entre las 5 preguntas más desafiantes del
-          examen de conducción de los últimos 4 años y las papeletas más
-          frecuentes en todo el país en el mismo periodo.
+          Descubre la correlación entre algunas fallas del examen teórico de conducir con las
+          papeletas e infracciones más frecuentes en todo el país durante el mismo periodo.
         </p>
 
         <div className="relative w-full max-w-6xl">
@@ -122,8 +120,8 @@ export const ComoLasFallas = () => {
         </div>
 
         <p className="text-base sm:text-lg md:text-xl font-medium italic mt-10 md:mt-20">
-          Haz clic en cada elemento circular para saber cuántas papeletas se
-          colocan a nivel nacional
+          Haz clic en cada elemento circular para saber cuántas infracciones se
+          han cometido a nivel nacional
         </p>
       </div>
     </div>

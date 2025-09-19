@@ -14,14 +14,13 @@ export const LesionesMuertesNacionales = () => {
         <div className="mx-auto container w-full min-h-screen">
           <div className="flex flex-col items-center text-center text-white h-full py-16 px-4">
             <h1 className="text-3xl md:text-4xl xl:text-5xl mb-2 md:mb-6 font-semibold font-bitcount">
-              Lesiones y muertes nacionales
+              Lesiones y muertes a nivel nacional
             </h1>
             <p className="w-full md:max-w-2/3 font-medium text-md md:text-xl">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-              when an unknown printer took a galley of type and scrambled it to make a type
-              specimen book. It has survived not only five centuries, but also the leap into electronic
-              typesetting, remaining essentially unchanged.
+              En Lima Metropolitana, entre enero y julio de 2025, han fallecido 1.668 personas en 847
+              accidentes mortales. La mayoría (93,3%), ocurrieron en zonas urbanas, especialmente en
+              las avenidas. Pese a estos indicadores, el examen de conducir en el Perú aún se sigue
+              realizando en un circuito cerrado.
             </p>
             <div className="h-[60vh] my-16">
               <PeruMap />

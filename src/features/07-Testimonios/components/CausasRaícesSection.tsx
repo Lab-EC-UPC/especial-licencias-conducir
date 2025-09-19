@@ -125,7 +125,7 @@ export const CausasRaicesSection = () => {
   return (
     <div className="w-full">
       <h1 className="text-3xl md:text-4xl xl:text-5xl mb-8 md:mb-12 font-semibold font-bitcount">
-        Causas Raíces
+        Las causas raíces
       </h1>
       <div
         ref={scrollRef}
