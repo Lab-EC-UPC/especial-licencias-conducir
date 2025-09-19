@@ -4,6 +4,7 @@ import {useEffect, useRef, useState} from "react";
 import { IoVolumeMute } from "react-icons/io5";
 import { IoMdVolumeMute } from "react-icons/io";
 import BGM from "@/assets/audio/game-bgm.wav";
+import Button from "@/features/10-Probabilidad-Aprobar-Examen/components/button.tsx";
 
 interface Props {
   isOpen: boolean;
@@ -82,17 +83,22 @@ export const TriviaQuizModal = ({
                     />
                   </div>
                   <div className="flex gap-2 items-center">
-                    <button
+                    {/*<button*/}
+                    {/*  onClick={()=>setIsOpen(false)}*/}
+                    {/*  className="w-full mx-auto px-8 py-3 rounded-lg font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer whitespace-nowrap"*/}
+                    {/*  style={{*/}
+                    {/*    backgroundColor: "#ac5eaa",*/}
+                    {/*    color: "#dbeecb",*/}
+                    {/*    fontFamily: "var(--font-helvetica, sans-serif)"*/}
+                    {/*  }}*/}
+                    {/*>*/}
+                    {/*  🚪 Salir*/}
+                    {/*</button>*/}
+                    <Button
+                      text="🚪 Salir"
                       onClick={()=>setIsOpen(false)}
-                      className="w-full mx-auto px-8 py-3 rounded-lg font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer whitespace-nowrap"
-                      style={{
-                        backgroundColor: "#ac5eaa",
-                        color: "#dbeecb",
-                        fontFamily: "var(--font-helvetica, sans-serif)"
-                      }}
-                    >
-                      🚪 Salir
-                    </button>
+                      variant="pink"
+                    />
                   </div>
                 </div>
                 <div className="flex items-center justify-center">

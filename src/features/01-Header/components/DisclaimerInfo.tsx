@@ -34,9 +34,9 @@ const selectRandomQuestions = () => {
       </ul>
       <h3 className="heading-3">¿Cómo se califica?</h3>
       <ul className="list-disc pl-8">
-        <li>85% o más (136+ puntos): Aprobado – Conductor aprobado </li>
-        <li>65-84% (104-135 puntos): Regular – Requiere más práctica</li>
-        <li>Menos de 65% (&lt;104 puntos): Necesita estudio adicional</li>
+        <li>80% o más (&gt;=128 puntos): Aprobado – Conductor aprobado </li>
+        <li>60-80% (96-127 puntos): Regular – Requiere más práctica</li>
+        <li>Menos de 60% (&lt;127 puntos): Necesita estudio adicional</li>
       </ul>
 
 
@@ -97,9 +97,9 @@ const selectRandomQuestions = () => {
       </ul>
       <h3 className="heading-3">Criterios de Evaluación</h3>
       <ul className="list-disc pl-8">
-        <li>≥85% (136+ puntos): Nivel experto - Dominio sólido</li>
-        <li>65-84% (104-135 puntos): Nivel intermedio - Requiere refuerzo</li>
-        <li>65% (&lt;104 puntos): Nivel básico - Necesita estudio adicional</li>
+        <li>≥80% (128+ puntos): Nivel experto - Dominio sólido</li>
+        <li>60-80% (96-127 puntos): Nivel intermedio - Requiere refuerzo</li>
+        <li>60% (&lt;127 puntos): Nivel básico - Necesita estudio adicional</li>
       </ul>
       <h3 className="heading-3">Categorías Temáticas Incluidas</h3>
       <ul className="list-disc pl-8">
