@@ -8,6 +8,7 @@ interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   variant?: "pink" | "blue" | "sand";
   type?: "button" | "submit" | "reset" | undefined;
+  className?: string;
 }
 
 const Button = ({
@@ -15,6 +16,7 @@ const Button = ({
   onClick,
   variant = "pink",
   type = "button",
+  className,
 }: Props) => {
   const bgImage = {
     pink: PINK,
@@ -26,7 +28,7 @@ const Button = ({
     <button
       type={type}
       onClick={onClick}
-      className="w-[200px] h-[48px] bg-no-repeat bg-contain text-[#0f1629] font-bold font-bitcount leading-none flex items-center justify-center duration-200 hover:translate-y-[10%] hover:cursor-pointer"
+      className={`w-[200px] h-[48px] bg-no-repeat bg-contain text-[#0f1629] font-bold font-bitcount leading-none flex items-center justify-center duration-200 hover:translate-y-[10%] hover:cursor-pointer ${className}`}
       style={{
         backgroundImage: `url('${bgImage}')`,
         imageRendering: 'pixelated',

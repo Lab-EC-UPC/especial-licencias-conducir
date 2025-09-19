@@ -98,11 +98,11 @@ export const Header = () => {
                 <img
                   src={TITLE}
                   alt="Title"
-                  className="w-1/2 h-auto"
+                  className="w-1/2 h-auto animate-[fadeInLeft_1s_ease-out_forwards]"
                 />
               </div>
               <div className="flex justify-center w-full">
-                <p className="font-bold font-bitcount text-skyblue text-base md:text-lg xl:text-xl 2xl:text-2xl w-full 2xl:max-w-2/3">
+                <p className="font-bold font-bitcount text-skyblue text-base md:text-lg xl:text-xl 2xl:text-2xl w-full 2xl:max-w-2/3 animate-[fadeInRight_1s_ease-out_forwards]">
                   Cómo el actual examen de manejo en Perú falla en preparar conductores capacitados
                 </p>
               </div>
@@ -123,12 +123,7 @@ export const Header = () => {
 
           <button
             onClick={()=>setDisclaimerModal(true)}
-            className="absolute right-0 top-4 w-min mx-auto p-3 rounded-full font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer"
-            style={{
-              backgroundColor: "#ac5eaa",
-              color: "#dbeecb",
-              fontFamily: "var(--font-helvetica, sans-serif)"
-            }}
+            className="absolute bg-purple text-green hover:translate-y-[10%] duration-200 right-6 top-6 w-min mx-auto p-3 rounded-full transition-all hover:opacity-90 hover:cursor-pointer"
           >
             <IoIosInformationCircle size={20} />
           </button>
@@ -159,11 +154,11 @@ export const Header = () => {
                 <img
                   src={TITLE}
                   alt="Title"
-                  className="w-full px-2 sm:w-3/4 h-auto"
+                  className="w-full px-2 sm:w-3/4 h-auto animate-[fadeInLeft_1s_ease-out_forwards]"
                 />
               </div>
               <div className="flex justify-center w-full">
-                <p className="font-semibold font-bitcount text-skyblue text-sm w-full mb-2">
+                <p className="font-semibold font-bitcount text-skyblue text-sm w-full mb-2 animate-[fadeInRight_1s_ease-out_forwards]">
                   Cómo el actual examen de manejo en Perú falla en preparar conductores capacitados
                 </p>
               </div>
@@ -184,12 +179,7 @@ export const Header = () => {
 
           <button
             onClick={()=>setDisclaimerModal(true)}
-            className="absolute right-2 top-2 w-min mx-auto p-2 rounded-full font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer"
-            style={{
-              backgroundColor: "#ac5eaa",
-              color: "#dbeecb",
-              fontFamily: "var(--font-helvetica, sans-serif)"
-            }}
+            className="absolute bg-purple text-green hover:translate-y-[10%] duration-200 right-4 top-4 w-min mx-auto p-3 rounded-full transition-all hover:opacity-90 hover:cursor-pointer"
           >
             <IoIosInformationCircle size={16} />
           </button>
