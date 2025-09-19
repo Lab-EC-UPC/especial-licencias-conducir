@@ -122,20 +122,21 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
     setSubmitError(null);
     if (!formData.experiencia.trim()) {
       setSubmitError("Por favor, ingresa tu experiencia.");
-      // alert('Por favor, ingresa tu experiencia');
       return;
     }
 
+      if (!formData.contact.trim()) {
+          setSubmitError("Por favor, ingresa tu Numero o Correo electronico.");
+          return;
+      }
+
     if (!checkboxChecked) {
         setSubmitError("Debes autorizar el uso anónimo del testimonio para continuar.");
-        // alert('Debes autorizar el uso anónimo del testimonio para continuar.');
         return;
     }
 
     if (!SHEETS_URL) {
         throw new Error('Falta configurar la URL');
-        // alert('Falta configurar la URL del Web App (VITE_SHEETS_WEBAPP_URL).');
-        // return;
     }
     setSubmitting(true);
     try {
@@ -175,10 +176,7 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
          alert('Gracias por compartir tu historia');
          onClose();
     } catch {
-         // console.error(err);
-         // setSubmitError(err?.message || 'Error desconocido al enviar el formulario.');
          setSubmitError('Ocurrió un error desconocido al enviar el formulario. Por favor, inténtalo de nuevo más tarde.');
-         // alert('Ocurrió un error al enviar. Por favor, inténtalo de nuevo.');
     } finally {
          setSubmitting(false);
     }
