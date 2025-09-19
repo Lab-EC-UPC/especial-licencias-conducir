@@ -15,7 +15,25 @@ export const Testimonios = () => {
     {
       nombre: 'MTC',
       color: 'bg-[#58b7cf]',
-      descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat (explicación de la función del MTC).(24)",
+      descripcion:
+      <div className="text-justify text-base md:text-lg">
+        El MTC ha establecido un régimen de infracciones y sanciones para su aplicación por parte
+        de la Superintendencia de Transporte Terrestre de Personas, Carga y Mercancías
+        (SUTRAN), tanto a los centros de evaluación como a los postulantes, que van desde la
+        inhabilitación, cancelación de la licencia de conducir, paralización de la actividad, entre
+        otros, según corresponda. Sin embargo, todavía existen personas que buscan burlar los
+        protocolos mediante actos de corrupción.
+        <br/><br/>
+        Por otro lado, el MTC señaló que la fiscalización de las Escuelas de Conductores
+        corresponde a la SUTRAN. Sin embargo, evitó pronunciarse sobre la crítica central: que
+        muchas escuelas autorizadas limitan su enseñanza a prácticas rápidas orientadas solo a
+        aprobar el examen.
+        <br/><br/>
+        Respecto a la diversidad lingüística y cultural, el MTC adelantó que prepara una
+        modificación al Reglamento Nacional de Licencias para que el balotario de preguntas esté
+        disponible en lenguas originarias. Sin embargo, el ministerio no precisó una fecha estimada
+        para su puesta en marcha.
+      </div>
       // entrevistas: [
       //   {
       //     titulo: "Entrevista 01",
