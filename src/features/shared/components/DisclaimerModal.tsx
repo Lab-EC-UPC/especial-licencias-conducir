@@ -25,8 +25,8 @@ export const DisclaimerModal = ({
       isOpen={isOpen}
       onOpenChange={setIsOpen}
       placement="center"
-      scrollBehavior="inside"
-      size="3xl"
+      // scrollBehavior="inside"
+      size="4xl"
       isDismissable={false}
       hideCloseButton={true}
       classNames={{
@@ -62,7 +62,7 @@ export const DisclaimerModal = ({
                       </svg>
                     </button>
                   </div>
-                  <div>
+                  <div className="w-full h-[50vh] overflow-y-auto custom-scroll scroll-green">
                     {content}
                   </div>
                   <Button

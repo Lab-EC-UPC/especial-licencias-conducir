@@ -4,159 +4,193 @@ import mobileHeroImage from "@/assets/mobileHeroImage.png";
 import mobileHeroImageWebp from "@/assets/mobileHeroImage.webp";
 import {useState} from "react";
 import {TriviaQuizModal} from "@/features/01-Header/components/TriviaQuizModal.tsx";
+import {DisclaimerModal} from "@/features/shared/components/DisclaimerModal.tsx";
+import {IoIosInformationCircle} from "react-icons/io";
+import {DisclaimerInfo} from "@/features/01-Header/components/DisclaimerInfo.tsx";
 
 const CONFIG = {
-    // Imágenes para diferentes dispositivos
-    heroImage: hero,
-    heroWebp: heroWebp,
-    mobileHeroImage: mobileHeroImage,
-    mobileHeroImageWebp: mobileHeroImageWebp,
+  // Imágenes para diferentes dispositivos
+  heroImage: hero,
+  heroWebp: heroWebp,
+  mobileHeroImage: mobileHeroImage,
+  mobileHeroImageWebp: mobileHeroImageWebp,
 
-    heroContainerWidth: "w-full",
-    heroContainerMaxWidth: "w-full",
+  heroContainerWidth: "w-full",
+  heroContainerMaxWidth: "w-full",
 
-    // Configuración para WEB - Overlay más grande para desktop
-    webOverlay: {
-        width: "63%",        // Puedes cambiar este valor
-        height: "54%",       // Puedes cambiar este valor
-        left: "19%",         // Puedes cambiar este valor
-        top: "9%",           // Puedes cambiar este valor
-        padding: "clamp(0.5rem, 2vw, 2rem)",
-    },
+  // Configuración para WEB - Overlay más grande para desktop
+  webOverlay: {
+    width: "63%",        // Puedes cambiar este valor
+    height: "54%",       // Puedes cambiar este valor
+    left: "19%",         // Puedes cambiar este valor
+    top: "9%",           // Puedes cambiar este valor
+    padding: "clamp(0.5rem, 2vw, 2rem)",
+  },
 
-    // Configuración para MÓVIL - Overlay más pequeño para móviles
-    mobileOverlay: {
-        width: "70%",        // Puedes cambiar este valor - más pequeño que web
-        height: "66%",      // Altura automática para móviles
-        left: "15%",       // Puedes cambiar este valor - centrado
-        top: "13%",          // Puedes cambiar este valor - dentro de la pantalla
-        padding: "clamp(0.125rem, 1.5vw, 0.75rem)",
-    },
+  // Configuración para MÓVIL - Overlay más pequeño para móviles
+  mobileOverlay: {
+    width: "70%",        // Puedes cambiar este valor - más pequeño que web
+    height: "66%",      // Altura automática para móviles
+    left: "15%",       // Puedes cambiar este valor - centrado
+    top: "13%",          // Puedes cambiar este valor - dentro de la pantalla
+    padding: "clamp(0.125rem, 1.5vw, 0.75rem)",
+  },
 
-    overlayRounded: "rounded-sm",
-    gameContainerWidth: "w-full",
-    gameContainerMaxWidth: "max-w-[924px]",
-    gameContainerHeight: "min-h-[600px]",
+  overlayRounded: "rounded-sm",
+  gameContainerWidth: "w-full",
+  gameContainerMaxWidth: "max-w-[924px]",
+  gameContainerHeight: "min-h-[600px]",
 };
 
 export const Header = () => {
-    const [isGameOpen, setIsGameOpen] = useState(false);
+  const [isGameOpen, setIsGameOpen] = useState(false);
+  const [disclaimerModal, setDisclaimerModal] = useState<boolean>(false);
 
-    return (
-        <>
-            <div className={`relative ${CONFIG.heroContainerWidth} ${CONFIG.heroContainerMaxWidth} mx-auto`}>
-                {/* Imágenes para WEB (pantallas grandes) con soporte WebP */}
-                <picture className="hidden md:block">
-                    {/*<source srcSet={CONFIG.heroWebp} type="image/webp" />*/}
-                    <img
-                        src={CONFIG.heroImage}
-                        alt="Hero Desktop"
-                        className="w-full h-full"
-                    />
-                </picture>
+  return (
+    <>
+      <div className={`relative ${CONFIG.heroContainerWidth} ${CONFIG.heroContainerMaxWidth} mx-auto`}>
+        {/* Imágenes para WEB (pantallas grandes) con soporte WebP */}
+        <picture className="hidden md:block">
+          {/*<source srcSet={CONFIG.heroWebp} type="image/webp" />*/}
+          <img
+            src={CONFIG.heroImage}
+            alt="Hero Desktop"
+            className="w-full h-full"
+          />
+        </picture>
 
-                {/* Imágenes para MÓVIL/TABLET con soporte WebP */}
-                <picture className="block md:hidden">
-                    {/*<source srcSet={CONFIG.mobileHeroImageWebp} type="image/webp" />*/}
-                    <img
-                        src={CONFIG.mobileHeroImage}
-                        alt="Hero Mobile"
-                        className="w-full h-full"
-                    />
-                </picture>
+        {/* Imágenes para MÓVIL/TABLET con soporte WebP */}
+        <picture className="block md:hidden">
+          {/*<source srcSet={CONFIG.mobileHeroImageWebp} type="image/webp" />*/}
+          <img
+            src={CONFIG.mobileHeroImage}
+            alt="Hero Mobile"
+            className="w-full h-full"
+          />
+        </picture>
 
-                {/* Overlay para WEB - Tamaño configurable para desktop */}
-                <div
-                    className={`hidden md:flex flex-col ${CONFIG.overlayRounded} absolute bg-[#131a31]`}
-                    style={{
-                        top: CONFIG.webOverlay.top,
-                        left: CONFIG.webOverlay.left,
-                        width: CONFIG.webOverlay.width,
-                        height: CONFIG.webOverlay.height,
-                        color: "#dbeecb",
-                        padding: CONFIG.webOverlay.padding,
-                        overflow: "hidden",
-                        minHeight: "fit-content",
-                    }}
-                >
-                    <div className="flex flex-col justify-center gap-4 lg:gap-6 xl:gap-8 h-full p-4 lg:p-6 xl:p-8">
-                        <div className="text-center">
-                            <h2 className="font-bold leading-tight font-bitcount text-[#58b7cf] text-2xl md:text-3xl mb-2 lg:mb-3">
-                                🚗 Trivia de Conducir
-                            </h2>
-                            <p className="leading-tight text-[#ffaf42] text-sm lg:text-base xl:text-lg 2xl:text-xl font-bold">
-                                ¿Qué tanto sabes sobre manejo seguro?
-                            </p>
-                        </div>
-
-                        <div className="rounded border bg-[#58b7cf] border-white p-3 lg:p-4 xl:p-5">
-                            <h4 className="font-bold font-bitcount text-[#131a31] text-sm lg:text-base xl:text-lg 2xl:text-xl mb-2 lg:mb-3">
-                                📋 Reglas
-                            </h4>
-                            <ul className="leading-tight list-disc text-[#131a31] pl-5 lg:pl-6 xl:pl-7 space-y-1 lg:space-y-1.5 text-sm lg:text-base">
-                                <li>20 preguntas desafiantes</li>
-                                <li>20 segundos por pregunta</li>
-                                <li>Una sola oportunidad</li>
-                            </ul>
-                        </div>
-
-                        <button
-                            onClick={()=>setIsGameOpen(true)}
-                            className="bg-[#ed548c] w-full rounded font-bold transition-all hover:opacity-90 leading-tight text-[#131a31] hover:cursor-pointer p-3 lg:p-3.5 xl:p-4 text-sm lg:text-base xl:text-lg"
-                        >
-                            🚀 Comenzar Trivia
-                        </button>
-                    </div>
-                </div>
-
-                {/* Overlay para MÓVIL - Tamaño configurable más pequeño */}
-                <div
-                    className={`flex md:hidden flex-col ${CONFIG.overlayRounded} absolute bg-[#131a31]`}
-                    style={{
-                        top: CONFIG.mobileOverlay.top,
-                        left: CONFIG.mobileOverlay.left,
-                        width: CONFIG.mobileOverlay.width,
-                        height: CONFIG.mobileOverlay.height,
-                        color: "#dbeecb",
-                        padding: CONFIG.mobileOverlay.padding,
-                        overflow: "hidden",
-                        minHeight: "fit-content",
-                    }}
-                >
-                    <div className="flex flex-col justify-center gap-1 sm:gap-2 h-full p-1 sm:p-2">
-                        <div className="text-center">
-                            <h2 className="font-bold leading-tight font-bitcount text-[#58b7cf] text-2xl mb-1">
-                                🚗 Trivia de Conducir
-                            </h2>
-                            <p className="leading-tight text-[#ffaf42] text-xs mb-2 font-bold">
-                                ¿Qué tanto sabes sobre manejo seguro?
-                            </p>
-                        </div>
-
-                        <div className="rounded border bg-[#58b7cf] border-white px-2 py-4 mb-2">
-                            <h4 className="font-bold font-bitcount text-[#131a31] mb-1">
-                                📋 Reglas
-                            </h4>
-                            <ul className="leading-tight list-disc text-[#131a31] pl-5 sm:pl-3 space-y-0.5 text-xs">
-                                <li>20 preguntas desafiantes</li>
-                                <li>20 segundos por pregunta</li>
-                                <li>Una sola oportunidad</li>
-                            </ul>
-                        </div>
-
-                        <button
-                            onClick={()=>setIsGameOpen(true)}
-                            className="bg-[#ed548c] w-full rounded font-bold transition-all hover:opacity-90 leading-tight text-[#131a31] hover:cursor-pointer p-1.5 sm:p-2 text-sm"
-                        >
-                            🚀 Comenzar Trivia
-                        </button>
-                    </div>
-                </div>
+        {/* Overlay para WEB - Tamaño configurable para desktop */}
+        <div
+          className={`hidden md:flex flex-col ${CONFIG.overlayRounded} absolute bg-[#131a31]`}
+          style={{
+            top: CONFIG.webOverlay.top,
+            left: CONFIG.webOverlay.left,
+            width: CONFIG.webOverlay.width,
+            height: CONFIG.webOverlay.height,
+            color: "#dbeecb",
+            padding: CONFIG.webOverlay.padding,
+            overflow: "hidden",
+            minHeight: "fit-content",
+          }}
+        >
+          <div className="flex flex-col justify-center gap-4 lg:gap-6 xl:gap-8 h-full p-4 lg:p-6 xl:p-8">
+            <div className="text-center">
+              <h2 className="font-bold leading-tight font-bitcount text-[#58b7cf] text-2xl md:text-3xl mb-2 lg:mb-3">
+                🚗 Trivia de Conducir
+              </h2>
+              <p className="leading-tight text-[#ffaf42] text-sm lg:text-base xl:text-lg 2xl:text-xl font-bold">
+                ¿Qué tanto sabes sobre manejo seguro?
+              </p>
             </div>
-            <TriviaQuizModal
-                isOpen={isGameOpen}
-                setIsOpen={setIsGameOpen}
-            />
-        </>
-    );
+
+            <div className="rounded border bg-[#58b7cf] border-white p-3 lg:p-4 xl:p-5">
+              <h4 className="font-bold font-bitcount text-[#131a31] text-sm lg:text-base xl:text-lg 2xl:text-xl mb-2 lg:mb-3">
+                📋 Reglas
+              </h4>
+              <ul className="leading-tight list-disc text-[#131a31] pl-5 lg:pl-6 xl:pl-7 space-y-1 lg:space-y-1.5 text-sm lg:text-base">
+                <li>20 preguntas desafiantes</li>
+                <li>20 segundos por pregunta</li>
+                <li>Una sola oportunidad</li>
+              </ul>
+            </div>
+
+            <button
+              onClick={()=>setIsGameOpen(true)}
+              className="bg-[#ed548c] w-full rounded font-bold transition-all hover:opacity-90 leading-tight text-[#131a31] hover:cursor-pointer p-3 lg:p-3.5 xl:p-4 text-sm lg:text-base xl:text-lg"
+            >
+              🚀 Comenzar Trivia
+            </button>
+          </div>
+
+          <button
+            onClick={()=>setDisclaimerModal(true)}
+            className="absolute right-0 top-4 w-min mx-auto p-3 rounded-full font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer"
+            style={{
+              backgroundColor: "#ac5eaa",
+              color: "#dbeecb",
+              fontFamily: "var(--font-helvetica, sans-serif)"
+            }}
+          >
+            <IoIosInformationCircle size={20} />
+          </button>
+        </div>
+
+        {/* Overlay para MÓVIL - Tamaño configurable más pequeño */}
+        <div
+          className={`flex md:hidden flex-col ${CONFIG.overlayRounded} absolute bg-[#131a31]`}
+          style={{
+            top: CONFIG.mobileOverlay.top,
+            left: CONFIG.mobileOverlay.left,
+            width: CONFIG.mobileOverlay.width,
+            height: CONFIG.mobileOverlay.height,
+            color: "#dbeecb",
+            padding: CONFIG.mobileOverlay.padding,
+            overflow: "hidden",
+            minHeight: "fit-content",
+          }}
+        >
+          <div className="flex flex-col justify-center gap-1 sm:gap-2 h-full p-1 sm:p-2">
+            <div className="text-center">
+              <h2 className="font-bold leading-tight font-bitcount text-[#58b7cf] text-2xl mb-1">
+                🚗 Trivia de Conducir
+              </h2>
+              <p className="leading-tight text-[#ffaf42] text-xs mb-2 font-bold">
+                ¿Qué tanto sabes sobre manejo seguro?
+              </p>
+            </div>
+
+            <div className="rounded border bg-[#58b7cf] border-white px-2 py-4 mb-2">
+              <h4 className="font-bold font-bitcount text-[#131a31] mb-1">
+                📋 Reglas
+              </h4>
+              <ul className="leading-tight list-disc text-[#131a31] pl-5 sm:pl-3 space-y-0.5 text-xs">
+                <li>20 preguntas desafiantes</li>
+                <li>20 segundos por pregunta</li>
+                <li>Una sola oportunidad</li>
+              </ul>
+            </div>
+
+            <button
+              onClick={()=>setIsGameOpen(true)}
+              className="bg-[#ed548c] w-full rounded font-bold transition-all hover:opacity-90 leading-tight text-[#131a31] hover:cursor-pointer p-1.5 sm:p-2 text-sm"
+            >
+              🚀 Comenzar Trivia
+            </button>
+          </div>
+
+          <button
+            onClick={()=>setDisclaimerModal(true)}
+            className="absolute right-2 top-2 w-min mx-auto p-2 rounded-full font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer"
+            style={{
+              backgroundColor: "#ac5eaa",
+              color: "#dbeecb",
+              fontFamily: "var(--font-helvetica, sans-serif)"
+            }}
+          >
+            <IoIosInformationCircle size={16} />
+          </button>
+        </div>
+      </div>
+      <TriviaQuizModal
+        isOpen={isGameOpen}
+        setIsOpen={setIsGameOpen}
+      />
+      <DisclaimerModal
+        isOpen={disclaimerModal}
+        setIsOpen={setDisclaimerModal}
+        title="Metodología"
+        content={<DisclaimerInfo />}
+      />
+    </>
+  );
 };

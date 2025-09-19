@@ -23,6 +23,58 @@
     --font-weight-bold: 700;
 }
 
+@layer utilities {
+    .custom-scroll::-webkit-scrollbar {
+        width: 8px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    .custom-scroll {
+        scrollbar-width: thin;
+    }
+
+    .scroll-pink::-webkit-scrollbar-thumb {
+        background-color: color-mix(in srgb, var(--color-pink) 80%, black);
+    }
+    .scroll-pink {
+        scrollbar-color: color-mix(in srgb, var(--color-pink) 80%, black) transparent;
+    }
+
+    .scroll-blue::-webkit-scrollbar-thumb {
+        background-color: color-mix(in srgb, var(--color-skyblue) 80%, black);
+    }
+    .scroll-blue {
+        scrollbar-color: color-mix(in srgb, var(--color-skyblue) 80%, black) transparent;
+    }
+
+    .scroll-sand::-webkit-scrollbar-thumb {
+        background-color: color-mix(in srgb, var(--color-yellow) 80%, black);
+    }
+    .scroll-sand {
+        scrollbar-color: color-mix(in srgb, var(--color-yellow) 80%, black) transparent;
+    }
+
+    .scroll-green::-webkit-scrollbar-thumb {
+        background-color: color-mix(in srgb, var(--color-green) 80%, black);
+    }
+    .scroll-green {
+        scrollbar-color: color-mix(in srgb, var(--color-green) 80%, black) transparent;
+    }
+}
+
+@layer components {
+    .heading-1 {
+        @apply text-xl md:text-2xl font-bold text-center leading-none;
+    }
+    .heading-2 {
+        @apply text-lg md:text-xl font-semibold;
+    }
+    .heading-3 {
+        @apply text-base md:text-lg;
+    }
+}
+
 :root {
     --font-sans: var(--font-helvetica);
 }
