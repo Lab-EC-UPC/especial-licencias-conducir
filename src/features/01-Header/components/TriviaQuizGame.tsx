@@ -303,8 +303,8 @@ export const TriviaQuizGame = ({
             {getHeaderMessage().title}
           </h2>
           <p
-            className="mb-6 text-lg"
-            style={{ color: '#868686', fontFamily: 'var(--font-helvetica, sans-serif)' }}
+            className="mb-6 text-lg text-white"
+            style={{ fontFamily: 'var(--font-helvetica, sans-serif)' }}
           >
             {getHeaderMessage().subtitle}
           </p>
@@ -312,18 +312,18 @@ export const TriviaQuizGame = ({
           {/* Puntuación detallada */}
           <div className="rounded-lg p-4 mb-4 max-w-md mx-auto border" style={{ backgroundColor: '#ffaf42', borderColor: '#131a31' }}>
             <div
-              className="text-3xl font-bold mb-2"
+              className="text-3xl md:text-5xl font-semibold mb-2"
               style={{ color: '#131a31', fontFamily: 'var(--font-bitcount, sans-serif)' }}
             >
               {score}
             </div>
             <p
-              className="mb-3 text-sm"
+              className="mb-3 text-sm md:text-base"
               style={{ color: '#131a31', fontFamily: 'var(--font-helvetica, sans-serif)' }}
             >
               de {questions.length * 20} puntos posibles
             </p>
-            <div className="bg-white rounded-full h-3 mb-3 overflow-hidden">
+            <div className="bg-white rounded-full h-3 mb-2 overflow-hidden">
               <div
                 className="h-3 rounded-full transition-all duration-1000"
                 style={{
@@ -333,20 +333,19 @@ export const TriviaQuizGame = ({
               />
             </div>
             <p
-              className="font-bold text-xl"
+              className="font-bold text-lg md:text-xl"
               style={{ color: '#131a31', fontFamily: 'var(--font-helvetica, sans-serif)' }}
             >
               {Math.round((score / (questions.length * 20)) * 100)}%
             </p>
           </div>
 
-          <div className="rounded-lg p-3 mb-6 max-w-md mx-auto bg-[#ffaf42]">
-            <p
-              className="font-bold text-primary text-base"
-            >
-              {getScoreMessage()}
-            </p>
-          </div>
+          <p
+            className="font-bold text-white text-lg mb-6"
+            style={{ fontFamily: 'var(--font-helvetica, sans-serif)' }}
+          >
+            {getScoreMessage()}
+          </p>
 
           <button
             onClick={startGame}

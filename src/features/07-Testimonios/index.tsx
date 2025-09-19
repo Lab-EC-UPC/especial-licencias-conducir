@@ -76,7 +76,7 @@ export const Testimonios = () => {
           <CausasRaicesSection />
 
           <div className="mx-auto w-full mt-[86px] flex flex-col items-center">
-            <h1 className="text-3xl md:text-4xl xl:text-5xl mb-2 md:mb-6 font-semibold font-bitcount text-[#131A31]">
+            <h1 className="text-3xl md:text-4xl xl:text-5xl mb-4 md:mb-6 font-semibold font-bitcount text-[#131A31]">
               ¿Qué dicen las autoridades y organizaciones?
             </h1>
 

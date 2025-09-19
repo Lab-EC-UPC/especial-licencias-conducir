@@ -25,7 +25,7 @@ export const TestimoniosSection = () => {
       text: "“Afuerita nomás, antes de entrar a la evaluación, hay un montón de gente que te quiere vender el exámen, que te dice que te va a aprobar. Hay gente que te dice: “yo te ayudo, amiga”.",
       video:
         <iframe
-          src="https://www.youtube.com/embed/pygGug3TCaI?si=aciVCgdbIfsJtek3"
+          src="https://www.youtube.com/embed/WZT4nM-OjD4?si=aHHkjpkvWuTncrSP"
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
@@ -39,7 +39,7 @@ export const TestimoniosSection = () => {
       text: "“Tienen un montón de personas dando su examen, y cuando manejaba podía ir máximo a 10 km/h. La cola dentro del circuito era enorme”.",
       video:
         <iframe
-          src="https://www.youtube.com/embed/pygGug3TCaI?si=aciVCgdbIfsJtek3"
+          src="https://www.youtube.com/embed/9sTiz8ZpIcc?si=PANqT6zABrAtdCBR"
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
@@ -53,7 +53,7 @@ export const TestimoniosSection = () => {
       text: "“En el reglamento indican que tienes que prender tu luz direccional (para estacionar en diagonal). A mí me desaprobaron por prenderlas. En mi siguiente examen, decidí no hacerlo, y me desaprobaron por no prenderlas”. ",
       video:
         <iframe
-          src="https://www.youtube.com/embed/pygGug3TCaI?si=aciVCgdbIfsJtek3"
+          src="https://www.youtube.com/embed/yJfaUfcUyCo?si=-TX5oAEfv9Fit5yq"
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
@@ -67,7 +67,7 @@ export const TestimoniosSection = () => {
       text: "“Es un circuito pequeño donde realmente no aprueba el que tenga mejor habilidad conductiva, sino el que el que se han memorizado todos los pequeños detallitos que tiene que hacer y ya está.",
       video:
         <iframe
-          src="https://www.youtube.com/embed/pygGug3TCaI?si=aciVCgdbIfsJtek3"
+          src="https://www.youtube.com/embed/uVyO0wB--Hk?si=AsQVZN8Z3v0oHRug"
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
