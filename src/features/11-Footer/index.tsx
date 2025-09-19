@@ -60,7 +60,7 @@ export const FooterSection = () => {
                  width= "330"
             />
           </a>
-          <a target="_blank" href="" className="mt-16 md:mt-[90px] hover:scale-105 duration-200">
+          <a target="_blank" href="https://elcomercio.pe/ecdata/" className="mt-16 md:mt-[90px] hover:scale-105 duration-200">
             <img src="https://raw.githubusercontent.com/Lab-EC-UPC/assets/refs/heads/main/logo-unidad-ec-data.png"
                  width="250"
             />
