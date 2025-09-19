@@ -314,7 +314,7 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
 
                           {/* Celular o correo de contacto */}
                           <PixelTextField
-                            label="Ciudad, región y centro de evaluación:"
+                            label="Celular o correo de contacto:"
                             placeholder="Celular o correo de contacto "
                             value={formData.contact}
                             onChange={(value) => handleInputChange('contact', value)}
