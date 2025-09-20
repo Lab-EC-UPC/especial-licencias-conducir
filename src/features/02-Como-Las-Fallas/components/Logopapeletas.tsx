@@ -68,8 +68,8 @@ export const Wheel = ({ question, title, answer, count }: WheelProps) => {
                      bg-pink px-2 sm:px-3 md:px-4 py-0.5 sm:py-1
                      flex items-center justify-center 
                      text-white italic
-                     text-[12px] md:text-[16px]
-                     rounded-md shadow-md whitespace-nowrap"
+                     text-[10px] md:text-[16px]
+                     rounded-md shadow-md whitespace-nowrap md:whitespace-normal xl:whitespace-nowrap"
         >
           Veces que se respondió incorrectamente | {count}
         </div>

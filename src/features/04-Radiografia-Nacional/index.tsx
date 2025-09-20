@@ -74,7 +74,7 @@ export const RadiografiaNacional = () => {
                   <IoIosInformationCircle size={16} />
                   <p className="font-medium text-xs md:text-base">
                     Si quieres ver la comparación entre la tasa de aprobación de los hombres y
-                    las mujeres puedes hacer click en el switch de color naranja.
+                    las mujeres puedes hacer click en el switch de color naranja.
                   </p>
                 </div>
               )}
@@ -179,7 +179,7 @@ export const RadiografiaNacional = () => {
                     type="button"
                     onClick={() => setModoCompletoGenero(!modoCompletoGenero)}
                     aria-pressed={modoCompletoGenero}
-                    className="relative w-24 h-16 overflow-hidden rounded-md hover:cursor-pointer"
+                    className="relative w-18 h-12 overflow-hidden rounded-md hover:cursor-pointer animate-[heartbeat_.8s_ease-in-out_infinite_1s]"
                     style={{
                       backgroundImage: modoCompletoGenero ? `url(${ACTIVE})` : `url(${NOT_ACTIVE})`,
                       backgroundSize: "100%",
