@@ -17,11 +17,11 @@ export const GeneroChartCompleto = () => {
   // Datos
   const mujeresAprobadas = 274437;
   const mujeresDesaprobadas = 75419;
-  const hombresAprobados = 995031;
+  const hombresAprobados = 1996031;
   const hombresDesaprobados = 1022017;
   
-  const totalMasculino = hombresAprobados * 0.4 + hombresDesaprobados;
-  const totalFemenino = mujeresAprobadas + mujeresDesaprobadas*25;
+  const totalMasculino = hombresAprobados + hombresDesaprobados;
+  const totalFemenino = mujeresAprobadas * 0.9 + mujeresDesaprobadas * 25;
 
   // Colores
   const colors = useMemo(
@@ -216,9 +216,7 @@ export const GeneroChartCompleto = () => {
 
   }, [size, hexSize, colors, mujeresAprobadas, totalFemenino, hombresAprobados, totalMasculino]);
 
-  // ===== Tooltip =====
-  const nf = new Intl.NumberFormat("es-ES");
-
+   // ===== Tooltip =====
   const WRAP_W = wrapRef.current?.clientWidth ?? size;
   const WRAP_H = wrapRef.current?.clientHeight ?? size;
   const OFFSET = 12;
@@ -247,10 +245,14 @@ export const GeneroChartCompleto = () => {
   };
 
   const tooltipValues = getTooltipValues();
-  const formatWithSpaces = (num: number) => nf.format(num).replace(/\u202F/g, " ");
+  
+  // Función para formatear números con espacios como separadores de miles
+  const formatWithSpaces = (num: number): string => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
 
   return (
-    <div ref={wrapRef} className="relative overflow-visible">
+    <div ref={wrapRef} className="relative" style={{ width: size, height: size }}>
       <svg
         ref={svgRef}
         width={size}
@@ -259,11 +261,96 @@ export const GeneroChartCompleto = () => {
         aria-label="Distribución de género y estado de aprobación"
       />
 
+      {/* Labels estáticos con el mismo estilo que los tooltips dinámicos */}
+      <div className="absolute bottom-90 -left-40 pointer-events-none z-10">
+        <div
+          className="font-medium text-white text-left w-40 md:w-50 h-auto"
+          style={{
+            backgroundImage: `url(${PASSED_BUTTON})`,
+            backgroundSize: "100% auto",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center"
+          }}
+        >
+          <div className="flex flex-col px-6 pt-3 pb-5">
+            <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+              {formatWithSpaces(mujeresAprobadas)}
+            </div>
+            <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+              mujeres aprueban
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-70 -left-50 pointer-events-none z-10">
+        <div
+          className="font-medium text-white text-left w-40 md:w-50 h-auto"
+          style={{
+            backgroundImage: `url(${PASSED_BUTTON})`,
+            backgroundSize: "100% auto",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center"
+          }}
+        >
+          <div className="flex flex-col px-6 pt-3 pb-5">
+            <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+              {formatWithSpaces(mujeresDesaprobadas)}
+            </div>
+            <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+              mujeres desaprueban
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-30 -right-45 pointer-events-none z-10">
+        <div
+          className="font-medium text-white text-left w-40 md:w-50 h-auto"
+          style={{
+            backgroundImage: `url(${NOT_PASSED_BUTTON})`,
+            backgroundSize: "100% auto",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center"
+          }}
+        >
+          <div className="flex flex-col px-6 pt-3 pb-5 text-pink">
+            <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+              {formatWithSpaces(hombresAprobados)}
+            </div>
+            <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+              hombres aprueban
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-10 -right-35 pointer-events-none z-10">
+        <div
+          className="font-medium text-white text-left w-40 md:w-50 h-auto"
+          style={{
+            backgroundImage: `url(${NOT_PASSED_BUTTON})`,
+            backgroundSize: "100% auto",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center"
+          }}
+        >
+          <div className="flex flex-col px-6 pt-3 pb-5 text-pink">
+            <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+              {formatWithSpaces(hombresDesaprobados)}
+            </div>
+            <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+              hombres desaprueban
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Tooltip dinámico */}
       {inside && tooltip.show && tooltip.region && tooltip.status && (
         <div
           ref={tipRef}
-          className="absolute pointer-events-none text-left"
+          className="absolute pointer-events-none text-left z-20"
           style={{ left, top, whiteSpace: "nowrap" }}
         >
           {tooltip.region === "masculino" ? (
