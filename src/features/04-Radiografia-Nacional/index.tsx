@@ -65,7 +65,7 @@ export const RadiografiaNacional = () => {
               <h2 className="text-lg md:text-xl xl:text-2xl font-semibold">
                 {title}
               </h2>
-              <p className="text-sm md:text-lg font-light">
+              <p className="text-sm md:text-lg font-light z-50 relative">
                 {description}
               </p>
 
