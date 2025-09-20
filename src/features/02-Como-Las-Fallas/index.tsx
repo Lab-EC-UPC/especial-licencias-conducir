@@ -60,7 +60,7 @@ export const ComoLasFallas = () => {
           <IoIosInformationCircle size={16} />
           <p className="font-medium text-xs md:text-base">
             Haz clic en cada elemento circular para saber cuántas infracciones se
-            han cometido a nivel nacional
+            han cometido a nivel nacional.
           </p>
         </div>
 

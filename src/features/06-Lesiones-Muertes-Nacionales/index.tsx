@@ -26,7 +26,7 @@ export const LesionesMuertesNacionales = () => {
             <div className="flex flex-col md:flex-row items-center justify-center gap-1 w-full md:max-w-2/3 mt-4 text-green">
               <IoIosInformationCircle size={16} />
               <p className="font-medium text-xs md:text-base">
-                Haz clic en cada departamento para conocer la situación
+                Haz clic en cada departamento para conocer la situación.
               </p>
             </div>
             <div className="h-[60vh] mt-12">
