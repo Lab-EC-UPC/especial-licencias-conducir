@@ -91,6 +91,10 @@
         0%,100% { transform: translateX(10px); }
         50%     { transform: translateX(0); }
     }
+    @keyframes arrow-point {
+        0%,100% { transform: translateX(5px); }
+        50%     { transform: translateX(0); }
+    }
     @keyframes heartbeat {
         0%   { transform: scale(1); }
         25%  { transform: scale(1.03); }

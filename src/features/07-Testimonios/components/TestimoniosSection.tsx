@@ -154,7 +154,7 @@ export const TestimoniosSection = () => {
         <img
           src={FLECHA}
           alt="Flecha"
-          className="h-12 md:h-16 w-auto object-contain"
+          className="h-12 md:h-16 w-auto object-contain animate-[arrow-point.8s_ease-in-out_infinite_1s]"
         />
         <TestimonioCard testimonio={testimonios[1]} />
         <TestimonioCard testimonio={testimonios[2]} />
