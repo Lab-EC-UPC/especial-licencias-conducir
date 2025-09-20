@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Wheel } from "./components/Logopapeletas";
 import items from "./utils/wheel";
+import {IoIosInformationCircle} from "react-icons/io";
 
 export const ComoLasFallas = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -51,10 +52,18 @@ export const ComoLasFallas = () => {
           Fallas en el examen de manejo, papeletas y accidentes de tránsito
         </h1>
 
-        <p className="w-full md:max-w-2/3 font-medium text-base sm:text-lg md:text-xl mb-8 md:mb-12">
+        <p className="w-full md:max-w-2/3 font-medium text-base sm:text-lg md:text-xl">
           Descubre la correlación entre algunas fallas del examen teórico de conducir con las
           papeletas e infracciones más frecuentes en todo el país durante el mismo periodo.
         </p>
+
+        <div className="flex items-center justify-center gap-1 w-full md:max-w-2/3 italic text-primary mt-2 mb-8 md:mb-12">
+          <IoIosInformationCircle size={16} />
+          <p className="font-medium text-md md:text-base">
+            Haz clic en cada elemento circular para saber cuántas infracciones se
+            han cometido a nivel nacional
+          </p>
+        </div>
 
         <div className="relative w-full max-w-6xl">
           {/* Btn izquierda */}
@@ -118,11 +127,6 @@ export const ComoLasFallas = () => {
             />
           ))}
         </div>
-
-        <p className="text-base sm:text-lg md:text-xl font-medium italic mt-10 md:mt-20">
-          Haz clic en cada elemento circular para saber cuántas infracciones se
-          han cometido a nivel nacional
-        </p>
       </div>
     </div>
   );

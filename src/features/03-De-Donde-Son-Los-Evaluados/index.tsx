@@ -13,6 +13,7 @@ import CHAR_4 from "@/assets/where-from/characters/4.png";
 import CHAR_5 from "@/assets/where-from/characters/5.png";
 import CHAR_6 from "@/assets/where-from/characters/6.png";
 import {Car} from "@/features/03-De-Donde-Son-Los-Evaluados/components/Car.tsx";
+import {IoIosInformationCircle} from "react-icons/io";
 
 export const DeDondeSonLosEvaluados = () => {
   return (
@@ -27,6 +28,12 @@ export const DeDondeSonLosEvaluados = () => {
             examen de conducir. Estas son los establecimientos autorizados en provincias con mayor
             cantidad de evaluados “foráneos”:
           </p>
+          <div className="flex items-center justify-center gap-1 w-full md:max-w-2/3 text-skyblue mt-2">
+            <IoIosInformationCircle size={16} />
+            <p className="font-medium text-md md:text-base">
+              Haz clic en los carritos para conocer la data
+            </p>
+          </div>
 
           <div className="flex gap-2 w-full text-left leading-none mt-8 md:mt-12">
             <div className="hidden mdflex flex-col justify-between">

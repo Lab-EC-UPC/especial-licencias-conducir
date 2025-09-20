@@ -36,13 +36,17 @@ export const FooterSection = () => {
                       target="_blank"
                       className={`flex gap-5 items-center ${member.url && "hover:cursor-pointer hover:scale-105 duration-200"}`}
                     >
-                      <div>
-                        <img
-                          src={member.photo}
-                          alt={member.name}
-                          className={`w-14 md:w-16 object-cover ${member.photoNotRound ? "h-auto" : "rounded-full h-14 md:h-16"} ${member.objectPosition === "center" ? "object-center" : "object-top"}`}
-                        />
-                      </div>
+                      {member.photo ? (
+                        <div>
+                          <img
+                            src={member.photo}
+                            alt={member.name}
+                            className={`w-14 md:w-16 object-cover ${member.photoNotRound ? "h-auto" : "rounded-full h-14 md:h-16"} ${member.objectPosition === "center" ? "object-center" : "object-top"}`}
+                          />
+                        </div>
+                      ): (
+                        <div className="w-14 md:w-16 bg-primary" />
+                      )}
                       <div className="text-left text-white">
                         <h3 className="text-xl md:text-2xl font-semibold">{member.name}</h3>
                         <p className="text-md md:text-lg font-medium">{member.role}</p>

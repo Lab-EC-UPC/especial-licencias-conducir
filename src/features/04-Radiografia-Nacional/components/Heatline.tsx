@@ -15,7 +15,7 @@ export const Heatline = () => {
   return (
     <div className="w-full mx-auto">
       <div
-        className="relative h-4"
+        className="relative h-[16px]"
         style={{ background: gradient }}
       >
         {ticks.map((t) => (
@@ -25,7 +25,7 @@ export const Heatline = () => {
             style={{ left: `${toPct(t)}%`, transform: "translateX(-50%)" }}
           >
             <div className="w-px h-2 bg-white/70" />
-            <span className="mt-1 text-xs text-white/70">{t}</span>
+            <span className="mt-[2px] text-[10px] text-white/70">{t}</span>
           </div>
         ))}
       </div>

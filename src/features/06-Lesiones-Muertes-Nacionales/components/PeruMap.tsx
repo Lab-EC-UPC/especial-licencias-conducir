@@ -150,14 +150,14 @@ export const PeruMap = () => {
                         {["2021", "2022", "2023", "2024"].map((year) => (
                           <button
                             style={{
-                              backgroundImage: selectedYear === year ? `url(${SELECTED})` : `url(${btnYears[year]})`,
+                              backgroundImage: selectedYear === year ? `url(${btnYears[year]})` : `url(${SELECTED})`,
                               backgroundSize: "100% auto",
                               backgroundRepeat: "no-repeat",
                               backgroundPosition: "center"
                             }}
                             className={`
                             relative hover:cursor-pointer py-2 font-semibold font-bitcount text-2xl rounded
-                            ${selectedYear === year ? "text-black" : "text-white"}
+                            ${selectedYear === year ? "text-white" : "text-black/50"}
                           `}
                             onClick={() => setSelectedYear(year)}
                           >

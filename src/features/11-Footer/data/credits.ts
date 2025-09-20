@@ -4,7 +4,7 @@ import DESARROLLO from "@/assets/credits/desarrollo.png";
 import DATA from "@/assets/credits/data.png";
 import AUDIOVISUALES from "@/assets/credits/audiovisuales.png";
 import COORDINACION from "@/assets/credits/coordinacion.png";
-import EDICION from "@/assets/credits/edicion-visual.png";
+// import EDICION from "@/assets/credits/edicion-visual.png";
 
 export interface Credit {
   group: string;
@@ -13,7 +13,7 @@ export interface Credit {
   members: {
     name: string;
     role: string;
-    photo: string;
+    photo?: string;
     photoNotRound?: boolean;
     url?: string;
     objectPosition?: "center" | "top" ; 
@@ -310,20 +310,20 @@ export const credits: Credit[] = [
       },
     ]
   },
-  {
-    group: "Edición Visual",
-    asset: EDICION,
-    assetOrientation: "left",
-    members: [
-      {
-        name: "Nuevas Narrativas",
-        role: "Revisión visual",
-        photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/NN.png?raw=true",
-        url: "https://especiales.elcomercio.pe/?q=especiales-multimedia/especiales-nuevas-narrativas-especdis/index.html",
-        photoNotRound: true,
-      },
-    ]
-  },
+  // {
+  //   group: "Edición Visual",
+  //   asset: EDICION,
+  //   assetOrientation: "left",
+  //   members: [
+  //     {
+  //       name: "Nuevas Narrativas",
+  //       role: "Revisión visual",
+  //       photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/NN.png?raw=true",
+  //       url: "https://especiales.elcomercio.pe/?q=especiales-multimedia/especiales-nuevas-narrativas-especdis/index.html",
+  //       photoNotRound: true,
+  //     },
+  //   ]
+  // },
   {
     group: "Agradecimientos especiales",
     // asset: EDICION,
@@ -334,6 +334,13 @@ export const credits: Credit[] = [
         role: "Edición de Prompts",
         photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/carls%20mayo.jpg?raw=true",
         url: "https://elcomercio.pe/autor/carls-mayo/"
+      },
+      {
+        name: "Nuevas Narrativas",
+        role: "Revisión visual",
+        url: "https://especiales.elcomercio.pe/?q=especiales-multimedia/especiales-nuevas-narrativas-especdis/index.html",
+        photo: "https://avatar.iran.liara.run/username?username=Nuevas%20Narrativas&background=ffffff&color=000000",
+        photoNotRound: true,
       },
     ]
   },

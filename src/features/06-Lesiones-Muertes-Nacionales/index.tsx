@@ -1,5 +1,6 @@
 import {PeruMap} from "@/features/06-Lesiones-Muertes-Nacionales/components/PeruMap.tsx";
 import pixel_bottom from "@/assets/pixel-bottom.png";
+import {IoIosInformationCircle} from "react-icons/io";
 
 export const LesionesMuertesNacionales = () => {
 
@@ -22,12 +23,15 @@ export const LesionesMuertesNacionales = () => {
               las avenidas. Pese a estos indicadores, el examen de conducir en el Perú aún se sigue
               realizando en un circuito cerrado.
             </p>
-            <div className="h-[60vh] my-16">
+            <div className="flex items-center justify-center gap-1 w-full md:max-w-2/3 mt-4 text-green">
+              <IoIosInformationCircle size={16} />
+              <p className="font-medium text-md md:text-base">
+                Haz clic en cada departamento para conocer la situación
+              </p>
+            </div>
+            <div className="h-[60vh] mt-12">
               <PeruMap />
             </div>
-            <p className="w-full md:max-w-2/3 font-medium">
-              Haz clic en cada departamento para conocer la situación
-            </p>
           </div>
         </div>
       </div>

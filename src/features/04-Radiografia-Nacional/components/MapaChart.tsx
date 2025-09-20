@@ -71,6 +71,20 @@ export const MapaChart = () => {
 
   return (
     <div className="flex flex-col items-center h-full justify-center relative scrollbar-hidden py-8 md:py-4">
+      <div className="mb-8 md:mb-10 text-center w-full">
+        <h4 className="text-lg md:text-xl font-medium text-white mb-2">
+          Aprobación según región y género
+        </h4>
+        <div className="flex flex-col md:flex-row gap-3 w-full items-start">
+          <h4 className="text-sm md:text-md text-white whitespace-nowrap font-light leading-none hidden md:flex">
+            Grado de aprobación
+          </h4>
+          <Heatline />
+          <h4 className="text-sm md:text-md pt-4 text-white whitespace-nowrap font-light leading-none text-center w-full md:hidden">
+            Grado de aprobación
+          </h4>
+        </div>
+      </div>
       <svg
         ref={svgRef}
         width="100%"
@@ -188,21 +202,6 @@ export const MapaChart = () => {
           </clipPath>
         </defs>
       </svg>
-
-      <div className="mt-8 md:mt-10 text-center w-full">
-        <h4 className="text-lg md:text-xl font-medium text-white mb-4">
-          Aprobación según región y género
-        </h4>
-        <div className="flex flex-col md:flex-row gap-4 w-full items-start">
-          <h4 className="text-sm md:text-md text-white whitespace-nowrap font-light leading-none hidden md:flex">
-            Grado de aprobación
-          </h4>
-          <Heatline />
-          <h4 className="text-sm md:text-md pt-8 text-white whitespace-nowrap font-light leading-none text-center w-full md:hidden">
-            Grado de aprobación
-          </h4>
-        </div>
-      </div>
     </div>
   )
 }
