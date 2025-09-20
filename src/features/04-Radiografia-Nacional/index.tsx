@@ -13,6 +13,7 @@ import CHART_INFO from "@/assets/chart-info.png";
 import SWITCH from "@/assets/boton-genero.png";
 import ACTIVE from "@/assets/boton-active-genero.png";
 import NOT_ACTIVE from "@/assets/boton-not-active-genero.png";
+import {IoIosInformationCircle} from "react-icons/io";
 
 type TabKey = "aprobados" | "genero" | "edad" | "mapa";
 
@@ -64,7 +65,19 @@ export const RadiografiaNacional = () => {
               <h2 className="text-lg md:text-xl xl:text-2xl font-semibold">
                 {title}
               </h2>
-              <p className="text-sm md:text-lg font-light">{description}</p>
+              <p className="text-sm md:text-lg font-light">
+                {description}
+              </p>
+
+              {selected === "genero" && (
+                <div className="flex flex-col items-center justify-center gap-1 w-full italic text-white/90 mt-4 mb-2 md:mb-4">
+                  <IoIosInformationCircle size={16} />
+                  <p className="font-medium text-xs md:text-base">
+                    Si quieres ver la comparación entre la tasa de aprobación de los hombres y
+                    las mujeres puedes hacer click en el switch de color naranja.
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="grid xl:flex items-center justify-center py-8 relative w-full min-h-[70vh]">
@@ -134,7 +147,7 @@ export const RadiografiaNacional = () => {
                     type="button"
                     onClick={() => setModoCompletoGenero(!modoCompletoGenero)}
                     aria-pressed={modoCompletoGenero}
-                    className="relative w-20 h-12 overflow-hidden rounded-md hover:cursor-pointer"
+                    className="relative w-20 h-12 overflow-hidden rounded-md hover:cursor-pointer animate-[heartbeat_.8s_ease-in-out_infinite_1s]"
                     style={{
                       backgroundImage: modoCompletoGenero ? `url(${ACTIVE})` : `url(${NOT_ACTIVE})`,
                       backgroundSize: "100%",
@@ -191,7 +204,7 @@ export const RadiografiaNacional = () => {
                 </div>
               )}
 
-              <div className="py-4 h-[80vh] md:h-[70vh] xl:h-[75vh] flex flex-col justify-center items-center">
+              <div className="py-4 h-[80vh] md:h-[70vh] xl:h-[60vh] flex flex-col justify-center items-center">
                 {selected === "aprobados" && <AprobadosChart />}
                 {selected === "genero" && (
                   modoCompletoGenero ? <GeneroChartCompleto /> : <GeneroChartSimple />

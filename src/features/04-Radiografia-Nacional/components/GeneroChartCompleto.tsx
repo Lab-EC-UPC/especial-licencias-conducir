@@ -373,7 +373,7 @@ export const GeneroChartCompleto = () => {
 
       {/* Leyenda */}
       <div className="flex flex-col justify-center mt-8">
-        <h2 className="text-lg md:text-xl">Género de los evaluados?</h2>
+        <h2 className="text-lg md:text-xl">Género de los evaluados</h2>
         <div className="flex gap-2 md:gap-4 items-center justify-center font-light text-sm md:text-lg">
           <h3>Género</h3>
           <div className="flex gap-2 items-center">

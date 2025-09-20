@@ -316,7 +316,7 @@ export const GeneroChartSimple = () => {
         </div>
       )}
 
-      <div className="flex flex-col justify-center mt-8">
+      <div className="flex flex-col justify-center mt-4">
         <h2 className="text-lg md:text-xl">
             Género de los evaluados
         </h2>

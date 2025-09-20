@@ -153,7 +153,7 @@ export const credits: Credit[] = [
       {
         name: "Liliana Fu Ye",
         role: "Coordinadora de desarrollo",
-        photo: "https://media.licdn.com/dms/image/v2/D4E03AQE7BSZrP5Q7Vw/profile-displayphoto-scale_200_200/B4EZlORhmLGYAY-/0/1757954841843?e=1761177600&v=beta&t=oWq7HcNRtniqvqtW6PFk2ONw3DqPg4EvqNVvu7PXuJU",
+        photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/Liliana%20Fu.png?raw=true",
         url: "https://lilianafu.com/",
       },
       {
@@ -257,7 +257,7 @@ export const credits: Credit[] = [
       {
         name: "Joaquín Villalobos",
         role: "Compositor",
-        photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/Joaquin.jpg?raw=true",
+        photo: "https://raw.githubusercontent.com/Lab-EC-UPC/assets/refs/heads/main/especial-licencias/Joaquin%20Villalobos%202.jpg",
       },
       {
         name: "Josselyn Gavancho",

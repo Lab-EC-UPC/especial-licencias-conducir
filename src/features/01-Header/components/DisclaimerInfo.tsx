@@ -32,12 +32,12 @@ const selectRandomQuestions = () => {
         <li>Puntos extra si se responde rápido (hasta 10 puntos adicionales)</li>
         <li>Máximo posible: 160 puntos (20 puntos × 8 preguntas)</li>
       </ul>
-      <h3 className="heading-3">¿Cómo se califica?</h3>
-      <ul className="list-disc pl-8">
-        <li>80% o más (&gt;=128 puntos): Aprobado – Conductor aprobado </li>
-        <li>60-80% (96-127 puntos): Regular – Requiere más práctica</li>
-        <li>Menos de 60% (&lt;127 puntos): Necesita estudio adicional</li>
-      </ul>
+      {/*<h3 className="heading-3">¿Cómo se califica?</h3>*/}
+      {/*<ul className="list-disc pl-8">*/}
+      {/*  <li>80% o más (&gt;=128 puntos): Aprobado – Conductor aprobado </li>*/}
+      {/*  <li>60-80% (96-127 puntos): Regular – Requiere más práctica</li>*/}
+      {/*  <li>Menos de 60% (&lt;127 puntos): Necesita estudio adicional</li>*/}
+      {/*</ul>*/}
 
 
       <br />
@@ -97,9 +97,38 @@ const selectRandomQuestions = () => {
       </ul>
       <h3 className="heading-3">Criterios de Evaluación</h3>
       <ul className="list-disc pl-8">
-        <li>≥80% (128+ puntos): Nivel experto - Dominio sólido</li>
-        <li>60-80% (96-127 puntos): Nivel intermedio - Requiere refuerzo</li>
-        <li>60% (&lt;127 puntos): Nivel básico - Necesita estudio adicional</li>
+        <li>Se muestra si tu porcentaje de aciertos es igual o menor al **40%*.</li>
+        <div className="pl-4">
+          Sigue intentando.
+          <br/>
+          Fallaste, sigue practicando.
+          <br/>
+          Necesitas estudiar más las reglas.
+        </div>
+        <li>Se muestra si tu porcentaje de aciertos está entre el **40% y el 59.99%*.</li>
+        <div className="pl-4">
+          Sigue intentando.
+          <br/>
+          Fallaste, sigue practicando.
+          <br/>
+          Regular, sigue practicando.
+        </div>
+        <li>Se muestra si tu porcentaje de aciertos está entre el **60% y el 79.99%*.</li>
+        <div className="pl-4">
+          Sigue intentando.
+          <br/>
+          Regular, sigue practicando.
+          <br/>
+          Debes practicar un poco más 👍.
+        </div>
+        <li>Se muestra si tu porcentaje de aciertos es igual o superior al **80%*.</li>
+        <div className="pl-4">
+          ¡Aprobaste!
+          <br/>
+          Has superado el examen.
+          <br/>
+          Ya puedes obtener tu licencia de conducir.
+        </div>
       </ul>
       <h3 className="heading-3">Categorías Temáticas Incluidas</h3>
       <ul className="list-disc pl-8">
