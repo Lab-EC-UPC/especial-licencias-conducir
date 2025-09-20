@@ -12,8 +12,8 @@ export const GeneroChartSimple = () => {
   // ===== Configuración =====
   const size = 600;
   const hexSize = 10;
-  const totalMasculino = 2_477_026;
-  const totalFemenino = 825_121;
+  const totalMasculino = 2477026;
+  const totalFemenino = 825121;
 
   // Proporción de hombres y mujeres
   const totalPopulation = totalMasculino + totalFemenino;
@@ -141,7 +141,6 @@ export const GeneroChartSimple = () => {
   }, [size, hexSize, masculinoRatio, colors]);
 
   // ===== Tooltip =====
-  const nf = new Intl.NumberFormat("es-ES");
   const isMasculino = tooltip.region === "masculino";
 
   const WRAP_W = wrapRef.current?.clientWidth ?? size;
@@ -156,8 +155,35 @@ export const GeneroChartSimple = () => {
   if (top + tipH > WRAP_H) top = WRAP_H - tipH - 2;
   if (top < 0) top = 0;
 
-  const formatWithSpaces = (num: number) => nf.format(num).replace(/\u202F/g, " ");
+  // Función para formatear números con espacios como separadores de miles
+  const formatWithSpaces = (num: number): string => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
 
+  // ===== Posiciones de labels estáticos (cuando el mouse está fuera) =====
+  const cx = size / 2;
+  const cy = size / 2;
+  const r  = size * 0.45; // Radio para hombres (anillo exterior)
+
+  const sx = WRAP_W / size;
+  const sy = WRAP_H / size;
+
+  const marginOutside = 12; // px que saca el label fuera del borde del círculo
+
+  // Hombres: a la izquierda, un poco abajo
+  const staticMasculino = {
+    left: (cx + r + marginOutside) * sx*1.05,
+    top:  (cy + r * 0.1) * sy/2,
+    transform: "translate(-100%, -50%)" as const, // anclamos borde derecho al punto
+  };
+
+  // Mujeres: a la derecha, un poco arriba
+  const staticFemenino = {
+    left: (cx + r + marginOutside) * sx/2,
+    top:  (cy - r * 0.20) * sy,
+    transform: "translate(0, -50%)" as const, // anclamos borde izquierdo al punto
+  };
+  
   return (
     <div ref={wrapRef} className="relative overflow-visible">
       <svg
@@ -165,10 +191,73 @@ export const GeneroChartSimple = () => {
         width={size}
         height={size}
         className="max-w-full h-auto block bg-transparent hover:cursor-pointer"
-        aria-label="Distribución por género"
+        aria-label="Masculino (exterior) y femenino (interior)"
       />
 
-      {/* Tooltip dinámico */}
+      {/* === Labels estáticos cuando el mouse está fuera del SVG === */}
+      {!inside && (
+        <>
+          <div className="flex justify-center gap-4 items-center text-left">
+            <div
+              className="md:absolute pointer-events-none"
+              style={window.innerWidth >= 768 ? {
+                left: staticMasculino.left,
+                top: staticMasculino.top,
+                transform: staticMasculino.transform
+              } : {}}
+            >
+              <div
+                className="font-medium text-white text-left w-40 md:w-50 h-auto"
+                style={{
+                  backgroundImage: `url(${NOT_PASSED_BUTTON})`,
+                  backgroundSize: "100% auto",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center"
+                }}
+              >
+                <div className="flex flex-col px-6 pt-3 pb-5 text-pink">
+                  <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                    {formatWithSpaces(totalMasculino)}
+                  </div>
+                  <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                    hombres
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="md:absolute pointer-events-none"
+              style={window.innerWidth >= 768 ? {
+                left: staticFemenino.left,
+                top: staticFemenino.top,
+                transform: staticFemenino.transform
+              } : {}}
+            >
+              <div
+                className="font-medium text-white text-left w-40 md:w-50 h-auto"
+                style={{
+                  backgroundImage: `url(${PASSED_BUTTON})`,
+                  backgroundSize: "100% auto",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center"
+                }}
+              >
+                <div className="flex flex-col px-6 pt-3 pb-5">
+                  <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                    {formatWithSpaces(totalFemenino)}
+                  </div>
+                  <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                    mujeres
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* === Label dinámico cuando el mouse está dentro y sobre un hex === */}
       {inside && tooltip.show && tooltip.region && (
         <div
           ref={tipRef}
@@ -217,9 +306,10 @@ export const GeneroChartSimple = () => {
         </div>
       )}
 
-      {/* Leyenda */}
       <div className="flex flex-col justify-center mt-8">
-        <h2 className="text-lg md:text-xl">Género de los evaluados</h2>
+        <h2 className="text-lg md:text-xl">
+            Género de los evaluados
+        </h2>
         <div className="flex gap-2 md:gap-4 items-center justify-center font-light text-sm md:text-lg">
           <h3>Género</h3>
           <div className="flex gap-2 items-center">
