@@ -238,8 +238,8 @@ export const GeneroChartCompleto = () => {
       const text = tooltip.status === "aprobado" ? "hombres aprueban" : "hombres desaprueban";
       return { value, text };
     } else {
-      const value = tooltip.status === "aprobado" ? mujeresAprobadas : mujeresDesaprobadas;
-      const text = tooltip.status === "aprobado" ? "mujeres aprueban" : "mujeres desaprueban";
+      const value = tooltip.status === "aprobado" ?mujeresDesaprobadas:  mujeresAprobadas  ;
+      const text = tooltip.status === "aprobado" ? "mujeres desaprueban": "mujeres aprueban" ;
       return { value, text };
     }
   };
