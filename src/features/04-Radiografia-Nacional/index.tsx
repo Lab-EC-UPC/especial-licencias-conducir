@@ -5,7 +5,8 @@ import {GeneroIcon} from "@/assets/icons/GeneroIcon.tsx";
 import {EdadIcon} from "@/assets/icons/EdadIcon.tsx";
 import {MapaIcon} from "@/assets/icons/MapaIcon.tsx";
 import {AprobadosChart} from "@/features/04-Radiografia-Nacional/components/AprobadosChart.tsx";
-import {GeneroChart} from "@/features/04-Radiografia-Nacional/components/GeneroChart.tsx";
+import {GeneroChartSimple} from "@/features/04-Radiografia-Nacional/components/GeneroChartSimple.tsx";
+import {GeneroChartCompleto} from "@/features/04-Radiografia-Nacional/components/GeneroChartCompleto.tsx";
 import {EdadChart} from "@/features/04-Radiografia-Nacional/components/EdadChart.tsx";
 import {MapaChart} from "@/features/04-Radiografia-Nacional/components/MapaChart.tsx";
 import CHART_INFO from "@/assets/chart-info.png";
@@ -16,7 +17,7 @@ const INFO: Record<TabKey, { title: string; description: string }> = {
   aprobados: {
     title: "Resultados del examen de conocimientos",
     description:
-      "Entre 2020 y 2024, se rindieron más de 3.3 millones de exámenes teóricos para obtener licencias A1. En promedio, dos de cada tres personas aprueban.",
+      "Entre 2020 y 2024, se rindieron más de 3.3 millones de exámenes teóricos para obtener licencias A1. En promedio, two de cada tres personas aprueban.",
   },
   genero: {
     title: "Composición y rendimiento de los postulantes según género",
@@ -44,6 +45,7 @@ const TABS: { key: TabKey; Icon: React.FC }[] = [
 
 export const RadiografiaNacional = () => {
   const [selected, setSelected] = useState<TabKey>("aprobados");
+  const [modoCompletoGenero, setModoCompletoGenero] = useState(false);
   const { title, description } = INFO[selected];
 
   return (
@@ -118,14 +120,41 @@ export const RadiografiaNacional = () => {
                 </div>
               </div>
 
-              <div className="absolute bottom-5 right-0 translate-x-1/5 hidden xl:flex flex-col items-center w-32 gap-2">
+              {/* Sección inferior con botón de intercambio e información */}
+              <div className="absolute bottom-5 right-0 translate-x-1/5 hidden xl:flex flex-col items-center w-32 gap-4">
                 <p className="text-center text-xs">Haz clic en los íconos para conocer la data</p>
                 <img src={CHART_INFO} alt="Información" className="w-16 h-auto" />
+                
+                {/* Botón de intercambio solo para la pestaña de género */}
+                {selected === "genero" && (
+                  <button
+                    onClick={() => setModoCompletoGenero(!modoCompletoGenero)}
+                    className="bg-white/20 hover:bg-white/30 text-white font-medium py-2 px-4 rounded-lg flex items-center transition-colors text-xs mt-2"
+                  >
+                    <span className="mr-1">{modoCompletoGenero ? "↶" : "↷"}</span>
+                    {modoCompletoGenero ? "Solo género" : "Ver aprobados"}
+                  </button>
+                )}
               </div>
+
+              {/* Versión móvil del botón de intercambio */}
+              {selected === "genero" && (
+                <div className="xl:hidden mt-4 flex justify-center">
+                  <button
+                    onClick={() => setModoCompletoGenero(!modoCompletoGenero)}
+                    className="bg-white/20 hover:bg-white/30 text-white font-medium py-2 px-4 rounded-lg flex items-center transition-colors text-sm"
+                  >
+                    <span className="mr-2">{modoCompletoGenero ? "↶" : "↷"}</span>
+                    {modoCompletoGenero ? "Ver solo género" : "Ver aprobados/desaprobados"}
+                  </button>
+                </div>
+              )}
 
               <div className="py-4 h-[80vh] md:h-[70vh] xl:h-[75vh] flex flex-col justify-center items-center">
                 {selected === "aprobados" && <AprobadosChart />}
-                {selected === "genero" && <GeneroChart />}
+                {selected === "genero" && (
+                  modoCompletoGenero ? <GeneroChartCompleto /> : <GeneroChartSimple />
+                )}
                 {selected === "edad" && <EdadChart />}
                 {selected === "mapa" && <MapaChart />}
               </div>
