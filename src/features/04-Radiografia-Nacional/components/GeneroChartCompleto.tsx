@@ -31,8 +31,8 @@ export const GeneroChartCompleto = () => {
         "no-aprobado": "#366880",
       },
       femenino: {
-        aprobado: "#89643a",
-        "no-aprobado": "#ffaf42",
+        aprobado: "#ffaf42",
+        "no-aprobado": "#89643a",
       },
       stroke: "#0d1321",
     }),
@@ -336,5 +336,6 @@ export const GeneroChartCompleto = () => {
     </div>
   );
 };
+
 
 export default GeneroChartCompleto;
