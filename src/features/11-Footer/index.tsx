@@ -24,7 +24,7 @@ export const FooterSection = () => {
                       className="w-10 md:w-12 h-auto mr-2 md:mr-4"
                     />
                   )}
-                  <h2 className="text-3xl md:text-4xl font-bold font-bitcount text-yellow">
+                  <h2 className="text-2xl md:text-3xl font-bold font-bitcount text-yellow">
                     {credit.group}
                   </h2>
                 </div>
@@ -48,8 +48,8 @@ export const FooterSection = () => {
                         <div className="w-14 md:w-16 bg-primary" />
                       )}
                       <div className="text-left text-white">
-                        <h3 className="text-xl md:text-2xl font-semibold">{member.name}</h3>
-                        <p className="text-md md:text-lg font-medium">{member.role}</p>
+                        <h3 className="text-lg md:text-xl font-semibold">{member.name}</h3>
+                        <p className="text-sm md:text-base font-medium">{member.role}</p>
                       </div>
                     </a>
                   ))}

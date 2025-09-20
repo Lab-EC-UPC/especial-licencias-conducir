@@ -10,6 +10,9 @@ import {GeneroChartCompleto} from "@/features/04-Radiografia-Nacional/components
 import {EdadChart} from "@/features/04-Radiografia-Nacional/components/EdadChart.tsx";
 import {MapaChart} from "@/features/04-Radiografia-Nacional/components/MapaChart.tsx";
 import CHART_INFO from "@/assets/chart-info.png";
+import SWITCH from "@/assets/boton-genero.png";
+import ACTIVE from "@/assets/boton-active-genero.png";
+import NOT_ACTIVE from "@/assets/boton-not-active-genero.png";
 
 type TabKey = "aprobados" | "genero" | "edad" | "mapa";
 
@@ -121,18 +124,37 @@ export const RadiografiaNacional = () => {
               </div>
 
               {/* Sección inferior con botón de intercambio e información */}
-              <div className="absolute bottom-5 right-0 translate-x-1/5 hidden xl:flex flex-col items-center w-32 gap-4">
+              <div className="absolute bottom-0 right-0 translate-x-1/5 hidden xl:flex flex-col items-center w-32 gap-4">
                 <p className="text-center text-xs">Haz clic en los íconos para conocer la data</p>
                 <img src={CHART_INFO} alt="Información" className="w-16 h-auto" />
                 
                 {/* Botón de intercambio solo para la pestaña de género */}
                 {selected === "genero" && (
                   <button
+                    type="button"
                     onClick={() => setModoCompletoGenero(!modoCompletoGenero)}
-                    className="bg-white/20 hover:bg-white/30 text-white font-medium py-2 px-4 rounded-lg flex items-center transition-colors text-xs mt-2"
+                    aria-pressed={modoCompletoGenero}
+                    className="relative w-20 h-12 overflow-hidden rounded-md hover:cursor-pointer"
+                    style={{
+                      backgroundImage: modoCompletoGenero ? `url(${ACTIVE})` : `url(${NOT_ACTIVE})`,
+                      backgroundSize: "100%",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                    }}
                   >
-                    <span className="mr-1">{modoCompletoGenero ? "↶" : "↷"}</span>
-                    {modoCompletoGenero ? "Solo género" : "Ver aprobados"}
+                    <img
+                      src={SWITCH}
+                      alt=""
+                      aria-hidden="true"
+                      draggable={false}
+                      onDragStart={(e) => e.preventDefault()}
+                      className={[
+                        "absolute top-1/2 left-0 -translate-y-1/2",
+                        "w-1/2 h-full object-contain pointer-events-none select-none",
+                        "transition-transform duration-300 ease-out",
+                        modoCompletoGenero ? "translate-x-0" : "translate-x-full",
+                      ].join(" ")}
+                    />
                   </button>
                 )}
               </div>
@@ -141,11 +163,30 @@ export const RadiografiaNacional = () => {
               {selected === "genero" && (
                 <div className="xl:hidden mt-4 flex justify-center">
                   <button
+                    type="button"
                     onClick={() => setModoCompletoGenero(!modoCompletoGenero)}
-                    className="bg-white/20 hover:bg-white/30 text-white font-medium py-2 px-4 rounded-lg flex items-center transition-colors text-sm"
+                    aria-pressed={modoCompletoGenero}
+                    className="relative w-24 h-16 overflow-hidden rounded-md hover:cursor-pointer"
+                    style={{
+                      backgroundImage: modoCompletoGenero ? `url(${ACTIVE})` : `url(${NOT_ACTIVE})`,
+                      backgroundSize: "100%",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                    }}
                   >
-                    <span className="mr-2">{modoCompletoGenero ? "↶" : "↷"}</span>
-                    {modoCompletoGenero ? "Ver solo género" : "Ver aprobados/desaprobados"}
+                    <img
+                      src={SWITCH}
+                      alt=""
+                      aria-hidden="true"
+                      draggable={false}
+                      onDragStart={(e) => e.preventDefault()}
+                      className={[
+                        "absolute top-1/2 left-0 -translate-y-1/2",
+                        "w-1/2 h-full object-contain pointer-events-none select-none",
+                        "transition-transform duration-300 ease-out",
+                        modoCompletoGenero ? "translate-x-0" : "translate-x-full",
+                      ].join(" ")}
+                    />
                   </button>
                 </div>
               )}

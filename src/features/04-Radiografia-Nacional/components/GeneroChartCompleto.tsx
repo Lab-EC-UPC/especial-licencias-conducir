@@ -322,16 +322,6 @@ export const GeneroChartCompleto = () => {
             <h3>Femenino</h3>
           </div>
         </div>
-        <div className="flex gap-4 items-center justify-center font-light text-sm md:text-md mt-2">
-          <div className="flex gap-2 items-center">
-            <div className="bg-[#89643a] size-2 md:size-4" />
-            <h3>Aprobados</h3>
-          </div>
-          <div className="flex gap-2 items-center">
-            <div className="bg-[#366880] size-2 md:size-4" />
-            <h3>No aprobados</h3>
-          </div>
-        </div>
       </div>
     </div>
   );
