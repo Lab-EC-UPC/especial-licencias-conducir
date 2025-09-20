@@ -265,28 +265,6 @@ export const GeneroChart = () => {
               </div>
             </div>
           </div>
-
-          {/*<div className="hidden xl:flex text-left">*/}
-          {/*  <div*/}
-          {/*    className="absolute pointer-events-none"*/}
-          {/*    style={{ left: staticMasculino.left, top: staticMasculino.top, transform: staticMasculino.transform }}*/}
-          {/*  >*/}
-          {/*    <div className="rounded-xl font-medium bg-white text-pink text-left shadow-[0_6px_0_#6db0d1]">*/}
-          {/*      <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalMasculino)}</div>*/}
-          {/*      <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">hombres</div>*/}
-          {/*    </div>*/}
-          {/*  </div>*/}
-
-          {/*  <div*/}
-          {/*    className="absolute pointer-events-none"*/}
-          {/*    style={{ left: staticFemenino.left, top: staticFemenino.top, transform: staticFemenino.transform }}*/}
-          {/*  >*/}
-          {/*    <div className="rounded-xl font-medium bg-pink text-white shadow-[0_6px_0_#a94c6d]">*/}
-          {/*      <div className="font-bitcount text-lg md:text-2xl px-4 pt-2 whitespace-nowrap">{formatWithSpaces(totalFemenino)}</div>*/}
-          {/*      <div className="text-sm md:text-md px-4 pb-2 opacity-90 whitespace-nowrap">mujeres</div>*/}
-          {/*    </div>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
         </>
       )}
 

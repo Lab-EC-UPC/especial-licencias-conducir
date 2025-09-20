@@ -23,9 +23,9 @@ export const LesionesMuertesNacionales = () => {
               las avenidas. Pese a estos indicadores, el examen de conducir en el Perú aún se sigue
               realizando en un circuito cerrado.
             </p>
-            <div className="flex items-center justify-center gap-1 w-full md:max-w-2/3 mt-4 text-green">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-1 w-full md:max-w-2/3 mt-4 text-green">
               <IoIosInformationCircle size={16} />
-              <p className="font-medium text-md md:text-base">
+              <p className="font-medium text-xs md:text-base">
                 Haz clic en cada departamento para conocer la situación
               </p>
             </div>

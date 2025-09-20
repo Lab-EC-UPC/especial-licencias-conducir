@@ -4,6 +4,7 @@ import DESARROLLO from "@/assets/credits/desarrollo.png";
 import DATA from "@/assets/credits/data.png";
 import AUDIOVISUALES from "@/assets/credits/audiovisuales.png";
 import COORDINACION from "@/assets/credits/coordinacion.png";
+import THANKS from "@/assets/credits/thanks.svg";
 // import EDICION from "@/assets/credits/edicion-visual.png";
 
 export interface Credit {
@@ -326,7 +327,7 @@ export const credits: Credit[] = [
   // },
   {
     group: "Agradecimientos especiales",
-    // asset: EDICION,
+    asset: THANKS,
     assetOrientation: "left",
     members: [
       {

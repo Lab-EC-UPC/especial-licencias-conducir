@@ -4,6 +4,7 @@ import { hexbin as d3Hexbin } from "d3-hexbin";
 import type { Hexbin, HexbinBin } from "d3-hexbin";
 import PASSED_BUTTON from "@/assets/radiografia-nacional-aprobados.png";
 import NOT_PASSED_BUTTON from "@/assets/radiografia-nacional-desaprobados.png";
+import {unionPath} from "@/features/04-Radiografia-Nacional/utils/unionPath.ts";
 
 type Region = "masculino" | "femenino";
 type ExtendedBin = HexbinBin<[number, number]> & { region: Region };
@@ -124,19 +125,28 @@ export const GeneroChartSimple = () => {
       setTooltip(t => ({ ...t, show: false, region: null }));
     };
 
-    // Dibujar hexágonos
     g.selectAll("path")
       .data(bins)
       .join("path")
-      .attr("d", hexbin.hexagon())
-      .attr("transform", d => `translate(${d.x},${d.y})`)
+      .attr("d", unionPath)
+      .attr("transform", d => `translate(${d.x},${d.y}) scale(2) translate(-4.5,-4)`)
       .attr("fill", d => (d.region === "masculino" ? colors.femenino : colors.masculino))
-      .attr("stroke", colors.stroke)
-      .attr("stroke-width", 0.75)
-      .attr("shape-rendering", "crispEdges")
       .on("mouseenter", onEnter)
       .on("mousemove", onMove)
       .on("mouseleave", onLeaveHex);
+
+    // g.selectAll("path")
+    //   .data(bins)
+    //   .join("path")
+    //   .attr("d", unionPath)
+    //   .attr("transform", d => `translate(${d.x},${d.y})`)
+    //   .attr("fill", d => (d.region === "masculino" ? colors.femenino : colors.masculino))
+    //   .attr("stroke", colors.stroke)
+    //   .attr("stroke-width", 0.75)
+    //   .attr("shape-rendering", "crispEdges")
+    //   .on("mouseenter", onEnter)
+    //   .on("mousemove", onMove)
+    //   .on("mouseleave", onLeaveHex);
 
   }, [size, hexSize, masculinoRatio, colors]);
 

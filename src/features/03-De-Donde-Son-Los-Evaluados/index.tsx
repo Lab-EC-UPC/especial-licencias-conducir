@@ -28,9 +28,9 @@ export const DeDondeSonLosEvaluados = () => {
             examen de conducir. Estas son los establecimientos autorizados en provincias con mayor
             cantidad de evaluados “foráneos”:
           </p>
-          <div className="flex items-center justify-center gap-1 w-full md:max-w-2/3 text-primary mt-2">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-1 w-full md:max-w-2/3 text-primary mt-4">
             <IoIosInformationCircle size={16} />
-            <p className="font-medium text-md md:text-base">
+            <p className="font-medium text-xs md:text-base">
               Pulsa sobre los autos de colores para ver la data de cada provincia.
             </p>
           </div>

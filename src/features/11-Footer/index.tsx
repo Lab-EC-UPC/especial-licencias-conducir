@@ -34,7 +34,7 @@ export const FooterSection = () => {
                       key={index}
                       href={member.url}
                       target="_blank"
-                      className={`flex gap-5 items-center ${member.url && "hover:cursor-pointer hover:scale-105 duration-200"}`}
+                      className={`flex gap-2 md:gap-5 items-center ${member.url && "hover:cursor-pointer hover:scale-105 duration-200"}`}
                     >
                       {member.photo ? (
                         <div>

@@ -56,10 +56,9 @@ export const ComoLasFallas = () => {
           Descubre la correlación entre algunas fallas del examen teórico de conducir con las
           papeletas e infracciones más frecuentes en todo el país durante el mismo periodo.
         </p>
-
-        <div className="flex items-center justify-center gap-1 w-full md:max-w-2/3 italic text-primary mt-2 mb-8 md:mb-12">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-1 w-full md:max-w-2/3 italic text-primary mt-4 mb-8 md:mb-12">
           <IoIosInformationCircle size={16} />
-          <p className="font-medium text-md md:text-base">
+          <p className="font-medium text-xs md:text-base">
             Haz clic en cada elemento circular para saber cuántas infracciones se
             han cometido a nivel nacional
           </p>

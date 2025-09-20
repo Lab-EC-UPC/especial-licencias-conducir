@@ -4,15 +4,16 @@ import { hexbin as d3Hexbin } from "d3-hexbin";
 import type { Hexbin, HexbinBin } from "d3-hexbin";
 import PASSED_BUTTON from "@/assets/radiografia-nacional-aprobados.png";
 import NOT_PASSED_BUTTON from "@/assets/radiografia-nacional-desaprobados.png";
+import {unionPath} from "@/features/04-Radiografia-Nacional/utils/unionPath.ts";
 
 type Region = "masculino" | "femenino";
 type Status = "aprobado" | "no-aprobado";
-type ExtendedBin = HexbinBin<[number, number]> & { region: Region; status: Status };
+// type ExtendedBin = HexbinBin<[number, number]> & { region: Region; status: Status };
 
 export const GeneroChartCompleto = () => {
   // ===== Configuración =====
-  const size = 500;
-  const hexSize = 9;
+  const size = 600;
+  const hexSize = 10;
   
   // Datos
   const mujeresAprobadas = 274437;
@@ -20,21 +21,21 @@ export const GeneroChartCompleto = () => {
   const hombresAprobados = 1996031;
   const hombresDesaprobados = 1022017;
   
-  const totalMasculino = hombresAprobados + hombresDesaprobados;
-  const totalFemenino = mujeresAprobadas * 0.9 + mujeresDesaprobadas * 25;
+  // const totalMasculino = hombresAprobados + hombresDesaprobados;
+  // const totalFemenino = mujeresAprobadas * 0.9 + mujeresDesaprobadas * 25;
 
   // Colores
   const colors = useMemo(
     () => ({
       masculino: {
-        aprobado: "#58b7cf",
-        "no-aprobado": "#366880",
-      },
-      femenino: {
         aprobado: "#89643a",
         "no-aprobado": "#ffaf42",
       },
-      stroke: "#0d1321",
+      femenino: {
+        aprobado: "#58b7cf",
+        "no-aprobado": "#366880",
+      },
+      stroke: "#131A31",
     }),
     []
   );
@@ -67,26 +68,25 @@ export const GeneroChartCompleto = () => {
 
   // ===== Dibujo D3 =====
   useEffect(() => {
-    const cx = size / 2;
-    const cy = size / 2;
+    // ===== Parámetros iguales al Simple =====
+    const sizeLocal = 600;        // mismo size que el Simple
+    const hexSizeLocal = 10;      // misma densidad
+    const outerCircleR = sizeLocal * 0.40;
 
-    // Radios ajustados
-    const radioInterior = size * 0.08;
-    const radioMedio = size * 0.16;
-    const radioExteriorInterior = size * 0.35;
-    const radioExterior = size * 0.45;
+    const cx = sizeLocal / 2;
+    const cy = sizeLocal / 2;
 
-    const svg = d3.select(svgRef.current).attr("viewBox", `0 0 ${size} ${size}`);
+    const svg = d3.select(svgRef.current).attr("viewBox", `0 0 ${sizeLocal} ${sizeLocal}`);
 
     const hexbin: Hexbin<[number, number]> = d3Hexbin<[number, number]>()
-      .radius(hexSize)
-      .extent([[0, 0], [size, size]]);
+      .radius(hexSizeLocal)
+      .extent([[0, 0], [sizeLocal, sizeLocal]]);
 
-    // Malla regular
-    const dx = Math.sqrt(3) * hexSize;
-    const dy = 1.5 * hexSize;
-    const rows = Math.ceil((radioExterior * 2) / dy);
-    const cols = Math.ceil((radioExterior * 2) / dx);
+    // ===== Malla y recorte circular (idéntico al Simple) =====
+    const dx = Math.sqrt(3) * hexSizeLocal;
+    const dy = 1.5 * hexSizeLocal;
+    const rows = Math.ceil((outerCircleR * 2) / dy);
+    const cols = Math.ceil((outerCircleR * 2) / dx);
 
     const points: [number, number][] = [];
     for (let row = -rows; row <= rows; row++) {
@@ -95,9 +95,7 @@ export const GeneroChartCompleto = () => {
       for (let col = -cols; col <= cols; col++) {
         const x = cx + col * dx + offset;
         const dx0 = x - cx, dy0 = y - cy;
-        const distancia = Math.sqrt(dx0 * dx0 + dy0 * dy0);
-        
-        if (distancia <= radioExterior + hexSize) {
+        if (dx0 * dx0 + dy0 * dy0 <= (outerCircleR - hexSizeLocal * 0.9) ** 2) {
           points.push([x, y]);
         }
       }
@@ -110,73 +108,41 @@ export const GeneroChartCompleto = () => {
       return da - db;
     });
 
-    // Asignar región y estado con casting explícito de tipos
-    const bins: ExtendedBin[] = [];
-    
-    binsBase.forEach(bin => {
-      const dx0 = bin.x - cx;
-      const dy0 = bin.y - cy;
-      const distancia = Math.sqrt(dx0 * dx0 + dy0 * dy0);
-      
-      if (distancia <= radioInterior) {
-        // Centro: mujeres aprobadas (color oscuro) - MÁS PEQUEÑO
-        bins.push(Object.assign(bin, { 
-          region: "femenino" as const, 
-          status: "aprobado" as const 
-        }));
-      } else if (distancia <= radioMedio) {
-        // Anillo interior: mujeres no aprobadas (color normal) - MÁS GRUESO
-        bins.push(Object.assign(bin, { 
-          region: "femenino" as const, 
-          status: "no-aprobado" as const 
-        }));
-      } else if (distancia <= radioExteriorInterior) {
-        // Anillo medio: hombres aprobados (color fuerte)
-        bins.push(Object.assign(bin, { 
-          region: "masculino" as const, 
-          status: "aprobado" as const 
-        }));
-      } else if (distancia <= radioExterior) {
-        // Anillo exterior: hombres no aprobados (color suave)
-        bins.push(Object.assign(bin, { 
-          region: "masculino" as const, 
-          status: "no-aprobado" as const 
-        }));
-      }
-    });
+    // ===== Asignar región por proporción (idéntico al Simple) =====
+    const totalMasculinoLocal = hombresAprobados + hombresDesaprobados;
+    const totalFemeninoLocal  = mujeresAprobadas + mujeresDesaprobadas; // usa los reales para el ratio visual
+    const totalPopulation = totalMasculinoLocal + totalFemeninoLocal;
 
-    // Ajustar proporciones según los datos reales
-    const femeninoBins = bins.filter(b => b.region === "femenino");
-    const masculinoBins = bins.filter(b => b.region === "masculino");
-    
-    // Calcular proporciones exactas
-    const proporcionFemeninoAprobado = mujeresAprobadas / totalFemenino ;
-    const proporcionMasculinoAprobado = hombresAprobados / totalMasculino;
-    
-    const femeninoAprobadoCount = Math.floor(femeninoBins.length * proporcionFemeninoAprobado);
-    const masculinoAprobadoCount = Math.floor(masculinoBins.length * proporcionMasculinoAprobado);
-    
-    // Reasignar estados según las proporciones reales
-    const binsFinal: ExtendedBin[] = [];
-    
-    // Procesar mujeres
-    femeninoBins.forEach((bin, i) => {
-      binsFinal.push(Object.assign(bin, { 
-        status: i < femeninoAprobadoCount ? "aprobado" as const : "no-aprobado" as const 
-      }));
-    });
-    
-    // Procesar hombres
-    masculinoBins.forEach((bin, i) => {
-      binsFinal.push(Object.assign(bin, { 
-        status: i < masculinoAprobadoCount ? "aprobado" as const : "no-aprobado" as const 
-      }));
-    });
+    // OJO: en tu Simple usabas femenino/total para decidir la "cuña interior".
+    // Para replicar exactamente el Simple, mantenemos ese criterio:
+    const masculinoRatio = totalFemeninoLocal / totalPopulation;
+    const masculinoCount = Math.floor(binsBase.length * masculinoRatio);
+
+    // Región (solo 2 colores en pantalla)
+    type BinSimple = HexbinBin<[number, number]> & { region: Region; status?: Status };
+    const binsRegion: BinSimple[] = binsBase.map((b, i) =>
+      Object.assign(b, { region: i < masculinoCount ? "masculino" as const : "femenino" as const })
+    );
+
+    // ===== Mantener status para tooltips (no afecta el color) =====
+    // Calculamos proporciones reales de aprobado/no por región:
+    const propFemAprob = mujeresAprobadas / totalFemeninoLocal;
+    const propMasAprob = hombresAprobados / totalMasculinoLocal;
+
+    const fem = binsRegion.filter(b => b.region === "femenino");
+    const mas = binsRegion.filter(b => b.region === "masculino");
+
+    const femAprobCount = Math.floor(fem.length * propFemAprob);
+    const masAprobCount = Math.floor(mas.length * propMasAprob);
+
+    // Asigna status dentro de cada región (pero el fill no lo usaremos para status)
+    fem.forEach((b, i) => Object.assign(b, { status: i < femAprobCount ? "aprobado" : "no-aprobado" }));
+    mas.forEach((b, i) => Object.assign(b, { status: i < masAprobCount ? "aprobado" : "no-aprobado" }));
 
     svg.selectAll("*").remove();
     const g = svg.append("g");
 
-    // Eventos
+    // ===== Eventos (igual que antes) =====
     svg
       .on("mouseenter", () => setInside(true))
       .on("mouseleave", () => {
@@ -184,37 +150,43 @@ export const GeneroChartCompleto = () => {
         setTooltip(t => ({ ...t, show: false, region: null, status: null }));
       });
 
-    const onEnter = (event: MouseEvent, d: ExtendedBin) => {
+    const onEnter = (event: MouseEvent, d: BinSimple) => {
       const wrap = wrapRef.current; if (!wrap) return;
       const [px, py] = d3.pointer(event, wrap);
-      setTooltip({ show: true, x: px, y: py, region: d.region, status: d.status });
+      setTooltip({ show: true, x: px, y: py, region: d.region, status: d.status ?? null });
     };
-    
-    const onMove = (event: MouseEvent, d: ExtendedBin) => {
+
+    const onMove = (event: MouseEvent, d: BinSimple) => {
       const wrap = wrapRef.current; if (!wrap) return;
       const [px, py] = d3.pointer(event, wrap);
-      setTooltip(t => ({ ...t, x: px, y: py, region: d.region, status: d.status }));
+      setTooltip(t => ({ ...t, x: px, y: py, region: d.region, status: d.status ?? null }));
     };
-    
-    const onLeaveHex = () => {
+
+    const onLeave = () => {
       setTooltip(t => ({ ...t, show: false, region: null, status: null }));
     };
 
-    // Dibujar hexágonos
-    g.selectAll("path")
-      .data(binsFinal)
+    g.selectAll("path.union")
+      .data(binsRegion)
       .join("path")
-      .attr("d", hexbin.hexagon())
-      .attr("transform", d => `translate(${d.x},${d.y})`)
-      .attr("fill", d => colors[d.region][d.status])
-      .attr("stroke", colors.stroke)
-      .attr("stroke-width", 0.75)
-      .attr("shape-rendering", "crispEdges")
+      .attr("class", "union")
+      .attr("d", unionPath)
+      .attr(
+        "transform",
+        d => `translate(${d.x},${d.y}) translate(-4.5,-4) scale(${hexSize / 5})`
+      )
+      .attr("fill", d => d.status ? colors[d.region][d.status] : colors[d.region]["no-aprobado"])
+      // .attr("stroke", colors.stroke)
       .on("mouseenter", onEnter)
       .on("mousemove", onMove)
-      .on("mouseleave", onLeaveHex);
+      .on("mouseleave", onLeave);
 
-  }, [size, hexSize, colors, mujeresAprobadas, totalFemenino, hombresAprobados, totalMasculino]);
+
+  }, [
+    // deps mínimas necesarias
+    mujeresAprobadas, mujeresDesaprobadas, hombresAprobados, hombresDesaprobados,
+    colors, svgRef, wrapRef
+  ]);
 
    // ===== Tooltip =====
   const WRAP_W = wrapRef.current?.clientWidth ?? size;
@@ -252,99 +224,103 @@ export const GeneroChartCompleto = () => {
   };
 
   return (
-    <div ref={wrapRef} className="relative" style={{ width: size, height: size }}>
+    <div ref={wrapRef} className="relative">
       <svg
         ref={svgRef}
         width={size}
         height={size}
-        className="max-w-full h-auto block hover:cursor-pointer"
+        className="max-w-full h-auto block bg-transparent hover:cursor-pointer"
         aria-label="Distribución de género y estado de aprobación"
       />
 
       {/* Labels estáticos con el mismo estilo que los tooltips dinámicos */}
-      <div className="absolute bottom-90 -left-40 pointer-events-none z-10">
-        <div
-          className="font-medium text-white text-left w-40 md:w-50 h-auto"
-          style={{
-            backgroundImage: `url(${PASSED_BUTTON})`,
-            backgroundSize: "100% auto",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center"
-          }}
-        >
-          <div className="flex flex-col px-6 pt-3 pb-5">
-            <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
-              {formatWithSpaces(mujeresAprobadas)}
-            </div>
-            <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
-              mujeres aprueban
+      {!inside && (
+        <div className="grid grid-cols-2 justify-center items-center">
+          <div className="md:absolute md:top-20 md:-left-25 pointer-events-none z-10">
+            <div
+              className="font-medium text-white text-left w-40 md:w-50 h-auto"
+              style={{
+                backgroundImage: `url(${PASSED_BUTTON})`,
+                backgroundSize: "100% auto",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center"
+              }}
+            >
+              <div className="flex flex-col px-4 pt-3 pb-5">
+                <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                  {formatWithSpaces(mujeresAprobadas)}
+                </div>
+                <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                  mujeres aprueban
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="absolute bottom-70 -left-50 pointer-events-none z-10">
-        <div
-          className="font-medium text-white text-left w-40 md:w-50 h-auto"
-          style={{
-            backgroundImage: `url(${PASSED_BUTTON})`,
-            backgroundSize: "100% auto",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center"
-          }}
-        >
-          <div className="flex flex-col px-6 pt-3 pb-5">
-            <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
-              {formatWithSpaces(mujeresDesaprobadas)}
-            </div>
-            <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
-              mujeres desaprueban
+          <div className="md:absolute md:bottom-50 md:-right-35 pointer-events-none z-10">
+            <div
+              className="font-medium text-white text-left w-40 md:w-50 h-auto"
+              style={{
+                backgroundImage: `url(${NOT_PASSED_BUTTON})`,
+                backgroundSize: "100% auto",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center"
+              }}
+            >
+              <div className="flex flex-col px-4 pt-3 pb-5 text-pink">
+                <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                  {formatWithSpaces(hombresAprobados)}
+                </div>
+                <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                  hombres aprueban
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="absolute bottom-30 -right-45 pointer-events-none z-10">
-        <div
-          className="font-medium text-white text-left w-40 md:w-50 h-auto"
-          style={{
-            backgroundImage: `url(${NOT_PASSED_BUTTON})`,
-            backgroundSize: "100% auto",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center"
-          }}
-        >
-          <div className="flex flex-col px-6 pt-3 pb-5 text-pink">
-            <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
-              {formatWithSpaces(hombresAprobados)}
-            </div>
-            <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
-              hombres aprueban
+          <div className="md:absolute md:top-42 md:-left-35 pointer-events-none z-10">
+            <div
+              className="font-medium text-white text-left w-40 md:w-50 h-auto"
+              style={{
+                backgroundImage: `url(${PASSED_BUTTON})`,
+                backgroundSize: "100% auto",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center"
+              }}
+            >
+              <div className="flex flex-col px-4 pt-3 pb-5">
+                <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                  {formatWithSpaces(mujeresDesaprobadas)}
+                </div>
+                <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                  mujeres desaprueban
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="absolute bottom-10 -right-35 pointer-events-none z-10">
-        <div
-          className="font-medium text-white text-left w-40 md:w-50 h-auto"
-          style={{
-            backgroundImage: `url(${NOT_PASSED_BUTTON})`,
-            backgroundSize: "100% auto",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center"
-          }}
-        >
-          <div className="flex flex-col px-6 pt-3 pb-5 text-pink">
-            <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
-              {formatWithSpaces(hombresDesaprobados)}
-            </div>
-            <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
-              hombres desaprueban
+          <div className="md:absolute md:bottom-30 md:-right-20 pointer-events-none z-10">
+            <div
+              className="font-medium text-white text-left w-40 md:w-50 h-auto"
+              style={{
+                backgroundImage: `url(${NOT_PASSED_BUTTON})`,
+                backgroundSize: "100% auto",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center"
+              }}
+            >
+              <div className="flex flex-col px-4 pt-3 pb-5 text-pink">
+                <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                  {formatWithSpaces(hombresDesaprobados)}
+                </div>
+                <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                  hombres desaprueban
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Tooltip dinámico */}
       {inside && tooltip.show && tooltip.region && tooltip.status && (
@@ -363,7 +339,7 @@ export const GeneroChartCompleto = () => {
                 backgroundPosition: "center"
               }}
             >
-              <div className="flex flex-col px-6 pt-3 pb-5 text-pink">
+              <div className="flex flex-col px-4 pt-3 pb-5 text-pink">
                 <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
                   {formatWithSpaces(tooltipValues.value)}
                 </div>
@@ -382,7 +358,7 @@ export const GeneroChartCompleto = () => {
                 backgroundPosition: "center"
               }}
             >
-              <div className="flex flex-col px-6 pt-3 pb-5">
+              <div className="flex flex-col px-4 pt-3 pb-5">
                 <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
                   {formatWithSpaces(tooltipValues.value)}
                 </div>

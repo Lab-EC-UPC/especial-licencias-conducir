@@ -129,7 +129,7 @@ const EXPERT_CONTENT: Expert[] = [
       "interioriza la doctrina del Reglamento Nacional de Tránsito. Hay que buscar que la " +
       "obtención de la licencia de conducir tenga mayor rigor”.",
     fullText:
-      <div>
+      <div className="text-justify">
         <h1 className="font-bold text-lg md:text-xl">El examen debe ser más riguroso y la licencia gradual</h1>
         <p className="text-sm md:text-base">
           El examen teórico tiene un balotario con 200 preguntas, publicado con las respuestas. De
