@@ -153,7 +153,7 @@ export const credits: Credit[] = [
       {
         name: "Liliana Fu Ye",
         role: "Coordinadora de desarrollo",
-        photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/Liliana%20Fu.png?raw=true",
+        photo: "https://media.licdn.com/dms/image/v2/D4E03AQE7BSZrP5Q7Vw/profile-displayphoto-scale_200_200/B4EZlORhmLGYAY-/0/1757954841843?e=1761177600&v=beta&t=oWq7HcNRtniqvqtW6PFk2ONw3DqPg4EvqNVvu7PXuJU",
         url: "https://lilianafu.com/",
       },
       {
