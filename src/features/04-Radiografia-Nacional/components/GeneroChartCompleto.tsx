@@ -11,8 +11,8 @@ type ExtendedBin = HexbinBin<[number, number]> & { region: Region; status: Statu
 
 export const GeneroChartCompleto = () => {
   // ===== Configuración =====
-  const size = 600;
-  const hexSize = 10;
+  const size = 500;
+  const hexSize = 9;
   
   // Datos
   const mujeresAprobadas = 274437;
@@ -20,8 +20,8 @@ export const GeneroChartCompleto = () => {
   const hombresAprobados = 995031;
   const hombresDesaprobados = 1022017;
   
-  const totalMasculino = hombresAprobados + hombresDesaprobados;
-  const totalFemenino = mujeresAprobadas + mujeresDesaprobadas;
+  const totalMasculino = hombresAprobados * 0.4 + hombresDesaprobados;
+  const totalFemenino = mujeresAprobadas + mujeresDesaprobadas*25;
 
   // Colores
   const colors = useMemo(
@@ -31,8 +31,8 @@ export const GeneroChartCompleto = () => {
         "no-aprobado": "#366880",
       },
       femenino: {
-        aprobado: "#ffaf42",
-        "no-aprobado": "#89643a",
+        aprobado: "#89643a",
+        "no-aprobado": "#ffaf42",
       },
       stroke: "#0d1321",
     }),
@@ -72,7 +72,7 @@ export const GeneroChartCompleto = () => {
 
     // Radios ajustados
     const radioInterior = size * 0.08;
-    const radioMedio = size * 0.28;
+    const radioMedio = size * 0.16;
     const radioExteriorInterior = size * 0.35;
     const radioExterior = size * 0.45;
 
@@ -150,7 +150,7 @@ export const GeneroChartCompleto = () => {
     const masculinoBins = bins.filter(b => b.region === "masculino");
     
     // Calcular proporciones exactas
-    const proporcionFemeninoAprobado = mujeresAprobadas / totalFemenino;
+    const proporcionFemeninoAprobado = mujeresAprobadas / totalFemenino ;
     const proporcionMasculinoAprobado = hombresAprobados / totalMasculino;
     
     const femeninoAprobadoCount = Math.floor(femeninoBins.length * proporcionFemeninoAprobado);
@@ -310,7 +310,7 @@ export const GeneroChartCompleto = () => {
 
       {/* Leyenda */}
       <div className="flex flex-col justify-center mt-8">
-        <h2 className="text-lg md:text-xl">Género de los evaluados</h2>
+        <h2 className="text-lg md:text-xl">Género de los evaluados?</h2>
         <div className="flex gap-2 md:gap-4 items-center justify-center font-light text-sm md:text-lg">
           <h3>Género</h3>
           <div className="flex gap-2 items-center">
@@ -326,6 +326,5 @@ export const GeneroChartCompleto = () => {
     </div>
   );
 };
-
 
 export default GeneroChartCompleto;
