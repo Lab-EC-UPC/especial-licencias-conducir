@@ -21,7 +21,7 @@ const INFO: Record<TabKey, { title: string; description: string }> = {
   aprobados: {
     title: "Resultados del examen de conocimientos",
     description:
-      "Entre 2020 y 2024, se rindieron más de 3.3 millones de exámenes teóricos para obtener licencias A1. En promedio, two de cada tres personas aprueban.",
+      "Entre 2020 y 2024, se rindieron más de 3.3 millones de exámenes teóricos para obtener licencias A1. En promedio, dos de cada tres personas aprueban.",
   },
   genero: {
     title: "Composición y rendimiento de los postulantes según género",
@@ -204,7 +204,7 @@ export const RadiografiaNacional = () => {
                 </div>
               )}
 
-              <div className="py-4 h-[80vh] md:h-[70vh] xl:h-[60vh] flex flex-col justify-center items-center">
+              <div className="py-4 h-[80vh] md:h-[70vh] xl:h-[75vh] flex flex-col justify-center items-center">
                 {selected === "aprobados" && <AprobadosChart />}
                 {selected === "genero" && (
                   modoCompletoGenero ? <GeneroChartCompleto /> : <GeneroChartSimple />
