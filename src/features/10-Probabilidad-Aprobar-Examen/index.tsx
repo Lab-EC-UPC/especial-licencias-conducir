@@ -79,7 +79,7 @@ export const ProbabilidadAprobarExamen = () => {
       >
         <h1 className="text-center text-2xl md:text-3xl font-semibold leading-tight font-bitcount">
           ¿Cuál es tu probabilidad de aprobar
-          <br className="hidden md:block" /> el examen de licencia?
+           el examen de licencia a la primera?
         </h1>
         <p className="text-center mt-3 text-sm md:text-base text-white/80">
           Completa el siguiente simulador para estimar tu resultado con un análisis predictivo con
