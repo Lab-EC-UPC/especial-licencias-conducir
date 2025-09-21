@@ -22,7 +22,7 @@ export const TestimoniosSection = () => {
     {
       avatarUrl: TESTIMONIO1,
       title: "Ana Paula Diez",
-      text: "“Afuerita nomás, antes de entrar a la evaluación, hay un montón de gente que te quiere vender el exámen, que te dice que te va a aprobar. Hay gente que te dice: “yo te ayudo, amiga”.",
+      text: "“Afuerita nomás, antes de entrar a la evaluación, hay un montón de gente que te quiere vender el exámen, que te dice que te va a aprobar. Hay gente que te dice: “yo te ayudo, amiga””.",
       video:
         <iframe
           src="https://www.youtube.com/embed/WZT4nM-OjD4?si=aHHkjpkvWuTncrSP"
@@ -64,7 +64,7 @@ export const TestimoniosSection = () => {
     {
       avatarUrl: TESTIMONIO4,
       title: "Mario Muñoz",
-      text: "“Es un circuito pequeño donde realmente no aprueba el que tenga mejor habilidad conductiva, sino el que el que se han memorizado todos los pequeños detallitos que tiene que hacer y ya está.",
+      text: "“Es un circuito pequeño donde realmente no aprueba el que tenga mejor habilidad conductiva, sino el que se ha memorizado todos los pequeños detallitos que tiene que hacer y ya está”.",
       video:
         <iframe
           src="https://www.youtube.com/embed/uVyO0wB--Hk?si=AsQVZN8Z3v0oHRug"

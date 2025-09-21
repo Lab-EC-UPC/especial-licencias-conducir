@@ -116,7 +116,7 @@ export const TriviaQuizGame = ({
     const maxPossibleScore = questions.length * 20;
     const percentage = (score / maxPossibleScore) * 100;
 
-    if (percentage >= 80) return "Ya puedes obtener tu licencia de conducir 🏆.";
+    if (percentage >= 80) return "";
     if (percentage >= 60) return "Debes practicar un poco más 👍.";
     if (percentage >= 40) return "Regular, sigue practicando 📚.";
     return "Necesitas estudiar más las reglas. 📖";

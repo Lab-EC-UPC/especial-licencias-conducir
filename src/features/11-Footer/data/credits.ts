@@ -214,7 +214,7 @@ export const credits: Credit[] = [
     ]
   },
   {
-    group: "Audiovisuales y Redes sociales",
+    group: "Audiovisuales y redes sociales",
     asset: AUDIOVISUALES,
     assetOrientation: "left",
     members: [
@@ -332,7 +332,7 @@ export const credits: Credit[] = [
     members: [
       {
         name: "Carls Mayo",
-        role: "Edición de Prompts",
+        role: "Edición de prompts",
         photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/carls%20mayo.jpg?raw=true",
         url: "https://elcomercio.pe/autor/carls-mayo/"
       },

@@ -294,7 +294,7 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
                         <div className="space-y-2">
                           {/* Campo Nombre */}
                           <PixelTextField
-                            label="Nombre"
+                            label="Nombre:"
                             placeholder="Ingresa tu nombre (Opcional)"
                             value={formData.nombre}
                             onChange={(value) => handleInputChange('nombre', value)}
@@ -361,7 +361,7 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
                               lineHeight: '1.4'
                             }}
                           >
-                            Autorizo el uso de mi testimonio con fines periodísticos, manteniendo mi anonimato. Los datos como el celular y el correo no serán publicados.
+                            Autorizo el uso de mi testimonio con fines periodísticos, manteniendo mi anonimato. <br/>Los datos como el celular y el correo no serán publicados.
                           </p>
                         </div>
                         {submitError && (
