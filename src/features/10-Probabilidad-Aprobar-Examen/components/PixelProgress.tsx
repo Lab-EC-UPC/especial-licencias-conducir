@@ -45,7 +45,7 @@ export function PixelProgress({ value }: { value: number }) {
   return (
     <div ref={containerRef} className="relative rounded-[14px] p-2">
       <div className="relative h-[62px] rounded-[10px] overflow-hidden">
-        <div className="absolute inset-y-0 left-[8px] right-[8px] top-[6px] bottom-[6px]">
+        <div className="absolute inset-y-0 left-[5px] right-[5px] md:left-[8px] md:right-[8px] top-[5px] bottom-[5px] md:top-[6px] md:bottom-[6px]">
           <div className="absolute inset-0 z-0" style={{ background: "#FF8DB3" }} />
 
           <motion.div
