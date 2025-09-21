@@ -117,7 +117,7 @@ export const CausasRaicesSection = () => {
           <img
             src={causa.avatarUrl}
             alt={causa.title}
-            className="object-cover w-full h-full relative z-10 pointer-events-none"
+            className="object-cover w-full h-auto relative z-10 pointer-events-none"
             draggable={false}
           />
         </div>

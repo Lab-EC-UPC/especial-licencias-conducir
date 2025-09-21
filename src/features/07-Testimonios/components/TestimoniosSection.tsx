@@ -112,7 +112,7 @@ export const TestimoniosSection = () => {
           <img
             src={testimonio.avatarUrl}
             alt={testimonio.title}
-            className="object-cover w-full h-full relative z-10 pointer-events-none"
+            className="object-cover w-full h-auto relative z-10 pointer-events-none"
             draggable={false}
           />
         </div>
