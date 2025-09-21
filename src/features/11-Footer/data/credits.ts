@@ -299,7 +299,7 @@ export const credits: Credit[] = [
       },
       {
         name: "Ariana Lira",
-        role: "Supervisión y edición General",
+        role: "Supervisión y edición general",
         photo: "https://lab-ec-upc.github.io/assets/integrantes/ariana-link.jpg",
         url: "https://www.linkedin.com/in/ariana-lira-delcore/",
       },

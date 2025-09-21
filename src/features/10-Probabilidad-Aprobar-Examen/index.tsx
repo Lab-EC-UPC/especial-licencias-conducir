@@ -170,8 +170,8 @@ export const ProbabilidadAprobarExamen = () => {
         </form>
         {percent > 0 && (
           <div className="mt-10">
-            <p className="font-semibold text-center text-xl mb-1 text-white/90">
-              Probabilidad estimada de aprobar
+            <p className="font-semibold text-center text-base md:text-xl mb-1 text-white/90">
+              Probabilidad estimada de aprobar el examen de licencia a la primera
             </p>
             <PixelProgress value={percent} />
           </div>
