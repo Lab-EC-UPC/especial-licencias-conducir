@@ -3,7 +3,6 @@ import heroWebp from "@/assets/hero.webp";
 import mobileHeroImage from "@/assets/mobileHeroImage.png";
 import mobileHeroImageWebp from "@/assets/mobileHeroImage.webp";
 import {useState} from "react";
-import {TriviaQuizModal} from "@/features/01-Header/components/TriviaQuizModal.tsx";
 import {DisclaimerModal} from "@/features/shared/components/DisclaimerModal.tsx";
 import {IoIosInformationCircle} from "react-icons/io";
 import {DisclaimerInfo} from "@/features/01-Header/components/DisclaimerInfo.tsx";
@@ -46,8 +45,14 @@ const CONFIG = {
   gameContainerHeight: "min-h-[600px]",
 };
 
-export const Header = () => {
-  const [isGameOpen, setIsGameOpen] = useState(false);
+export const Header = (
+  {
+    setIsGameOpen,
+  }: {
+    isGameOpen: boolean;
+    setIsGameOpen: (isOpen: boolean) => void;
+  }
+) => {
   const [disclaimerModal, setDisclaimerModal] = useState<boolean>(false);
 
   return (
@@ -185,10 +190,6 @@ export const Header = () => {
           </button>
         </div>
       </div>
-      <TriviaQuizModal
-        isOpen={isGameOpen}
-        setIsOpen={setIsGameOpen}
-      />
       <DisclaimerModal
         isOpen={disclaimerModal}
         setIsOpen={setDisclaimerModal}

@@ -192,7 +192,7 @@ export const CausasRaicesSection = () => {
                     <div>
                       <h1 className="font-bold font-bitcount text-2xl text-center mb-4">{selectedCausa?.modalTitle}</h1>
                       <div
-                        className={`text-sm md:text-lg max-h-[50vh] overflow-y-auto custom-scroll ${
+                        className={`text-sm md:text-lg max-h-[50vh] overflow-y-auto custom-scroll pb-16 md:pb-6 ${
                           selectedCausa?.title === "Causa Raíz 1: Corrupción"
                             ? "scroll-blue"
                             : selectedCausa?.title ===

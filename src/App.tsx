@@ -9,23 +9,36 @@ import {FooterSection} from "@/features/11-Footer";
 import {ComoLasFallas} from "@/features/02-Como-Las-Fallas";
 import {RadiografiaNacional} from "@/features/04-Radiografia-Nacional";
 import {CausasRaices} from "@/features/05-Causas-Raices";
+import {useState} from "react";
+import {TriviaQuizModal} from "@/features/01-Header/components/TriviaQuizModal.tsx";
 
 function App() {
+  const [isGameOpen, setIsGameOpen] = useState(false);
 
   return (
     <>
-      <div className="flex flex-col bg-white">
-        <Header />
-        <RadiografiaNacional />
-        <DeDondeSonLosEvaluados />
-        <LesionesMuertesNacionales />
-        <ComoLasFallas />
-        <CausasRaices />
-        <Testimonios />
-        <CallToAction />
-        <ProbabilidadAprobarExamen />
-        <FooterSection />
-      </div>
+      {isGameOpen ? (
+        <TriviaQuizModal
+          isOpen={isGameOpen}
+          setIsOpen={setIsGameOpen}
+        />
+      ): (
+        <div className="flex flex-col bg-white">
+          <Header
+            isGameOpen={isGameOpen}
+            setIsGameOpen={setIsGameOpen}
+          />
+          <RadiografiaNacional />
+          <DeDondeSonLosEvaluados />
+          <LesionesMuertesNacionales />
+          <ComoLasFallas />
+          <CausasRaices />
+          <Testimonios />
+          <CallToAction />
+          <ProbabilidadAprobarExamen />
+          <FooterSection />
+        </div>
+      )}
     </>
   )
 }

@@ -143,7 +143,7 @@ export const CausaOverlay = ({
                         }`}
                         style={{ color: "black" }}
                       >
-                        <p className="text-sm font-medium whitespace-pre-wrap px-2">{content}</p>
+                        <p className="text-sm font-medium whitespace-pre-wrap px-2 pb-16 md:pb-6">{content}</p>
                       </div>
                     </div>
                   </div>

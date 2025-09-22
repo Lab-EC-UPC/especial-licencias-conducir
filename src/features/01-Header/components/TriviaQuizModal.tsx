@@ -1,4 +1,3 @@
-import {Modal, ModalBody, ModalContent} from "@heroui/modal";
 import {TriviaQuizGame} from "@/features/01-Header/components/TriviaQuizGame.tsx";
 import {useEffect, useRef, useState} from "react";
 import { IoVolumeMute } from "react-icons/io5";
@@ -49,77 +48,60 @@ export const TriviaQuizModal = ({
   }, [isMuted, isOpen, volume]);
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onOpenChange={setIsOpen}
-      size="full"
-      scrollBehavior="inside"
-      hideCloseButton={true}
-      classNames={{
-        body: "bg-[#131a31] custom-scroll scroll-blue h-full"
-      }}
-    >
-      <ModalContent>
-        {() => (
-          <>
-            <audio ref={bgmRef} src={BGM} preload="auto" loop aria-hidden="true" />
-            <ModalBody>
-              <div className="w-full">
-                <div className="flex flex-row justify-between items-center w-full py-4 text-white">
-                  <div className="flex items-center">
-                    <button
-                      className="hover:cursor-pointer text-xl md:text-2xl p-3 md:p-4 bg-[#ac5eaa] rounded-full"
-                      onClick={()=>setIsMuted(!isMuted)}
-                    >
-                      {isMuted ? <IoVolumeMute /> : <IoMdVolumeMute />}
-                    </button>
-                    <input
-                      type="range"
-                      min="0"
-                      max="1"
-                      step="0.01"
-                      value={volume}
-                      onChange={(e) => setVolume(Number(e.target.value))}
-                      className="mx-2 w-24 md:w-32 accent-[#ac5eaa] cursor-pointer"
-                    />
-                  </div>
-                  <div className="flex gap-2 items-center">
-                    <button
-                      onClick={()=>setIsOpen(false)}
-                      className="w-full mx-auto px-4 md:px-8 py-2 md:py-3 font-bitcount rounded-lg font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer whitespace-nowrap"
-                      style={{
-                        backgroundImage: `url('${PINK}')`,
-                        imageRendering: 'pixelated',
-                        color: "#dbeecb",
-                        backgroundSize: "100% 100%",
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center"
-                      }}
-                    >
-                      🚪 Salir
-                    </button>
-                    {/*<Button*/}
-                    {/*  text="🚪 Salir"*/}
-                    {/*  onClick={()=>setIsOpen(false)}*/}
-                    {/*  variant="pink"*/}
-                    {/*  className="w-[100px]"*/}
-                    {/*/>*/}
-                  </div>
-                </div>
-                <div className="flex items-center justify-center">
-                  <div className="pb-20 w-full xl:w-1/2">
-                    <TriviaQuizGame
-                      setIsOpen={setIsOpen}
-                      isMuted={isMuted}
-                      volume={volume}
-                    />
-                  </div>
-                </div>
-              </div>
-            </ModalBody>
-          </>
-        )}
-      </ModalContent>
-    </Modal>
+    <>
+      <audio ref={bgmRef} src={BGM} preload="auto" loop aria-hidden="true" />
+      <div className="w-full min-h-screen p-3 md:p-4 xl:p-8 bg-primary">
+        <div className="flex flex-row justify-between items-center w-full py-4 text-white">
+          <div className="flex items-center">
+            <button
+              className="hover:cursor-pointer text-xl md:text-2xl p-3 md:p-4 bg-[#ac5eaa] rounded-full"
+              onClick={()=>setIsMuted(!isMuted)}
+            >
+              {isMuted ? <IoVolumeMute /> : <IoMdVolumeMute />}
+            </button>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={volume}
+              onChange={(e) => setVolume(Number(e.target.value))}
+              className="mx-2 w-24 md:w-32 accent-[#ac5eaa] cursor-pointer"
+            />
+          </div>
+          <div className="flex gap-2 items-center">
+            <button
+              onClick={()=>setIsOpen(false)}
+              className="w-full mx-auto px-4 md:px-8 py-2 md:py-3 font-bitcount rounded-lg font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer whitespace-nowrap"
+              style={{
+                backgroundImage: `url('${PINK}')`,
+                imageRendering: 'pixelated',
+                color: "#dbeecb",
+                backgroundSize: "100% 100%",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center"
+              }}
+            >
+              🚪 Salir
+            </button>
+            {/*<Button*/}
+            {/*  text="🚪 Salir"*/}
+            {/*  onClick={()=>setIsOpen(false)}*/}
+            {/*  variant="pink"*/}
+            {/*  className="w-[100px]"*/}
+            {/*/>*/}
+          </div>
+        </div>
+        <div className="flex items-center justify-center">
+          <div className="pb-20 w-full xl:w-1/2">
+            <TriviaQuizGame
+              setIsOpen={setIsOpen}
+              isMuted={isMuted}
+              volume={volume}
+            />
+          </div>
+        </div>
+      </div>
+    </>
   )
 }

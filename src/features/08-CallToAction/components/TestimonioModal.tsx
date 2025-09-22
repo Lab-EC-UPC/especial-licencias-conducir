@@ -236,7 +236,7 @@ export const TestimonioModal = ({ isOpen, onClose }: Props) => {
                       {/* Contenido Real */}
                       <form
                         onSubmit={handleSubmit}
-                        className="relative p-3 sm:p-4 pt-8 pb-10 overflow-y-auto w-full h-full max-h-[85vh] sm:max-h-[80vh] text-white testimonio-modal-content"
+                        className="relative p-3 sm:p-4 pt-8 overflow-y-auto w-full h-full max-h-[85vh] pb-16 md:pb-10 sm:max-h-[80vh] text-white testimonio-modal-content"
                         style={{
                           scrollbarWidth: 'thin',
                           scrollbarColor: '#D99A2D transparent',
