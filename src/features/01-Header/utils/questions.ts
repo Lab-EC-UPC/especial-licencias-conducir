@@ -1975,11 +1975,11 @@ export const allQuestions: Question[] = [
         question: "Es una obligación general de tránsito que, los ____________ circulen respetando los mensajes de _______________, las instrucciones de los Efectivos de la Policía de Tránsito y el mandato de las normas legales y reglamentarias correspondientes.",
         options: [
             "Peatones - los letreros instalados en las vías públicas.",
-            "Los usuarios de la vía pública - los dispositivos de control de tránsito.",
+            "Usuarios de la vía pública - los dispositivos de control de tránsito.",
             "Vehículos - los medios de comunicación.",
             "Menores de edad - los adultos mayores."
         ],
-        correctAnswer: "Los usuarios de la vía pública - los dispositivos de control de tránsito."
+        correctAnswer: "Usuarios de la vía pública - los dispositivos de control de tránsito."
     },
     {
         question: "Marque la afirmación incorrecta:",

@@ -4,7 +4,8 @@ import {useEffect, useRef, useState} from "react";
 import { IoVolumeMute } from "react-icons/io5";
 import { IoMdVolumeMute } from "react-icons/io";
 import BGM from "@/assets/audio/game-bgm.wav";
-import Button from "@/features/10-Probabilidad-Aprobar-Examen/components/button.tsx";
+import PINK from "@/assets/buttons/button-pink.png";
+// import Button from "@/features/10-Probabilidad-Aprobar-Examen/components/button.tsx";
 
 interface Props {
   isOpen: boolean;
@@ -64,10 +65,10 @@ export const TriviaQuizModal = ({
             <audio ref={bgmRef} src={BGM} preload="auto" loop aria-hidden="true" />
             <ModalBody>
               <div className="w-full h-full p-2 md:p-4 xl:p-8">
-                <div className="flex flex-col gap-2 md:flex-row justify-between items-center w-full py-4 text-white">
+                <div className="flex flex-row justify-between items-center w-full py-4 text-white">
                   <div className="flex items-center">
                     <button
-                      className="hover:cursor-pointer text-2xl p-4 bg-[#ac5eaa] rounded-full"
+                      className="hover:cursor-pointer text-xl md:text-2xl p-3 md:p-4 bg-[#ac5eaa] rounded-full"
                       onClick={()=>setIsMuted(!isMuted)}
                     >
                       {isMuted ? <IoVolumeMute /> : <IoMdVolumeMute />}
@@ -79,26 +80,30 @@ export const TriviaQuizModal = ({
                       step="0.01"
                       value={volume}
                       onChange={(e) => setVolume(Number(e.target.value))}
-                      className="mx-4 w-32 accent-[#ac5eaa] cursor-pointer"
+                      className="mx-2 w-24 md:w-32 accent-[#ac5eaa] cursor-pointer"
                     />
                   </div>
                   <div className="flex gap-2 items-center">
-                    {/*<button*/}
-                    {/*  onClick={()=>setIsOpen(false)}*/}
-                    {/*  className="w-full mx-auto px-8 py-3 rounded-lg font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer whitespace-nowrap"*/}
-                    {/*  style={{*/}
-                    {/*    backgroundColor: "#ac5eaa",*/}
-                    {/*    color: "#dbeecb",*/}
-                    {/*    fontFamily: "var(--font-helvetica, sans-serif)"*/}
-                    {/*  }}*/}
-                    {/*>*/}
-                    {/*  🚪 Salir*/}
-                    {/*</button>*/}
-                    <Button
-                      text="🚪 Salir"
+                    <button
                       onClick={()=>setIsOpen(false)}
-                      variant="pink"
-                    />
+                      className="w-full mx-auto px-4 md:px-8 py-2 md:py-3 font-bitcount rounded-lg font-bold text-base transition-all hover:opacity-90 hover:cursor-pointer whitespace-nowrap"
+                      style={{
+                        backgroundImage: `url('${PINK}')`,
+                        imageRendering: 'pixelated',
+                        color: "#dbeecb",
+                        backgroundSize: "100% 100%",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center"
+                      }}
+                    >
+                      🚪 Salir
+                    </button>
+                    {/*<Button*/}
+                    {/*  text="🚪 Salir"*/}
+                    {/*  onClick={()=>setIsOpen(false)}*/}
+                    {/*  variant="pink"*/}
+                    {/*  className="w-[100px]"*/}
+                    {/*/>*/}
                   </div>
                 </div>
                 <div className="flex items-center justify-center">
