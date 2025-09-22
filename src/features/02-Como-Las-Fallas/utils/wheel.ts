@@ -31,7 +31,7 @@ const items: WheelProps[] = [
         count: "137.077",
     },
     {
-        question: "Siempre que no exista una señal de limite de velocidad, en zonas urbanas el limite de velocidad en calles y jirones es de:",
+        question: "Siempre que no exista una señal de límite de velocidad, en zonas urbanas el límite de velocidad en calles y jirones es de:",
         title: "19",
         answer: "Cantidad cometida en los ultimos 4 años.",
         count: "19",
