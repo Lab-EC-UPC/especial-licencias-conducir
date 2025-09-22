@@ -319,7 +319,7 @@ export const credits: Credit[] = [
   //     {
   //       name: "Nuevas Narrativas",
   //       role: "Revisión visual",
-  //       photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/NN.png?raw=true",
+  //       photo: "https://avatar.iran.liara.run/username?username=Nuevas%20Narrativas&background=ffffff&color=000000",
   //       url: "https://especiales.elcomercio.pe/?q=especiales-multimedia/especiales-nuevas-narrativas-especdis/index.html",
   //       photoNotRound: true,
   //     },
@@ -340,8 +340,7 @@ export const credits: Credit[] = [
         name: "Nuevas Narrativas",
         role: "Revisión visual",
         url: "https://especiales.elcomercio.pe/?q=especiales-multimedia/especiales-nuevas-narrativas-especdis/index.html",
-        photo: "https://avatar.iran.liara.run/username?username=Nuevas%20Narrativas&background=ffffff&color=000000",
-        photoNotRound: true,
+        photo: "https://raw.githubusercontent.com/Lab-EC-UPC/assets/refs/heads/main/especial-licencias/NN.png"     
       },
     ]
   },
