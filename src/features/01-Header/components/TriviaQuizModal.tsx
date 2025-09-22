@@ -53,10 +53,9 @@ export const TriviaQuizModal = ({
       isOpen={isOpen}
       onOpenChange={setIsOpen}
       size="full"
-      scrollBehavior="inside"
       hideCloseButton={true}
       classNames={{
-        body: "bg-[#131a31] custom-scroll scroll-blue h-full"
+        body: "bg-[#131a31] h-full p-0"
       }}
     >
       <ModalContent>
@@ -64,7 +63,7 @@ export const TriviaQuizModal = ({
           <>
             <audio ref={bgmRef} src={BGM} preload="auto" loop aria-hidden="true" />
             <ModalBody>
-              <div className="w-full h-full p-2 md:p-4 xl:p-8">
+              <div className="w-full p-2 md:p-4 xl:p-8 h-[100vh] overflow-y-auto px-4 scrollbar-hide">
                 <div className="flex flex-row justify-between items-center w-full py-4 text-white">
                   <div className="flex items-center">
                     <button
