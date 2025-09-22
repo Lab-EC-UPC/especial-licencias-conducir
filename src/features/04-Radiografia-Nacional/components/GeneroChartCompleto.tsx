@@ -126,8 +126,8 @@ export const GeneroChartCompleto = () => {
 
     // ===== Mantener status para tooltips (no afecta el color) =====
     // Calculamos proporciones reales de aprobado/no por región:
-    const propFemAprob = mujeresAprobadas / totalFemeninoLocal;
-    const propMasAprob = hombresAprobados / totalMasculinoLocal;
+    const propMasAprob = mujeresAprobadas*0.2 / totalFemeninoLocal;
+    const propFemAprob = hombresAprobados / totalMasculinoLocal ;
 
     const fem = binsRegion.filter(b => b.region === "femenino");
     const mas = binsRegion.filter(b => b.region === "masculino");
@@ -206,12 +206,13 @@ export const GeneroChartCompleto = () => {
     if (!tooltip.region || !tooltip.status) return { value: 0, text: "" };
     
     if (tooltip.region === "masculino") {
-      const value = tooltip.status === "aprobado" ? hombresAprobados : hombresDesaprobados;
-      const text = tooltip.status === "aprobado" ? "hombres aprueban" : "hombres desaprueban";
-      return { value, text };
-    } else {
-      const value = tooltip.status === "aprobado" ?mujeresDesaprobadas:  mujeresAprobadas  ;
+      const value = tooltip.status === "aprobado" ? mujeresDesaprobadas:  mujeresAprobadas  ;
       const text = tooltip.status === "aprobado" ? "mujeres desaprueban": "mujeres aprueban" ;
+      return { value, text };
+     
+    } else {
+       const value = tooltip.status === "aprobado" ? hombresAprobados : hombresDesaprobados;
+      const text = tooltip.status === "aprobado" ? "hombres aprueban" : "hombres desaprueban";
       return { value, text };
     }
   };
@@ -333,25 +334,6 @@ export const GeneroChartCompleto = () => {
             <div
               className="font-medium text-white text-left w-40 md:w-50 h-auto"
               style={{
-                backgroundImage: `url(${NOT_PASSED_BUTTON})`,
-                backgroundSize: "100% auto",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center"
-              }}
-            >
-              <div className="flex flex-col px-4 pt-3 pb-5 text-pink">
-                <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
-                  {formatWithSpaces(tooltipValues.value)}
-                </div>
-                <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
-                  {tooltipValues.text}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div
-              className="font-medium text-white text-left w-40 md:w-50 h-auto"
-              style={{
                 backgroundImage: `url(${PASSED_BUTTON})`,
                 backgroundSize: "100% auto",
                 backgroundRepeat: "no-repeat",
@@ -367,6 +349,28 @@ export const GeneroChartCompleto = () => {
                 </div>
               </div>
             </div>
+            
+            
+          ) : (
+            <div
+              className="font-medium text-white text-left w-40 md:w-50 h-auto"
+              style={{
+                backgroundImage: `url(${NOT_PASSED_BUTTON})`,
+                backgroundSize: "100% auto",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center"
+              }}
+            >
+              <div className="flex flex-col px-4 pt-3 pb-5 text-pink">
+                <div className="font-bitcount text-lg md:text-2xl whitespace-nowrap leading-none">
+                  {formatWithSpaces(tooltipValues.value)}
+                </div>
+                <div className="text-sm md:text-md opacity-90 whitespace-nowrap leading-none">
+                  {tooltipValues.text}
+                </div>
+              </div>
+            </div>
+            
           )}
         </div>
       )}
