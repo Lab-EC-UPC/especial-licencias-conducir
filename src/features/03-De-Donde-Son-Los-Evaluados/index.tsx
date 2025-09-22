@@ -24,9 +24,7 @@ export const DeDondeSonLosEvaluados = () => {
             ¿De dónde vienen los evaluados?
           </h1>
           <p className="w-full md:max-w-2/3 font-medium text-md md:text-xl">
-            Se ha detectado que muchos peruanos optan por viajar a otras provincias para dar el
-            examen de conducir. Estas son los establecimientos autorizados en provincias con mayor
-            cantidad de evaluados “foráneos”:
+            En promedio, cada año más de 90 mil exámenes se rinden fuera de la región de domicilio de los postulantes. Estos son los establecimientos autorizados en provincias con mayor cantidad de evaluados “foráneos”.
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-1 w-full md:max-w-2/3 text-primary mt-4">
             <IoIosInformationCircle size={16} />

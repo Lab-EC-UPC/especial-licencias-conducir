@@ -53,7 +53,7 @@ export const TestimoniosSection = () => {
       text: "“En el reglamento indican que tienes que prender tu luz direccional (para estacionar en diagonal). A mí me desaprobaron por prenderlas. En mi siguiente examen, decidí no hacerlo, y me desaprobaron por no prenderlas”. ",
       video:
         <iframe
-          src="https://www.youtube.com/embed/yJfaUfcUyCo?si=-TX5oAEfv9Fit5yq"
+          src="https://www.youtube.com/embed/Lx4FWY3kxZU?si=DFSvY2bK669gYHss"
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
