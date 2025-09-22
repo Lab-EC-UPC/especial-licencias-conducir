@@ -106,7 +106,7 @@ export const DeDondeSonLosEvaluados = () => {
                     <p className="text-[#868686] text-lg leading-none">Foráneos</p>
                   </div>
                   <div className="text-left pr-2 md:pr-3 xl:pr-10">
-                    <p className="text-[#868686] text-3xl font-bold leading-none">20%</p>
+                    <p className="text-[#868686] text-3xl font-bold leading-none">30%</p>
                     <p className="text-[#868686] text-lg leading-none">Residentes</p>
                   </div>
                 </div>
@@ -148,7 +148,7 @@ export const DeDondeSonLosEvaluados = () => {
               >
                 <div className="flex justify-between w-full items-end">
                   <div className="text-left  pl-4 md:pl-32 xl:pl-8">
-                    <p className="text-[#58B7CF] text-5xl font-black leading-none">80%</p>
+                    <p className="text-[#58B7CF] text-5xl font-black leading-none">60%</p>
                     <p className="text-[#868686] text-lg leading-none">Foráneos</p>
                   </div>
                   <div className="text-left pr-6 md:pr-56 xl:pr-18">
