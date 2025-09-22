@@ -340,6 +340,7 @@ export const credits: Credit[] = [
         name: "Nuevas Narrativas",
         role: "Revisión visual",
         url: "https://especiales.elcomercio.pe/?q=especiales-multimedia/especiales-nuevas-narrativas-especdis/index.html",
+        photoNotRound: true,
         photo: "https://raw.githubusercontent.com/Lab-EC-UPC/assets/refs/heads/main/especial-licencias/NN.png"     
       },
     ]
