@@ -169,12 +169,6 @@ export const credits: Credit[] = [
         url: "https://williamramos.netlify.app/",
       },
       {
-        name: "Daniella Vargas Saldaña",
-        role: "Modelo predictivo",
-        photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/Daniella%20Vargas.png?raw=true",
-        url: "https://daniellavargas.netlify.app",
-      },
-      {
         name: "Luciano Ruiz Blas",
         role: "Desarrollo de página web",
         photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/Luciano%20Ruiz%20Blas.png?raw=true",
@@ -210,6 +204,12 @@ export const credits: Credit[] = [
         role: "Coordinadora de análisis de políticas públicas",
         photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/Sofía%20Enciso.png?raw=true",
         url: "https://www.linkedin.com/in/sof%C3%ADa-enciso-goicochea-41bbb8258/",
+      },
+      {
+        name: "Daniella Vargas Saldaña",
+        role: "Análisis de datos",
+        photo: "https://github.com/Lab-EC-UPC/assets/blob/main/especial-licencias/Daniella%20Vargas.png?raw=true",
+        url: "https://daniellavargas.dev",
       },
     ]
   },
